@@ -682,7 +682,7 @@ export function registerMissingFunctions(add: (f: ExcelFunction) => void, reg: F
     "COUPNCD", "COUPNUM", "COUPPCD", "DURATION", "FORECAST.ETS",
     "FORECAST.ETS.CONFINT", "FORECAST.ETS.SEASONALITY", "FORECAST.ETS.STAT",
     "INTRATE", "MDURATION", "ODDFPRICE", "ODDFYIELD", "ODDLPRICE",
-    "ODDLYIELD", "PRICE", "PRICEMAT", "RECEIVED", "VDB", "YIELD",
+    "ODDLYIELD", "PRICEMAT", "RECEIVED", "VDB",
     "YIELDDISC", "YIELDMAT",
   ];
   for (const name of financialStubNames) {

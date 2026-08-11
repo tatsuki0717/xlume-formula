@@ -13,6 +13,7 @@ import { excelCompare, excelConcat } from "../formula/coercion.js";
 import { registerExtraFunctions } from "./builtins-extra.js";
 import { formulaJsFallback } from "./formulajs-adapter.js";
 import { registerMissingFunctions } from "./builtins-missing.js";
+import { registerFinancialFunctions } from "./builtins-financial.js";
 
 function fn(
   name: string,
@@ -1077,6 +1078,7 @@ export function createBuiltinFunctions(): FunctionRegistry {
   }));
 
   registerExtraFunctions(add);
+  registerFinancialFunctions(add);
   registerMissingFunctions(add, reg);
 
   reg.setFallback((name) => formulaJsFallback(name));
