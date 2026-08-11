@@ -468,6 +468,186 @@ export function registerFinancialFunctions(add: (f: ExcelFunction) => void): voi
     }),
   );
 
+  // Odd first period bond price / yield
+  function isEndOfMonth(d: Date): boolean {
+    const dim = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth() + 1, 0)).getUTCDate();
+    return d.getUTCDate() === dim;
+  }
+  function dimOf(y: number, m: number): number {
+    return new Date(Date.UTC(y, m + 1, 0)).getUTCDate();
+  }
+  function addMonthsEom(d: Date, months: number, eom: boolean): Date {
+    const target = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth() + months, eom ? 1 : d.getUTCDate()));
+    if (eom) {
+      return new Date(Date.UTC(target.getUTCFullYear(), target.getUTCMonth() + 1, 0));
+    }
+    const dim = dimOf(target.getUTCFullYear(), target.getUTCMonth());
+    if (target.getUTCDate() > dim) target.setUTCDate(dim);
+    return target;
+  }
+  function getCouponPeriod(d: Date, anchor: Date, freq: number, basis: number) {
+    const schedule = buildCouponSchedule(d, anchor, freq, basis);
+    return { previous: schedule.previousCoupon, next: schedule.nextCoupon, eom: schedule.endOfMonth };
+  }
+  function couponDays(d: Date, anchor: Date, freq: number, basis: number): number {
+    const p = getCouponPeriod(d, anchor, freq, basis);
+    return daysBetween(p.previous, p.next, basis);
+  }
+  function coupnum(settlement: Date, maturity: Date, freq: number): number {
+    let months = maturity.getUTCMonth() - settlement.getUTCMonth() + 12 * (maturity.getUTCFullYear() - settlement.getUTCFullYear());
+    const eom = isEndOfMonth(maturity);
+    let thisCoupon = addMonthsEom(maturity, -months, eom);
+    if (settlement.getUTCDate() >= thisCoupon.getUTCDate()) months--;
+    return 1 + months / (12 / freq);
+  }
+  function dateRatio(d1: Date, d2: Date, anchor: Date, freq: number, basis: number): number {
+    const p = getCouponPeriod(d1, anchor, freq, basis);
+    let prev = p.previous;
+    let next = p.next;
+    const eom = p.eom;
+    const monthsStep = 12 / freq;
+    if (d2.getTime() <= next.getTime()) {
+      return daysBetween(d1, d2, basis) / daysBetween(prev, next, basis);
+    }
+    let res = daysBetween(d1, next, basis) / daysBetween(prev, next, basis);
+    while (true) {
+      prev = next;
+      next = addMonthsEom(next, monthsStep, eom);
+      if (d2.getTime() <= next.getTime()) {
+        res += daysBetween(prev, d2, basis) / daysBetween(prev, next, basis);
+        return res;
+      }
+      res += 1;
+    }
+  }
+  function calcOddfprice(settlement: Date, maturity: Date, issue: Date, firstCoupon: Date, rate: number, yld: number, redemption: number, freq: number, basis: number): number {
+    let a = daysBetween(issue, settlement, basis);
+    let ds = daysBetween(settlement, firstCoupon, basis);
+    let df = daysBetween(issue, firstCoupon, basis);
+    const e = couponDays(settlement, maturity, freq, basis);
+    let n = Math.trunc(coupnum(settlement, maturity, freq));
+    const scale = (100 * rate) / freq;
+    const f = 1 + yld / freq;
+    if (ds > e) {
+      // odd-long first coupon
+      if (basis === 0 || basis === 4) {
+        const cdays = daysBetween(firstCoupon, maturity, basis);
+        n = 1 + Math.ceil(cdays / e);
+      } else {
+        let d = new Date(firstCoupon);
+        let prev = d;
+        n = 0;
+        while (true) {
+          const next = addMonthsEom(d, 12 / freq, isEndOfMonth(maturity));
+          if (next.getTime() >= maturity.getTime()) {
+            n += Math.ceil(daysBetween(prev, maturity, basis) / couponDays(prev, next, freq, basis)) + 1;
+            break;
+          }
+          d = next;
+          prev = d;
+          n++;
+        }
+        a = e * dateRatio(issue, settlement, firstCoupon, freq, basis);
+        ds = e * dateRatio(settlement, firstCoupon, firstCoupon, freq, basis);
+        df = e * dateRatio(issue, firstCoupon, firstCoupon, freq, basis);
+      }
+    }
+    const term1 = redemption / Math.pow(f, n - 1 + ds / e);
+    const term2 = (df / e) / Math.pow(f, ds / e);
+    const sum = Math.pow(f, -ds / e) * (Math.pow(f, -n) - 1 / f) / (1 / f - 1);
+    return term1 + scale * (term2 + sum - a / e);
+  }
+
+  add(
+    fn("ODDFPRICE", "none", (args) => {
+      const settlement = requireDate(args[0]);
+      const maturity = requireDate(args[1]);
+      const issue = requireDate(args[2]);
+      const firstCoupon = requireDate(args[3]);
+      const rate = requireNumber(args[4], 0);
+      const yld = requireNumber(args[5], 0);
+      const redemption = requireNumber(args[6], 0);
+      const frequency = requireNumber(args[7], 0);
+      const basis = requireNumber(args[8] ?? BLANK, 0);
+      if (!settlement.ok) return settlement.error;
+      if (!maturity.ok) return maturity.error;
+      if (!issue.ok) return issue.error;
+      if (!firstCoupon.ok) return firstCoupon.error;
+      if (!rate.ok) return rate.error;
+      if (!yld.ok) return yld.error;
+      if (!redemption.ok) return redemption.error;
+      if (!frequency.ok) return frequency.error;
+      if (!basis.ok) return basis.error;
+      const b = Math.trunc(basis.value);
+      const freq = frequency.value;
+      if (b < 0 || b > 4) return err(ExcelErrorCode.Num);
+      if (![1, 2, 4].includes(freq)) return err(ExcelErrorCode.Num);
+      if (rate.value < 0 || yld.value < 0 || redemption.value <= 0) return err(ExcelErrorCode.Num);
+      if (issue.date.getTime() >= settlement.date.getTime() || settlement.date.getTime() >= firstCoupon.date.getTime() || firstCoupon.date.getTime() >= maturity.date.getTime()) return err(ExcelErrorCode.Num);
+      return num(calcOddfprice(settlement.date, maturity.date, issue.date, firstCoupon.date, rate.value, yld.value, redemption.value, freq, b));
+    }),
+  );
+
+  add(
+    fn("ODDFYIELD", "none", (args) => {
+      const settlement = requireDate(args[0]);
+      const maturity = requireDate(args[1]);
+      const issue = requireDate(args[2]);
+      const firstCoupon = requireDate(args[3]);
+      const rate = requireNumber(args[4], 0);
+      const price = requireNumber(args[5], 0);
+      const redemption = requireNumber(args[6], 0);
+      const frequency = requireNumber(args[7], 0);
+      const basis = requireNumber(args[8] ?? BLANK, 0);
+      if (!settlement.ok) return settlement.error;
+      if (!maturity.ok) return maturity.error;
+      if (!issue.ok) return issue.error;
+      if (!firstCoupon.ok) return firstCoupon.error;
+      if (!rate.ok) return rate.error;
+      if (!price.ok) return price.error;
+      if (!redemption.ok) return redemption.error;
+      if (!frequency.ok) return frequency.error;
+      if (!basis.ok) return basis.error;
+      const b = Math.trunc(basis.value);
+      const freq = frequency.value;
+      if (b < 0 || b > 4) return err(ExcelErrorCode.Num);
+      if (![1, 2, 4].includes(freq)) return err(ExcelErrorCode.Num);
+      if (rate.value < 0 || price.value <= 0 || redemption.value <= 0) return err(ExcelErrorCode.Num);
+      if (issue.date.getTime() >= settlement.date.getTime() || settlement.date.getTime() >= firstCoupon.date.getTime() || firstCoupon.date.getTime() >= maturity.date.getTime()) return err(ExcelErrorCode.Num);
+      const s = settlement.date;
+      const m = maturity.date;
+      const i = issue.date;
+      const fc = firstCoupon.date;
+      const r = rate.value;
+      const red = redemption.value;
+      const target = price.value;
+      const priceAtYield = (y: number) => calcOddfprice(s, m, i, fc, r, y, red, freq, b);
+      // Bracket and bisect; yld must be > 0 to avoid divide-by-zero at y=0
+      let lo = 1e-10;
+      let hi = 0.1;
+      let fLo = priceAtYield(lo) - target;
+      let fHi = priceAtYield(hi) - target;
+      while (fLo * fHi > 0 && hi < 1000) {
+        hi *= 2;
+        fHi = priceAtYield(hi) - target;
+      }
+      if (fLo * fHi > 0 || Number.isNaN(fLo) || Number.isNaN(fHi)) return err(ExcelErrorCode.Num);
+      for (let j = 0; j < 100; j++) {
+        const mid = (lo + hi) / 2;
+        const fMid = priceAtYield(mid) - target;
+        if (Math.abs(fMid) < 1e-9) return num(mid);
+        if (fLo * fMid <= 0) {
+          hi = mid;
+          fHi = fMid;
+        } else {
+          lo = mid;
+          fLo = fMid;
+        }
+      }
+      return num((lo + hi) / 2);
+    }),
+  );
+
   // French accounting depreciation
   function validateAmorArgs(args: ExcelValue[]): { ok: true; cost: number; purchased: Date; firstPeriod: Date; salvage: number; period: number; rate: number; basis: number } | { ok: false; error: ExcelValue } {
     const cost = requireNumber(args[0], 0);

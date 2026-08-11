@@ -680,7 +680,6 @@ export function registerMissingFunctions(add: (f: ExcelFunction) => void, reg: F
   const financialStubNames = [
     "FORECAST.ETS",
     "FORECAST.ETS.CONFINT", "FORECAST.ETS.SEASONALITY", "FORECAST.ETS.STAT",
-    "ODDFPRICE", "ODDFYIELD",
   ];
   for (const name of financialStubNames) {
     add(fn(name, "none", () => err(ExcelErrorCode.NA)));
