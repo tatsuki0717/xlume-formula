@@ -4,6 +4,7 @@
  * with Excel day-count / coupon-date arithmetic.
  */
 import bondCalculator from "@floydspace/bond-calculator";
+import * as formulas from "@formulajs/formulajs";
 import {
   BLANK,
   err,
@@ -103,6 +104,12 @@ function couponArgs(args: ExcelValue[]) {
 
 function formatDate(d: Date): string {
   return d.toISOString().slice(0, 10);
+}
+
+function yearFrac(start: Date, end: Date, basis: number): number {
+  const formulaLib = formulas as unknown as Record<string, any>;
+  const yf = formulaLib.YEARFRAC;
+  return typeof yf === "function" ? yf(start, end, basis) : 0;
 }
 
 function makeSchedule(args: ExcelValue[], hasRedemption: boolean, rateIdx: number, freqIdx: number, basisIdx: number) {
@@ -392,6 +399,79 @@ export function registerFinancialFunctions(add: (f: ExcelFunction) => void): voi
       const B = yearDays(b, settlement.date);
       const A = daysBetween(issue.date, settlement.date, b);
       return num(par.value * rate.value * A / B);
+    }),
+  );
+
+  // French accounting depreciation
+  function validateAmorArgs(args: ExcelValue[]): { ok: true; cost: number; purchased: Date; firstPeriod: Date; salvage: number; period: number; rate: number; basis: number } | { ok: false; error: ExcelValue } {
+    const cost = requireNumber(args[0], 0);
+    const purchased = requireDate(args[1]);
+    const firstPeriod = requireDate(args[2]);
+    const salvage = requireNumber(args[3], 0);
+    const period = requireNumber(args[4], 0);
+    const rate = requireNumber(args[5], 0);
+    const basis = requireNumber(args[6] ?? BLANK, 0);
+    if (!cost.ok) return { ok: false, error: cost.error };
+    if (!purchased.ok) return { ok: false, error: purchased.error };
+    if (!firstPeriod.ok) return { ok: false, error: firstPeriod.error };
+    if (!salvage.ok) return { ok: false, error: salvage.error };
+    if (!period.ok) return { ok: false, error: period.error };
+    if (!rate.ok) return { ok: false, error: rate.error };
+    if (!basis.ok) return { ok: false, error: basis.error };
+    const b = Math.trunc(basis.value);
+    if (![0, 1, 3, 4].includes(b)) return { ok: false, error: err(ExcelErrorCode.Num) };
+    if (cost.value < 0 || salvage.value < 0 || salvage.value > cost.value || period.value < 0 || rate.value <= 0) {
+      return { ok: false, error: err(ExcelErrorCode.Num) };
+    }
+    if (purchased.date.getTime() > firstPeriod.date.getTime()) return { ok: false, error: err(ExcelErrorCode.Num) };
+    return { ok: true, cost: cost.value, purchased: purchased.date, firstPeriod: firstPeriod.date, salvage: salvage.value, period: period.value, rate: rate.value, basis: b };
+  }
+
+  function amortizationCoefficient(rate: number): number {
+    const life = 1 / rate;
+    if (life < 3) return 1;
+    if (life < 4) return 1.5;
+    if (life <= 6) return 2;
+    return 2.5;
+  }
+
+  add(
+    fn("AMORLINC", "none", (args) => {
+      const v = validateAmorArgs(args);
+      if (!v.ok) return v.error;
+      const fOneRate = v.cost * v.rate;
+      const fCostDelta = v.cost - v.salvage;
+      const yf = yearFrac(v.purchased, v.firstPeriod, v.basis);
+      const f0Rate = yf * v.rate * v.cost;
+      const nFull = Math.floor((v.cost - v.salvage - f0Rate) / fOneRate);
+      if (v.period === 0) return num(f0Rate);
+      if (v.period <= nFull) return num(fOneRate);
+      if (v.period === nFull + 1) return num(fCostDelta - fOneRate * nFull - f0Rate);
+      return num(0);
+    }),
+  );
+
+  add(
+    fn("AMORDEGRC", "none", (args) => {
+      const v = validateAmorArgs(args);
+      if (!v.ok) return v.error;
+      const coeff = amortizationCoefficient(v.rate);
+      const effectiveRate = Math.round(v.rate * coeff * 1e12) / 1e12;
+      const round0 = (n: number) => Math.round(Number(n.toPrecision(15)));
+      const yf = yearFrac(v.purchased, v.firstPeriod, v.basis);
+      let fNRate = round0(yf * effectiveRate * v.cost);
+      let cost = v.cost - fNRate;
+      let fRest = cost - v.salvage;
+      for (let n = 0; n < v.period; n++) {
+        fNRate = round0(effectiveRate * cost);
+        fRest -= fNRate;
+        if (fRest < 0) {
+          if (v.period - n === 1 || v.period - n === 0) return num(round0(cost * 0.5));
+          return num(0);
+        }
+        cost -= fNRate;
+      }
+      return num(fNRate);
     }),
   );
 }

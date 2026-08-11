@@ -678,7 +678,7 @@ export function registerMissingFunctions(add: (f: ExcelFunction) => void, reg: F
 
   // Financial bond / forecasting functions that require dedicated bond-math / ETS implementations
   const financialStubNames = [
-    "AMORDEGRC", "AMORLINC", "FORECAST.ETS",
+    "FORECAST.ETS",
     "FORECAST.ETS.CONFINT", "FORECAST.ETS.SEASONALITY", "FORECAST.ETS.STAT",
     "ODDFPRICE", "ODDFYIELD", "ODDLPRICE",
     "ODDLYIELD", "VDB",
