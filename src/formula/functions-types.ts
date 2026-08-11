@@ -31,13 +31,28 @@ export interface ExcelFunction {
 
 export class FunctionRegistry {
   private map = new Map<string, ExcelFunction>();
+  private fallback: ((name: string) => ExcelFunction | undefined) | undefined;
 
   register(fn: ExcelFunction): void {
     this.map.set(fn.name.toUpperCase(), fn);
   }
 
+  alias(name: string, targetName: string): void {
+    const target = this.map.get(targetName.toUpperCase());
+    if (!target) return;
+    this.map.set(name.toUpperCase(), { ...target, name });
+  }
+
+  setFallback(handler: (name: string) => ExcelFunction | undefined): void {
+    this.fallback = handler;
+  }
+
   get(name: string): ExcelFunction | undefined {
-    return this.map.get(name.toUpperCase());
+    const upper = name.toUpperCase();
+    const direct = this.map.get(upper);
+    if (direct) return direct;
+    if (this.fallback) return this.fallback(name);
+    return undefined;
   }
 
   list(): string[] {

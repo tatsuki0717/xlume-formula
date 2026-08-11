@@ -11,6 +11,8 @@ import { FunctionRegistry, type ExcelFunction } from "../formula/functions-types
 import { excelCoerceBoolean, excelCoerceNumber, flattenArgs } from "../formula/evaluator.js";
 import { excelCompare, excelConcat } from "../formula/coercion.js";
 import { registerExtraFunctions } from "./builtins-extra.js";
+import { formulaJsFallback } from "./formulajs-adapter.js";
+import { registerMissingFunctions } from "./builtins-missing.js";
 
 function fn(
   name: string,
@@ -1075,6 +1077,9 @@ export function createBuiltinFunctions(): FunctionRegistry {
   }));
 
   registerExtraFunctions(add);
+  registerMissingFunctions(add, reg);
+
+  reg.setFallback((name) => formulaJsFallback(name));
 
   return reg;
 }

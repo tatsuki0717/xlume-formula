@@ -25,5 +25,12 @@
     "@types/node": "^22.13.10",
     "typescript": "^5.8.2",
     "vitest": "^3.0.9"
+  },
+  "dependencies": {
+    "@finprecise/bonds": "^0.3.0",
+    "@finprecise/cashflow": "^0.3.0",
+    "@finprecise/depreciation": "^0.3.0",
+    "@floydspace/bond-calculator": "^0.2.0",
+    "@formulajs/formulajs": "^4.6.1"
   }
 }
