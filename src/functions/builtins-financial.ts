@@ -7,11 +7,13 @@ import bondCalculator from "@floydspace/bond-calculator";
 import * as formulas from "@formulajs/formulajs";
 import {
   BLANK,
+  bool,
   err,
   ExcelErrorCode,
   num,
   type ExcelValue,
 } from "../model/value.js";
+import { excelCoerceBoolean } from "../formula/coercion.js";
 import type { ExcelFunction } from "../formula/functions-types.js";
 import {
   buildCouponSchedule,
@@ -472,6 +474,105 @@ export function registerFinancialFunctions(add: (f: ExcelFunction) => void): voi
         cost -= fNRate;
       }
       return num(fNRate);
+    }),
+  );
+
+  // Variable declining balance
+  function scGetDDB(cost: number, salvage: number, life: number, period: number, factor: number): number {
+    let rate = factor / life;
+    let oldValue: number;
+    if (rate >= 1) {
+      rate = 1;
+      oldValue = period === 1 ? cost : 0;
+    } else {
+      oldValue = cost * (1 - rate) ** (period - 1);
+    }
+    const newValue = cost * (1 - rate) ** period;
+    const ddb = newValue < salvage ? oldValue - salvage : oldValue - newValue;
+    return ddb < 0 ? 0 : ddb;
+  }
+
+  function scInterVDB(cost: number, salvage: number, life: number, life1: number, period: number, factor: number): number {
+    const intEnd = Math.ceil(period);
+    let vdb = 0;
+    let salvageValue = cost - salvage;
+    let nowSln = false;
+    let sln = 0;
+    for (let i = 1; i <= intEnd; i++) {
+      let term: number;
+      if (!nowSln) {
+        const ddb = scGetDDB(cost, salvage, life, i, factor);
+        sln = salvageValue / (life1 - (i - 1));
+        if (sln > ddb) {
+          term = sln;
+          nowSln = true;
+        } else {
+          term = ddb;
+          salvageValue -= ddb;
+        }
+      } else {
+        term = sln;
+      }
+      if (i === intEnd) term *= period + 1 - intEnd;
+      vdb += term;
+    }
+    return vdb;
+  }
+
+  function vdb(cost: number, salvage: number, life: number, start: number, end: number, factor: number, noSwitch: boolean): number {
+    const intStart = Math.floor(start);
+    const intEnd = Math.ceil(end);
+    if (noSwitch) {
+      let total = 0;
+      for (let i = intStart + 1; i <= intEnd; i++) {
+        let term = scGetDDB(cost, salvage, life, i, factor);
+        if (i === intStart + 1) term *= Math.min(end, intStart + 1) - start;
+        else if (i === intEnd) term *= end + 1 - intEnd;
+        total += term;
+      }
+      return total;
+    }
+    let part = 0;
+    const approxEqual = (a: number, b: number) => Math.abs(a - b) < 1e-9;
+    if (!approxEqual(start, intStart) || !approxEqual(end, intEnd)) {
+      if (!approxEqual(start, intStart)) {
+        const tempIntEnd = intStart + 1;
+        const tempValue = cost - scInterVDB(cost, salvage, life, life, intStart, factor);
+        part += (start - intStart) * scInterVDB(tempValue, salvage, life, life - intStart, tempIntEnd - intStart, factor);
+      }
+      if (!approxEqual(end, intEnd)) {
+        const tempIntStart = intEnd - 1;
+        const tempValue = cost - scInterVDB(cost, salvage, life, life, tempIntStart, factor);
+        part += (intEnd - end) * scInterVDB(tempValue, salvage, life, life - tempIntStart, intEnd - tempIntStart, factor);
+      }
+    }
+    cost -= scInterVDB(cost, salvage, life, life, intStart, factor);
+    let total = scInterVDB(cost, salvage, life, life - intStart, intEnd - intStart, factor);
+    total -= part;
+    return total;
+  }
+
+  add(
+    fn("VDB", "none", (args) => {
+      const cost = requireNumber(args[0], 0);
+      const salvage = requireNumber(args[1], 0);
+      const life = requireNumber(args[2], 0);
+      const startPeriod = requireNumber(args[3], 0);
+      const endPeriod = requireNumber(args[4], 0);
+      const factor = requireNumber(args[5] ?? BLANK, 2);
+      const noSwitchRaw = args[6] ?? BLANK;
+      if (!cost.ok) return cost.error;
+      if (!salvage.ok) return salvage.error;
+      if (!life.ok) return life.error;
+      if (!startPeriod.ok) return startPeriod.error;
+      if (!endPeriod.ok) return endPeriod.error;
+      if (!factor.ok) return factor.error;
+      const noSwitch = excelCoerceBoolean(noSwitchRaw);
+      if (noSwitch.kind !== "boolean") return noSwitch;
+      if (cost.value < 0 || salvage.value < 0 || life.value <= 0 || factor.value <= 0) return err(ExcelErrorCode.Num);
+      if (startPeriod.value < 0 || endPeriod.value <= startPeriod.value) return err(ExcelErrorCode.Num);
+      if (endPeriod.value > life.value) return err(ExcelErrorCode.Num);
+      return num(vdb(cost.value, salvage.value, life.value, startPeriod.value, endPeriod.value, factor.value, noSwitch.value));
     }),
   );
 }
