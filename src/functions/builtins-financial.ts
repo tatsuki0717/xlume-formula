@@ -404,6 +404,70 @@ export function registerFinancialFunctions(add: (f: ExcelFunction) => void): voi
     }),
   );
 
+  // Odd last period bond price / yield
+  add(
+    fn("ODDLPRICE", "none", (args) => {
+      const settlement = requireDate(args[0]);
+      const maturity = requireDate(args[1]);
+      const lastInterest = requireDate(args[2]);
+      const rate = requireNumber(args[3], 0);
+      const yld = requireNumber(args[4], 0);
+      const redemption = requireNumber(args[5], 0);
+      const frequency = requireNumber(args[6], 0);
+      const basis = requireNumber(args[7] ?? BLANK, 0);
+      if (!settlement.ok) return settlement.error;
+      if (!maturity.ok) return maturity.error;
+      if (!lastInterest.ok) return lastInterest.error;
+      if (!rate.ok) return rate.error;
+      if (!yld.ok) return yld.error;
+      if (!redemption.ok) return redemption.error;
+      if (!frequency.ok) return frequency.error;
+      if (!basis.ok) return basis.error;
+      const b = Math.trunc(basis.value);
+      const freq = frequency.value;
+      if (b < 0 || b > 4) return err(ExcelErrorCode.Num);
+      if (![1, 2, 4].includes(freq)) return err(ExcelErrorCode.Num);
+      if (rate.value < 0 || yld.value < 0 || redemption.value <= 0) return err(ExcelErrorCode.Num);
+      if (settlement.date.getTime() >= maturity.date.getTime() || lastInterest.date.getTime() >= settlement.date.getTime()) return err(ExcelErrorCode.Num);
+      const DCi = yearFrac(lastInterest.date, maturity.date, b) * freq;
+      const DSCi = yearFrac(settlement.date, maturity.date, b) * freq;
+      const Ai = yearFrac(lastInterest.date, settlement.date, b) * freq;
+      return num((redemption.value + DCi * 100 * rate.value / freq) / (DSCi * yld.value / freq + 1) - Ai * 100 * rate.value / freq);
+    }),
+  );
+
+  add(
+    fn("ODDLYIELD", "none", (args) => {
+      const settlement = requireDate(args[0]);
+      const maturity = requireDate(args[1]);
+      const lastInterest = requireDate(args[2]);
+      const rate = requireNumber(args[3], 0);
+      const pr = requireNumber(args[4], 0);
+      const redemption = requireNumber(args[5], 0);
+      const frequency = requireNumber(args[6], 0);
+      const basis = requireNumber(args[7] ?? BLANK, 0);
+      if (!settlement.ok) return settlement.error;
+      if (!maturity.ok) return maturity.error;
+      if (!lastInterest.ok) return lastInterest.error;
+      if (!rate.ok) return rate.error;
+      if (!pr.ok) return pr.error;
+      if (!redemption.ok) return redemption.error;
+      if (!frequency.ok) return frequency.error;
+      if (!basis.ok) return basis.error;
+      const b = Math.trunc(basis.value);
+      const freq = frequency.value;
+      if (b < 0 || b > 4) return err(ExcelErrorCode.Num);
+      if (![1, 2, 4].includes(freq)) return err(ExcelErrorCode.Num);
+      if (rate.value < 0 || pr.value <= 0 || redemption.value <= 0) return err(ExcelErrorCode.Num);
+      if (settlement.date.getTime() >= maturity.date.getTime() || lastInterest.date.getTime() >= settlement.date.getTime()) return err(ExcelErrorCode.Num);
+      const DCi = yearFrac(lastInterest.date, maturity.date, b) * freq;
+      const DSCi = yearFrac(settlement.date, maturity.date, b) * freq;
+      const Ai = yearFrac(lastInterest.date, settlement.date, b) * freq;
+      const y = (redemption.value + DCi * 100 * rate.value / freq) / (pr.value + Ai * 100 * rate.value / freq) - 1;
+      return num(y * freq / DSCi);
+    }),
+  );
+
   // French accounting depreciation
   function validateAmorArgs(args: ExcelValue[]): { ok: true; cost: number; purchased: Date; firstPeriod: Date; salvage: number; period: number; rate: number; basis: number } | { ok: false; error: ExcelValue } {
     const cost = requireNumber(args[0], 0);
