@@ -16,3 +16,7 @@ Thumbs.db
 
 # Logs
 *.log
+
+# TypeScript build output
+node_modules/
+dist/

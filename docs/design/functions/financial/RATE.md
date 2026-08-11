@@ -71,6 +71,17 @@ Core calculation:
 | Text that cannot be coerced | `#VALUE!` | Error propagation |
 | Too few/too many arguments | `#VALUE!` | Arity validation |
 
+## Verified Edge Cases
+- Exact zero-interest scenarios: if `pv + pmt * nper + fv = 0` then `r = 0` satisfies the equation and Excel returns `0` without requiring iteration.
+- A naive Newton-Raphson implementation may return `#NUM!` for these cases because the derivative term becomes degenerate; detect the balanced cash-flow case and short-circuit to `0`.
+- When `nper = 0` Excel returns `-fv / pv` (or the ratio of future to present value).
+
+### Additional test cases
+| Input | Expected | Purpose |
+|---|---|---|
+| `=RATE(10, -1000, 10000, 0, 0, 0.1)` | `0` | Exact zero-interest repayment |
+| `=RATE(0, 0, 10000, -10000)` | `0` | Zero periods with offsetting PV/FV |
+
 ## Implementation Notes
 Follow standard Excel semantics. Add inline KAT tests and, if the behavior depends on cell layout, a workbook fixture.
 

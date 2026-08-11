@@ -67,6 +67,17 @@ Core calculation:
 | Text that cannot be coerced | `#VALUE!` | Error propagation |
 | Too few/too many arguments | `#VALUE!` | Arity validation |
 
+## Verified Edge Cases
+- `COUNT` (`function_num = 2` / `102`) counts only raw numbers; logical values inside arrays or references are **not** counted.
+- Numeric aggregates (`AVERAGE`, `SUM`, `MAX`, `MIN`, `PRODUCT`, `STDEV`, `VAR`, etc.) propagate the first error value in the reference list; they do not silently drop them.
+- `function_num` values outside `1–11` and `101–111` produce `#VALUE!`.
+
+### Additional test cases
+| Input | Expected | Purpose |
+|---|---|---|
+| `=SUBTOTAL(2, {TRUE, 1})` | `1` | COUNT ignores booleans in arrays |
+| `=SUBTOTAL(9, 1, 1/0, 3)` | `#DIV/0!` | SUM propagates error values |
+
 ## Implementation Notes
 Follow standard Excel semantics. Add inline KAT tests and, if the behavior depends on cell layout, a workbook fixture.
 

@@ -58,6 +58,7 @@ Core calculation:
 ## Examples
 - `=FORECAST.LINEAR(10, B1:B5, A1:A5)`
 - `=FORECAST.LINEAR(A1, C1:C10, D1:D10)`
+- `=FORECAST.LINEAR(5, {1,2,3}, {2,4,6})` returns `2.5`
 
 ## Test Cases
 | Input | Expected | Purpose |
@@ -67,6 +68,17 @@ Core calculation:
 | Blank/empty cells | Coerced `0` or `""` as appropriate | Blank handling |
 | Text that cannot be coerced | `#VALUE!` | Error propagation |
 | Too few/too many arguments | `#VALUE!` | Arity validation |
+
+## Verified Edge Cases
+- `FORECAST` is a compatibility alias for `FORECAST.LINEAR`; both should share the same implementation.
+- If `known_xs` has zero variance, Excel returns `#DIV/0!` because the regression slope is undefined.
+- Text or logical values in the arrays should be handled consistently with `INTERCEPT`/`SLOPE`.
+
+### Additional test cases
+| Input | Expected | Purpose |
+|---|---|---|
+| `=FORECAST.LINEAR(5, {1,2,3}, {2,4,6})` | `2.5` | Simple linear forecast |
+| `=FORECAST(5, {1,2,3}, {2,4,6})` | `2.5` | Compatibility alias |
 
 ## Implementation Notes
 Follow standard Excel semantics. Add inline KAT tests and, if the behavior depends on cell layout, a workbook fixture.

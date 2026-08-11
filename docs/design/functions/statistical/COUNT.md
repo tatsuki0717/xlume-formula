@@ -66,6 +66,17 @@ Core calculation:
 | Text that cannot be coerced | `#VALUE!` | Error propagation |
 | Too few/too many arguments | `#VALUE!` | Arity validation |
 
+## Verified Edge Cases
+- Only values whose native kind is number are counted. Logical values (`TRUE`/`FALSE`) in arrays or references are **not** counted, even though they coerce to `1`/`0` in other numeric functions.
+- Text values, blank cells, and errors are not counted. Errors do **not** propagate through `COUNT`.
+- This behavior also applies to `COUNT` when invoked via `SUBTOTAL(2, ...)` or `AGGREGATE(2, ...)`.
+
+### Additional test cases
+| Input | Expected | Purpose |
+|---|---|---|
+| `=COUNT({TRUE, 1})` | `1` | Logical values ignored |
+| `=COUNT(1, 1/0, 3)` | `2` | Errors ignored, not propagated |
+
 ## Implementation Notes
 Follow standard Excel semantics. Add inline KAT tests and, if the behavior depends on cell layout, a workbook fixture.
 

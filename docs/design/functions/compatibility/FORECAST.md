@@ -69,6 +69,17 @@ Skeleton: `=FORECAST(..., ..., ...)`
 | Text that cannot be coerced | `#VALUE!` | Error propagation |
 | Too few/too many arguments | `#VALUE!` | Arity validation |
 
+## Verified Edge Cases
+- `FORECAST` is a compatibility alias for `FORECAST.LINEAR`; both should delegate to the same linear-regression implementation.
+- If `known_xs` has zero variance (`#DIV/0!` is returned in Excel), the regression slope is undefined.
+- Text/logical values in `known_xs`/`known_ys` should be coerced or ignored consistently with `FORECAST.LINEAR`.
+
+### Additional test cases
+| Input | Expected | Purpose |
+|---|---|---|
+| `=FORECAST(5, {1,2,3}, {2,4,6})` | `2.5` | Simple linear forecast |
+| `=FORECAST.LINEAR(5, {1,2,3}, {2,4,6})` | `2.5` | Alias produces same result |
+
 ## Implementation Notes
 Follow standard Excel semantics. Add inline KAT tests and, if the behavior depends on cell layout, a workbook fixture.
 

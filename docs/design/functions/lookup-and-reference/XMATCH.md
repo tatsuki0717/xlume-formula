@@ -69,6 +69,17 @@ Core calculation:
 | Text that cannot be coerced | `#VALUE!` | Error propagation |
 | Too few/too many arguments | `#VALUE!` | Arity validation |
 
+## Verified Edge Cases
+- `match_mode = 2` (wildcard) only works when `lookup_value` is text; `*` matches any sequence and `?` matches one character.
+- `search_mode = -2` (binary descending) requires the binary-search comparator to be reversed relative to ascending mode.
+- Approximate match modes (`-1`, `1`) fall back to linear scan and should still work on unsorted data.
+
+### Additional test cases
+| Input | Expected | Purpose |
+|---|---|---|
+| `=XMATCH("a*", {"ab","bc","cd"}, 2)` | `1` | Wildcard exact match |
+| `=XMATCH(3, {4,3,2,1}, 0, -2)` | `2` | Binary search on descending data |
+
 ## Implementation Notes
 Follow standard Excel semantics. Add inline KAT tests and, if the behavior depends on cell layout, a workbook fixture.
 

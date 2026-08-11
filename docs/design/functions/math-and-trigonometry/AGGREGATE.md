@@ -70,6 +70,17 @@ Skeleton: `=AGGREGATE(..., ..., ...)`
 | Text that cannot be coerced | `#VALUE!` | Error propagation |
 | Too few/too many arguments | `#VALUE!` | Arity validation |
 
+## Verified Edge Cases
+- Error filtering is controlled solely by the `options` argument. Options `0`, `4`, `5`, etc. do **not** ignore errors, so an error value in the reference list propagates.
+- Only options `2`, `3`, `6`, `7` request error suppression.
+- `COUNT` (`function_num = 2` / `102`) ignores errors by its own semantics even when the `options` argument does not suppress them.
+
+### Additional test cases
+| Input | Expected | Purpose |
+|---|---|---|
+| `=AGGREGATE(9, 0, 1, 1/0, 3)` | `#DIV/0!` | Option 0 does not ignore errors |
+| `=AGGREGATE(2, 6, 1, 1/0, 3)` | `2` | Option 6 ignores errors; COUNT counts numbers |
+
 ## Implementation Notes
 Follow standard Excel semantics. Add inline KAT tests and, if the behavior depends on cell layout, a workbook fixture.
 
