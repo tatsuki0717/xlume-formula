@@ -1,0 +1,568 @@
+# xlume-formula function design index
+
+This index links to one design document per Excel worksheet function.
+
+| Category | Count | Notes |
+|---|---|---|
+| Logical | 19 |  |
+| Math & Trigonometry | 82 |  |
+| Statistical | 110 |  |
+| Text | 49 |  |
+| Lookup & Reference | 40 |  |
+| Date & Time | 25 |  |
+| Financial | 55 |  |
+| Information | 22 |  |
+| Engineering | 54 |  |
+| Database | 12 |  |
+| Compatibility | 39 |  |
+| Cube | 7 |  |
+| Web | 3 |  |
+| User-defined / Add-in | 3 |  |
+
+## Logical
+- [AND](functions/logical/AND.md)
+- [BYCOL](functions/logical/BYCOL.md) [deferred]
+- [BYROW](functions/logical/BYROW.md) [deferred]
+- [FALSE](functions/logical/FALSE.md)
+- [IF](functions/logical/IF.md)
+- [IFERROR](functions/logical/IFERROR.md)
+- [IFNA](functions/logical/IFNA.md)
+- [IFS](functions/logical/IFS.md)
+- [LAMBDA](functions/logical/LAMBDA.md) [deferred]
+- [LET](functions/logical/LET.md) [deferred]
+- [MAKEARRAY](functions/logical/MAKEARRAY.md) [deferred]
+- [MAP](functions/logical/MAP.md) [deferred]
+- [NOT](functions/logical/NOT.md)
+- [OR](functions/logical/OR.md)
+- [REDUCE](functions/logical/REDUCE.md) [deferred]
+- [SCAN](functions/logical/SCAN.md) [deferred]
+- [SWITCH](functions/logical/SWITCH.md)
+- [TRUE](functions/logical/TRUE.md)
+- [XOR](functions/logical/XOR.md)
+
+## Math & Trigonometry
+- [ABS](functions/math-and-trigonometry/ABS.md)
+- [ACOS](functions/math-and-trigonometry/ACOS.md)
+- [ACOSH](functions/math-and-trigonometry/ACOSH.md)
+- [ACOT](functions/math-and-trigonometry/ACOT.md)
+- [ACOTH](functions/math-and-trigonometry/ACOTH.md)
+- [AGGREGATE](functions/math-and-trigonometry/AGGREGATE.md)
+- [ARABIC](functions/math-and-trigonometry/ARABIC.md)
+- [ASIN](functions/math-and-trigonometry/ASIN.md)
+- [ASINH](functions/math-and-trigonometry/ASINH.md)
+- [ATAN](functions/math-and-trigonometry/ATAN.md)
+- [ATAN2](functions/math-and-trigonometry/ATAN2.md)
+- [ATANH](functions/math-and-trigonometry/ATANH.md)
+- [BASE](functions/math-and-trigonometry/BASE.md)
+- [CEILING](functions/math-and-trigonometry/CEILING.md)
+- [CEILING.MATH](functions/math-and-trigonometry/CEILING.MATH.md)
+- [CEILING.PRECISE](functions/math-and-trigonometry/CEILING.PRECISE.md)
+- [COMBIN](functions/math-and-trigonometry/COMBIN.md)
+- [COMBINA](functions/math-and-trigonometry/COMBINA.md)
+- [COS](functions/math-and-trigonometry/COS.md)
+- [COSH](functions/math-and-trigonometry/COSH.md)
+- [COT](functions/math-and-trigonometry/COT.md)
+- [COTH](functions/math-and-trigonometry/COTH.md)
+- [CSC](functions/math-and-trigonometry/CSC.md)
+- [CSCH](functions/math-and-trigonometry/CSCH.md)
+- [DECIMAL](functions/math-and-trigonometry/DECIMAL.md)
+- [DEGREES](functions/math-and-trigonometry/DEGREES.md)
+- [EVEN](functions/math-and-trigonometry/EVEN.md)
+- [EXP](functions/math-and-trigonometry/EXP.md)
+- [FACT](functions/math-and-trigonometry/FACT.md)
+- [FACTDOUBLE](functions/math-and-trigonometry/FACTDOUBLE.md)
+- [FLOOR](functions/math-and-trigonometry/FLOOR.md)
+- [FLOOR.MATH](functions/math-and-trigonometry/FLOOR.MATH.md)
+- [FLOOR.PRECISE](functions/math-and-trigonometry/FLOOR.PRECISE.md)
+- [GCD](functions/math-and-trigonometry/GCD.md)
+- [INT](functions/math-and-trigonometry/INT.md)
+- [ISO.CEILING](functions/math-and-trigonometry/ISO.CEILING.md)
+- [LCM](functions/math-and-trigonometry/LCM.md)
+- [LN](functions/math-and-trigonometry/LN.md)
+- [LOG](functions/math-and-trigonometry/LOG.md)
+- [LOG10](functions/math-and-trigonometry/LOG10.md)
+- [MDETERM](functions/math-and-trigonometry/MDETERM.md)
+- [MINVERSE](functions/math-and-trigonometry/MINVERSE.md)
+- [MMULT](functions/math-and-trigonometry/MMULT.md)
+- [MOD](functions/math-and-trigonometry/MOD.md)
+- [MROUND](functions/math-and-trigonometry/MROUND.md)
+- [MULTINOMIAL](functions/math-and-trigonometry/MULTINOMIAL.md)
+- [MUNIT](functions/math-and-trigonometry/MUNIT.md)
+- [ODD](functions/math-and-trigonometry/ODD.md)
+- [PERCENTOF](functions/math-and-trigonometry/PERCENTOF.md)
+- [PI](functions/math-and-trigonometry/PI.md)
+- [POWER](functions/math-and-trigonometry/POWER.md)
+- [PRODUCT](functions/math-and-trigonometry/PRODUCT.md)
+- [QUOTIENT](functions/math-and-trigonometry/QUOTIENT.md)
+- [RADIANS](functions/math-and-trigonometry/RADIANS.md)
+- [RAND](functions/math-and-trigonometry/RAND.md)
+- [RANDARRAY](functions/math-and-trigonometry/RANDARRAY.md) [deferred]
+- [RANDBETWEEN](functions/math-and-trigonometry/RANDBETWEEN.md)
+- [ROMAN](functions/math-and-trigonometry/ROMAN.md)
+- [ROUND](functions/math-and-trigonometry/ROUND.md)
+- [ROUNDDOWN](functions/math-and-trigonometry/ROUNDDOWN.md)
+- [ROUNDUP](functions/math-and-trigonometry/ROUNDUP.md)
+- [SEC](functions/math-and-trigonometry/SEC.md)
+- [SECH](functions/math-and-trigonometry/SECH.md)
+- [SEQUENCE](functions/math-and-trigonometry/SEQUENCE.md) [deferred]
+- [SERIESSUM](functions/math-and-trigonometry/SERIESSUM.md)
+- [SIGN](functions/math-and-trigonometry/SIGN.md)
+- [SIN](functions/math-and-trigonometry/SIN.md)
+- [SINH](functions/math-and-trigonometry/SINH.md)
+- [SQRT](functions/math-and-trigonometry/SQRT.md)
+- [SQRTPI](functions/math-and-trigonometry/SQRTPI.md)
+- [SUBTOTAL](functions/math-and-trigonometry/SUBTOTAL.md)
+- [SUM](functions/math-and-trigonometry/SUM.md)
+- [SUMIF](functions/math-and-trigonometry/SUMIF.md)
+- [SUMIFS](functions/math-and-trigonometry/SUMIFS.md)
+- [SUMPRODUCT](functions/math-and-trigonometry/SUMPRODUCT.md)
+- [SUMSQ](functions/math-and-trigonometry/SUMSQ.md)
+- [SUMX2MY2](functions/math-and-trigonometry/SUMX2MY2.md)
+- [SUMX2PY2](functions/math-and-trigonometry/SUMX2PY2.md)
+- [SUMXMY2](functions/math-and-trigonometry/SUMXMY2.md)
+- [TAN](functions/math-and-trigonometry/TAN.md)
+- [TANH](functions/math-and-trigonometry/TANH.md)
+- [TRUNC](functions/math-and-trigonometry/TRUNC.md)
+
+## Statistical
+- [AVEDEV](functions/statistical/AVEDEV.md)
+- [AVERAGE](functions/statistical/AVERAGE.md)
+- [AVERAGEA](functions/statistical/AVERAGEA.md)
+- [AVERAGEIF](functions/statistical/AVERAGEIF.md)
+- [AVERAGEIFS](functions/statistical/AVERAGEIFS.md)
+- [BETA.DIST](functions/statistical/BETA.DIST.md)
+- [BETA.INV](functions/statistical/BETA.INV.md)
+- [BINOM.DIST](functions/statistical/BINOM.DIST.md)
+- [BINOM.DIST.RANGE](functions/statistical/BINOM.DIST.RANGE.md)
+- [BINOM.INV](functions/statistical/BINOM.INV.md)
+- [CHISQ.DIST](functions/statistical/CHISQ.DIST.md)
+- [CHISQ.DIST.RT](functions/statistical/CHISQ.DIST.RT.md)
+- [CHISQ.INV](functions/statistical/CHISQ.INV.md)
+- [CHISQ.INV.RT](functions/statistical/CHISQ.INV.RT.md)
+- [CHISQ.TEST](functions/statistical/CHISQ.TEST.md)
+- [CONFIDENCE.NORM](functions/statistical/CONFIDENCE.NORM.md)
+- [CONFIDENCE.T](functions/statistical/CONFIDENCE.T.md)
+- [CORREL](functions/statistical/CORREL.md)
+- [COUNT](functions/statistical/COUNT.md)
+- [COUNTA](functions/statistical/COUNTA.md)
+- [COUNTBLANK](functions/statistical/COUNTBLANK.md)
+- [COUNTIF](functions/statistical/COUNTIF.md)
+- [COUNTIFS](functions/statistical/COUNTIFS.md)
+- [COVARIANCE.P](functions/statistical/COVARIANCE.P.md)
+- [COVARIANCE.S](functions/statistical/COVARIANCE.S.md)
+- [DEVSQ](functions/statistical/DEVSQ.md)
+- [EXPON.DIST](functions/statistical/EXPON.DIST.md)
+- [F.DIST](functions/statistical/F.DIST.md)
+- [F.DIST.RT](functions/statistical/F.DIST.RT.md)
+- [F.INV](functions/statistical/F.INV.md)
+- [F.INV.RT](functions/statistical/F.INV.RT.md)
+- [F.TEST](functions/statistical/F.TEST.md)
+- [FISHER](functions/statistical/FISHER.md)
+- [FISHERINV](functions/statistical/FISHERINV.md)
+- [FORECAST.ETS](functions/statistical/FORECAST.ETS.md) [deferred]
+- [FORECAST.ETS.CONFINT](functions/statistical/FORECAST.ETS.CONFINT.md) [deferred]
+- [FORECAST.ETS.SEASONALITY](functions/statistical/FORECAST.ETS.SEASONALITY.md) [deferred]
+- [FORECAST.ETS.STAT](functions/statistical/FORECAST.ETS.STAT.md) [deferred]
+- [FORECAST.LINEAR](functions/statistical/FORECAST.LINEAR.md)
+- [FREQUENCY](functions/statistical/FREQUENCY.md) [deferred]
+- [GAMMA](functions/statistical/GAMMA.md)
+- [GAMMA.DIST](functions/statistical/GAMMA.DIST.md)
+- [GAMMA.INV](functions/statistical/GAMMA.INV.md)
+- [GAMMALN](functions/statistical/GAMMALN.md)
+- [GAMMALN.PRECISE](functions/statistical/GAMMALN.PRECISE.md)
+- [GAUSS](functions/statistical/GAUSS.md)
+- [GEOMEAN](functions/statistical/GEOMEAN.md)
+- [GROWTH](functions/statistical/GROWTH.md) [deferred]
+- [HARMEAN](functions/statistical/HARMEAN.md)
+- [HYPGEOM.DIST](functions/statistical/HYPGEOM.DIST.md)
+- [INTERCEPT](functions/statistical/INTERCEPT.md)
+- [KURT](functions/statistical/KURT.md)
+- [LARGE](functions/statistical/LARGE.md)
+- [LINEST](functions/statistical/LINEST.md) [deferred]
+- [LOGEST](functions/statistical/LOGEST.md) [deferred]
+- [LOGNORM.DIST](functions/statistical/LOGNORM.DIST.md)
+- [LOGNORM.INV](functions/statistical/LOGNORM.INV.md)
+- [MAX](functions/statistical/MAX.md)
+- [MAXA](functions/statistical/MAXA.md)
+- [MAXIFS](functions/statistical/MAXIFS.md)
+- [MEDIAN](functions/statistical/MEDIAN.md)
+- [MIN](functions/statistical/MIN.md)
+- [MINA](functions/statistical/MINA.md)
+- [MINIFS](functions/statistical/MINIFS.md)
+- [MODE.MULT](functions/statistical/MODE.MULT.md) [deferred]
+- [MODE.SNGL](functions/statistical/MODE.SNGL.md)
+- [NEGBINOM.DIST](functions/statistical/NEGBINOM.DIST.md)
+- [NORM.DIST](functions/statistical/NORM.DIST.md)
+- [NORM.INV](functions/statistical/NORM.INV.md)
+- [NORM.S.DIST](functions/statistical/NORM.S.DIST.md)
+- [NORM.S.INV](functions/statistical/NORM.S.INV.md)
+- [PEARSON](functions/statistical/PEARSON.md)
+- [PERCENTILE.EXC](functions/statistical/PERCENTILE.EXC.md)
+- [PERCENTILE.INC](functions/statistical/PERCENTILE.INC.md)
+- [PERCENTRANK.EXC](functions/statistical/PERCENTRANK.EXC.md)
+- [PERCENTRANK.INC](functions/statistical/PERCENTRANK.INC.md)
+- [PERMUT](functions/statistical/PERMUT.md)
+- [PERMUTATIONA](functions/statistical/PERMUTATIONA.md)
+- [PHI](functions/statistical/PHI.md)
+- [POISSON.DIST](functions/statistical/POISSON.DIST.md)
+- [PROB](functions/statistical/PROB.md)
+- [QUARTILE.EXC](functions/statistical/QUARTILE.EXC.md)
+- [QUARTILE.INC](functions/statistical/QUARTILE.INC.md)
+- [RANK.AVG](functions/statistical/RANK.AVG.md)
+- [RANK.EQ](functions/statistical/RANK.EQ.md)
+- [RSQ](functions/statistical/RSQ.md)
+- [SKEW](functions/statistical/SKEW.md)
+- [SKEW.P](functions/statistical/SKEW.P.md)
+- [SLOPE](functions/statistical/SLOPE.md)
+- [SMALL](functions/statistical/SMALL.md)
+- [STANDARDIZE](functions/statistical/STANDARDIZE.md)
+- [STDEV.P](functions/statistical/STDEV.P.md)
+- [STDEV.S](functions/statistical/STDEV.S.md)
+- [STDEVA](functions/statistical/STDEVA.md)
+- [STDEVPA](functions/statistical/STDEVPA.md)
+- [STEYX](functions/statistical/STEYX.md)
+- [T.DIST](functions/statistical/T.DIST.md)
+- [T.DIST.2T](functions/statistical/T.DIST.2T.md)
+- [T.DIST.RT](functions/statistical/T.DIST.RT.md)
+- [T.INV](functions/statistical/T.INV.md)
+- [T.INV.2T](functions/statistical/T.INV.2T.md)
+- [T.TEST](functions/statistical/T.TEST.md)
+- [TREND](functions/statistical/TREND.md) [deferred]
+- [TRIMMEAN](functions/statistical/TRIMMEAN.md)
+- [VAR.P](functions/statistical/VAR.P.md)
+- [VAR.S](functions/statistical/VAR.S.md)
+- [VARA](functions/statistical/VARA.md)
+- [VARPA](functions/statistical/VARPA.md)
+- [WEIBULL.DIST](functions/statistical/WEIBULL.DIST.md)
+- [Z.TEST](functions/statistical/Z.TEST.md)
+
+## Text
+- [ARRAYTOTEXT](functions/text/ARRAYTOTEXT.md)
+- [ASC](functions/text/ASC.md) [out of scope]
+- [BAHTTEXT](functions/text/BAHTTEXT.md) [out of scope]
+- [CHAR](functions/text/CHAR.md)
+- [CLEAN](functions/text/CLEAN.md)
+- [CODE](functions/text/CODE.md)
+- [CONCAT](functions/text/CONCAT.md)
+- [CONCATENATE](functions/text/CONCATENATE.md)
+- [DBCS](functions/text/DBCS.md) [out of scope]
+- [DETECTLANGUAGE](functions/text/DETECTLANGUAGE.md) [out of scope]
+- [DOLLAR](functions/text/DOLLAR.md)
+- [EXACT](functions/text/EXACT.md)
+- [FIND](functions/text/FIND.md)
+- [FINDB](functions/text/FINDB.md)
+- [FIXED](functions/text/FIXED.md)
+- [LEFT](functions/text/LEFT.md)
+- [LEFTB](functions/text/LEFTB.md)
+- [LEN](functions/text/LEN.md)
+- [LENB](functions/text/LENB.md)
+- [LOWER](functions/text/LOWER.md)
+- [MID](functions/text/MID.md)
+- [MIDB](functions/text/MIDB.md)
+- [NUMBERVALUE](functions/text/NUMBERVALUE.md)
+- [PHONETIC](functions/text/PHONETIC.md) [out of scope]
+- [PROPER](functions/text/PROPER.md)
+- [REGEXEXTRACT](functions/text/REGEXEXTRACT.md)
+- [REGEXREPLACE](functions/text/REGEXREPLACE.md)
+- [REGEXTEST](functions/text/REGEXTEST.md)
+- [REPLACE](functions/text/REPLACE.md)
+- [REPLACEB](functions/text/REPLACEB.md)
+- [REPT](functions/text/REPT.md)
+- [RIGHT](functions/text/RIGHT.md)
+- [RIGHTB](functions/text/RIGHTB.md)
+- [SEARCH](functions/text/SEARCH.md)
+- [SEARCHB](functions/text/SEARCHB.md)
+- [SUBSTITUTE](functions/text/SUBSTITUTE.md)
+- [T](functions/text/T.md)
+- [TEXT](functions/text/TEXT.md)
+- [TEXTAFTER](functions/text/TEXTAFTER.md)
+- [TEXTBEFORE](functions/text/TEXTBEFORE.md)
+- [TEXTJOIN](functions/text/TEXTJOIN.md)
+- [TEXTSPLIT](functions/text/TEXTSPLIT.md) [deferred]
+- [TRANSLATE](functions/text/TRANSLATE.md) [out of scope]
+- [TRIM](functions/text/TRIM.md)
+- [UNICHAR](functions/text/UNICHAR.md)
+- [UNICODE](functions/text/UNICODE.md)
+- [UPPER](functions/text/UPPER.md)
+- [VALUE](functions/text/VALUE.md)
+- [VALUETOTEXT](functions/text/VALUETOTEXT.md)
+
+## Lookup & Reference
+- [ADDRESS](functions/lookup-and-reference/ADDRESS.md)
+- [AREAS](functions/lookup-and-reference/AREAS.md)
+- [CHOOSE](functions/lookup-and-reference/CHOOSE.md)
+- [CHOOSECOLS](functions/lookup-and-reference/CHOOSECOLS.md) [deferred]
+- [CHOOSEROWS](functions/lookup-and-reference/CHOOSEROWS.md) [deferred]
+- [COLUMN](functions/lookup-and-reference/COLUMN.md)
+- [COLUMNS](functions/lookup-and-reference/COLUMNS.md)
+- [DROP](functions/lookup-and-reference/DROP.md) [deferred]
+- [EXPAND](functions/lookup-and-reference/EXPAND.md) [deferred]
+- [FILTER](functions/lookup-and-reference/FILTER.md) [deferred]
+- [FORMULATEXT](functions/lookup-and-reference/FORMULATEXT.md)
+- [GETPIVOTDATA](functions/lookup-and-reference/GETPIVOTDATA.md) [out of scope]
+- [GROUPBY](functions/lookup-and-reference/GROUPBY.md) [out of scope]
+- [HLOOKUP](functions/lookup-and-reference/HLOOKUP.md)
+- [HSTACK](functions/lookup-and-reference/HSTACK.md) [deferred]
+- [HYPERLINK](functions/lookup-and-reference/HYPERLINK.md)
+- [IMAGE](functions/lookup-and-reference/IMAGE.md) [out of scope]
+- [INDEX](functions/lookup-and-reference/INDEX.md)
+- [INDIRECT](functions/lookup-and-reference/INDIRECT.md) [deferred]
+- [LOOKUP](functions/lookup-and-reference/LOOKUP.md)
+- [MATCH](functions/lookup-and-reference/MATCH.md)
+- [OFFSET](functions/lookup-and-reference/OFFSET.md)
+- [PIVOTBY](functions/lookup-and-reference/PIVOTBY.md) [out of scope]
+- [ROW](functions/lookup-and-reference/ROW.md)
+- [ROWS](functions/lookup-and-reference/ROWS.md)
+- [RTD](functions/lookup-and-reference/RTD.md) [out of scope]
+- [SORT](functions/lookup-and-reference/SORT.md) [deferred]
+- [SORTBY](functions/lookup-and-reference/SORTBY.md) [deferred]
+- [TAKE](functions/lookup-and-reference/TAKE.md) [deferred]
+- [TOCOL](functions/lookup-and-reference/TOCOL.md) [deferred]
+- [TOROW](functions/lookup-and-reference/TOROW.md) [deferred]
+- [TRANSPOSE](functions/lookup-and-reference/TRANSPOSE.md) [deferred]
+- [TRIMRANGE](functions/lookup-and-reference/TRIMRANGE.md) [deferred]
+- [UNIQUE](functions/lookup-and-reference/UNIQUE.md) [deferred]
+- [VLOOKUP](functions/lookup-and-reference/VLOOKUP.md)
+- [VSTACK](functions/lookup-and-reference/VSTACK.md) [deferred]
+- [WRAPCOLS](functions/lookup-and-reference/WRAPCOLS.md) [deferred]
+- [WRAPROWS](functions/lookup-and-reference/WRAPROWS.md) [deferred]
+- [XLOOKUP](functions/lookup-and-reference/XLOOKUP.md)
+- [XMATCH](functions/lookup-and-reference/XMATCH.md)
+
+## Date & Time
+- [DATE](functions/date-and-time/DATE.md)
+- [DATEDIF](functions/date-and-time/DATEDIF.md)
+- [DATEVALUE](functions/date-and-time/DATEVALUE.md)
+- [DAY](functions/date-and-time/DAY.md)
+- [DAYS](functions/date-and-time/DAYS.md)
+- [DAYS360](functions/date-and-time/DAYS360.md)
+- [EDATE](functions/date-and-time/EDATE.md)
+- [EOMONTH](functions/date-and-time/EOMONTH.md)
+- [HOUR](functions/date-and-time/HOUR.md)
+- [ISOWEEKNUM](functions/date-and-time/ISOWEEKNUM.md)
+- [MINUTE](functions/date-and-time/MINUTE.md)
+- [MONTH](functions/date-and-time/MONTH.md)
+- [NETWORKDAYS](functions/date-and-time/NETWORKDAYS.md)
+- [NETWORKDAYS.INTL](functions/date-and-time/NETWORKDAYS.INTL.md)
+- [NOW](functions/date-and-time/NOW.md)
+- [SECOND](functions/date-and-time/SECOND.md)
+- [TIME](functions/date-and-time/TIME.md)
+- [TIMEVALUE](functions/date-and-time/TIMEVALUE.md)
+- [TODAY](functions/date-and-time/TODAY.md)
+- [WEEKDAY](functions/date-and-time/WEEKDAY.md)
+- [WEEKNUM](functions/date-and-time/WEEKNUM.md)
+- [WORKDAY](functions/date-and-time/WORKDAY.md)
+- [WORKDAY.INTL](functions/date-and-time/WORKDAY.INTL.md)
+- [YEAR](functions/date-and-time/YEAR.md)
+- [YEARFRAC](functions/date-and-time/YEARFRAC.md)
+
+## Financial
+- [ACCRINT](functions/financial/ACCRINT.md)
+- [ACCRINTM](functions/financial/ACCRINTM.md)
+- [AMORDEGRC](functions/financial/AMORDEGRC.md)
+- [AMORLINC](functions/financial/AMORLINC.md)
+- [COUPDAYBS](functions/financial/COUPDAYBS.md)
+- [COUPDAYS](functions/financial/COUPDAYS.md)
+- [COUPDAYSNC](functions/financial/COUPDAYSNC.md)
+- [COUPNCD](functions/financial/COUPNCD.md)
+- [COUPNUM](functions/financial/COUPNUM.md)
+- [COUPPCD](functions/financial/COUPPCD.md)
+- [CUMIPMT](functions/financial/CUMIPMT.md)
+- [CUMPRINC](functions/financial/CUMPRINC.md)
+- [DB](functions/financial/DB.md)
+- [DDB](functions/financial/DDB.md)
+- [DISC](functions/financial/DISC.md)
+- [DOLLARDE](functions/financial/DOLLARDE.md)
+- [DOLLARFR](functions/financial/DOLLARFR.md)
+- [DURATION](functions/financial/DURATION.md)
+- [EFFECT](functions/financial/EFFECT.md)
+- [FV](functions/financial/FV.md)
+- [FVSCHEDULE](functions/financial/FVSCHEDULE.md)
+- [INTRATE](functions/financial/INTRATE.md)
+- [IPMT](functions/financial/IPMT.md)
+- [IRR](functions/financial/IRR.md)
+- [ISPMT](functions/financial/ISPMT.md)
+- [MDURATION](functions/financial/MDURATION.md)
+- [MIRR](functions/financial/MIRR.md)
+- [NOMINAL](functions/financial/NOMINAL.md)
+- [NPER](functions/financial/NPER.md)
+- [NPV](functions/financial/NPV.md)
+- [ODDFPRICE](functions/financial/ODDFPRICE.md)
+- [ODDFYIELD](functions/financial/ODDFYIELD.md)
+- [ODDLPRICE](functions/financial/ODDLPRICE.md)
+- [ODDLYIELD](functions/financial/ODDLYIELD.md)
+- [PDURATION](functions/financial/PDURATION.md)
+- [PMT](functions/financial/PMT.md)
+- [PPMT](functions/financial/PPMT.md)
+- [PRICE](functions/financial/PRICE.md)
+- [PRICEDISC](functions/financial/PRICEDISC.md)
+- [PRICEMAT](functions/financial/PRICEMAT.md)
+- [PV](functions/financial/PV.md)
+- [RATE](functions/financial/RATE.md)
+- [RECEIVED](functions/financial/RECEIVED.md)
+- [RRI](functions/financial/RRI.md)
+- [SLN](functions/financial/SLN.md)
+- [SYD](functions/financial/SYD.md)
+- [TBILLEQ](functions/financial/TBILLEQ.md)
+- [TBILLPRICE](functions/financial/TBILLPRICE.md)
+- [TBILLYIELD](functions/financial/TBILLYIELD.md)
+- [VDB](functions/financial/VDB.md)
+- [XIRR](functions/financial/XIRR.md)
+- [XNPV](functions/financial/XNPV.md)
+- [YIELD](functions/financial/YIELD.md)
+- [YIELDDISC](functions/financial/YIELDDISC.md)
+- [YIELDMAT](functions/financial/YIELDMAT.md)
+
+## Information
+- [CELL](functions/information/CELL.md) [deferred]
+- [ERROR.TYPE](functions/information/ERROR.TYPE.md)
+- [INFO](functions/information/INFO.md) [deferred]
+- [ISBLANK](functions/information/ISBLANK.md)
+- [ISERR](functions/information/ISERR.md)
+- [ISERROR](functions/information/ISERROR.md)
+- [ISEVEN](functions/information/ISEVEN.md)
+- [ISFORMULA](functions/information/ISFORMULA.md)
+- [ISLOGICAL](functions/information/ISLOGICAL.md)
+- [ISNA](functions/information/ISNA.md)
+- [ISNONTEXT](functions/information/ISNONTEXT.md)
+- [ISNUMBER](functions/information/ISNUMBER.md)
+- [ISODD](functions/information/ISODD.md)
+- [ISOMITTED](functions/information/ISOMITTED.md) [deferred]
+- [ISREF](functions/information/ISREF.md)
+- [ISTEXT](functions/information/ISTEXT.md)
+- [N](functions/information/N.md)
+- [NA](functions/information/NA.md)
+- [SHEET](functions/information/SHEET.md)
+- [SHEETS](functions/information/SHEETS.md)
+- [STOCKHISTORY](functions/information/STOCKHISTORY.md) [out of scope]
+- [TYPE](functions/information/TYPE.md)
+
+## Engineering
+- [BESSELI](functions/engineering/BESSELI.md)
+- [BESSELJ](functions/engineering/BESSELJ.md)
+- [BESSELK](functions/engineering/BESSELK.md)
+- [BESSELY](functions/engineering/BESSELY.md)
+- [BIN2DEC](functions/engineering/BIN2DEC.md)
+- [BIN2HEX](functions/engineering/BIN2HEX.md)
+- [BIN2OCT](functions/engineering/BIN2OCT.md)
+- [BITAND](functions/engineering/BITAND.md)
+- [BITLSHIFT](functions/engineering/BITLSHIFT.md)
+- [BITOR](functions/engineering/BITOR.md)
+- [BITRSHIFT](functions/engineering/BITRSHIFT.md)
+- [BITXOR](functions/engineering/BITXOR.md)
+- [COMPLEX](functions/engineering/COMPLEX.md)
+- [CONVERT](functions/engineering/CONVERT.md)
+- [DEC2BIN](functions/engineering/DEC2BIN.md)
+- [DEC2HEX](functions/engineering/DEC2HEX.md)
+- [DEC2OCT](functions/engineering/DEC2OCT.md)
+- [DELTA](functions/engineering/DELTA.md)
+- [ERF](functions/engineering/ERF.md)
+- [ERF.PRECISE](functions/engineering/ERF.PRECISE.md)
+- [ERFC](functions/engineering/ERFC.md)
+- [ERFC.PRECISE](functions/engineering/ERFC.PRECISE.md)
+- [GESTEP](functions/engineering/GESTEP.md)
+- [HEX2BIN](functions/engineering/HEX2BIN.md)
+- [HEX2DEC](functions/engineering/HEX2DEC.md)
+- [HEX2OCT](functions/engineering/HEX2OCT.md)
+- [IMABS](functions/engineering/IMABS.md)
+- [IMAGINARY](functions/engineering/IMAGINARY.md)
+- [IMARGUMENT](functions/engineering/IMARGUMENT.md)
+- [IMCONJUGATE](functions/engineering/IMCONJUGATE.md)
+- [IMCOS](functions/engineering/IMCOS.md)
+- [IMCOSH](functions/engineering/IMCOSH.md)
+- [IMCOT](functions/engineering/IMCOT.md)
+- [IMCSC](functions/engineering/IMCSC.md)
+- [IMCSCH](functions/engineering/IMCSCH.md)
+- [IMDIV](functions/engineering/IMDIV.md)
+- [IMEXP](functions/engineering/IMEXP.md)
+- [IMLN](functions/engineering/IMLN.md)
+- [IMLOG10](functions/engineering/IMLOG10.md)
+- [IMLOG2](functions/engineering/IMLOG2.md)
+- [IMPOWER](functions/engineering/IMPOWER.md)
+- [IMPRODUCT](functions/engineering/IMPRODUCT.md)
+- [IMREAL](functions/engineering/IMREAL.md)
+- [IMSEC](functions/engineering/IMSEC.md)
+- [IMSECH](functions/engineering/IMSECH.md)
+- [IMSIN](functions/engineering/IMSIN.md)
+- [IMSINH](functions/engineering/IMSINH.md)
+- [IMSQRT](functions/engineering/IMSQRT.md)
+- [IMSUB](functions/engineering/IMSUB.md)
+- [IMSUM](functions/engineering/IMSUM.md)
+- [IMTAN](functions/engineering/IMTAN.md)
+- [OCT2BIN](functions/engineering/OCT2BIN.md)
+- [OCT2DEC](functions/engineering/OCT2DEC.md)
+- [OCT2HEX](functions/engineering/OCT2HEX.md)
+
+## Database
+- [DAVERAGE](functions/database/DAVERAGE.md)
+- [DCOUNT](functions/database/DCOUNT.md)
+- [DCOUNTA](functions/database/DCOUNTA.md)
+- [DGET](functions/database/DGET.md)
+- [DMAX](functions/database/DMAX.md)
+- [DMIN](functions/database/DMIN.md)
+- [DPRODUCT](functions/database/DPRODUCT.md)
+- [DSTDEV](functions/database/DSTDEV.md)
+- [DSTDEVP](functions/database/DSTDEVP.md)
+- [DSUM](functions/database/DSUM.md)
+- [DVAR](functions/database/DVAR.md)
+- [DVARP](functions/database/DVARP.md)
+
+## Compatibility
+- [BETADIST](functions/compatibility/BETADIST.md)
+- [BETAINV](functions/compatibility/BETAINV.md)
+- [BINOMDIST](functions/compatibility/BINOMDIST.md)
+- [CHIDIST](functions/compatibility/CHIDIST.md)
+- [CHIINV](functions/compatibility/CHIINV.md)
+- [CHITEST](functions/compatibility/CHITEST.md)
+- [CONFIDENCE](functions/compatibility/CONFIDENCE.md)
+- [COVAR](functions/compatibility/COVAR.md)
+- [CRITBINOM](functions/compatibility/CRITBINOM.md)
+- [EXPONDIST](functions/compatibility/EXPONDIST.md)
+- [FDIST](functions/compatibility/FDIST.md)
+- [FINV](functions/compatibility/FINV.md)
+- [FORECAST](functions/compatibility/FORECAST.md)
+- [FTEST](functions/compatibility/FTEST.md)
+- [GAMMADIST](functions/compatibility/GAMMADIST.md)
+- [GAMMAINV](functions/compatibility/GAMMAINV.md)
+- [HYPGEOMDIST](functions/compatibility/HYPGEOMDIST.md)
+- [LOGINV](functions/compatibility/LOGINV.md)
+- [LOGNORMDIST](functions/compatibility/LOGNORMDIST.md)
+- [MODE](functions/compatibility/MODE.md)
+- [NEGBINOMDIST](functions/compatibility/NEGBINOMDIST.md)
+- [NORMDIST](functions/compatibility/NORMDIST.md)
+- [NORMINV](functions/compatibility/NORMINV.md)
+- [NORMSDIST](functions/compatibility/NORMSDIST.md)
+- [NORMSINV](functions/compatibility/NORMSINV.md)
+- [PERCENTILE](functions/compatibility/PERCENTILE.md)
+- [PERCENTRANK](functions/compatibility/PERCENTRANK.md)
+- [POISSON](functions/compatibility/POISSON.md)
+- [QUARTILE](functions/compatibility/QUARTILE.md)
+- [RANK](functions/compatibility/RANK.md)
+- [STDEV](functions/compatibility/STDEV.md)
+- [STDEVP](functions/compatibility/STDEVP.md)
+- [TDIST](functions/compatibility/TDIST.md)
+- [TINV](functions/compatibility/TINV.md)
+- [TTEST](functions/compatibility/TTEST.md)
+- [VAR](functions/compatibility/VAR.md)
+- [VARP](functions/compatibility/VARP.md)
+- [WEIBULL](functions/compatibility/WEIBULL.md)
+- [ZTEST](functions/compatibility/ZTEST.md)
+
+## Cube
+- [CUBEKPIMEMBER](functions/cube/CUBEKPIMEMBER.md) [out of scope]
+- [CUBEMEMBER](functions/cube/CUBEMEMBER.md) [out of scope]
+- [CUBEMEMBERPROPERTY](functions/cube/CUBEMEMBERPROPERTY.md) [out of scope]
+- [CUBERANKEDMEMBER](functions/cube/CUBERANKEDMEMBER.md) [out of scope]
+- [CUBESET](functions/cube/CUBESET.md) [out of scope]
+- [CUBESETCOUNT](functions/cube/CUBESETCOUNT.md) [out of scope]
+- [CUBEVALUE](functions/cube/CUBEVALUE.md) [out of scope]
+
+## Web
+- [ENCODEURL](functions/web/ENCODEURL.md)
+- [FILTERXML](functions/web/FILTERXML.md) [out of scope]
+- [WEBSERVICE](functions/web/WEBSERVICE.md) [out of scope]
+
+## User-defined / Add-in
+- [CALL](functions/user-defined---add-in/CALL.md) [out of scope]
+- [EUROCONVERT](functions/user-defined---add-in/EUROCONVERT.md) [deferred]
+- [REGISTER.ID](functions/user-defined---add-in/REGISTER.ID.md) [out of scope]

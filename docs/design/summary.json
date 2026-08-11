@@ -1,0 +1,97 @@
+{
+  "Compatibility": {
+    "count": 39,
+    "scopes": {
+      "implement": 39
+    }
+  },
+  "Cube": {
+    "count": 7,
+    "scopes": {
+      "out-of-scope": 7
+    }
+  },
+  "Database": {
+    "count": 12,
+    "scopes": {
+      "implement": 12
+    }
+  },
+  "Date & Time": {
+    "count": 25,
+    "scopes": {
+      "implement": 25
+    }
+  },
+  "Engineering": {
+    "count": 54,
+    "scopes": {
+      "implement": 54
+    }
+  },
+  "Financial": {
+    "count": 55,
+    "scopes": {
+      "implement": 55
+    }
+  },
+  "Information": {
+    "count": 22,
+    "scopes": {
+      "implement": 18,
+      "deferred": 3,
+      "out-of-scope": 1
+    }
+  },
+  "Logical": {
+    "count": 19,
+    "scopes": {
+      "implement": 11,
+      "deferred": 8
+    }
+  },
+  "Lookup & Reference": {
+    "count": 40,
+    "scopes": {
+      "implement": 17,
+      "deferred": 18,
+      "out-of-scope": 5
+    }
+  },
+  "Math & Trigonometry": {
+    "count": 82,
+    "scopes": {
+      "implement": 80,
+      "deferred": 2
+    }
+  },
+  "Statistical": {
+    "count": 110,
+    "scopes": {
+      "implement": 100,
+      "deferred": 10
+    }
+  },
+  "Text": {
+    "count": 49,
+    "scopes": {
+      "implement": 42,
+      "deferred": 1,
+      "out-of-scope": 6
+    }
+  },
+  "User-defined / Add-in": {
+    "count": 3,
+    "scopes": {
+      "out-of-scope": 2,
+      "deferred": 1
+    }
+  },
+  "Web": {
+    "count": 3,
+    "scopes": {
+      "out-of-scope": 2,
+      "implement": 1
+    }
+  }
+}
