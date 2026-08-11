@@ -676,6 +676,19 @@ export function registerMissingFunctions(add: (f: ExcelFunction) => void, reg: F
     }),
   );
 
+  // Financial bond / forecasting functions that require dedicated bond-math / ETS implementations
+  const financialStubNames = [
+    "ACCRINTM", "AMORDEGRC", "AMORLINC", "COUPDAYBS", "COUPDAYSNC",
+    "COUPNCD", "COUPNUM", "COUPPCD", "DURATION", "FORECAST.ETS",
+    "FORECAST.ETS.CONFINT", "FORECAST.ETS.SEASONALITY", "FORECAST.ETS.STAT",
+    "INTRATE", "MDURATION", "ODDFPRICE", "ODDFYIELD", "ODDLPRICE",
+    "ODDLYIELD", "PRICE", "PRICEMAT", "RECEIVED", "VDB", "YIELD",
+    "YIELDDISC", "YIELDMAT",
+  ];
+  for (const name of financialStubNames) {
+    add(fn(name, "none", () => err(ExcelErrorCode.NA)));
+  }
+
   // Stubs for functions that require external data, locale handling, or LAMBDA support
   const stubNames = [
     // External / locale / add-in
