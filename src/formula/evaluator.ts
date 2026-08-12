@@ -8,7 +8,7 @@ import {
   type ArrayValue,
   type ExcelValue,
 } from "../model/value.js";
-import { parseA1, parseA1Range } from "../model/address.js";
+import { columnIndexToLetters, parseA1, parseA1Range } from "../model/address.js";
 import { parseFormula, type FormulaNode } from "./ast.js";
 import {
   excelAdd,
@@ -16,6 +16,7 @@ import {
   excelConcat,
   excelCoerceBoolean,
   excelCoerceNumber,
+  excelCoerceString,
   excelDivide,
   excelMultiply,
   excelPower,
@@ -101,6 +102,15 @@ export class FormulaEvaluator {
         }
         if (upper === "OFFSET") {
           return this.evalOffset(node.args, ctx);
+        }
+        if (upper === "ISFORMULA") {
+          return this.evalIsFormula(node.args, ctx);
+        }
+        if (upper === "FORMULATEXT") {
+          return this.evalFormulaText(node.args, ctx);
+        }
+        if (upper === "CELL") {
+          return this.evalCell(node.args, ctx);
         }
         const args = node.args.map((a) => this.evaluate(a, ctx));
         return fn.evaluate(args, ctx);
@@ -192,6 +202,77 @@ export class FormulaEvaluator {
       return ctx.getCell(sheet, addr.row, addr.column);
     } catch {
       return err(ExcelErrorCode.Ref);
+    }
+  }
+
+  private cellReferenceFromNode(node: FormulaNode, ctx: EvaluationContext): { sheet: number | string; row: number; col: number } | undefined {
+    if (node.kind === "reference") {
+      return { sheet: node.sheet ?? ctx.sheetId, row: node.address.row, col: node.address.column };
+    }
+    if (node.kind === "range") {
+      return { sheet: node.sheet ?? ctx.sheetId, row: node.range.startRow, col: node.range.startColumn };
+    }
+    if (node.kind === "name") {
+      const resolved = ctx.resolveName(node.name);
+      if (resolved && typeof resolved === "object" && "kind" in resolved) {
+        const n = resolved as FormulaNode;
+        if (n.kind === "reference" || n.kind === "range") return this.cellReferenceFromNode(n, ctx);
+      }
+    }
+    return undefined;
+  }
+
+  private evalIsFormula(args: FormulaNode[], ctx: EvaluationContext): ExcelValue {
+    if (args.length === 0) return err(ExcelErrorCode.NA);
+    const ref = this.cellReferenceFromNode(args[0]!, ctx);
+    if (!ref) return err(ExcelErrorCode.NA);
+    if (ref.row < 0 || ref.col < 0) return err(ExcelErrorCode.Ref);
+    if (!ctx.getFormulaText) return err(ExcelErrorCode.NA);
+    const text = ctx.getFormulaText(ref.sheet, ref.row, ref.col);
+    return bool(text !== undefined && text.length > 0);
+  }
+
+  private evalFormulaText(args: FormulaNode[], ctx: EvaluationContext): ExcelValue {
+    if (args.length === 0) return err(ExcelErrorCode.NA);
+    const ref = this.cellReferenceFromNode(args[0]!, ctx);
+    if (!ref) return err(ExcelErrorCode.NA);
+    if (ref.row < 0 || ref.col < 0) return err(ExcelErrorCode.Ref);
+    if (!ctx.getFormulaText) return err(ExcelErrorCode.NA);
+    const text = ctx.getFormulaText(ref.sheet, ref.row, ref.col);
+    if (text === undefined || text.length === 0) return err(ExcelErrorCode.NA);
+    return str(text);
+  }
+
+  private evalCell(args: FormulaNode[], ctx: EvaluationContext): ExcelValue {
+    if (args.length === 0) return err(ExcelErrorCode.Value);
+    const infoVal = this.evaluate(args[0]!, ctx);
+    const info = excelCoerceString(infoVal);
+    if (info.kind !== "string") return err(ExcelErrorCode.Value);
+    const key = info.value.toLowerCase();
+    const ref = args.length >= 2 ? this.cellReferenceFromNode(args[1]!, ctx) : { sheet: ctx.sheetId, row: ctx.row, col: ctx.column };
+    if (!ref) return err(ExcelErrorCode.Value);
+    if (ref.row < 0 || ref.col < 0) return err(ExcelErrorCode.Ref);
+    const value = ctx.getCell(ref.sheet, ref.row, ref.col);
+    switch (key) {
+      case "address":
+        return str(`$${columnIndexToLetters(ref.col)}$${ref.row + 1}`);
+      case "col":
+        return num(ref.col + 1);
+      case "row":
+        return num(ref.row + 1);
+      case "contents":
+        return value;
+      case "type": {
+        if (value.kind === "blank") return str("b");
+        if (value.kind === "string") return str("l");
+        return str("v");
+      }
+      case "filename": {
+        const sheetName = typeof ref.sheet === "string" ? ref.sheet : ctx.sheetName ?? String(ref.sheet);
+        return str(`[xlume]${sheetName}`);
+      }
+      default:
+        return err(ExcelErrorCode.NA);
     }
   }
 

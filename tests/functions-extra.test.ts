@@ -1,11 +1,15 @@
 import { describe, expect, it } from "vitest";
 import { FormulaEvaluator } from "../src/formula/evaluator.js";
 import { createBuiltinFunctions } from "../src/functions/builtins.js";
-import { BLANK, ExcelErrorCode, num, str } from "../src/model/value.js";
+import { BLANK, bool, ExcelErrorCode, num, str } from "../src/model/value.js";
 import type { EvaluationContext } from "../src/formula/functions-types.js";
 
-function ctx(cells: Record<string, import("../src/model/value.js").ExcelValue> = {}): EvaluationContext {
+function ctx(
+  cells: Record<string, import("../src/model/value.js").ExcelValue> = {},
+  formulas: Record<string, string> = {},
+): EvaluationContext {
   const map = new Map(Object.entries(cells));
+  const formulaMap = new Map(Object.entries(formulas));
   return {
     sheetId: 1,
     row: 0,
@@ -16,6 +20,7 @@ function ctx(cells: Record<string, import("../src/model/value.js").ExcelValue> =
       for (let r = sr; r <= er; r++) for (let c = sc; c <= ec; c++) out.push(map.get(`${r}:${c}`) ?? BLANK);
       return out;
     },
+    getFormulaText: (_s, r, c) => formulaMap.get(`${r}:${c}`),
     resolveName: () => undefined,
     resolveTableColumn: () => [],
     todaySerial: () => 45000,
@@ -173,5 +178,27 @@ describe("Extra functions toward full compatibility", () => {
     const rate = ev.evaluateText("RATE(10, -1000, 10000, 0, 0, 0.1)", ctx());
     expect(rate.kind).toBe("number");
     if (rate.kind === "number") expect(rate.value).toBeCloseTo(0, 10);
+  });
+
+  it("ENCODEURL URL-encodes a string", () => {
+    expect(ev.evaluateText('ENCODEURL("hello world")', ctx())).toEqual(str("hello%20world"));
+    expect(ev.evaluateText('ENCODEURL("a+b")', ctx())).toEqual(str("a%2Bb"));
+  });
+
+  it("ISFORMULA and FORMULATEXT inspect cell formulas", () => {
+    const formulas = { "0:0": "=1+1" };
+    expect(ev.evaluateText("ISFORMULA(A1)", ctx({}, formulas))).toEqual(bool(true));
+    expect(ev.evaluateText("FORMULATEXT(A1)", ctx({}, formulas))).toEqual(str("=1+1"));
+    expect(ev.evaluateText("ISFORMULA(A2)", ctx({}, formulas))).toEqual(bool(false));
+    expect(ev.evaluateText("FORMULATEXT(A2)", ctx({}, formulas)).code).toBe(ExcelErrorCode.NA);
+  });
+
+  it("CELL returns address, row, col, contents and type", () => {
+    const cells = { "0:0": num(42) };
+    expect(ev.evaluateText('CELL("address", A1)', ctx(cells))).toEqual(str("$A$1"));
+    expect(ev.evaluateText('CELL("row", A1)', ctx(cells))).toEqual(num(1));
+    expect(ev.evaluateText('CELL("col", A1)', ctx(cells))).toEqual(num(1));
+    expect(ev.evaluateText('CELL("contents", A1)', ctx(cells))).toEqual(num(42));
+    expect(ev.evaluateText('CELL("type", A1)', ctx(cells))).toEqual(str("v"));
   });
 });

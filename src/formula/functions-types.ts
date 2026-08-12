@@ -13,6 +13,8 @@ export interface EvaluationContext {
     endRow: number,
     endCol: number,
   ): ExcelValue[];
+  /** Return the formula text of a cell, if any. Used by FORMULATEXT/ISFORMULA. */
+  getFormulaText?(sheet: number | string | undefined, row: number, column: number): string | undefined;
   resolveName(name: string): FormulaNode | ExcelValue | undefined;
   resolveTableColumn(table: string, column?: string): ExcelValue[];
   todaySerial(): number;
