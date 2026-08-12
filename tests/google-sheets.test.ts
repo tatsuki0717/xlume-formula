@@ -140,4 +140,18 @@ describe("Google Sheets offline functions", () => {
     const result = ev.evaluateText('=QUERY(A1:B4, "SELECT A, SUM(B) GROUP BY A")', c);
     expect(result).toEqual(array([["Year", "SUM(Sales)"], [2020, 300], [2021, 300]], 2));
   });
+
+  it("DOLLAR, FIXED, PROPER, UNICHAR, UNICODE", () => {
+    expect(ev.evaluateText("=DOLLAR(1234.567, 2)", ctx())).toEqual(str("$1,234.57"));
+    expect(ev.evaluateText("=FIXED(1234.5, 1)", ctx())).toEqual(str("1,234.5"));
+    expect(ev.evaluateText("=PROPER(\"hello WORLD\")", ctx())).toEqual(str("Hello World"));
+    expect(ev.evaluateText("=UNICHAR(65)", ctx())).toEqual(str("A"));
+    expect(ev.evaluateText("=UNICODE(\"A\")", ctx())).toEqual(num(65));
+  });
+
+  it("HSTACK, VSTACK, LOOKUP", () => {
+    expect(ev.evaluateText("=HSTACK({1,2},{3,4})", ctx())).toEqual(array([[1, 2, 3, 4]], 4));
+    expect(ev.evaluateText("=VSTACK({1,2},{3,4})", ctx())).toEqual(array([[1, 2], [3, 4]], 2));
+    expect(ev.evaluateText("=LOOKUP(2, {1;2;3}, {\"a\";\"b\";\"c\"})", ctx())).toEqual(str("b"));
+  });
 });
