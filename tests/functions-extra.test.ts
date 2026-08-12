@@ -201,4 +201,49 @@ describe("Extra functions toward full compatibility", () => {
     expect(ev.evaluateText('CELL("contents", A1)', ctx(cells))).toEqual(num(42));
     expect(ev.evaluateText('CELL("type", A1)', ctx(cells))).toEqual(str("v"));
   });
+
+  it("LET binds names and evaluates the body", () => {
+    expect(ev.evaluateText("LET(x, 2, x+3)", ctx())).toEqual(num(5));
+    expect(ev.evaluateText("LET(a, 1, b, 2, a+b)", ctx())).toEqual(num(3));
+  });
+
+  it("LAMBDA is callable when bound via LET", () => {
+    expect(ev.evaluateText("LET(f, LAMBDA(x, x*2), f(5))", ctx())).toEqual(num(10));
+  });
+
+  it("MAP applies a LAMBDA to each value", () => {
+    const result = ev.evaluateText("MAP({1,2,3}, LAMBDA(x, x*2))", ctx());
+    expect(result.kind).toBe("array");
+    if (result.kind !== "array") return;
+    expect(result.values.map((v) => (v as { value: number }).value)).toEqual([2, 4, 6]);
+  });
+
+  it("MAKEARRAY builds an array from row and column indices", () => {
+    const result = ev.evaluateText("MAKEARRAY(2, 3, LAMBDA(r, c, r*10+c))", ctx());
+    expect(result.kind).toBe("array");
+    if (result.kind !== "array") return;
+    expect(result.width).toBe(3);
+    expect(result.height).toBe(2);
+  });
+
+  it("REDUCE accumulates across an array", () => {
+    expect(ev.evaluateText("REDUCE(0, {1,2,3}, LAMBDA(a, x, a+x))", ctx())).toEqual(num(6));
+  });
+
+  it("SCAN returns running totals", () => {
+    const result = ev.evaluateText("SCAN(0, {1,2,3}, LAMBDA(a, x, a+x))", ctx());
+    expect(result.kind).toBe("array");
+    if (result.kind !== "array") return;
+    expect(result.values.map((v) => (v as { value: number }).value)).toEqual([1, 3, 6]);
+  });
+
+  it("BYROW and BYCOL reduce each row or column", () => {
+    const byRow = ev.evaluateText("BYROW({1,2;3,4}, LAMBDA(r, SUM(r)))", ctx());
+    expect(byRow.kind).toBe("array");
+    if (byRow.kind !== "array") expect(byRow.values.map((v) => (v as { value: number }).value)).toEqual([3, 7]);
+
+    const byCol = ev.evaluateText("BYCOL({1,2;3,4}, LAMBDA(c, SUM(c)))", ctx());
+    expect(byCol.kind).toBe("array");
+    if (byCol.kind !== "array") expect(byCol.values.map((v) => (v as { value: number }).value)).toEqual([4, 6]);
+  });
 });

@@ -7,6 +7,7 @@ import {
   str,
   type ArrayValue,
   type ExcelValue,
+  type LambdaValue,
 } from "../model/value.js";
 import { columnIndexToLetters, parseA1, parseA1Range } from "../model/address.js";
 import { parseFormula, type FormulaNode } from "./ast.js";
@@ -27,6 +28,15 @@ import type { EvaluationContext, FunctionRegistry } from "./functions-types.js";
 export interface SpillRegion {
   origin: { sheetId?: number; row: number; column: number };
   range: { startRow: number; startColumn: number; endRow: number; endColumn: number };
+}
+
+function isExcelValue(x: unknown): x is ExcelValue {
+  return (
+    x !== null &&
+    typeof x === "object" &&
+    "kind" in x &&
+    ["blank", "number", "string", "boolean", "error", "array", "lambda"].includes((x as { kind: string }).kind)
+  );
 }
 
 export class FormulaEvaluator {
@@ -94,8 +104,6 @@ export class FormulaEvaluator {
         return arr;
       }
       case "function": {
-        const fn = this.functions.get(node.name);
-        if (!fn) return err(ExcelErrorCode.Name);
         const upper = node.name.toUpperCase();
         if (upper === "INDIRECT") {
           return this.evalIndirect(node.args, ctx);
@@ -112,25 +120,47 @@ export class FormulaEvaluator {
         if (upper === "CELL") {
           return this.evalCell(node.args, ctx);
         }
-        const args = node.args.map((a) => this.evaluate(a, ctx));
-        return fn.evaluate(args, ctx);
+        if (upper === "LAMBDA") {
+          return this.evalLambda(node.args, ctx);
+        }
+        if (upper === "LET") {
+          return this.evalLet(node.args, ctx);
+        }
+        if (upper === "MAP") {
+          return this.evalMap(node.args, ctx);
+        }
+        if (upper === "MAKEARRAY") {
+          return this.evalMakeArray(node.args, ctx);
+        }
+        if (upper === "REDUCE") {
+          return this.evalReduce(node.args, ctx);
+        }
+        if (upper === "SCAN") {
+          return this.evalScan(node.args, ctx);
+        }
+        if (upper === "BYCOL") {
+          return this.evalByCol(node.args, ctx);
+        }
+        if (upper === "BYROW") {
+          return this.evalByRow(node.args, ctx);
+        }
+        // Named lambda call (LET-bound or otherwise) takes precedence over function fallback
+        const named = ctx.resolveName(node.name);
+        if (named && isExcelValue(named) && named.kind === "lambda") {
+          return this.callLambda(named, node.args, ctx);
+        }
+        const fn = this.functions.get(node.name);
+        if (fn) {
+          const args = node.args.map((a) => this.evaluate(a, ctx));
+          return fn.evaluate(args, ctx);
+        }
+        return err(ExcelErrorCode.Name);
       }
       case "name": {
         const resolved = ctx.resolveName(node.name);
         if (!resolved) return err(ExcelErrorCode.Name);
-        if (typeof resolved === "object" && "kind" in resolved && !("value" in resolved && (resolved as ExcelValue).kind)) {
-          // FormulaNode
-          return this.evaluate(resolved as FormulaNode, ctx);
-        }
-        // Could be ExcelValue
-        if (resolved && typeof resolved === "object" && "kind" in resolved) {
-          const v = resolved as ExcelValue;
-          if (["blank", "number", "string", "boolean", "error", "array"].includes(v.kind)) {
-            return v;
-          }
-          return this.evaluate(resolved as FormulaNode, ctx);
-        }
-        return err(ExcelErrorCode.Name);
+        if (isExcelValue(resolved)) return resolved;
+        return this.evaluate(resolved as FormulaNode, ctx);
       }
       case "array": {
         const values: ExcelValue[] = [];
@@ -274,6 +304,164 @@ export class FormulaEvaluator {
       default:
         return err(ExcelErrorCode.NA);
     }
+  }
+
+  private evalLambda(args: FormulaNode[], ctx: EvaluationContext): ExcelValue {
+    if (args.length === 0) return err(ExcelErrorCode.Value);
+    const params: string[] = [];
+    for (let i = 0; i < args.length - 1; i++) {
+      const p = args[i];
+      if (!p || p.kind !== "name") return err(ExcelErrorCode.Value);
+      params.push(p.name);
+    }
+    return { kind: "lambda", params, body: args[args.length - 1]! };
+  }
+
+  private callLambdaValues(lambda: LambdaValue, argValues: ExcelValue[], ctx: EvaluationContext): ExcelValue {
+    if (argValues.length !== lambda.params.length) return err(ExcelErrorCode.Value);
+    const locals = new Map<string, import("./functions-types.js").FormulaArgument>();
+    for (let i = 0; i < lambda.params.length; i++) {
+      locals.set(lambda.params[i]!.toUpperCase(), argValues[i]!);
+    }
+    const localCtx: EvaluationContext = {
+      ...ctx,
+      resolveName: (name: string) => locals.get(name.toUpperCase()) ?? ctx.resolveName(name),
+    };
+    return this.evaluate(lambda.body, localCtx);
+  }
+
+  private callLambda(lambda: LambdaValue, args: FormulaNode[], ctx: EvaluationContext): ExcelValue {
+    const values = args.map((a) => this.evaluate(a, ctx));
+    return this.callLambdaValues(lambda, values, ctx);
+  }
+
+  private evalLet(args: FormulaNode[], ctx: EvaluationContext): ExcelValue {
+    if (args.length < 2 || (args.length - 1) % 2 !== 0) return err(ExcelErrorCode.Value);
+    const locals = new Map<string, import("./functions-types.js").FormulaArgument>();
+    const localCtx = (): EvaluationContext => ({
+      ...ctx,
+      resolveName: (name: string) => locals.get(name.toUpperCase()) ?? ctx.resolveName(name),
+    });
+    for (let i = 0; i < args.length - 1; i += 2) {
+      const nameNode = args[i];
+      if (!nameNode || nameNode.kind !== "name") return err(ExcelErrorCode.Value);
+      const value = this.evaluate(args[i + 1]!, localCtx());
+      locals.set(nameNode.name.toUpperCase(), value);
+    }
+    return this.evaluate(args[args.length - 1]!, localCtx());
+  }
+
+  private evalMap(args: FormulaNode[], ctx: EvaluationContext): ExcelValue {
+    if (args.length < 2) return err(ExcelErrorCode.Value);
+    const arrays: ArrayValue[] = [];
+    for (let i = 0; i < args.length - 1; i++) {
+      const v = this.evaluate(args[i]!, ctx);
+      if (v.kind !== "array") return err(ExcelErrorCode.Value);
+      arrays.push(v);
+    }
+    const lambdaVal = this.evaluate(args[args.length - 1]!, ctx);
+    if (lambdaVal.kind !== "lambda") return err(ExcelErrorCode.Value);
+    if (arrays.length === 0) return err(ExcelErrorCode.Value);
+    const first = arrays[0]!;
+    const height = first.height;
+    const width = first.width;
+    for (const a of arrays) {
+      if (a.kind !== "array" || a.height !== height || a.width !== width) return err(ExcelErrorCode.Value);
+    }
+    const out: ExcelValue[] = [];
+    for (let r = 0; r < height; r++) {
+      for (let c = 0; c < width; c++) {
+        const idx = r * width + c;
+        const callArgs: ExcelValue[] = [];
+        for (const a of arrays) {
+          const v = a.values[idx] ?? BLANK;
+          callArgs.push(v.kind === "blank" ? num(0) : v);
+        }
+        out.push(this.callLambdaValues(lambdaVal, callArgs, ctx));
+      }
+    }
+    return { kind: "array", width, height, values: out };
+  }
+
+  private evalMakeArray(args: FormulaNode[], ctx: EvaluationContext): ExcelValue {
+    if (args.length !== 3) return err(ExcelErrorCode.Value);
+    const rows = this.evaluate(args[0]!, ctx);
+    const cols = this.evaluate(args[1]!, ctx);
+    const lambdaVal = this.evaluate(args[2]!, ctx);
+    if (rows.kind !== "number" || cols.kind !== "number" || lambdaVal.kind !== "lambda") {
+      return err(ExcelErrorCode.Value);
+    }
+    const height = Math.max(0, Math.trunc(rows.value));
+    const width = Math.max(0, Math.trunc(cols.value));
+    const out: ExcelValue[] = [];
+    for (let r = 0; r < height; r++) {
+      for (let c = 0; c < width; c++) {
+        out.push(this.callLambdaValues(lambdaVal, [num(r + 1), num(c + 1)], ctx));
+      }
+    }
+    return { kind: "array", width, height, values: out };
+  }
+
+  private evalReduce(args: FormulaNode[], ctx: EvaluationContext): ExcelValue {
+    if (args.length !== 3) return err(ExcelErrorCode.Value);
+    let acc = this.evaluate(args[0]!, ctx);
+    const arr = this.evaluate(args[1]!, ctx);
+    const lambdaVal = this.evaluate(args[2]!, ctx);
+    if (arr.kind !== "array" || lambdaVal.kind !== "lambda") return err(ExcelErrorCode.Value);
+    for (let i = 0; i < arr.values.length; i++) {
+      const v = arr.values[i] ?? BLANK;
+      const callArg = v.kind === "blank" ? num(0) : v;
+      acc = this.callLambdaValues(lambdaVal, [acc, callArg], ctx);
+    }
+    return acc;
+  }
+
+  private evalScan(args: FormulaNode[], ctx: EvaluationContext): ExcelValue {
+    if (args.length !== 3) return err(ExcelErrorCode.Value);
+    let acc = this.evaluate(args[0]!, ctx);
+    const arr = this.evaluate(args[1]!, ctx);
+    const lambdaVal = this.evaluate(args[2]!, ctx);
+    if (arr.kind !== "array" || lambdaVal.kind !== "lambda") return err(ExcelErrorCode.Value);
+    const out: ExcelValue[] = [];
+    for (let i = 0; i < arr.values.length; i++) {
+      const v = arr.values[i] ?? BLANK;
+      const callArg = v.kind === "blank" ? num(0) : v;
+      acc = this.callLambdaValues(lambdaVal, [acc, callArg], ctx);
+      out.push(acc);
+    }
+    return { kind: "array", width: arr.width, height: arr.height, values: out };
+  }
+
+  private evalByCol(args: FormulaNode[], ctx: EvaluationContext): ExcelValue {
+    if (args.length !== 2) return err(ExcelErrorCode.Value);
+    const arr = this.evaluate(args[0]!, ctx);
+    const lambdaVal = this.evaluate(args[1]!, ctx);
+    if (arr.kind !== "array" || lambdaVal.kind !== "lambda") return err(ExcelErrorCode.Value);
+    const out: ExcelValue[] = [];
+    for (let c = 0; c < arr.width; c++) {
+      const col: ExcelValue[] = [];
+      for (let r = 0; r < arr.height; r++) {
+        col.push(arr.values[r * arr.width + c] ?? BLANK);
+      }
+      out.push(this.callLambdaValues(lambdaVal, [{ kind: "array", width: 1, height: arr.height, values: col }], ctx));
+    }
+    return { kind: "array", width: out.length, height: 1, values: out };
+  }
+
+  private evalByRow(args: FormulaNode[], ctx: EvaluationContext): ExcelValue {
+    if (args.length !== 2) return err(ExcelErrorCode.Value);
+    const arr = this.evaluate(args[0]!, ctx);
+    const lambdaVal = this.evaluate(args[1]!, ctx);
+    if (arr.kind !== "array" || lambdaVal.kind !== "lambda") return err(ExcelErrorCode.Value);
+    const out: ExcelValue[] = [];
+    for (let r = 0; r < arr.height; r++) {
+      const row: ExcelValue[] = [];
+      for (let c = 0; c < arr.width; c++) {
+        row.push(arr.values[r * arr.width + c] ?? BLANK);
+      }
+      out.push(this.callLambdaValues(lambdaVal, [{ kind: "array", width: arr.width, height: 1, values: row }], ctx));
+    }
+    return { kind: "array", width: 1, height: out.length, values: out };
   }
 
   private evalOffset(args: FormulaNode[], ctx: EvaluationContext): ExcelValue {

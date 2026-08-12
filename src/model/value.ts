@@ -45,13 +45,20 @@ export interface ArrayValue {
   values: ExcelValue[];
 }
 
+export interface LambdaValue {
+  kind: "lambda";
+  params: string[];
+  body: import("../formula/ast.js").FormulaNode;
+}
+
 export type ExcelValue =
   | BlankValue
   | NumberValue
   | StringValue
   | BooleanValue
   | ErrorValue
-  | ArrayValue;
+  | ArrayValue
+  | LambdaValue;
 
 export const BLANK: BlankValue = { kind: "blank" };
 
@@ -69,6 +76,10 @@ export function bool(value: boolean): BooleanValue {
 
 export function err(code: ExcelErrorCode): ErrorValue {
   return { kind: "error", code };
+}
+
+export function lambda(params: string[], body: import("../formula/ast.js").FormulaNode): LambdaValue {
+  return { kind: "lambda", params, body };
 }
 
 export interface ExcelDateSerial {
