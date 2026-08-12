@@ -14,6 +14,7 @@ import { registerExtraFunctions } from "./builtins-extra.js";
 import { formulaJsFallback } from "./formulajs-adapter.js";
 import { registerMissingFunctions } from "./builtins-missing.js";
 import { registerFinancialFunctions } from "./builtins-financial.js";
+import { registerDatabaseFunctions } from "./builtins-database.js";
 import { registerDate2Functions } from "./builtins-date2.js";
 import { registerForecastFunctions } from "./builtins-forecast.js";
 import { registerFormulaReplacementFunctions } from "./builtins-formula-replacement.js";
@@ -1087,6 +1088,7 @@ export function createBuiltinFunctions(): FunctionRegistry {
   registerGoogleSheetsFunctions(add);
   registerMissingFunctions(add, reg);
   registerDate2Functions(add);
+  registerDatabaseFunctions(add);
   registerFormulaReplacementFunctions(add);
 
   reg.setFallback((name) => formulaJsFallback(name));

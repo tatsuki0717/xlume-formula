@@ -163,4 +163,24 @@ describe("Google Sheets offline functions", () => {
     expect(ev.evaluateText("=TIME(12, 0, 0)", ctx())).toEqual(num(0.5));
     expect(ev.evaluateText("=NETWORKDAYS(43831, 43837)", ctx())).toEqual(num(5));
   });
+
+  it("Database functions", () => {
+    const c = ctx({
+      "0:0": str("Name"), "0:1": str("Score"),
+      "1:0": str("A"), "1:1": num(80),
+      "2:0": str("B"), "2:1": num(50),
+      "3:0": str("C"), "3:1": num(90),
+      "4:0": str("A"), "4:1": num(70),
+      "5:0": str("Name"), "5:1": str("Score"),
+      "6:0": str("A"), "6:1": BLANK,
+      "7:0": str("Name"), "7:1": str("Score"),
+      "8:0": str("A"), "8:1": num(80),
+    });
+    expect(ev.evaluateText('=DSUM(A1:B5, "Score", A6:B7)', c)).toEqual(num(150));
+    expect(ev.evaluateText('=DAVERAGE(A1:B5, "Score", A6:B7)', c)).toEqual(num(75));
+    expect(ev.evaluateText('=DMAX(A1:B5, "Score", A6:B7)', c)).toEqual(num(80));
+    expect(ev.evaluateText('=DMIN(A1:B5, "Score", A6:B7)', c)).toEqual(num(70));
+    expect(ev.evaluateText('=DCOUNT(A1:B5, "Score", A6:B7)', c)).toEqual(num(2));
+    expect(ev.evaluateText('=DGET(A1:B5, "Score", A8:B9)', c)).toEqual(num(80));
+  });
 });
