@@ -154,4 +154,13 @@ describe("Google Sheets offline functions", () => {
     expect(ev.evaluateText("=VSTACK({1,2},{3,4})", ctx())).toEqual(array([[1, 2], [3, 4]], 2));
     expect(ev.evaluateText("=LOOKUP(2, {1;2;3}, {\"a\";\"b\";\"c\"})", ctx())).toEqual(str("b"));
   });
+
+  it("DATEDIF, DAYS, YEARFRAC, TIME, NETWORKDAYS", () => {
+    expect(ev.evaluateText("=DATEDIF(43831, 44197, \"D\")", ctx())).toEqual(num(366));
+    expect(ev.evaluateText("=DATEDIF(43831, 44197, \"Y\")", ctx())).toEqual(num(1));
+    expect(ev.evaluateText("=DAYS(44197, 43831)", ctx())).toEqual(num(366));
+    expect(ev.evaluateText("=YEARFRAC(43831, 44197)", ctx())).toEqual(num(1));
+    expect(ev.evaluateText("=TIME(12, 0, 0)", ctx())).toEqual(num(0.5));
+    expect(ev.evaluateText("=NETWORKDAYS(43831, 43837)", ctx())).toEqual(num(5));
+  });
 });
