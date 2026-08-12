@@ -36,7 +36,7 @@ function isExcelValue(x: unknown): x is ExcelValue {
     x !== null &&
     typeof x === "object" &&
     "kind" in x &&
-    ["blank", "number", "string", "boolean", "error", "array", "lambda", "omitted"].includes((x as { kind: string }).kind)
+    ["blank", "number", "string", "boolean", "error", "array", "lambda", "omitted", "sparkline"].includes((x as { kind: string }).kind)
   );
 }
 
@@ -147,6 +147,9 @@ export class FormulaEvaluator {
         }
         if (upper === "ISOMITTED") {
           return this.evalIsOmitted(node.args, ctx);
+        }
+        if (upper === "ARRAYFORMULA") {
+          return this.evalArrayFormula(node.args, ctx);
         }
         // Named lambda call (LET-bound or otherwise) takes precedence over function fallback
         const named = ctx.resolveName(node.name);
@@ -479,6 +482,175 @@ export class FormulaEvaluator {
       out.push(this.callLambdaValues(lambdaVal, [{ kind: "array", width: arr.width, height: 1, values: row }], ctx));
     }
     return { kind: "array", width: 1, height: out.length, values: out };
+  }
+
+  private evalArrayFormula(args: FormulaNode[], ctx: EvaluationContext): ExcelValue {
+    if (args.length !== 1) return err(ExcelErrorCode.Value);
+    const expr = args[0]!;
+    const shape = this.arrayShape(expr, ctx);
+    if (shape.w <= 0 || shape.h <= 0) return err(ExcelErrorCode.Value);
+    const values: ExcelValue[] = [];
+    for (let r = 0; r < shape.h; r++) {
+      for (let c = 0; c < shape.w; c++) {
+        values.push(this.evalArrayExpr(expr, ctx, r, c));
+      }
+    }
+    return { kind: "array", width: shape.w, height: shape.h, values };
+  }
+
+  private arrayShape(node: FormulaNode, ctx: EvaluationContext): { w: number; h: number } {
+    switch (node.kind) {
+      case "literal":
+      case "reference":
+      case "missing":
+        return { w: 1, h: 1 };
+      case "range": {
+        const w = node.range.endColumn - node.range.startColumn + 1;
+        const h = node.range.endRow - node.range.startRow + 1;
+        return { w, h };
+      }
+      case "name": {
+        const named = ctx.resolveName(node.name);
+        if (named && isExcelValue(named) && named.kind === "array") {
+          return { w: named.width, h: named.height };
+        }
+        return { w: 1, h: 1 };
+      }
+      case "array": {
+        const h = node.rows.length;
+        let w = 0;
+        for (const row of node.rows) w = Math.max(w, row.length);
+        return { w, h };
+      }
+      case "unary":
+      case "spill":
+      case "implicitIntersection":
+        return this.arrayShape(node.expr, ctx);
+      case "binary": {
+        const left = this.arrayShape(node.left, ctx);
+        const right = this.arrayShape(node.right, ctx);
+        return { w: Math.max(left.w, right.w), h: Math.max(left.h, right.h) };
+      }
+      case "function": {
+        let w = 1;
+        let h = 1;
+        for (const a of node.args) {
+          const s = this.arrayShape(a, ctx);
+          w = Math.max(w, s.w);
+          h = Math.max(h, s.h);
+        }
+        return { w, h };
+      }
+      case "union": {
+        let count = 0;
+        for (const item of node.items) {
+          const s = this.arrayShape(item, ctx);
+          count += s.w * s.h;
+        }
+        return { w: 1, h: count };
+      }
+      case "intersection":
+      case "structured":
+      case "external":
+      default:
+        return { w: 1, h: 1 };
+    }
+  }
+
+  private evalArrayExpr(node: FormulaNode, ctx: EvaluationContext, r: number, c: number): ExcelValue {
+    switch (node.kind) {
+      case "literal": {
+        const v = node.value;
+        if (typeof v === "number") return num(v);
+        if (typeof v === "string") return str(v);
+        if (typeof v === "boolean") return bool(v);
+        if (Object.values(ExcelErrorCode).includes(v as ExcelErrorCode)) return err(v as ExcelErrorCode);
+        return err(ExcelErrorCode.Value);
+      }
+      case "reference":
+        return ctx.getCell(node.sheet ?? ctx.sheetId, node.address.row, node.address.column);
+      case "range": {
+        const w = node.range.endColumn - node.range.startColumn + 1;
+        const h = node.range.endRow - node.range.startRow + 1;
+        const sr = h === 1 ? 0 : r;
+        const sc = w === 1 ? 0 : c;
+        if (sr < 0 || sr >= h || sc < 0 || sc >= w) return BLANK;
+        return ctx.getCell(node.sheet ?? ctx.sheetId, node.range.startRow + sr, node.range.startColumn + sc);
+      }
+      case "name": {
+        const named = ctx.resolveName(node.name);
+        if (!named) return err(ExcelErrorCode.Name);
+        if (isExcelValue(named)) {
+          if (named.kind === "array") {
+            const sr = named.height === 1 ? 0 : r;
+            const sc = named.width === 1 ? 0 : c;
+            if (sr < 0 || sr >= named.height || sc < 0 || sc >= named.width) return BLANK;
+            return named.values[sr * named.width + sc] ?? BLANK;
+          }
+          return named;
+        }
+        return this.evalArrayExpr(named as FormulaNode, ctx, r, c);
+      }
+      case "array": {
+        const row = node.rows[r];
+        if (!row) return BLANK;
+        const cell = row[c];
+        if (!cell) return BLANK;
+        return this.evalArrayExpr(cell, ctx, 0, 0);
+      }
+      case "unary": {
+        const v = this.evalArrayExpr(node.expr, ctx, r, c);
+        if (v.kind === "error") return v;
+        if (node.op === "+") return excelCoerceNumber(v);
+        if (node.op === "-") {
+          const n = excelCoerceNumber(v);
+          return n.kind === "number" ? num(-n.value) : n;
+        }
+        if (node.op === "%") return excelDivide(excelCoerceNumber(v), num(100));
+        return err(ExcelErrorCode.Value);
+      }
+      case "binary": {
+        const l = this.evalArrayExpr(node.left, ctx, r, c);
+        const right = this.evalArrayExpr(node.right, ctx, r, c);
+        switch (node.op) {
+          case "+":
+            return excelAdd(l, right);
+          case "-":
+            return excelSubtract(l, right);
+          case "*":
+            return excelMultiply(l, right);
+          case "/":
+            return excelDivide(l, right);
+          case "^":
+            return excelPower(l, right);
+          case "&":
+            return excelConcat(l, right);
+          case "=":
+          case "<>":
+          case "<":
+          case ">":
+          case "<=":
+          case ">=":
+            return excelCompare(l, right, node.op);
+          default:
+            return err(ExcelErrorCode.Value);
+        }
+      }
+      case "function": {
+        const upper = node.name.toUpperCase();
+        if (upper === "ARRAYFORMULA") return this.evalArrayFormula(node.args, ctx);
+        const args: ExcelValue[] = [];
+        for (const a of node.args) args.push(this.evalArrayExpr(a, ctx, r, c));
+        const fn = this.functions.get(node.name);
+        if (fn) return fn.evaluate(args, ctx);
+        return err(ExcelErrorCode.Name);
+      }
+      case "spill":
+      case "implicitIntersection":
+        return this.evalArrayExpr(node.expr, ctx, r, c);
+      default:
+        return err(ExcelErrorCode.Value);
+    }
   }
 
   private evalOffset(args: FormulaNode[], ctx: EvaluationContext): ExcelValue {

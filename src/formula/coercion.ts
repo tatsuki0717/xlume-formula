@@ -53,6 +53,7 @@ export function excelCoerceString(value: ExcelValue): ExcelValue {
   if (value.kind === "number") return str(String(value.value));
   if (value.kind === "boolean") return str(value.value ? "TRUE" : "FALSE");
   if (value.kind === "lambda") return str("");
+  if (value.kind === "sparkline") return err(ExcelErrorCode.Value);
   return str("");
 }
 

@@ -15,6 +15,7 @@ import { formulaJsFallback } from "./formulajs-adapter.js";
 import { registerMissingFunctions } from "./builtins-missing.js";
 import { registerFinancialFunctions } from "./builtins-financial.js";
 import { registerForecastFunctions } from "./builtins-forecast.js";
+import { registerGoogleSheetsFunctions } from "./builtins-google-sheets.js";
 
 function fn(
   name: string,
@@ -1081,6 +1082,7 @@ export function createBuiltinFunctions(): FunctionRegistry {
   registerExtraFunctions(add);
   registerFinancialFunctions(add);
   registerForecastFunctions(add);
+  registerGoogleSheetsFunctions(add);
   registerMissingFunctions(add, reg);
 
   reg.setFallback((name) => formulaJsFallback(name));

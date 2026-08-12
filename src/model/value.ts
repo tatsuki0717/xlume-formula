@@ -56,6 +56,12 @@ export interface OmittedValue {
   kind: "omitted";
 }
 
+export interface SparklineValue {
+  kind: "sparkline";
+  data: number[];
+  options: Record<string, unknown>;
+}
+
 export type ExcelValue =
   | BlankValue
   | NumberValue
@@ -64,7 +70,8 @@ export type ExcelValue =
   | ErrorValue
   | ArrayValue
   | LambdaValue
-  | OmittedValue;
+  | OmittedValue
+  | SparklineValue;
 
 export const BLANK: BlankValue = { kind: "blank" };
 
@@ -90,6 +97,10 @@ export function lambda(params: string[], body: import("../formula/ast.js").Formu
 
 export function omitted(): OmittedValue {
   return { kind: "omitted" };
+}
+
+export function sparkline(data: number[], options: Record<string, unknown>): SparklineValue {
+  return { kind: "sparkline", data, options };
 }
 
 export interface ExcelDateSerial {
