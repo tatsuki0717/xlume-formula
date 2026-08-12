@@ -117,4 +117,27 @@ describe("Google Sheets offline functions", () => {
     const result = ev.evaluateText("=SPARKLINE({1,2,3,4})", ctx());
     expect(result).toEqual(expect.objectContaining({ kind: "sparkline" }));
   });
+
+  it("QUERY filters and sorts a table", () => {
+    const c = ctx({
+      "0:0": str("Name"), "0:1": str("Score"), "0:2": str("Year"),
+      "1:0": str("A"), "1:1": num(80), "1:2": num(2020),
+      "2:0": str("B"), "2:1": num(50), "2:2": num(2019),
+      "3:0": str("C"), "3:1": num(90), "3:2": num(2021),
+      "4:0": str("D"), "4:1": num(70), "4:2": num(2020),
+    });
+    const result = ev.evaluateText('=QUERY(A1:C5, "SELECT A, B, C WHERE B >= 70 ORDER BY C DESC")', c);
+    expect(result).toEqual(array([["Name", "Score", "Year"], ["C", 90, 2021], ["A", 80, 2020], ["D", 70, 2020]], 3));
+  });
+
+  it("QUERY groups and aggregates", () => {
+    const c = ctx({
+      "0:0": str("Year"), "0:1": str("Sales"),
+      "1:0": num(2020), "1:1": num(100),
+      "2:0": num(2020), "2:1": num(200),
+      "3:0": num(2021), "3:1": num(300),
+    });
+    const result = ev.evaluateText('=QUERY(A1:B4, "SELECT A, SUM(B) GROUP BY A")', c);
+    expect(result).toEqual(array([["Year", "SUM(Sales)"], [2020, 300], [2021, 300]], 2));
+  });
 });

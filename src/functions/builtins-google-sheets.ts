@@ -23,6 +23,7 @@ import {
 } from "../formula/coercion.js";
 import { flattenArgs } from "../formula/evaluator.js";
 import type { ExcelFunction } from "../formula/functions-types.js";
+import { evaluateQuery } from "./google-query.js";
 
 const EPOCH = Date.UTC(1899, 11, 30);
 const UNIX_EPOCH_SERIAL = 25569; // days between 1899-12-30 and 1970-01-01
@@ -713,6 +714,17 @@ export function registerGoogleSheetsFunctions(add: (f: ExcelFunction) => void): 
     if (!div) return err(ExcelErrorCode.Div0);
     if (Math.abs(div.im) < 1e-12) return num(div.re);
     return str(complexToString(div.re, div.im));
+  }));
+
+  // Meta: QUERY
+  add(fn("QUERY", "none", (args) => {
+    const data = args[0] ?? BLANK;
+    const queryStr = excelCoerceString(args[1] ?? BLANK);
+    const headers = asNumber(args[2], -1);
+    if (data.kind !== "array") return err(ExcelErrorCode.Value);
+    if (queryStr.kind !== "string") return queryStr;
+    if (headers === null) return err(ExcelErrorCode.Value);
+    return evaluateQuery(data, queryStr.value, headers.value);
   }));
 
   // Meta: sparkline rendering metadata
