@@ -183,4 +183,19 @@ describe("Google Sheets offline functions", () => {
     expect(ev.evaluateText('=DCOUNT(A1:B5, "Score", A6:B7)', c)).toEqual(num(2));
     expect(ev.evaluateText('=DGET(A1:B5, "Score", A8:B9)', c)).toEqual(num(80));
   });
+
+  it("Math2 replacements", () => {
+    expect(ev.evaluateText("=SINH(0)", ctx())).toEqual(num(0));
+    expect(ev.evaluateText("=COSH(0)", ctx())).toEqual(num(1));
+    expect(ev.evaluateText("=MROUND(17, 5)", ctx())).toEqual(num(15));
+    expect(ev.evaluateText("=QUOTIENT(10, 3)", ctx())).toEqual(num(3));
+    expect(ev.evaluateText("=GCD(24, 36)", ctx())).toEqual(num(12));
+    expect(ev.evaluateText("=LCM(4, 6)", ctx())).toEqual(num(12));
+    expect(ev.evaluateText("=BASE(31, 16)", ctx())).toEqual(str("1F"));
+    expect(ev.evaluateText("=DECIMAL(\"1F\", 16)", ctx())).toEqual(num(31));
+    expect(ev.evaluateText("=ROMAN(58)", ctx())).toEqual(str("LVIII"));
+    expect(ev.evaluateText("=ARABIC(\"LVIII\")", ctx())).toEqual(num(58));
+    expect(ev.evaluateText("=SUMSQ(3, 4)", ctx())).toEqual(num(25));
+    expect(ev.evaluateText("=SERIESSUM(2, 0, 1, {1,2,3})", ctx())).toEqual(num(17));
+  });
 });
