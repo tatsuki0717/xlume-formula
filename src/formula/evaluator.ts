@@ -4,6 +4,7 @@ import {
   err,
   ExcelErrorCode,
   num,
+  omitted,
   str,
   type ArrayValue,
   type ExcelValue,
@@ -35,7 +36,7 @@ function isExcelValue(x: unknown): x is ExcelValue {
     x !== null &&
     typeof x === "object" &&
     "kind" in x &&
-    ["blank", "number", "string", "boolean", "error", "array", "lambda"].includes((x as { kind: string }).kind)
+    ["blank", "number", "string", "boolean", "error", "array", "lambda", "omitted"].includes((x as { kind: string }).kind)
   );
 }
 
@@ -143,6 +144,9 @@ export class FormulaEvaluator {
         }
         if (upper === "BYROW") {
           return this.evalByRow(node.args, ctx);
+        }
+        if (upper === "ISOMITTED") {
+          return this.evalIsOmitted(node.args, ctx);
         }
         // Named lambda call (LET-bound or otherwise) takes precedence over function fallback
         const named = ctx.resolveName(node.name);
@@ -331,8 +335,21 @@ export class FormulaEvaluator {
   }
 
   private callLambda(lambda: LambdaValue, args: FormulaNode[], ctx: EvaluationContext): ExcelValue {
-    const values = args.map((a) => this.evaluate(a, ctx));
+    const values: ExcelValue[] = [];
+    for (let i = 0; i < lambda.params.length; i++) {
+      const a = args[i];
+      if (a === undefined || a.kind === "missing") values.push(omitted());
+      else values.push(this.evaluate(a, ctx));
+    }
     return this.callLambdaValues(lambda, values, ctx);
+  }
+
+  private evalIsOmitted(args: FormulaNode[], ctx: EvaluationContext): ExcelValue {
+    if (args.length !== 1) return err(ExcelErrorCode.Value);
+    const arg = args[0];
+    if (!arg || arg.kind !== "name") return err(ExcelErrorCode.Value);
+    const resolved = ctx.resolveName(arg.name);
+    return bool(resolved !== undefined && isExcelValue(resolved) && resolved.kind === "omitted");
   }
 
   private evalLet(args: FormulaNode[], ctx: EvaluationContext): ExcelValue {

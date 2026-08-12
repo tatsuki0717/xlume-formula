@@ -51,6 +51,11 @@ export interface LambdaValue {
   body: import("../formula/ast.js").FormulaNode;
 }
 
+/** Sentinel for an omitted LAMBDA argument (used by ISOMITTED). */
+export interface OmittedValue {
+  kind: "omitted";
+}
+
 export type ExcelValue =
   | BlankValue
   | NumberValue
@@ -58,7 +63,8 @@ export type ExcelValue =
   | BooleanValue
   | ErrorValue
   | ArrayValue
-  | LambdaValue;
+  | LambdaValue
+  | OmittedValue;
 
 export const BLANK: BlankValue = { kind: "blank" };
 
@@ -80,6 +86,10 @@ export function err(code: ExcelErrorCode): ErrorValue {
 
 export function lambda(params: string[], body: import("../formula/ast.js").FormulaNode): LambdaValue {
   return { kind: "lambda", params, body };
+}
+
+export function omitted(): OmittedValue {
+  return { kind: "omitted" };
 }
 
 export interface ExcelDateSerial {

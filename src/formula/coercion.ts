@@ -8,12 +8,16 @@ import {
   type ExcelValue,
 } from "../model/value.js";
 
+function isBlankLike(value: ExcelValue): boolean {
+  return value.kind === "blank" || value.kind === "omitted";
+}
+
 /** Excel-specific operations — never use JS + * === on raw values in evaluator. */
 
 export function excelCoerceNumber(value: ExcelValue): ExcelValue {
   if (value.kind === "error") return value;
   if (value.kind === "number") return value;
-  if (value.kind === "blank") return num(0);
+  if (isBlankLike(value)) return num(0);
   if (value.kind === "boolean") return num(value.value ? 1 : 0);
   if (value.kind === "string") {
     const t = value.value.trim();
@@ -31,7 +35,7 @@ export function excelCoerceNumber(value: ExcelValue): ExcelValue {
 export function excelCoerceBoolean(value: ExcelValue): ExcelValue {
   if (value.kind === "error") return value;
   if (value.kind === "boolean") return value;
-  if (value.kind === "blank") return bool(false);
+  if (isBlankLike(value)) return bool(false);
   if (value.kind === "number") return bool(value.value !== 0);
   if (value.kind === "string") {
     const t = value.value.trim().toUpperCase();
@@ -45,9 +49,10 @@ export function excelCoerceBoolean(value: ExcelValue): ExcelValue {
 export function excelCoerceString(value: ExcelValue): ExcelValue {
   if (value.kind === "error") return value;
   if (value.kind === "string") return value;
-  if (value.kind === "blank") return str("");
+  if (isBlankLike(value)) return str("");
   if (value.kind === "number") return str(String(value.value));
   if (value.kind === "boolean") return str(value.value ? "TRUE" : "FALSE");
+  if (value.kind === "lambda") return str("");
   return str("");
 }
 

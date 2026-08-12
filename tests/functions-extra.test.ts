@@ -246,4 +246,9 @@ describe("Extra functions toward full compatibility", () => {
     expect(byCol.kind).toBe("array");
     if (byCol.kind !== "array") expect(byCol.values.map((v) => (v as { value: number }).value)).toEqual([4, 6]);
   });
+
+  it("ISOMITTED detects omitted LAMBDA arguments", () => {
+    expect(ev.evaluateText("LET(f, LAMBDA(a, b, IF(ISOMITTED(b), a, a+b)), f(5))", ctx())).toEqual(num(5));
+    expect(ev.evaluateText("LET(f, LAMBDA(a, b, IF(ISOMITTED(b), a, a+b)), f(5, 3))", ctx())).toEqual(num(8));
+  });
 });
