@@ -17,6 +17,7 @@ import { registerFinancial2Functions } from "./builtins-financial2.js";
 import { registerStatisticalFunctions } from "./builtins-statistical.js";
 import { registerDistributionFunctions } from "./builtins-distributions.js";
 import { registerCompatibilityFunctions } from "./builtins-compatibility.js";
+import { registerFilterXmlFunction } from "./builtins-filterxml.js";
 import { registerDatabaseFunctions } from "./builtins-database.js";
 import { registerDate2Functions } from "./builtins-date2.js";
 import { registerEngineeringFunctions } from "./builtins-engineering.js";
@@ -1101,6 +1102,7 @@ export function createBuiltinFunctions(): FunctionRegistry {
   registerEngineeringFunctions(add);
   registerFinancial2Functions(add);
   registerFormulaReplacementFunctions(add);
+  registerFilterXmlFunction(add);
 
   return reg;
 }
