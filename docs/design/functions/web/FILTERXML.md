@@ -3,60 +3,55 @@
 ## Metadata
 - **Category:** Web
 - **Priority tags:** EXT
-- **Scope:** out-of-scope
+- **Scope:** in-scope
 - **Volatile:** No
 
 ## Description
-XPath over XML (implementable offline; pair with WEBSERVICE)
+Returns specific data from the XML content by using the specified XPath.
 
 ## Excel Syntax
 ```excel
-=FILTERXML()
+=FILTERXML(xml, xpath)
 ```
 
 ## Arguments
-This function takes no arguments.
+| # | Name | Type | Required? | Description |
+|---|---|---|---|---|
+| 1 | xml | string | Yes | A string in valid XML format. |
+| 2 | xpath | string | Yes | The XPath query to locate data in the XML. |
 
 ## Returns
-Scalar or array depending on arguments
+The text of the first matched node, or a vertical array of text values when multiple nodes match.
 
 ## Behavior / Algorithm
-This function requires external data or runtime infrastructure (network, OLAP, pivot cache, XLL, RTD, etc.) that is outside the scope of a pure worksheet calculation engine.
-
-Stub implementation: return `#N/A` or `#VALUE!` with a message that the function is not supported.
+1. Parse `xml` with `fast-xml-parser`.
+2. Evaluate the limited XPath expression using a built-in evaluator supporting child/descendant axes, tag wildcards, predicates (integer indices and `last()`), and attribute shorthand.
+3. If one node matches, return its text content; if multiple match, return a one-column array.
 
 ## Type Coercion & Edge Cases
-- Numbers provided as text are coerced to numeric values when the function expects a number.
-- Logical `TRUE`/`FALSE` coerce to `1`/`0` in numeric contexts and to `"TRUE"`/`"FALSE"` in text contexts.
-- Blank cells are treated as `0` in numeric contexts and as `""` in text contexts, unless the function explicitly ignores blanks.
-- Errors in any argument propagate to the result, except where the function is explicitly designed to trap them (e.g., IFERROR, IFNA, AGGREGATE options).
-- Range/array arguments are evaluated element-wise or consumed as a whole depending on the function semantics.
+- Both arguments are coerced to strings.
+- Invalid XML returns `#VALUE!`.
+- An XPath that matches nothing returns `#N/A`.
 
 ## Error Handling
 | Error | When |
 |---|---|
-| `#VALUE!` | Argument type or count is invalid, or an argument cannot be coerced. |
-| `#NUM!` | A numeric argument is outside the allowed domain. |
-| `#DIV/0!` | Division by zero or an empty denominator. |
-| `#N/A` | Lookup/match not found or optional fallback triggered. |
-| `#REF!` | Invalid cell/range reference or out-of-bounds index. |
-| `#NAME?` | Function name not recognized. |
-| `#SPILL!` | Dynamic-array result cannot fit in the target range. |
+| `#VALUE!` | XML is malformed or the XPath is invalid. |
+| `#N/A` | No nodes match the XPath. |
 
 ## Examples
-TBD — add representative Excel examples during implementation.
+```excel
+=FILTERXML("<note><to>Tove</to><from>Jani</from></note>", "/note/to")
+```
 
 ## Test Cases
 | Input | Expected | Purpose |
 |---|---|---|
-| Normal inputs | Correct numeric/text result | Golden path |
-| Boundary values (0, 1, negatives, very large/small) | Correct or `#NUM!` | Domain edges |
-| Blank/empty cells | Coerced `0` or `""` as appropriate | Blank handling |
-| Text that cannot be coerced | `#VALUE!` | Error propagation |
-| Too few/too many arguments | `#VALUE!` | Arity validation |
+| `=FILTERXML("<a><b>x</b></a>", "/a/b")` | `"x"` | Golden path |
+| `=FILTERXML("<a><b>x</b><b>y</b></a>", "//b")` | `{"x";"y"}` | Multiple matches |
 
 ## Implementation Notes
-Return `#N/A` or `#VALUE!` unsupported. Do not attempt external network/OLAP calls.
+Implemented in `src/functions/builtins-filterxml.ts`. The built-in XPath evaluator is intentionally limited and covers common Excel/Google Sheets use cases.
 
 ## References
-- [Microsoft Excel function documentation](https://support.microsoft.com/en-us/office/excel-functions-by-category-5f91f4e9-7b42-46d2-9bd1-63f26a86c0eb)
+- [Microsoft Excel FILTERXML function](https://support.microsoft.com/en-us/office/filterxml-function)

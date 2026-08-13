@@ -3,60 +3,54 @@
 ## Metadata
 - **Category:** Text
 - **Priority tags:** EXT
-- **Scope:** out-of-scope
+- **Scope:** in-scope
 - **Volatile:** No
 
 ## Description
-detect language
+Detects the language of the provided text.
 
-## Excel Syntax
+## Google Sheets Syntax
 ```excel
-=DETECTLANGUAGE()
+=DETECTLANGUAGE(text)
 ```
 
 ## Arguments
-This function takes no arguments.
+| # | Name | Type | Required? | Description |
+|---|---|---|---|---|
+| 1 | text | string \| range/array | Yes | The text or reference whose language will be identified. |
 
 ## Returns
-Scalar or array depending on arguments
+A two-letter ISO 639-1 language code, or `"und"` if the language cannot be determined.
 
 ## Behavior / Algorithm
-This function requires external data or runtime infrastructure (network, OLAP, pivot cache, XLL, RTD, etc.) that is outside the scope of a pure worksheet calculation engine.
-
-Stub implementation: return `#N/A` or `#VALUE!` with a message that the function is not supported.
+1. Coerce the argument to a string (or join the text from an array/range).
+2. Pass the combined text through the `tinyld` language detector.
+3. Return the detected language code, or `"und"` when detection fails.
 
 ## Type Coercion & Edge Cases
-- Numbers provided as text are coerced to numeric values when the function expects a number.
-- Logical `TRUE`/`FALSE` coerce to `1`/`0` in numeric contexts and to `"TRUE"`/`"FALSE"` in text contexts.
-- Blank cells are treated as `0` in numeric contexts and as `""` in text contexts, unless the function explicitly ignores blanks.
-- Errors in any argument propagate to the result, except where the function is explicitly designed to trap them (e.g., IFERROR, IFNA, AGGREGATE options).
-- Range/array arguments are evaluated element-wise or consumed as a whole depending on the function semantics.
+- Numbers and booleans in a range are converted to strings.
+- Blank cells are ignored when an array is supplied.
+- Errors in any argument propagate.
 
 ## Error Handling
 | Error | When |
 |---|---|
-| `#VALUE!` | Argument type or count is invalid, or an argument cannot be coerced. |
-| `#NUM!` | A numeric argument is outside the allowed domain. |
-| `#DIV/0!` | Division by zero or an empty denominator. |
-| `#N/A` | Lookup/match not found or optional fallback triggered. |
-| `#REF!` | Invalid cell/range reference or out-of-bounds index. |
-| `#NAME?` | Function name not recognized. |
-| `#SPILL!` | Dynamic-array result cannot fit in the target range. |
+| `#VALUE!` | Argument type or count is invalid. |
 
 ## Examples
-TBD — add representative Excel examples during implementation.
+```excel
+=DETECTLANGUAGE("Hello, world!")
+```
 
 ## Test Cases
 | Input | Expected | Purpose |
 |---|---|---|
-| Normal inputs | Correct numeric/text result | Golden path |
-| Boundary values (0, 1, negatives, very large/small) | Correct or `#NUM!` | Domain edges |
-| Blank/empty cells | Coerced `0` or `""` as appropriate | Blank handling |
-| Text that cannot be coerced | `#VALUE!` | Error propagation |
-| Too few/too many arguments | `#VALUE!` | Arity validation |
+| `=DETECTLANGUAGE("The quick brown fox.")` | `"en"` | Golden path |
+| `=DETECTLANGUAGE("")` | `"und"` | Empty input |
+| `=DETECTLANGUAGE("これは日本語です。")` | `"ja"` | Non-Latin text |
 
 ## Implementation Notes
-Return `#N/A` or `#VALUE!` unsupported. Do not attempt external network/OLAP calls.
+Implemented in `src/functions/builtins-google-sheets.ts` using the `tinyld` package.
 
 ## References
-- [Microsoft Excel function documentation](https://support.microsoft.com/en-us/office/excel-functions-by-category-5f91f4e9-7b42-46d2-9bd1-63f26a86c0eb)
+- [Google Sheets DETECTLANGUAGE function](https://support.google.com/docs/answer/3093277)
