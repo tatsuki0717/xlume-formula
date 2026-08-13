@@ -272,6 +272,16 @@ describe("Extra functions toward full compatibility", () => {
     expect(ev.evaluateText("BAHTTEXT(1234.56)", ctx())).toEqual(str("หนึ่งพันสองร้อยสามสิบสี่บาทห้าสิบหกสตางค์"));
   });
 
+  it("BAHTTEXT handles zero, negatives, satang and millions", () => {
+    expect(ev.evaluateText("BAHTTEXT(0)", ctx())).toEqual(str("ศูนย์บาทถ้วน"));
+    expect(ev.evaluateText("BAHTTEXT(1)", ctx())).toEqual(str("หนึ่งบาทถ้วน"));
+    expect(ev.evaluateText("BAHTTEXT(21)", ctx())).toEqual(str("ยี่สิบเอ็ดบาทถ้วน"));
+    expect(ev.evaluateText("BAHTTEXT(1000001)", ctx())).toEqual(str("หนึ่งล้านหนึ่งบาทถ้วน"));
+    expect(ev.evaluateText("BAHTTEXT(51000001)", ctx())).toEqual(str("ห้าสิบเอ็ดล้านหนึ่งบาทถ้วน"));
+    expect(ev.evaluateText("BAHTTEXT(0.25)", ctx())).toEqual(str("ยี่สิบห้าสตางค์"));
+    expect(ev.evaluateText("BAHTTEXT(-201)", ctx())).toEqual(str("ลบสองร้อยหนึ่งบาทถ้วน"));
+  });
+
   it("GROUPBY groups and aggregates with eta function", () => {
     const result = ev.evaluateText('GROUPBY({1;2;1;2},{10;20;30;40},SUM)', ctx());
     expect(result.kind).toBe("array");

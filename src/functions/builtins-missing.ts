@@ -17,7 +17,7 @@ import { flattenArgs } from "../formula/evaluator.js";
 import type { EvaluationContext, ExcelFunction, FunctionRegistry } from "../formula/functions-types.js";
 import { columnIndexToLetters } from "../model/address.js";
 import { toHan, toZen } from "./zenhan.js";
-import { bahttext } from "bahttext";
+import { bahttext } from "./bahttext.js";
 
 function fn(
   name: string,

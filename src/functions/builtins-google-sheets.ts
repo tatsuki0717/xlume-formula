@@ -24,7 +24,7 @@ import {
 import { flattenArgs } from "../formula/evaluator.js";
 import type { ExcelFunction } from "../formula/functions-types.js";
 import { evaluateQuery } from "./google-query.js";
-import { detect } from "tinyld";
+import { detect } from "./detect-language.js";
 
 const EPOCH = Date.UTC(1899, 11, 30);
 const UNIX_EPOCH_SERIAL = 25569; // days between 1899-12-30 and 1970-01-01
