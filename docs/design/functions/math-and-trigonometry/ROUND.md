@@ -7,24 +7,24 @@
 - **Volatile:** No
 
 ## Description
-Rounds a number to a certain number of decimal places.
+Rounds a number to a specified number of digits.
 
 ## Excel Syntax
 ```excel
-=ROUND(number, [num_digits])
+=ROUND(number, num_digits)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number | number \| range/array | Yes | The value to round. |
-| 2 | num_digits | number \| range/array | No | The number of decimal places to round to. Defaults to 0 when omitted; negative values round to the left of the decimal point. |
+| 1 | number | number \| range/array | Yes | Is the number you want to round. |
+| 2 | num_digits | number \| range/array | Yes | Is the number of digits to which you want to round. Negative rounds to the left of the decimal point; zero to the nearest integer. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Rounds a number to a certain number of decimal places.
+Rounds a number to a specified number of digits.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -33,7 +33,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Rounds a number to a certain number of decimal places.
+> Rounds a number to a specified number of digits.
 
 
 ## Type Coercion & Edge Cases
@@ -55,8 +55,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=ROUND(3.14159, 2)`
-- `=ROUND(1234.5, -2)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=ROUND(..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

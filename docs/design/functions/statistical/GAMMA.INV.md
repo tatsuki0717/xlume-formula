@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns inverse Gamma distribution value.
+Returns the inverse of the gamma cumulative distribution: if p = GAMMA.DIST(x,...), then GAMMA.INV(p,...) = x.
 
 ## Excel Syntax
 ```excel
@@ -17,15 +17,15 @@ Returns inverse Gamma distribution value.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | probability | number \| range/array | Yes | The probability associated with the Gamma distribution, between 0 and 1. |
-| 2 | alpha | number \| range/array | Yes | The alpha shape parameter of the distribution; must be greater than 0. |
-| 3 | beta | number \| range/array | Yes | The beta scale parameter of the distribution; must be greater than 0. |
+| 1 | probability | number \| range/array | Yes | Is the probability associated with the gamma distribution, a number between 0 and 1, inclusive. |
+| 2 | alpha | number \| range/array | Yes | Is a parameter to the distribution, a positive number. |
+| 3 | beta | number \| range/array | Yes | Is a parameter to the distribution, a positive number. If beta = 1, GAMMA.INV returns the inverse of the standard gamma distribution. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns inverse Gamma distribution value.
+Returns the inverse of the gamma cumulative distribution: if p = GAMMA.DIST(x,...), then GAMMA.INV(p,...) = x.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -34,7 +34,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns inverse Gamma distribution value.
+> Returns the inverse of the gamma cumulative distribution: if p = GAMMA.DIST(x,...), then GAMMA.INV(p,...) = x.
 
 
 ## Type Coercion & Edge Cases
@@ -56,7 +56,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=GAMMA.INV(0.5, 1, 2)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=GAMMA.INV(..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Shifts a number right by n bits.
+Returns a number shifted right by shift\_amount bits.
 
 ## Excel Syntax
 ```excel
@@ -17,14 +17,14 @@ Shifts a number right by n bits.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number | number \| range/array | Yes | The non-negative integer whose bits are shifted. |
-| 2 | shift_amount | number \| range/array | Yes | The number of bits to shift right by; a negative value shifts left instead. |
+| 1 | number | number \| range/array | Yes | Is the decimal representation of the binary number you want to evaluate. |
+| 2 | shift_amount | number \| range/array | Yes | Is the number of bits that you want to shift Number right by. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Shifts a number right by n bits.
+Returns a number shifted right by shift\_amount bits.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -33,7 +33,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Shifts a number right by n bits.
+> Returns a number shifted right by shift\_amount bits.
 
 
 ## Type Coercion & Edge Cases
@@ -55,8 +55,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=BITRSHIFT(16, 2)`
-- `=BITRSHIFT(8, 1)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=BITRSHIFT(..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns inverse Student-t distribution.
+Returns the left-tailed inverse of the Student's t-distribution.
 
 ## Excel Syntax
 ```excel
@@ -17,14 +17,14 @@ Returns inverse Student-t distribution.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | probability | number \| range/array | Yes | The probability associated with the left-tailed Student-t distribution, between 0 and 1. |
-| 2 | deg_freedom | number \| range/array | Yes | The number of degrees of freedom. |
+| 1 | probability | number \| range/array | Yes | Is the probability associated with the two-tailed Student's t-distribution, a number between 0 and 1 inclusive. |
+| 2 | deg_freedom | number \| range/array | Yes | Is a positive integer indicating the number of degrees of freedom to characterize the distribution. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns inverse Student-t distribution.
+Returns the left-tailed inverse of the Student's t-distribution.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -33,7 +33,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns inverse Student-t distribution.
+> Returns the left-tailed inverse of the Student's t-distribution.
 
 
 ## Type Coercion & Edge Cases
@@ -55,7 +55,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=T.INV(0.9, 10)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=T.INV(..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

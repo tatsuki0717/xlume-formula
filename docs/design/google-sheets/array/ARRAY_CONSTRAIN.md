@@ -8,7 +8,7 @@
 - **Dynamic array:** Yes
 
 ## Description
-Constrains an array result to a specified size.
+See upstream spreadsheet function documentation.
 
 ## Google Sheets Syntax
 ```excel

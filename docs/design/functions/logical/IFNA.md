@@ -7,33 +7,28 @@
 - **Volatile:** No
 
 ## Description
-Returns the value if the cell does not contains the #N/A (value not available) error value, or the alternative value if it does.
+value or fallback on #N/A
 
 ## Excel Syntax
 ```excel
-=IFNA(value, alternate_value)
+=IFNA()
 ```
 
 ## Arguments
-| # | Name | Type | Required? | Description |
-|---|---|---|---|---|
-| 1 | value | any | Yes | The value or formula checked for the #N/A error. |
-| 2 | alternate_value | any | Yes | The value returned when value evaluates to #N/A; other error types and non-error values are returned unchanged. |
+This function takes no arguments.
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the value if the cell does not contains the #N/A (value not available) error value, or the alternative value if it does.
+value or fallback on #N/A
 
 High-level algorithm:
-1. Validate argument count and coerce each argument according to its documented type.
-2. Propagate any input errors (`#VALUE!`, `#NUM!`, etc.) before computation.
-3. Execute the core calculation described below.
-4. Apply final coercion to the documented return type and return the result.
+1. Execute the core calculation.
+2. Return the result.
 
 Core calculation:
-> Returns the value if the cell does not contains the #N/A (value not available) error value, or the alternative value if it does.
+> value or fallback on #N/A
 
 
 ## Type Coercion & Edge Cases
@@ -55,8 +50,7 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=IFNA(VLOOKUP(A1, B1:C10, 2, FALSE()), "not found")`
-- `=IFNA(A1, "n/a")`
+TBD — add representative Excel examples during implementation.
 
 ## Test Cases
 | Input | Expected | Purpose |

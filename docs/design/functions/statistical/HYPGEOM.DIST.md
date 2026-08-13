@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns density of hypergeometric distribution.
+Returns the hypergeometric distribution.
 
 ## Excel Syntax
 ```excel
@@ -17,17 +17,17 @@ Returns density of hypergeometric distribution.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | sample_s | number \| range/array | Yes | The number of successes in the sample. |
-| 2 | number_sample | number \| range/array | Yes | The size of the sample. |
-| 3 | population_s | number \| range/array | Yes | The number of successes in the population. |
-| 4 | number_pop | number \| range/array | Yes | The size of the population. |
-| 5 | cumulative | boolean \| range/array | Yes | TRUE returns the cumulative distribution function; FALSE returns the probability mass function. |
+| 1 | sample_s | number \| range/array | Yes | Is the number of successes in the sample. |
+| 2 | number_sample | number \| range/array | Yes | Is the size of the sample. |
+| 3 | population_s | number \| range/array | Yes | Is the number of successes in the population. |
+| 4 | number_pop | number \| range/array | Yes | Is the population size. |
+| 5 | cumulative | boolean \| range/array | Yes | Is a logical value: for the cumulative distribution function, use TRUE; for the probability density function, use FALSE. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns density of hypergeometric distribution.
+Returns the hypergeometric distribution.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -36,7 +36,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns density of hypergeometric distribution.
+> Returns the hypergeometric distribution.
 
 
 ## Type Coercion & Edge Cases
@@ -58,8 +58,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=HYPGEOM.DIST(1, 4, 8, 20, FALSE())`
-- `=HYPGEOM.DIST(1, 4, 8, 20, TRUE())`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=HYPGEOM.DIST(..., ..., ..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

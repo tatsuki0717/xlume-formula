@@ -7,23 +7,23 @@
 - **Volatile:** No
 
 ## Description
-Returns the maximum value in a list of arguments.
+Returns the largest value in a set of values. Ignores logical values and text.
 
 ## Excel Syntax
 ```excel
-=MAX(number1, [number2], ...)
+=MAX(value1, [value2], ...)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number1 | number \| range/array (repeatable) | Yes | A number, cell reference, or range compared against the current maximum. Further numbers or ranges can be passed as additional arguments. |
+| 1 | values | number \| range/array (repeatable) | Yes | List of parameters, whose elements are 1 to 255 numbers, empty cells, logical values, or text numbers for which you want the maximum. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the maximum value in a list of arguments.
+Returns the largest value in a set of values. Ignores logical values and text.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the maximum value in a list of arguments.
+> Returns the largest value in a set of values. Ignores logical values and text.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=MAX(1, 2, 3)`
-- `=MAX(A1:A10)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=MAX(1, 2, 3)`
 
 ## Test Cases
 | Input | Expected | Purpose |

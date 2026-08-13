@@ -7,25 +7,25 @@
 - **Volatile:** No
 
 ## Description
-Rounds a number up to the nearest multiple of significance, ignoring the sign of significance; for a negative number, mode selects whether it rounds toward or away from zero.
+Rounds a number up, to the nearest integer or to the nearest multiple of significance.
 
 ## Excel Syntax
 ```excel
-=CEILING.MATH(number, [significance], [mode])
+=CEILING.MATH(number, significance, mode)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number | number \| range/array | Yes | The value to round up. |
-| 2 | significance | number \| range/array | No | The multiple to round up to. Defaults to 1 when omitted. |
-| 3 | mode | number \| range/array | No | For negative numbers, when exactly 1, rounds away from zero instead of toward it. Every other value, including the default 0, rounds toward zero. |
+| 1 | number | number \| range/array | Yes | Is the value you want to round. |
+| 2 | significance | number \| range/array | Yes | Is the multiple to which you want to round. |
+| 3 | mode | number \| range/array | Yes | When given and nonzero this function will round away from zero. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Rounds a number up to the nearest multiple of significance, ignoring the sign of significance; for a negative number, mode selects whether it rounds toward or away from zero.
+Rounds a number up, to the nearest integer or to the nearest multiple of significance.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -34,7 +34,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Rounds a number up to the nearest multiple of significance, ignoring the sign of significance; for a negative number, mode selects whether it rounds toward or away from zero.
+> Rounds a number up, to the nearest integer or to the nearest multiple of significance.
 
 
 ## Type Coercion & Edge Cases
@@ -56,8 +56,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=CEILING.MATH(4.3)`
-- `=CEILING.MATH(-4.3, 2, 1)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=CEILING.MATH(..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

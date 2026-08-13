@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns number of combinations (without repetitions).
+Returns the number of combinations for a given number of items.
 
 ## Excel Syntax
 ```excel
@@ -17,14 +17,14 @@ Returns number of combinations (without repetitions).
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number | number \| range/array | Yes | The total number of items; truncated to an integer. |
-| 2 | number_chosen | number \| range/array | Yes | The number of items in each combination; truncated to an integer. |
+| 1 | number | number \| range/array | Yes | Is the total number of items. |
+| 2 | number_chosen | number \| range/array | Yes | Is the number of items in each combination. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns number of combinations (without repetitions).
+Returns the number of combinations for a given number of items.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -33,7 +33,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns number of combinations (without repetitions).
+> Returns the number of combinations for a given number of items.
 
 
 ## Type Coercion & Edge Cases
@@ -55,8 +55,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=COMBIN(8, 2)`
-- `=COMBIN(52, 5)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=COMBIN(..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

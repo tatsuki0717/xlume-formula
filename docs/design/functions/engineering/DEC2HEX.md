@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns the hexadecimal number for the decimal number entered.
+Converts a decimal number to hexadecimal.
 
 ## Excel Syntax
 ```excel
@@ -17,14 +17,14 @@ Returns the hexadecimal number for the decimal number entered.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number | number \| string \| boolean \| range/array | Yes | The decimal integer to convert to hexadecimal. |
-| 2 | places | number \| string \| boolean \| range/array | Yes | The number of digits the result is padded to with leading zeros; a #NUM! error when the result needs more digits than that. Ignored for negative numbers. If omitted, no padding is applied. |
+| 1 | number | number \| string \| boolean \| range/array | Yes | Is the decimal integer you want to convert. |
+| 2 | places | number \| string \| boolean \| range/array | Yes | Is the number of characters to use. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the hexadecimal number for the decimal number entered.
+Converts a decimal number to hexadecimal.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -33,7 +33,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the hexadecimal number for the decimal number entered.
+> Converts a decimal number to hexadecimal.
 
 
 ## Type Coercion & Edge Cases
@@ -55,8 +55,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=DEC2HEX(100)`
-- `=DEC2HEX(100, 4)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=DEC2HEX(..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

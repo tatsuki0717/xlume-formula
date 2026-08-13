@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns TRUE if both text strings are exactly the same.
+Checks whether two text strings are exactly the same, and returns TRUE or FALSE. EXACT is case-sensitive.
 
 ## Excel Syntax
 ```excel
@@ -17,14 +17,14 @@ Returns TRUE if both text strings are exactly the same.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | text1 | string \| range/array | Yes | The first text value to compare. |
-| 2 | text2 | string \| range/array | Yes | The second text value to compare, matched case-sensitively against text1. |
+| 1 | text1 | string \| range/array | Yes | Is the first text string. |
+| 2 | text2 | string \| range/array | Yes | Is the second text string. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns TRUE if both text strings are exactly the same.
+Checks whether two text strings are exactly the same, and returns TRUE or FALSE. EXACT is case-sensitive.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -33,7 +33,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns TRUE if both text strings are exactly the same.
+> Checks whether two text strings are exactly the same, and returns TRUE or FALSE. EXACT is case-sensitive.
 
 
 ## Type Coercion & Edge Cases
@@ -55,8 +55,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=EXACT("Apple", "apple")`
-- `=EXACT(A1, B1)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=EXACT(..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

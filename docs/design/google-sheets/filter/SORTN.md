@@ -8,7 +8,7 @@
 - **Dynamic array:** Yes
 
 ## Description
-Returns the first n items in a data set after performing a sort.
+See upstream spreadsheet function documentation.
 
 ## Google Sheets Syntax
 ```excel

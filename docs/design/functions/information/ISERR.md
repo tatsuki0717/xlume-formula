@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns TRUE if the value is error value except #N/A!.
+Checks whether a value is an error other than \#N/A, and returns TRUE or FALSE.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Returns TRUE if the value is error value except #N/A!.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | value | number \| string \| boolean \| range/array | Yes | The value or expression to test; returns TRUE for any error except #N/A. |
+| 1 | value | number \| string \| boolean \| range/array | Yes | Is the value you want to test. Value can refer to a cell, a formula, or a name that refers to a cell, formula, or value. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns TRUE if the value is error value except #N/A!.
+Checks whether a value is an error other than \#N/A, and returns TRUE or FALSE.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns TRUE if the value is error value except #N/A!.
+> Checks whether a value is an error other than \#N/A, and returns TRUE or FALSE.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=ISERR(1/0)`
-- `=ISERR(NA())`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=ISERR(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

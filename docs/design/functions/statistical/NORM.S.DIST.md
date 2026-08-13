@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns density of the standard normal distribution (mean 0, standard deviation 1).
+Returns the standard normal distribution (has a mean of zero and a standard deviation of one).
 
 ## Excel Syntax
 ```excel
@@ -17,14 +17,14 @@ Returns density of the standard normal distribution (mean 0, standard deviation 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | z | number \| range/array | Yes | The value at which to evaluate the standard normal distribution. |
-| 2 | cumulative | boolean \| range/array | Yes | TRUE returns the cumulative distribution function; FALSE returns the probability density function. |
+| 1 | z | number \| range/array | Yes | Is the value for which you want the distribution. |
+| 2 | cumulative | boolean \| range/array | Yes | Is a logical value for the function to return: the cumulative distribution function = TRUE; the probability density function = FALSE. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns density of the standard normal distribution (mean 0, standard deviation 1).
+Returns the standard normal distribution (has a mean of zero and a standard deviation of one).
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -33,7 +33,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns density of the standard normal distribution (mean 0, standard deviation 1).
+> Returns the standard normal distribution (has a mean of zero and a standard deviation of one).
 
 
 ## Type Coercion & Edge Cases
@@ -55,8 +55,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=NORM.S.DIST(1, TRUE())`
-- `=NORM.S.DIST(1, FALSE())`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=NORM.S.DIST(..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

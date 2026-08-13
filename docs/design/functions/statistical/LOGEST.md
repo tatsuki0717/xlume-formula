@@ -3,33 +3,30 @@
 ## Metadata
 - **Category:** Statistical
 - **Priority tags:** DA
-- **Scope:** implement
+- **Scope:** deferred
 - **Volatile:** No
 - **Dynamic array:** Yes
 
 ## Description
-Returns the parameters of an exponential trend.
+exponential regression stats array
 
 ## Excel Syntax
 ```excel
-=LOGEST(known_y, [known_x])
+=LOGEST()
 ```
 
 ## Arguments
-| # | Name | Type | Required? | Description |
-|---|---|---|---|---|
-| 1 | known_y | any | Yes | The set of y-values you already know in the relationship y = b*m^x. |
-| 2 | known_x | any | No | Optional. An optional set of x-values that you may already know in the relationship y = b*m^x. |
+This function takes no arguments.
 
 ## Returns
 Dynamic array
 
 ## Behavior / Algorithm
-Implemented in the engine (Requires dynamic-array / spill support).
+Implementation is deferred (Requires dynamic-array / spill support).
 
-High-level behavior: Returns the parameters of an exponential trend.
+High-level behavior: exponential regression stats array
 
-See the corresponding source implementation for the detailed algorithm.
+Detailed step-by-step algorithm, type coercion and edge-case handling will be added when this function is prioritized.
 
 ## Type Coercion & Edge Cases
 - Numbers provided as text are coerced to numeric values when the function expects a number.
@@ -51,8 +48,6 @@ See the corresponding source implementation for the detailed algorithm.
 
 ## Examples
 TBD — add representative Excel examples during implementation.
-
-Skeleton: `=LOGEST(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

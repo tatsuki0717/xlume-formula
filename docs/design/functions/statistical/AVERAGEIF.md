@@ -7,25 +7,25 @@
 - **Volatile:** No
 
 ## Description
-Returns the arithmetic mean of all cells in a range that satisfy a given condition.
+Finds average(arithmetic mean) for the cells specified by a given condition or criteria.
 
 ## Excel Syntax
 ```excel
-=AVERAGEIF(range, criteria, [average_range])
+=AVERAGEIF(range, criteria, average_range)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | range | range/array | Yes | The range of cells tested against the criteria. |
-| 2 | criteria | number \| string \| boolean \| range/array | Yes | The condition that selects which cells are averaged, e.g. ">5", "apples", or a cell reference. |
-| 3 | average_range | range/array | No | The range of cells to average. When omitted, the cells in range are averaged instead. |
+| 1 | range | range/array | Yes | Is the range of cells you want evaluated. |
+| 2 | criteria | number \| string \| boolean \| range/array | Yes | Is the condition or criteria in the form of a number, expression, or text that defines which cells will be used to find the average. |
+| 3 | average_range | range/array | Yes | Are the actual cells to be used to find the average. If omitted, the cells in range are used. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the arithmetic mean of all cells in a range that satisfy a given condition.
+Finds average(arithmetic mean) for the cells specified by a given condition or criteria.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -34,7 +34,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the arithmetic mean of all cells in a range that satisfy a given condition.
+> Finds average(arithmetic mean) for the cells specified by a given condition or criteria.
 
 
 ## Type Coercion & Edge Cases
@@ -56,8 +56,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=AVERAGEIF(A1:A10, ">5")`
-- `=AVERAGEIF(B1:B10, "apples", C1:C10)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=AVERAGEIF(..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

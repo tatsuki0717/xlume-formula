@@ -7,23 +7,23 @@
 - **Volatile:** No
 
 ## Description
-Returns sheet number of a given value or a formula sheet number if no argument is provided.
+Returns the sheet number of the referenced sheet.
 
 ## Excel Syntax
 ```excel
-=SHEET([value])
+=SHEET(value)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | value | range/array \| string | No | An optional sheet name (as text) or a cell/range reference identifying the sheet to look up; when omitted, returns the number of the sheet containing the formula. |
+| 1 | value | range/array \| string | Yes | Is the name of a sheet or a reference that you want the sheet number of. If omitted the number of the sheet containing the function is returned. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns sheet number of a given value or a formula sheet number if no argument is provided.
+Returns the sheet number of the referenced sheet.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns sheet number of a given value or a formula sheet number if no argument is provided.
+> Returns the sheet number of the referenced sheet.
 
 
 ## Type Coercion & Edge Cases
@@ -54,9 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=SHEET()`
-- `=SHEET(A1)`
-- `=SHEET("Sheet2")`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=SHEET(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

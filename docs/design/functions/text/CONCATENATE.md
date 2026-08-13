@@ -7,23 +7,23 @@
 - **Volatile:** No
 
 ## Description
-Combines several text strings into one string.
+Joins several text strings into one text string.
 
 ## Excel Syntax
 ```excel
-=CONCATENATE(text1, [text2], ...)
+=CONCATENATE(value1, [value2], ...)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | text1 | string \| range/array (repeatable) | Yes | A text value, cell reference, or range to include in the joined string. Further text values or ranges can be passed as additional arguments and are appended in order. |
+| 1 | values | string \| range/array (repeatable) | Yes | List of parameters, whose elements are 1 to 255 text strings to be joined into a single text string and can be text strings, numbers, or single-cell references. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Combines several text strings into one string.
+Joins several text strings into one text string.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Combines several text strings into one string.
+> Joins several text strings into one text string.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=CONCATENATE("Hello", " ", "World")`
-- `=CONCATENATE(A1, A2, A3)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=CONCATENATE(1, 2, 3)`
 
 ## Test Cases
 | Input | Expected | Purpose |

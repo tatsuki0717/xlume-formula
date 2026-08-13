@@ -3,33 +3,30 @@
 ## Metadata
 - **Category:** Statistical
 - **Priority tags:** DA
-- **Scope:** implement
+- **Scope:** deferred
 - **Volatile:** No
 - **Dynamic array:** Yes
 
 ## Description
-Returns a frequency distribution as a vertical array.
+histogram bin counts
 
 ## Excel Syntax
 ```excel
-=FREQUENCY(data_array, bins_array)
+=FREQUENCY()
 ```
 
 ## Arguments
-| # | Name | Type | Required? | Description |
-|---|---|---|---|---|
-| 1 | data_array | range/array | Yes | An array of or reference to a set of values for which you want to count frequencies. If data_array contains no values, FREQUENCY returns an array of zeros. |
-| 2 | bins_array | number \| range/array | Yes | An array of or reference to intervals into which you want to group the values in data_array. If bins_array contains no values, FREQUENCY returns the number of elements in data_array. |
+This function takes no arguments.
 
 ## Returns
 Dynamic array
 
 ## Behavior / Algorithm
-Implemented in the engine (Requires dynamic-array / spill support).
+Implementation is deferred (Requires dynamic-array / spill support).
 
-High-level behavior: Returns a frequency distribution as a vertical array.
+High-level behavior: histogram bin counts
 
-See the corresponding source implementation for the detailed algorithm.
+Detailed step-by-step algorithm, type coercion and edge-case handling will be added when this function is prioritized.
 
 ## Type Coercion & Edge Cases
 - Numbers provided as text are coerced to numeric values when the function expects a number.
@@ -51,8 +48,6 @@ See the corresponding source implementation for the detailed algorithm.
 
 ## Examples
 TBD — add representative Excel examples during implementation.
-
-Skeleton: `=FREQUENCY(..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

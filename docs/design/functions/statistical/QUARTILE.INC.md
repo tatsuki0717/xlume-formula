@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns the quartile of a data set, based on inclusive percentile values.
+Returns the quartile of a data set, based on percentile values from 0..1, inclusive.
 
 ## Excel Syntax
 ```excel
@@ -17,14 +17,14 @@ Returns the quartile of a data set, based on inclusive percentile values.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | array | number \| range/array | Yes | The range of values to evaluate. |
-| 2 | quart | number \| range/array | Yes | The quartile to return, inclusive of 0 and 4, an integer from 0 to 4. |
+| 1 | array | number \| range/array | Yes | Is the array or cell range of numeric values for which you want the quartile value. |
+| 2 | quart | number \| range/array | Yes | Is a number: minimum value = 0; 1st quartile = 1; median value = 2; 3rd quartile = 3; maximum value = 4. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the quartile of a data set, based on inclusive percentile values.
+Returns the quartile of a data set, based on percentile values from 0..1, inclusive.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -33,7 +33,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the quartile of a data set, based on inclusive percentile values.
+> Returns the quartile of a data set, based on percentile values from 0..1, inclusive.
 
 
 ## Type Coercion & Edge Cases
@@ -55,7 +55,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=QUARTILE.INC(A1:A10, 3)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=QUARTILE.INC(..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

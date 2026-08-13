@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns the positive square root of a number.
+Returns the square root of a number.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Returns the positive square root of a number.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number | number \| range/array | Yes | A non-negative number whose positive square root is returned. |
+| 1 | number | number \| range/array | Yes | Is the number for which you want the square root. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the positive square root of a number.
+Returns the square root of a number.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the positive square root of a number.
+> Returns the square root of a number.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=SQRT(16)`
-- `=SQRT(2)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=SQRT(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

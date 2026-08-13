@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Shifts start_date by the given number of months and returns the result as a serial day count from the workbook's date origin.
+Returns the serial number of the date that is the indicated number of months before or after the start date.
 
 ## Excel Syntax
 ```excel
@@ -17,14 +17,14 @@ Shifts start_date by the given number of months and returns the result as a seri
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | start_date | number \| string \| boolean \| range/array | Yes | The date value to shift. |
-| 2 | months | number \| string \| boolean \| range/array | Yes | The number of months to shift start_date by; negative values shift backwards. |
+| 1 | start_date | number \| string \| boolean \| range/array | Yes | Is a serial date number that represents the start date. |
+| 2 | months | number \| string \| boolean \| range/array | Yes | Is the number of months before or after startDate. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Shifts start_date by the given number of months and returns the result as a serial day count from the workbook's date origin.
+Returns the serial number of the date that is the indicated number of months before or after the start date.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -33,7 +33,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Shifts start_date by the given number of months and returns the result as a serial day count from the workbook's date origin.
+> Returns the serial number of the date that is the indicated number of months before or after the start date.
 
 
 ## Type Coercion & Edge Cases
@@ -55,8 +55,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=EDATE(A1, 3)`
-- `=EDATE(DATE(2020, 1, 15), -2)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=EDATE(..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

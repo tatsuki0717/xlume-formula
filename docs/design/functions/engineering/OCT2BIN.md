@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-The result is the binary number for the octal number entered.
+Converts an octal number to binary.
 
 ## Excel Syntax
 ```excel
@@ -17,14 +17,14 @@ The result is the binary number for the octal number entered.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number | number \| string \| boolean \| range/array | Yes | The octal number (as text, up to 10 digits) to convert to binary. |
-| 2 | places | number \| string \| boolean \| range/array | Yes | The number of digits the result is padded to with leading zeros; a #NUM! error when the result needs more digits than that. Ignored for negative numbers. If omitted, no padding is applied. |
+| 1 | number | number \| string \| boolean \| range/array | Yes | Is the octal number you want to convert. |
+| 2 | places | number \| string \| boolean \| range/array | Yes | Is the number of characters to use. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-The result is the binary number for the octal number entered.
+Converts an octal number to binary.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -33,7 +33,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> The result is the binary number for the octal number entered.
+> Converts an octal number to binary.
 
 
 ## Type Coercion & Edge Cases
@@ -55,8 +55,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=OCT2BIN(14)`
-- `=OCT2BIN(14, 8)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=OCT2BIN(..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

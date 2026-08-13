@@ -7,33 +7,28 @@
 - **Volatile:** No
 
 ## Description
-Returns the sum of the sums of the squares of paired values, that is the sum of x squared plus y squared over all pairs.
+Σ(x²+y²)
 
 ## Excel Syntax
 ```excel
-=SUMX2PY2(array_x, array_y)
+=SUMX2PY2()
 ```
 
 ## Arguments
-| # | Name | Type | Required? | Description |
-|---|---|---|---|---|
-| 1 | array_x | range/array | Yes | The range providing the first value (x) of each pair. |
-| 2 | array_y | range/array | Yes | The range, of the same size as array_x, providing the second value (y) of each pair. |
+This function takes no arguments.
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the sum of the sums of the squares of paired values, that is the sum of x squared plus y squared over all pairs.
+Σ(x²+y²)
 
 High-level algorithm:
-1. Validate argument count and coerce each argument according to its documented type.
-2. Propagate any input errors (`#VALUE!`, `#NUM!`, etc.) before computation.
-3. Execute the core calculation described below.
-4. Apply final coercion to the documented return type and return the result.
+1. Execute the core calculation.
+2. Return the result.
 
 Core calculation:
-> Returns the sum of the sums of the squares of paired values, that is the sum of x squared plus y squared over all pairs.
+> Σ(x²+y²)
 
 
 ## Type Coercion & Edge Cases
@@ -55,7 +50,7 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=SUMX2PY2(A1:A5, B1:B5)`
+TBD — add representative Excel examples during implementation.
 
 ## Test Cases
 | Input | Expected | Purpose |

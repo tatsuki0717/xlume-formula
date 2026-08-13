@@ -8,7 +8,7 @@
 - **Dynamic array:** Yes
 
 ## Description
-Runs a Google Visualization API Query Language query across data.
+See upstream spreadsheet function documentation.
 
 ## Google Sheets Syntax
 ```excel

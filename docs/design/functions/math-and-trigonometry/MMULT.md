@@ -7,33 +7,28 @@
 - **Volatile:** No
 
 ## Description
-Calculates the array product of two arrays.
+matrix multiply
 
 ## Excel Syntax
 ```excel
-=MMULT(array1, array2)
+=MMULT()
 ```
 
 ## Arguments
-| # | Name | Type | Required? | Description |
-|---|---|---|---|---|
-| 1 | array1 | range/array | Yes | The first range of numbers in the matrix multiplication; its column count must equal the row count of array2. |
-| 2 | array2 | range/array | Yes | The second range of numbers in the matrix multiplication; its row count must equal the column count of array1. |
+This function takes no arguments.
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Calculates the array product of two arrays.
+matrix multiply
 
 High-level algorithm:
-1. Validate argument count and coerce each argument according to its documented type.
-2. Propagate any input errors (`#VALUE!`, `#NUM!`, etc.) before computation.
-3. Execute the core calculation described below.
-4. Apply final coercion to the documented return type and return the result.
+1. Execute the core calculation.
+2. Return the result.
 
 Core calculation:
-> Calculates the array product of two arrays.
+> matrix multiply
 
 
 ## Type Coercion & Edge Cases
@@ -55,8 +50,7 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=MMULT(A1:B2, D1:E2)`
-- `=MMULT(A1:C2, A4:B6)`
+TBD — add representative Excel examples during implementation.
 
 ## Test Cases
 | Input | Expected | Purpose |

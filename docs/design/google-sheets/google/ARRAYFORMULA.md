@@ -8,7 +8,7 @@
 - **Dynamic array:** Yes
 
 ## Description
-Enables the display of values returned from an array formula into multiple rows and/or columns and the use of non-array functions with arrays.
+See upstream spreadsheet function documentation.
 
 ## Google Sheets Syntax
 ```excel

@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-The result is the decimal number for the hexadecimal number entered.
+Converts a hexadecimal number to decimal.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ The result is the decimal number for the hexadecimal number entered.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number | number \| string \| boolean \| range/array | Yes | The hexadecimal number (as text, up to 10 digits) to convert to decimal. |
+| 1 | number | number \| string \| boolean \| range/array | Yes | Is the hexadecimal number you want to convert. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-The result is the decimal number for the hexadecimal number entered.
+Converts a hexadecimal number to decimal.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> The result is the decimal number for the hexadecimal number entered.
+> Converts a hexadecimal number to decimal.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=HEX2DEC("2A")`
-- `=HEX2DEC("FF")`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=HEX2DEC(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

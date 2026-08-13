@@ -3,7 +3,7 @@
 ## Metadata
 - **Category:** Statistical
 - **Priority tags:** T3
-- **Scope:** implement
+- **Scope:** deferred
 - **Volatile:** No
 
 ## Description
@@ -28,11 +28,11 @@ Returns a statistical value as a result of the ETS forecasting.
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Implemented in the engine.
+Implementation is deferred.
 
 High-level behavior: Returns a statistical value as a result of the ETS forecasting.
 
-See the corresponding source implementation for the detailed algorithm.
+Detailed step-by-step algorithm, type coercion and edge-case handling will be added when this function is prioritized.
 
 ## Type Coercion & Edge Cases
 - Numbers provided as text are coerced to numeric values when the function expects a number.

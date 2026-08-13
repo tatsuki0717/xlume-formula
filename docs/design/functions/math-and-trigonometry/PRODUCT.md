@@ -7,24 +7,23 @@
 - **Volatile:** No
 
 ## Description
-Returns product of numbers.
+Multiplies all the numbers given as arguments.
 
 ## Excel Syntax
 ```excel
-=PRODUCT(number1, [number2, ...], [args])
+=PRODUCT(value1, [value2], ...)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number1 | number \| range/array (repeatable) | Yes | A number, cell reference, or range whose values are multiplied together. Further numbers or ranges can be passed as additional arguments. |
-| 2 | args | any | No | number2, ... Optional. Additional numbers or ranges that you want to multiply, up to a maximum of 255 arguments. |
+| 1 | values | number \| range/array (repeatable) | Yes | List of parameters, whose elements are 1 to 255 numbers, logical values, or text representations of numbers that you want to multiply. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns product of numbers.
+Multiplies all the numbers given as arguments.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -33,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns product of numbers.
+> Multiplies all the numbers given as arguments.
 
 
 ## Type Coercion & Edge Cases
@@ -55,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=PRODUCT(2, 3, 4)`
-- `=PRODUCT(A1:A10)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=PRODUCT(1, 2, 3)`
 
 ## Test Cases
 | Input | Expected | Purpose |

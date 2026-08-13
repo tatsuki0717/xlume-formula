@@ -7,24 +7,24 @@
 - **Volatile:** No
 
 ## Description
-Returns a week number that corresponds to the week of year.
+Returns the week number in the year.
 
 ## Excel Syntax
 ```excel
-=WEEKNUM(serial_number, [return_type])
+=WEEKNUM(serial_number, return_type)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | serial_number | number \| string \| boolean \| range/array | Yes | The date value whose week-of-year number is returned. |
-| 2 | return_type | number \| string \| boolean \| range/array | No | A code selecting which weekday starts the week (default 1: Sunday; 2: Monday; 11-17: each successive weekday; 21: ISO week numbering, Monday-based). |
+| 1 | serial_number | number \| string \| boolean \| range/array | Yes | Is the date-time code used by Microsoft Excel for date and time calculation. |
+| 2 | return_type | number \| string \| boolean \| range/array | Yes | Is a number (1 or 2) that determines the type of the return value. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns a week number that corresponds to the week of year.
+Returns the week number in the year.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -33,7 +33,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns a week number that corresponds to the week of year.
+> Returns the week number in the year.
 
 
 ## Type Coercion & Edge Cases
@@ -55,8 +55,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=WEEKNUM(DATE(2020, 3, 15))`
-- `=WEEKNUM(A1, 21)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=WEEKNUM(..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

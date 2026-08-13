@@ -8,7 +8,7 @@
 - **Dynamic array:** No (scalar)
 
 ## Description
-Finds the weighted average of a set of values, given the values and the corresponding weights. .
+See upstream spreadsheet function documentation.
 
 ## Google Sheets Syntax
 ```excel

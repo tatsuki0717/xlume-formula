@@ -3,7 +3,9 @@
 Generate detailed per-function design Markdown documents for offline Google Sheets functions.
 
 Inputs:
-  - /tmp/google-sheets-merged.json (merged Google Docs + checksheet data)
+  - scripts/google-sheets-merged.json (structured function inventory: names,
+    categories, signatures; no third-party prose)
+  - scripts/google-sheets-answer-ids.json (Google support answer IDs for reference links)
   - scripts/manual_google_specs.py (curated algorithm/examples/tests)
 
 Outputs:
@@ -104,9 +106,8 @@ def generate_doc(func: dict, spec: dict, answer_id: str | None = None) -> str:
     # Some source lists only the parameter list, not the full NAME(...) form.
     if not syntax.strip().startswith(name):
         syntax = f"{name}{syntax}"
-    table_desc = (func.get("description") or "").replace("Learn more", "").strip()
-    description = table_desc or "See upstream spreadsheet function documentation."
-    description = re.sub(r"\s+", " ", description).strip()
+    # Avoid embedding scraped third-party prose; keep only a generic pointer.
+    description = "See upstream spreadsheet function documentation."
 
     args = parse_args(syntax)
     arg_desc_map: dict[str, str] = {}
@@ -277,8 +278,11 @@ def main():
         index += f"\n### {cat}\n\n"
         for func in funcs:
             name = func["name"].upper()
-            desc = (func.get("description") or "").split(".")[0]
-            index += f"- [{name}](./{slug}/{name}.md): {desc}.\n"
+            desc = (func.get("description") or "").split(".")[0].strip()
+            if desc:
+                index += f"- [{name}](./{slug}/{name}.md): {desc}.\n"
+            else:
+                index += f"- [{name}](./{slug}/{name}.md)\n"
     (OUT_DIR / "index.md").write_text(index, encoding="utf-8")
 
     readme = f"""# docs/design/google-sheets

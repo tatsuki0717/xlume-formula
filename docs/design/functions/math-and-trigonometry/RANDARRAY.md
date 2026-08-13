@@ -3,7 +3,7 @@
 ## Metadata
 - **Category:** Math & Trigonometry
 - **Priority tags:** DA
-- **Scope:** implement
+- **Scope:** deferred
 - **Volatile:** Yes
 - **Dynamic array:** Yes
 

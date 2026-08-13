@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns the number of columns in the given reference.
+Returns the number of columns in an array or reference.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Returns the number of columns in the given reference.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | array | range/array | Yes | The range whose number of columns is counted. |
+| 1 | array | range/array | Yes | Is an array or array formula, or a reference to a range of cells for which you want the number of columns. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the number of columns in the given reference.
+Returns the number of columns in an array or reference.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the number of columns in the given reference.
+> Returns the number of columns in an array or reference.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=COLUMNS(A1:C5)`
-- `=COLUMNS(A1:F1)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=COLUMNS(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

@@ -8,7 +8,7 @@
 - **Dynamic array:** No (scalar)
 
 ## Description
-Returns the logarithm of a complex number for a specified base. .
+See upstream spreadsheet function documentation.
 
 ## Google Sheets Syntax
 ```excel

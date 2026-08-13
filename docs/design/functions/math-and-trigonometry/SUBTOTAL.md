@@ -7,24 +7,24 @@
 - **Volatile:** No
 
 ## Description
-Computes aggregation using function specified by number.
+Returns a subtotal in a list or database.
 
 ## Excel Syntax
 ```excel
-=SUBTOTAL(function_num, ref1, [ref2], ...)
+=SUBTOTAL(function_num, values)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | function_num | number \| range/array | Yes | A number (1-11 or 101-111) selecting the aggregation function to apply, e.g. 9 for SUM or 1 for AVERAGE. |
-| 2 | ref1 | range/array (repeatable) | Yes | A number, cell reference, or range to aggregate. Further numbers or ranges can be passed as additional arguments. |
+| 1 | function_num | number \| range/array | Yes | Is the number 1 to 11 that specifies the summary function for the subtotal. |
+| 2 | values | range/array | Yes | List of parameters, whose elements are 1 to 254 ranges or references for which you want the subtotal. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Computes aggregation using function specified by number.
+Returns a subtotal in a list or database.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -33,7 +33,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Computes aggregation using function specified by number.
+> Returns a subtotal in a list or database.
 
 
 ## Type Coercion & Edge Cases
@@ -55,8 +55,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=SUBTOTAL(9, A1:A10)`
-- `=SUBTOTAL(1, B1:B10)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=SUBTOTAL(..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |
@@ -66,17 +67,6 @@ Core calculation:
 | Blank/empty cells | Coerced `0` or `""` as appropriate | Blank handling |
 | Text that cannot be coerced | `#VALUE!` | Error propagation |
 | Too few/too many arguments | `#VALUE!` | Arity validation |
-
-## Verified Edge Cases
-- `COUNT` (`function_num = 2` / `102`) counts only raw numbers; logical values inside arrays or references are **not** counted.
-- Numeric aggregates (`AVERAGE`, `SUM`, `MAX`, `MIN`, `PRODUCT`, `STDEV`, `VAR`, etc.) propagate the first error value in the reference list; they do not silently drop them.
-- `function_num` values outside `1–11` and `101–111` produce `#VALUE!`.
-
-### Additional test cases
-| Input | Expected | Purpose |
-|---|---|---|
-| `=SUBTOTAL(2, {TRUE, 1})` | `1` | COUNT ignores booleans in arrays |
-| `=SUBTOTAL(9, 1, 1/0, 3)` | `#DIV/0!` | SUM propagates error values |
 
 ## Implementation Notes
 Follow standard Excel semantics. Add inline KAT tests and, if the behavior depends on cell layout, a workbook fixture.

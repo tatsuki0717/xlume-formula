@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns standard deviation of a sample, counting text and logical values found in ranges.
+Estimates standard deviation based on a sample, including logical values and text. Text and the logical value FALSE have the value 0; the logical value TRUE has the value 1.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Returns standard deviation of a sample, counting text and logical values found i
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | value1 | number \| range/array (repeatable) | Yes | A value, cell reference, or range included in the sample standard deviation calculation; inside a range, text counts as 0, TRUE as 1 and FALSE as 0, where the non-A variant would skip them, while a non-numeric text passed directly as an argument gives a #VALUE! error. Further values or ranges can be passed as additional arguments. |
+| 1 | values | number \| range/array (repeatable) | Yes | List of parameters, whose elements are 1 to 255 values corresponding to a sample of a population and can be values or names or references to values. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns standard deviation of a sample, counting text and logical values found in ranges.
+Estimates standard deviation based on a sample, including logical values and text. Text and the logical value FALSE have the value 0; the logical value TRUE has the value 1.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns standard deviation of a sample, counting text and logical values found in ranges.
+> Estimates standard deviation based on a sample, including logical values and text. Text and the logical value FALSE have the value 0; the logical value TRUE has the value 1.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=STDEVA(1, TRUE(), 3)`
-- `=STDEVA(A1:A10)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=STDEVA(1, 2, 3)`
 
 ## Test Cases
 | Input | Expected | Purpose |

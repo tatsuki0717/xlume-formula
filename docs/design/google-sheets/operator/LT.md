@@ -8,7 +8,7 @@
 - **Dynamic array:** No (scalar)
 
 ## Description
-Returns `TRUE` if the first argument is strictly less than the second, and `FALSE` otherwise. Equivalent to the `<` operator.
+See upstream spreadsheet function documentation.
 
 ## Google Sheets Syntax
 ```excel

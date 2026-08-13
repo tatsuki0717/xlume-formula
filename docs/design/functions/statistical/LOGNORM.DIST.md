@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns density of lognormal distribution.
+Returns the lognormal distribution of x, where ln(x) is normally distributed with parameters Mean and Standard\_dev.
 
 ## Excel Syntax
 ```excel
@@ -17,16 +17,16 @@ Returns density of lognormal distribution.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | x | number \| range/array | Yes | The value at which to evaluate the distribution; must be greater than 0. |
-| 2 | mean | number \| range/array | Yes | The mean of the natural logarithm of the distribution. |
-| 3 | standard_dev | number \| range/array | Yes | The standard deviation of the natural logarithm of the distribution; must be greater than 0. |
-| 4 | cumulative | boolean \| range/array | Yes | TRUE returns the cumulative distribution function; FALSE returns the probability density function. |
+| 1 | x | number \| range/array | Yes | Is the value at which to evaluate the function, a positive number. |
+| 2 | mean | number \| range/array | Yes | Is the mean of ln(x). |
+| 3 | standard_dev | number \| range/array | Yes | Is the standard deviation of ln(x), a positive number. |
+| 4 | cumulative | boolean \| range/array | Yes | Is a logical value: for the cumulative distribution function, use TRUE; for the probability density function, use FALSE. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns density of lognormal distribution.
+Returns the lognormal distribution of x, where ln(x) is normally distributed with parameters Mean and Standard\_dev.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -35,7 +35,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns density of lognormal distribution.
+> Returns the lognormal distribution of x, where ln(x) is normally distributed with parameters Mean and Standard\_dev.
 
 
 ## Type Coercion & Edge Cases
@@ -57,8 +57,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=LOGNORM.DIST(4, 0, 1, TRUE())`
-- `=LOGNORM.DIST(4, 0, 1, FALSE())`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=LOGNORM.DIST(..., ..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

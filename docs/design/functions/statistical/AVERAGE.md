@@ -7,23 +7,23 @@
 - **Volatile:** No
 
 ## Description
-Returns the average of the arguments.
+Returns the average (arithmetic mean) of its arguments, which can be numbers or names, arrays, or references that contain numbers.
 
 ## Excel Syntax
 ```excel
-=AVERAGE(number1, [number2], ...)
+=AVERAGE(value1, [value2], ...)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number1 | number \| range/array (repeatable) | Yes | A number, cell reference, or range whose values are averaged. Further numbers or ranges can be passed as additional arguments. |
+| 1 | values | number \| range/array (repeatable) | Yes | List of parameters, whose elements are 1 to 255 numeric arguments for which you want the average. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the average of the arguments.
+Returns the average (arithmetic mean) of its arguments, which can be numbers or names, arrays, or references that contain numbers.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the average of the arguments.
+> Returns the average (arithmetic mean) of its arguments, which can be numbers or names, arrays, or references that contain numbers.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=AVERAGE(1, 2, 3)`
-- `=AVERAGE(A1:A10)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=AVERAGE(1, 2, 3)`
 
 ## Test Cases
 | Input | Expected | Purpose |

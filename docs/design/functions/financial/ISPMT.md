@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns the interest paid for a given period of an investment with equal principal payments.
+Returns the interest paid during a specific period of an investment.
 
 ## Excel Syntax
 ```excel
@@ -17,16 +17,16 @@ Returns the interest paid for a given period of an investment with equal princip
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | rate | number \| range/array | Yes | The interest rate per period. |
-| 2 | per | number \| range/array | Yes | The period for which the interest is calculated. |
-| 3 | nper | number \| range/array | Yes | The total number of payment periods. |
-| 4 | pv | number \| range/array | Yes | The present value, i.e. the loan principal. |
+| 1 | rate | number \| range/array | Yes | Interest rate per period. For example, use 6%/4 for quarterly payments at 6% APR. |
+| 2 | per | number \| range/array | Yes | Period for which you want to find the interest. |
+| 3 | nper | number \| range/array | Yes | Number of payment periods in an investment. |
+| 4 | pv | number \| range/array | Yes | Lump sum amount that a series of future payments is right now. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the interest paid for a given period of an investment with equal principal payments.
+Returns the interest paid during a specific period of an investment.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -35,7 +35,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the interest paid for a given period of an investment with equal principal payments.
+> Returns the interest paid during a specific period of an investment.
 
 
 ## Type Coercion & Edge Cases
@@ -57,8 +57,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=ISPMT(0.05/12, 1, 60, 20000)`
-- `=ISPMT(0.04/12, 12, 360, 200000)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=ISPMT(..., ..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

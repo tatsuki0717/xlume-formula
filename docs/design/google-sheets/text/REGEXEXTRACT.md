@@ -8,7 +8,7 @@
 - **Dynamic array:** No (scalar)
 
 ## Description
-Extracts matching substrings according to a regular expression.
+See upstream spreadsheet function documentation.
 
 ## Google Sheets Syntax
 ```excel

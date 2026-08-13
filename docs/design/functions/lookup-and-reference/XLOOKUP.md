@@ -7,37 +7,28 @@
 - **Volatile:** No
 
 ## Description
-Searches for a key in a range and returns the item corresponding to the match it finds. If no match exists, then XLOOKUP can return the closest (approximate) match.
+modern lookup
 
 ## Excel Syntax
 ```excel
-=XLOOKUP(lookup_value, lookup_array, return_array, [if_not_found], [match_mode], [search_mode])
+=XLOOKUP()
 ```
 
 ## Arguments
-| # | Name | Type | Required? | Description |
-|---|---|---|---|---|
-| 1 | lookup_value | any | Yes | The value to search for in lookup_array. |
-| 2 | lookup_array | range/array | Yes | The single row or column of cells to search. |
-| 3 | return_array | range/array | Yes | The range that values are returned from once a match is found; it must align in size with lookup_array. |
-| 4 | if_not_found | any | No | The value returned when no match is found. Defaults to the #N/A error. |
-| 5 | match_mode | any | No | 0 (default) for an exact match, -1 for an exact match or the next smaller item, 1 for an exact match or the next larger item, or 2 for a wildcard match. |
-| 6 | search_mode | any | No | 1 (default) searches from first to last, -1 searches from last to first, and 2 or -2 perform a binary search on ascending- or descending-sorted data respectively. |
+This function takes no arguments.
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Searches for a key in a range and returns the item corresponding to the match it finds. If no match exists, then XLOOKUP can return the closest (approximate) match.
+modern lookup
 
 High-level algorithm:
-1. Validate argument count and coerce each argument according to its documented type.
-2. Propagate any input errors (`#VALUE!`, `#NUM!`, etc.) before computation.
-3. Execute the core calculation described below.
-4. Apply final coercion to the documented return type and return the result.
+1. Execute the core calculation.
+2. Return the result.
 
 Core calculation:
-> Searches for a key in a range and returns the item corresponding to the match it finds. If no match exists, then XLOOKUP can return the closest (approximate) match.
+> modern lookup
 
 
 ## Type Coercion & Edge Cases
@@ -59,8 +50,7 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=XLOOKUP("apple", A1:A10, B1:B10)`
-- `=XLOOKUP(5, A1:A10, B1:B10, "not found")`
+TBD — add representative Excel examples during implementation.
 
 ## Test Cases
 | Input | Expected | Purpose |

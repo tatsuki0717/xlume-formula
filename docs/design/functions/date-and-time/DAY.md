@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns the day of the given date value.
+Returns the day of the month, a number from 1 to 31.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Returns the day of the given date value.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | serial_number | number \| range/array | Yes | A date value (serial day count from the workbook's date origin) whose day-of-month is returned. |
+| 1 | serial_number | number \| range/array | Yes | Is a number in the date-time code used by Microsoft Excel. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the day of the given date value.
+Returns the day of the month, a number from 1 to 31.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the day of the given date value.
+> Returns the day of the month, a number from 1 to 31.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=DAY(DATE(2020, 3, 30))`
-- `=DAY(A1)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=DAY(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

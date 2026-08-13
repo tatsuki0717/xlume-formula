@@ -8,7 +8,7 @@
 - **Dynamic array:** No (scalar)
 
 ## Description
-Counts the number of unique values in a list of specified values and ranges.
+See upstream spreadsheet function documentation.
 
 ## Google Sheets Syntax
 ```excel

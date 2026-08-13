@@ -7,25 +7,25 @@
 - **Volatile:** No
 
 ## Description
-Specifies a logical test to be performed.
+Checks whether a condition is met, and returns one value if TRUE, and another value if FALSE.
 
 ## Excel Syntax
 ```excel
-=IF(logical_test, value_if_true, [value_if_false])
+=IF(logical_test, value_if_true, value_if_false)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | logical_test | boolean \| range/array | Yes | The logical expression or value to evaluate. |
-| 2 | value_if_true | range/array \| number \| string \| boolean | Yes | The value returned when test evaluates to TRUE. |
-| 3 | value_if_false | range/array \| number \| string \| boolean | No | The value returned when test evaluates to FALSE. When omitted, FALSE is returned instead. |
+| 1 | logical_test | boolean \| range/array | Yes | Is any value or expression that can be evaluated to TRUE or FALSE. |
+| 2 | value_if_true | range/array \| number \| string \| boolean | Yes | Is the value that is returned if logicalTest is TRUE. If omitted, TRUE is returned. You can nest up to seven IF functions. |
+| 3 | value_if_false | range/array \| number \| string \| boolean | Yes | Is the value that is returned if logicalTest is FALSE. If omitted, FALSE is returned. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Specifies a logical test to be performed.
+Checks whether a condition is met, and returns one value if TRUE, and another value if FALSE.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -34,7 +34,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Specifies a logical test to be performed.
+> Checks whether a condition is met, and returns one value if TRUE, and another value if FALSE.
 
 
 ## Type Coercion & Edge Cases
@@ -56,8 +56,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=IF(A1>10, "big", "small")`
-- `=IF(B1="", "empty", B1)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=IF(..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

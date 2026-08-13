@@ -7,27 +7,27 @@
 - **Volatile:** No
 
 ## Description
-Returns the depreciation of an asset for a period using the double-declining balance method.
+Returns the depreciation of an asset for a specified period using the double-declining balance method or some other method you specify.
 
 ## Excel Syntax
 ```excel
-=DDB(cost, salvage, life, period, [factor])
+=DDB(cost, salvage, life, period, factor)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | cost | number \| range/array | Yes | The initial cost of the asset. |
-| 2 | salvage | number \| range/array | Yes | The value of the asset at the end of its depreciation. |
-| 3 | life | number \| range/array | Yes | The number of periods over which the asset is depreciated. |
-| 4 | period | number \| range/array | Yes | The period, in the same units as life, for which depreciation is calculated. |
-| 5 | factor | number \| range/array | No | The rate at which the balance declines; defaults to 2 (double-declining). |
+| 1 | cost | number \| range/array | Yes | Is the initial cost of the asset. |
+| 2 | salvage | number \| range/array | Yes | Is the salvage value at the end of the life of the asset. |
+| 3 | life | number \| range/array | Yes | Is the number of periods over which the asset is being depreciated (sometimes called the useful life of the asset). |
+| 4 | period | number \| range/array | Yes | Is the period for which you want to calculate the depreciation. Period must use the same units as Life. |
+| 5 | factor | number \| range/array | Yes | Is the rate at which the balance declines. If Factor is omitted, it is assumed to be 2 (the double-declining balance method). |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the depreciation of an asset for a period using the double-declining balance method.
+Returns the depreciation of an asset for a specified period using the double-declining balance method or some other method you specify.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -36,7 +36,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the depreciation of an asset for a period using the double-declining balance method.
+> Returns the depreciation of an asset for a specified period using the double-declining balance method or some other method you specify.
 
 
 ## Type Coercion & Edge Cases
@@ -58,8 +58,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=DDB(10000, 1000, 6, 2)`
-- `=DDB(10000, 1000, 6, 1, 1.5)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=DDB(..., ..., ..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

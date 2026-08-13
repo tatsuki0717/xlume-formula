@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns integer part of a division.
+Returns the integer portion of a division.
 
 ## Excel Syntax
 ```excel
@@ -17,14 +17,14 @@ Returns integer part of a division.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | numerator | number \| string \| boolean \| range/array | Yes | The number to be divided. |
-| 2 | denominator | number \| string \| boolean \| range/array | Yes | The non-zero number to divide by. |
+| 1 | numerator | number \| string \| boolean \| range/array | Yes | Is the dividend. |
+| 2 | denominator | number \| string \| boolean \| range/array | Yes | Is the divisor. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns integer part of a division.
+Returns the integer portion of a division.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -33,7 +33,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns integer part of a division.
+> Returns the integer portion of a division.
 
 
 ## Type Coercion & Edge Cases
@@ -55,8 +55,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=QUOTIENT(10, 3)`
-- `=QUOTIENT(-10, 3)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=QUOTIENT(..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

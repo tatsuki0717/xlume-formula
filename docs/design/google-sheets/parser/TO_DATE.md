@@ -8,7 +8,7 @@
 - **Dynamic array:** No (scalar)
 
 ## Description
-Converts a provided number to a date.
+See upstream spreadsheet function documentation.
 
 ## Google Sheets Syntax
 ```excel

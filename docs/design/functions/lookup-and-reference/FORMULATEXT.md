@@ -7,32 +7,28 @@
 - **Volatile:** No
 
 ## Description
-Returns a formula in a given cell as a string.
+formula as text
 
 ## Excel Syntax
 ```excel
-=FORMULATEXT(reference)
+=FORMULATEXT()
 ```
 
 ## Arguments
-| # | Name | Type | Required? | Description |
-|---|---|---|---|---|
-| 1 | reference | string \| range/array | Yes | The cell reference whose formula is returned as text. |
+This function takes no arguments.
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns a formula in a given cell as a string.
+formula as text
 
 High-level algorithm:
-1. Validate argument count and coerce each argument according to its documented type.
-2. Propagate any input errors (`#VALUE!`, `#NUM!`, etc.) before computation.
-3. Execute the core calculation described below.
-4. Apply final coercion to the documented return type and return the result.
+1. Execute the core calculation.
+2. Return the result.
 
 Core calculation:
-> Returns a formula in a given cell as a string.
+> formula as text
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +50,7 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=FORMULATEXT(A1)`
-- `=FORMULATEXT(Sheet2!B2)`
+TBD — add representative Excel examples during implementation.
 
 ## Test Cases
 | Input | Expected | Purpose |

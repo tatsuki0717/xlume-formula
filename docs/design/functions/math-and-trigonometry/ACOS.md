@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns the inverse trigonometric cosine of a number.
+Returns the arccosine of a number, in radians in the range 0 to Pi. The arccosine is the angle whose cosine is Number.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Returns the inverse trigonometric cosine of a number.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number | number \| range/array | Yes | A number between -1 and 1 whose arccosine, in radians, is returned. |
+| 1 | number | number \| range/array | Yes | Is the cosine of the angle you want and must be from -1 to 1. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the inverse trigonometric cosine of a number.
+Returns the arccosine of a number, in radians in the range 0 to Pi. The arccosine is the angle whose cosine is Number.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the inverse trigonometric cosine of a number.
+> Returns the arccosine of a number, in radians in the range 0 to Pi. The arccosine is the angle whose cosine is Number.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=ACOS(1)`
-- `=ACOS(0.5)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=ACOS(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns inverse of F distribution.
+Returns the inverse of the (left-tailed) F probability distribution: if p = F.DIST(x,...), then F.INV(p,...) = x.
 
 ## Excel Syntax
 ```excel
@@ -17,15 +17,15 @@ Returns inverse of F distribution.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | probability | number \| range/array | Yes | The probability associated with the F distribution, between 0 and 1. |
-| 2 | deg_freedom1 | number \| range/array | Yes | The numerator degrees of freedom. |
-| 3 | deg_freedom2 | number \| range/array | Yes | The denominator degrees of freedom. |
+| 1 | probability | number \| range/array | Yes | Is a probability associated with the F cumulative distribution, a number between 0 and 1 inclusive. |
+| 2 | deg_freedom1 | number \| range/array | Yes | Is the numerator degrees of freedom, a number between 1 and 10^10, excluding 10^10. |
+| 3 | deg_freedom2 | number \| range/array | Yes | Is the denominator degrees of freedom, a number between 1 and 10^10, excluding 10^10. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns inverse of F distribution.
+Returns the inverse of the (left-tailed) F probability distribution: if p = F.DIST(x,...), then F.INV(p,...) = x.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -34,7 +34,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns inverse of F distribution.
+> Returns the inverse of the (left-tailed) F probability distribution: if p = F.DIST(x,...), then F.INV(p,...) = x.
 
 
 ## Type Coercion & Edge Cases
@@ -56,7 +56,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=F.INV(0.9, 3, 10)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=F.INV(..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

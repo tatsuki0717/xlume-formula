@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns complementary values of the Gaussian error integral between x and infinity.
+Returns the complementary error function.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Returns complementary values of the Gaussian error integral between x and infini
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | x | number \| string \| boolean \| range/array | Yes | The lower bound of the integral, calculated from this value to infinity. |
+| 1 | x | number \| string \| boolean \| range/array | Yes | Is the lower bound for integrating ERF. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns complementary values of the Gaussian error integral between x and infinity.
+Returns the complementary error function.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns complementary values of the Gaussian error integral between x and infinity.
+> Returns the complementary error function.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=ERFC(1)`
-- `=ERFC(0.5)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=ERFC(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

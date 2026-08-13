@@ -8,7 +8,7 @@
 - **Dynamic array:** Yes
 
 ## Description
-Creates a miniature chart contained within a single cell.
+See upstream spreadsheet function documentation.
 
 ## Google Sheets Syntax
 ```excel

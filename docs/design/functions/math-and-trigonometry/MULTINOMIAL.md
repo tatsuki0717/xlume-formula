@@ -7,23 +7,23 @@
 - **Volatile:** No
 
 ## Description
-Returns number of multiset combinations.
+Returns the multinomial of a set of numbers.
 
 ## Excel Syntax
 ```excel
-=MULTINOMIAL(number1, [number2], ...)
+=MULTINOMIAL(value1, [value2], ...)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number1 | number \| string \| range/array \| boolean (repeatable) | Yes | A non-negative number, cell reference, or range; each value is truncated to an integer. Further numbers or ranges can be passed as additional arguments. |
+| 1 | values | number \| string \| range/array \| boolean (repeatable) | Yes | List of parameters, whose elements are 1 to 255 values for which you want the multinomial. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns number of multiset combinations.
+Returns the multinomial of a set of numbers.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns number of multiset combinations.
+> Returns the multinomial of a set of numbers.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=MULTINOMIAL(2, 3, 4)`
-- `=MULTINOMIAL(A1:A3)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=MULTINOMIAL(1, 2, 3)`
 
 ## Test Cases
 | Input | Expected | Purpose |

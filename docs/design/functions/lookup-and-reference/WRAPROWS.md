@@ -3,7 +3,7 @@
 ## Metadata
 - **Category:** Lookup & Reference
 - **Priority tags:** DA
-- **Scope:** implement
+- **Scope:** deferred
 - **Volatile:** No
 - **Dynamic array:** Yes
 
@@ -26,11 +26,11 @@ Wraps a row or column of values by row into a two-dimensional array.
 Dynamic array
 
 ## Behavior / Algorithm
-Implemented in the engine (Requires dynamic-array / spill support).
+Implementation is deferred (Requires dynamic-array / spill support).
 
 High-level behavior: Wraps a row or column of values by row into a two-dimensional array.
 
-See the corresponding source implementation for the detailed algorithm.
+Detailed step-by-step algorithm, type coercion and edge-case handling will be added when this function is prioritized.
 
 ## Type Coercion & Edge Cases
 - Numbers provided as text are coerced to numeric values when the function expects a number.

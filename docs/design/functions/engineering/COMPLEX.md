@@ -7,25 +7,25 @@
 - **Volatile:** No
 
 ## Description
-Returns a complex number built from its real and imaginary parts.
+Converts real and imaginary coefficients into a complex number.
 
 ## Excel Syntax
 ```excel
-=COMPLEX(real_num, i_num, [suffix])
+=COMPLEX(real_num, i_num, suffix)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | real_num | number \| string \| boolean \| range/array | Yes | The real coefficient of the complex number. |
-| 2 | i_num | number \| string \| boolean \| range/array | Yes | The imaginary coefficient of the complex number. |
-| 3 | suffix | number \| string \| boolean \| range/array | No | The suffix used for the imaginary unit, either "i" or "j"; defaults to "i" when omitted. |
+| 1 | real_num | number \| string \| boolean \| range/array | Yes | Is the real coefficient of the complex number. |
+| 2 | i_num | number \| string \| boolean \| range/array | Yes | Is the imaginary coefficient of the complex number. |
+| 3 | suffix | number \| string \| boolean \| range/array | Yes | Is the suffix for the imaginary component of the complex number. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns a complex number built from its real and imaginary parts.
+Converts real and imaginary coefficients into a complex number.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -34,7 +34,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns a complex number built from its real and imaginary parts.
+> Converts real and imaginary coefficients into a complex number.
 
 
 ## Type Coercion & Edge Cases
@@ -56,8 +56,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=COMPLEX(3, 4)`
-- `=COMPLEX(2, -1, "j")`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=COMPLEX(..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

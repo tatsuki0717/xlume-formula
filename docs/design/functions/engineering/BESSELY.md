@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns the value of the Bessel function of the second kind, Yn(x).
+Returns the Bessel function Yn(x).
 
 ## Excel Syntax
 ```excel
@@ -17,14 +17,14 @@ Returns the value of the Bessel function of the second kind, Yn(x).
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | x | number \| string \| boolean \| range/array | Yes | The value at which the Bessel function is evaluated; must be greater than 0. |
-| 2 | n | number \| string \| boolean \| range/array | Yes | The order of the Bessel function; a non-negative integer. |
+| 1 | x | number \| string \| boolean \| range/array | Yes | Is the value at which to evaluate the function. |
+| 2 | n | number \| string \| boolean \| range/array | Yes | Is the order of the function. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the value of the Bessel function of the second kind, Yn(x).
+Returns the Bessel function Yn(x).
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -33,7 +33,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the value of the Bessel function of the second kind, Yn(x).
+> Returns the Bessel function Yn(x).
 
 
 ## Type Coercion & Edge Cases
@@ -55,7 +55,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=BESSELY(1.5, 1)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=BESSELY(..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

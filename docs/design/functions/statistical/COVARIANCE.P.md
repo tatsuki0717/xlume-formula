@@ -7,33 +7,28 @@
 - **Volatile:** No
 
 ## Description
-Returns the covariance between two data sets, population normalized.
+population covariance
 
 ## Excel Syntax
 ```excel
-=COVARIANCE.P(data1, data2)
+=COVARIANCE.P()
 ```
 
 ## Arguments
-| # | Name | Type | Required? | Description |
-|---|---|---|---|---|
-| 1 | data1 | number \| range/array | Yes | The first range of numeric values. |
-| 2 | data2 | number \| range/array | Yes | The second range of numeric values, matching the size of data1. |
+This function takes no arguments.
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the covariance between two data sets, population normalized.
+population covariance
 
 High-level algorithm:
-1. Validate argument count and coerce each argument according to its documented type.
-2. Propagate any input errors (`#VALUE!`, `#NUM!`, etc.) before computation.
-3. Execute the core calculation described below.
-4. Apply final coercion to the documented return type and return the result.
+1. Execute the core calculation.
+2. Return the result.
 
 Core calculation:
-> Returns the covariance between two data sets, population normalized.
+> population covariance
 
 
 ## Type Coercion & Edge Cases
@@ -55,7 +50,7 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=COVARIANCE.P(A1:A10, B1:B10)`
+TBD — add representative Excel examples during implementation.
 
 ## Test Cases
 | Input | Expected | Purpose |

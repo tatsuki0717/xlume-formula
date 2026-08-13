@@ -7,25 +7,25 @@
 - **Volatile:** No
 
 ## Description
-Computes the difference between two date values, in fraction of years.
+Returns the year fraction representing the number of whole days between start\_date and end\_date.
 
 ## Excel Syntax
 ```excel
-=YEARFRAC(start_date, end_date, [basis])
+=YEARFRAC(start_date, end_date, basis)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | start_date | number \| string \| boolean \| range/array | Yes | One of the two boundary dates of the period; the implementation should reorder the arguments so the result is never negative. |
-| 2 | end_date | number \| string \| boolean \| range/array | Yes | The other boundary date of the period. |
-| 3 | basis | number \| string \| boolean \| range/array | No | A basis code selecting the day-count convention: 0 = US 30/360 (default), 1 = actual/actual, 2 = actual/360, 3 = actual/365, or 4 = European 30/360. |
+| 1 | start_date | number \| string \| boolean \| range/array | Yes | Is a serial date number that represents the start date. |
+| 2 | end_date | number \| string \| boolean \| range/array | Yes | Is a serial date number that represents the end date. |
+| 3 | basis | number \| string \| boolean \| range/array | Yes | Is the type of day count basis to use. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Computes the difference between two date values, in fraction of years.
+Returns the year fraction representing the number of whole days between start\_date and end\_date.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -34,7 +34,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Computes the difference between two date values, in fraction of years.
+> Returns the year fraction representing the number of whole days between start\_date and end\_date.
 
 
 ## Type Coercion & Edge Cases
@@ -56,8 +56,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=YEARFRAC(DATE(2020,1,1), DATE(2020,7,1))`
-- `=YEARFRAC(A1, A2, 1)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=YEARFRAC(..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

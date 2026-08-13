@@ -17,7 +17,7 @@ Converts degrees to radians.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | angle | number \| range/array | Yes | An angle in degrees to convert to radians. |
+| 1 | angle | number \| range/array | Yes | Is an angle in degrees that you want to convert. |
 
 ## Returns
 Scalar or array depending on arguments
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=RADIANS(180)`
-- `=RADIANS(90)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=RADIANS(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

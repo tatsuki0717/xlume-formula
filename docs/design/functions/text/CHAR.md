@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Converts a number into a character according to the current code table.
+Returns the character specified by the code number from the character set for your computer.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Converts a number into a character according to the current code table.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number | number \| range/array | Yes | A code between 1 and 255 that identifies the character to return. |
+| 1 | number | number \| range/array | Yes | Is a number between 1 and 255 specifying which character you want. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Converts a number into a character according to the current code table.
+Returns the character specified by the code number from the character set for your computer.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Converts a number into a character according to the current code table.
+> Returns the character specified by the code number from the character set for your computer.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=CHAR(65)`
-- `=CHAR(97)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=CHAR(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

@@ -7,25 +7,25 @@
 - **Volatile:** No
 
 ## Description
-Rounds a number down to the nearest multiple of significance, ignoring the sign of significance; for a negative number, mode selects whether it rounds toward or away from zero.
+Rounds a number down, to the nearest integer or to the nearest multiple of significance.
 
 ## Excel Syntax
 ```excel
-=FLOOR.MATH(number, [significance], [mode])
+=FLOOR.MATH(number, significance, mode)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number | number \| range/array | Yes | The value to round down. |
-| 2 | significance | number \| range/array | No | The multiple to round down to. Defaults to 1 when omitted. |
-| 3 | mode | number \| range/array | No | For negative numbers, when exactly 1, rounds toward zero instead of away from it. Every other value, including the default 0, rounds away from zero. |
+| 1 | number | number \| range/array | Yes | Is the value you want to round. |
+| 2 | significance | number \| range/array | Yes | Is the multiple to which you want to round. |
+| 3 | mode | number \| range/array | Yes | When given and nonzero this function will round towards zero. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Rounds a number down to the nearest multiple of significance, ignoring the sign of significance; for a negative number, mode selects whether it rounds toward or away from zero.
+Rounds a number down, to the nearest integer or to the nearest multiple of significance.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -34,7 +34,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Rounds a number down to the nearest multiple of significance, ignoring the sign of significance; for a negative number, mode selects whether it rounds toward or away from zero.
+> Rounds a number down, to the nearest integer or to the nearest multiple of significance.
 
 
 ## Type Coercion & Edge Cases
@@ -56,8 +56,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=FLOOR.MATH(4.7)`
-- `=FLOOR.MATH(-4.7, 2, 1)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=FLOOR.MATH(..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

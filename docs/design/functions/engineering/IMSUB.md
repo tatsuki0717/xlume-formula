@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Subtracts two complex numbers.
+Returns the difference of two complex numbers.
 
 ## Excel Syntax
 ```excel
@@ -17,14 +17,14 @@ Subtracts two complex numbers.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | inumber1 | number \| string \| boolean \| range/array | Yes | The complex number to subtract from, given as text such as "3+4i". |
-| 2 | inumber2 | number \| string \| boolean \| range/array | Yes | The complex number to subtract, given as text such as "1+2i". |
+| 1 | inumber1 | number \| string \| boolean \| range/array | Yes | Is the complex number from which to subtract inumber2. |
+| 2 | inumber2 | number \| string \| boolean \| range/array | Yes | Is the complex number to subtract from inumber1. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Subtracts two complex numbers.
+Returns the difference of two complex numbers.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -33,7 +33,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Subtracts two complex numbers.
+> Returns the difference of two complex numbers.
 
 
 ## Type Coercion & Edge Cases
@@ -55,7 +55,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=IMSUB("3+4i", "1+2i")`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=IMSUB(..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

@@ -3,33 +3,30 @@
 ## Metadata
 - **Category:** Lookup & Reference
 - **Priority tags:** DA
-- **Scope:** implement
+- **Scope:** deferred
 - **Volatile:** No
 - **Dynamic array:** Yes
 
 ## Description
-Filters an array, based on multiple conditions (boolean arrays).
+filter array
 
 ## Excel Syntax
 ```excel
-=FILTER(source_array, bool_array1, [bool_array2], ...)
+=FILTER()
 ```
 
 ## Arguments
-| # | Name | Type | Required? | Description |
-|---|---|---|---|---|
-| 1 | source_array | range/array | Yes | The range of values to filter; it must be a single row or a single column (a two-dimensional range is not supported). |
-| 2 | bool_array1 | boolean \| range/array (repeatable) | Yes | A range of boolean values, with the same dimensions as source_array, marking which rows or columns to keep; only entries where every boolean array is TRUE are returned. Further boolean arrays can be passed as additional arguments, and all of them must evaluate to TRUE for an entry to be kept. |
+This function takes no arguments.
 
 ## Returns
 Dynamic array
 
 ## Behavior / Algorithm
-Implemented in the engine (Requires dynamic-array / spill support).
+Implementation is deferred (Requires dynamic-array / spill support).
 
-High-level behavior: Filters an array, based on multiple conditions (boolean arrays).
+High-level behavior: filter array
 
-See the corresponding source implementation for the detailed algorithm.
+Detailed step-by-step algorithm, type coercion and edge-case handling will be added when this function is prioritized.
 
 ## Type Coercion & Edge Cases
 - Numbers provided as text are coerced to numeric values when the function expects a number.
@@ -50,9 +47,7 @@ See the corresponding source implementation for the detailed algorithm.
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=FILTER(A1:C1, A2:C2)`
-- `=FILTER(A1:A5, A1:A5>10)`
-- `=FILTER(A1:C1, A2:C2, A3:C3)`
+TBD — add representative Excel examples during implementation.
 
 ## Test Cases
 | Input | Expected | Purpose |

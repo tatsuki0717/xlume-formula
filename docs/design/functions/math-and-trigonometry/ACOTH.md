@@ -17,7 +17,7 @@ Returns the inverse hyperbolic cotangent of a number.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number | number \| range/array | Yes | A number with an absolute value greater than 1 whose inverse hyperbolic cotangent is returned. |
+| 1 | number | number \| range/array | Yes | Is the hyperbolic cotangent of the angle that you want. |
 
 ## Returns
 Scalar or array depending on arguments
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=ACOTH(2)`
-- `=ACOTH(-5)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=ACOTH(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

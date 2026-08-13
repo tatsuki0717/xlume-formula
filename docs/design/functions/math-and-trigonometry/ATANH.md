@@ -17,7 +17,7 @@ Returns the inverse hyperbolic tangent of a number.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number | number \| range/array | Yes | A number between -1 and 1 (exclusive) whose inverse hyperbolic tangent is returned. |
+| 1 | number | number \| range/array | Yes | Is any real number between -1 and 1 excluding -1 and 1. |
 
 ## Returns
 Scalar or array depending on arguments
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=ATANH(0.5)`
-- `=ATANH(-0.2)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=ATANH(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

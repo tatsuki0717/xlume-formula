@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns #N/A! error value.
+Returns the error value \#N/A (value not available).
 
 ## Excel Syntax
 ```excel
@@ -21,14 +21,14 @@ This function takes no arguments.
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns #N/A! error value.
+Returns the error value \#N/A (value not available).
 
 High-level algorithm:
 1. Execute the core calculation.
 2. Return the result.
 
 Core calculation:
-> Returns #N/A! error value.
+> Returns the error value \#N/A (value not available).
 
 
 ## Type Coercion & Edge Cases
@@ -50,7 +50,7 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=NA()`
+TBD — add representative Excel examples during implementation.
 
 ## Test Cases
 | Input | Expected | Purpose |

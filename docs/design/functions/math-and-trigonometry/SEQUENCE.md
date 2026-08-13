@@ -3,25 +3,20 @@
 ## Metadata
 - **Category:** Math & Trigonometry
 - **Priority tags:** DA
-- **Scope:** implement
+- **Scope:** deferred
 - **Volatile:** No
 - **Dynamic array:** Yes
 
 ## Description
-Returns an array of sequential numbers.
+generate sequence array
 
 ## Excel Syntax
 ```excel
-=SEQUENCE(rows, [cols], [start], [step])
+=SEQUENCE()
 ```
 
 ## Arguments
-| # | Name | Type | Required? | Description |
-|---|---|---|---|---|
-| 1 | rows | number \| range/array | Yes | The number of rows in the returned array. The size must be resolvable at parse time, so use a literal (e.g. 3); a cell reference or formula yields a #VALUE! error whenever the result would span more than one cell, since the array size cannot be determined at parse time. |
-| 2 | cols | number \| range/array | No | The number of columns in the returned array. Defaults to 1 when omitted; like rows, it must be resolvable at parse time. |
-| 3 | start | any | No | The first value of the sequence. Defaults to 1 when omitted. |
-| 4 | step | any | No | The increment between consecutive values, filled row by row. Defaults to 1 when omitted. |
+This function takes no arguments.
 
 ## Returns
 Dynamic array
@@ -29,7 +24,7 @@ Dynamic array
 ## Behavior / Algorithm
 Implementation is deferred (Requires dynamic-array / spill support).
 
-High-level behavior: Returns an array of sequential numbers.
+High-level behavior: generate sequence array
 
 Detailed step-by-step algorithm, type coercion and edge-case handling will be added when this function is prioritized.
 
@@ -52,9 +47,7 @@ Detailed step-by-step algorithm, type coercion and edge-case handling will be ad
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=SEQUENCE(4)`
-- `=SEQUENCE(3, 2)`
-- `=SEQUENCE(3, 1, 10, 5)`
+TBD — add representative Excel examples during implementation.
 
 ## Test Cases
 | Input | Expected | Purpose |

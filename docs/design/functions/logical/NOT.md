@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Complements (inverts) logical_value.
+Changes FALSE to TRUE, or TRUE to FALSE.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Complements (inverts) logical_value.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | logical | boolean \| range/array | Yes | The logical value or expression to invert: TRUE becomes FALSE and vice versa. |
+| 1 | logical | boolean \| range/array | Yes | Is a value or expression that can be evaluated to TRUE or FALSE. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Complements (inverts) logical_value.
+Changes FALSE to TRUE, or TRUE to FALSE.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Complements (inverts) logical_value.
+> Changes FALSE to TRUE, or TRUE to FALSE.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=NOT(TRUE())`
-- `=NOT(A1>10)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=NOT(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

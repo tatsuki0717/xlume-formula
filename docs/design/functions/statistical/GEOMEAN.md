@@ -7,23 +7,23 @@
 - **Volatile:** No
 
 ## Description
-Returns the geometric average.
+Returns the geometric mean of an array or range of positive numeric data.
 
 ## Excel Syntax
 ```excel
-=GEOMEAN(number1, [number2], ...)
+=GEOMEAN(value1, [value2], ...)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number1 | number \| range/array (repeatable) | Yes | A number, cell reference, or range to average geometrically; all values must be positive, otherwise the result is #NUM!. Further numbers or ranges can be passed as additional arguments. |
+| 1 | values | number \| range/array (repeatable) | Yes | List of parameters, whose elements are 1 to 255 numbers or names, arrays, or references that contain numbers for which you want the mean. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the geometric average.
+Returns the geometric mean of an array or range of positive numeric data.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the geometric average.
+> Returns the geometric mean of an array or range of positive numeric data.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=GEOMEAN(1, 2, 3)`
-- `=GEOMEAN(A1:A10)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=GEOMEAN(1, 2, 3)`
 
 ## Test Cases
 | Input | Expected | Purpose |

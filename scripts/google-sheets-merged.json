@@ -3,7 +3,6 @@
     "name": "ABS",
     "category": "Math",
     "params": "(value)",
-    "description": "Returns the absolute value of a number.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -12,7 +11,6 @@
     "name": "ACCRINT",
     "category": "Financial",
     "params": "(issue, first_payment, settlement, rate, redemption, frequency, [day_count_convention])",
-    "description": "Calculates the accrued interest of a security that has periodic payments.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -21,7 +19,6 @@
     "name": "ACCRINTM",
     "category": "Financial",
     "params": "(issue, maturity, rate, [redemption], [day_count_convention])",
-    "description": "Calculates the accrued interest of a security that pays interest at maturity.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -30,7 +27,6 @@
     "name": "ACOS",
     "category": "Math",
     "params": "(value)",
-    "description": "Returns the inverse cosine of a value, in radians.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -39,7 +35,6 @@
     "name": "ACOSH",
     "category": "Math",
     "params": "(value)",
-    "description": "Returns the inverse hyperbolic cosine of a number.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -48,7 +43,6 @@
     "name": "ACOT",
     "category": "Math",
     "params": "(value)",
-    "description": "Returns the inverse cotangent of a value, in radians. .",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -57,7 +51,6 @@
     "name": "ACOTH",
     "category": "Math",
     "params": "(value)",
-    "description": "Returns the inverse hyperbolic cotangent of a value, in radians. Must not be between -1 and 1, inclusive. .",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -66,7 +59,6 @@
     "name": "ADD",
     "category": "Operator",
     "params": "(value1, value2)",
-    "description": "Returns the sum of two numbers. Equivalent to the `+` operator.",
     "source": "both",
     "registered": false,
     "resolved": false
@@ -75,7 +67,6 @@
     "name": "ADDRESS",
     "category": "Lookup",
     "params": "(row, column, [absolute_relative_mode], [use_a1_notation], [sheet])",
-    "description": "Returns a cell reference as a string.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -84,7 +75,6 @@
     "name": "AI",
     "category": "AI",
     "params": "(prompt, [optional range])",
-    "description": "Generates text, summarizes information, categorizes information, and accesses real-time information. This function is a Google Workspace with Gemini feature",
     "source": "both",
     "registered": false,
     "resolved": false
@@ -93,7 +83,6 @@
     "name": "AMORLINC",
     "category": "Financial",
     "params": "(cost, purchase_date, first_period_end, salvage, period, rate, [basis])",
-    "description": "Returns the depreciation for an accounting period, or the prorated depreciation if the asset was purchased in the middle of a period. .",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -102,7 +91,6 @@
     "name": "AND",
     "category": "Logical",
     "params": "(logical_expression1, [logical_expression2, ...])",
-    "description": "Returns true if all of the provided arguments are logically true, and false if any of the provided arguments are logically false.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -111,7 +99,6 @@
     "name": "ARABIC",
     "category": "Text",
     "params": "(roman_numeral)",
-    "description": "Computes the value of a Roman numeral.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -120,7 +107,6 @@
     "name": "ARRAY_CONSTRAIN",
     "category": "Array",
     "params": "(input_range, num_rows, num_cols)",
-    "description": "Constrains an array result to a specified size.",
     "source": "both",
     "registered": false,
     "resolved": false
@@ -129,7 +115,6 @@
     "name": "ARRAYFORMULA",
     "category": "Google",
     "params": "(array_formula)",
-    "description": "Enables the display of values returned from an array formula into multiple rows and/or columns and the use of non-array functions with arrays.",
     "source": "both",
     "registered": false,
     "resolved": false
@@ -138,7 +123,6 @@
     "name": "ASC",
     "category": "Text",
     "params": "(text)",
-    "description": "Converts full-width ASCII and katakana characters to their half-width counterparts. All standard-width characters will remain unchanged. .",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -147,7 +131,6 @@
     "name": "ASIN",
     "category": "Math",
     "params": "(value)",
-    "description": "Returns the inverse sine of a value, in radians.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -156,7 +139,6 @@
     "name": "ASINH",
     "category": "Math",
     "params": "(value)",
-    "description": "Returns the inverse hyperbolic sine of a number.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -165,7 +147,6 @@
     "name": "ATAN",
     "category": "Math",
     "params": "(value)",
-    "description": "Returns the inverse tangent of a value, in radians.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -174,7 +155,6 @@
     "name": "ATAN2",
     "category": "Math",
     "params": "(x, y)",
-    "description": "Returns the angle between the x-axis and a line segment from the origin (0,0) to specified coordinate pair (`x`,`y`), in radians.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -183,7 +163,6 @@
     "name": "ATANH",
     "category": "Math",
     "params": "(value)",
-    "description": "Returns the inverse hyperbolic tangent of a number.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -192,7 +171,6 @@
     "name": "AVEDEV",
     "category": "Statistical",
     "params": "(value1, [value2, ...])",
-    "description": "Calculates the average of the magnitudes of deviations of data from a dataset's mean.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -201,7 +179,6 @@
     "name": "AVERAGE",
     "category": "Statistical",
     "params": "(value1, [value2, ...])",
-    "description": "Returns the numerical average value in a dataset, ignoring text.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -210,7 +187,6 @@
     "name": "AVERAGE.WEIGHTED",
     "category": "Statistical",
     "params": "(values, weights, [additional values], [additional weights])",
-    "description": "Finds the weighted average of a set of values, given the values and the corresponding weights. .",
     "source": "both",
     "registered": false,
     "resolved": false
@@ -219,7 +195,6 @@
     "name": "AVERAGEA",
     "category": "Statistical",
     "params": "(value1, [value2, ...])",
-    "description": "Returns the numerical average value in a dataset.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -228,7 +203,6 @@
     "name": "AVERAGEIF",
     "category": "Statistical",
     "params": "(criteria_range, criterion, [average_range])",
-    "description": "Returns the average of a range depending on criteria.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -237,7 +211,6 @@
     "name": "AVERAGEIFS",
     "category": "Statistical",
     "params": "(average_range, criteria_range1, criterion1, [criteria_range2], [criterion2])",
-    "description": "Returns the average of a range depending on multiple criteria.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -246,7 +219,6 @@
     "name": "BASE",
     "category": "Math",
     "params": "BASE(value, base, [min_length])",
-    "description": "Converts a number into a text representation in another base, for example, base 2 for binary. .",
     "source": "google",
     "registered": false,
     "resolved": true
@@ -255,7 +227,6 @@
     "name": "BETA.DIST",
     "category": "Statistical",
     "params": "(value, alpha, beta, [cumulative], [lower_bound], [upper_bound])",
-    "description": "Returns the probability of a given value as defined by the beta distribution function. .",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -264,7 +235,6 @@
     "name": "BETA.INV",
     "category": "Statistical",
     "params": "(probability, alpha, beta, [lower_bound], [upper_bound])",
-    "description": "Returns the value of the inverse beta distribution function for a given probability. .",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -273,7 +243,6 @@
     "name": "BETADIST",
     "category": "Statistical",
     "params": "(value, alpha, beta, [lower_bound], [upper_bound])",
-    "description": "See\u00a0BETA.DIST.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -282,7 +251,6 @@
     "name": "BETAINV",
     "category": "Statistical",
     "params": "(probability, alpha, beta, [lower_bound], [upper_bound])",
-    "description": "See\u00a0BETA.INV",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -291,7 +259,6 @@
     "name": "BIN2DEC",
     "category": "Engineering",
     "params": "(signed_binary_number)",
-    "description": "Converts a signed binary number to decimal format.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -300,7 +267,6 @@
     "name": "BIN2HEX",
     "category": "Engineering",
     "params": "(signed_binary_number, [significant_digits])",
-    "description": "Converts a signed binary number to signed hexadecimal format.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -309,7 +275,6 @@
     "name": "BIN2OCT",
     "category": "Engineering",
     "params": "(signed_binary_number, [significant_digits])",
-    "description": "Converts a signed binary number to signed octal format.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -318,7 +283,6 @@
     "name": "BINOM.DIST",
     "category": "Statistical",
     "params": "(num_successes, num_trials, prob_success, [cumulative])",
-    "description": "See BINOMDIST",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -327,7 +291,6 @@
     "name": "BINOM.INV",
     "category": "Statistical",
     "params": "(num_trials, prob_success, target_prob)",
-    "description": "See CRITBINOM",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -336,7 +299,6 @@
     "name": "BINOMDIST",
     "category": "Statistical",
     "params": "(num_successes, num_trials, prob_success, [cumulative])",
-    "description": "Calculates the probability of drawing a certain number of successes (or a maximum number of successes) in a certain number of tries given a population of a certain size containing a certain number of successes, with replacement of draws.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -345,7 +307,6 @@
     "name": "BITAND",
     "category": "Engineering",
     "params": "(value1, value2)",
-    "description": "Bitwise boolean AND of two numbers. .",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -354,7 +315,6 @@
     "name": "BITLSHIFT",
     "category": "Engineering",
     "params": "(value, shift_amount)",
-    "description": "Shifts the bits of the input a certain number of places to the left. .",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -363,7 +323,6 @@
     "name": "BITOR",
     "category": "Engineering",
     "params": "(value1, value2)",
-    "description": "Bitwise boolean OR of 2 numbers. .",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -372,7 +331,6 @@
     "name": "BITRSHIFT",
     "category": "Engineering",
     "params": "BITRSHIFT(value, shift_amount)",
-    "description": "Shifts the bits of the input a certain number of places to the right. .",
     "source": "google",
     "registered": false,
     "resolved": true
@@ -381,7 +339,6 @@
     "name": "BITXOR",
     "category": "Engineering",
     "params": "(value1, value2)",
-    "description": "Bitwise XOR (exclusive OR) of 2 numbers. .",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -390,7 +347,6 @@
     "name": "BYCOL",
     "category": "Array",
     "params": "(array_or_range, LAMBDA)",
-    "description": "Groups an array by columns by application of a LAMBDA function to each column.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -399,7 +355,6 @@
     "name": "BYROW",
     "category": "Array",
     "params": "BYROW(array_or_range, LAMBDA)",
-    "description": "Groups an array by rows by application of a LAMBDA function to each row.",
     "source": "google",
     "registered": true,
     "resolved": true
@@ -408,7 +363,6 @@
     "name": "CEILING",
     "category": "Math",
     "params": "(value, [factor])",
-    "description": "Rounds a number up to the nearest integer multiple of specified significance.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -417,7 +371,6 @@
     "name": "CEILING.MATH",
     "category": "Math",
     "params": "(number, [significance], [mode])",
-    "description": "Rounds a number up to the nearest integer multiple of specified significance, with negative numbers rounding toward or away from 0 depending on the mode. .",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -426,7 +379,6 @@
     "name": "CEILING.PRECISE",
     "category": "Math",
     "params": "(number, [significance])",
-    "description": "Rounds a number up to the nearest integer multiple of specified significance. If the number is positive or negative, it is rounded up. .",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -435,7 +387,6 @@
     "name": "CELL",
     "category": "Info",
     "params": "(info_type, reference)",
-    "description": "Returns the requested information about the specified cell.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -444,7 +395,6 @@
     "name": "CHAR",
     "category": "Text",
     "params": "(table_number)",
-    "description": "Convert a number into a character according to the current Unicode table.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -453,7 +403,6 @@
     "name": "CHIDIST",
     "category": "Statistical",
     "params": "(x, degrees_freedom)",
-    "description": "Calculates the right-tailed chi-squared distribution, often used in hypothesis testing.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -462,7 +411,6 @@
     "name": "CHIINV",
     "category": "Statistical",
     "params": "(probability, degrees_freedom)",
-    "description": "Calculates the inverse of the right-tailed chi-squared distribution.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -471,7 +419,6 @@
     "name": "CHISQ.DIST",
     "category": "Statistical",
     "params": "(x, degrees_freedom, cumulative)",
-    "description": "Calculates the left-tailed chi-squared distribution, often used in hypothesis testing.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -480,7 +427,6 @@
     "name": "CHISQ.DIST.RT",
     "category": "Statistical",
     "params": "(x, degrees_freedom)",
-    "description": "Calculates the right-tailed chi-squared distribution, which is commonly used in hypothesis testing.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -489,7 +435,6 @@
     "name": "CHISQ.INV",
     "category": "Statistical",
     "params": "(probability, degrees_freedom)",
-    "description": "Calculates the inverse of the left-tailed chi-squared distribution.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -498,7 +443,6 @@
     "name": "CHISQ.INV.RT",
     "category": "Statistical",
     "params": "(probability, degrees_freedom)",
-    "description": "Calculates the inverse of the right-tailed chi-squared distribution.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -507,7 +451,6 @@
     "name": "CHISQ.TEST",
     "category": "Statistical",
     "params": "(observed_range, expected_range)",
-    "description": "See CHITEST",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -516,7 +459,6 @@
     "name": "CHITEST",
     "category": "Statistical",
     "params": "(observed_range, expected_range)",
-    "description": "Returns the probability associated with a Pearson\u2019s chi-squared test on the two ranges of data. Determines the likelihood that the observed categorical data is drawn from an expected distribution.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -525,7 +467,6 @@
     "name": "CHOOSE",
     "category": "Lookup",
     "params": "(index, choice1, choice2, ...)",
-    "description": "Returns an element from a list of choices based on index.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -534,7 +475,6 @@
     "name": "CHOOSECOLS",
     "category": "Array",
     "params": "CHOOSECOLS(array, col_num1, [col_num2])",
-    "description": "Creates a new array from the selected columns in the existing range.",
     "source": "google",
     "registered": true,
     "resolved": true
@@ -543,7 +483,6 @@
     "name": "CHOOSEROWS",
     "category": "Array",
     "params": "CHOOSEROWS(array, row_num1, [row_num2])",
-    "description": "Creates a new array from the selected rows in the existing range.",
     "source": "google",
     "registered": true,
     "resolved": true
@@ -552,7 +491,6 @@
     "name": "CLEAN",
     "category": "Text",
     "params": "(text)",
-    "description": "Returns the text with the non-printable ASCII characters removed.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -561,7 +499,6 @@
     "name": "CODE",
     "category": "Text",
     "params": "(string)",
-    "description": "Returns the numeric Unicode map value of the first character in the string provided.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -570,7 +507,6 @@
     "name": "COLUMN",
     "category": "Lookup",
     "params": "(cell_reference)",
-    "description": "Returns the column number of a specified cell, with `A=1`.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -579,7 +515,6 @@
     "name": "COLUMNS",
     "category": "Lookup",
     "params": "(range)",
-    "description": "Returns the number of columns in a specified array or range.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -588,7 +523,6 @@
     "name": "COMBIN",
     "category": "Math",
     "params": "(n, k)",
-    "description": "Returns the number of ways to choose some number of objects from a pool of a given size of objects.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -597,7 +531,6 @@
     "name": "COMBINA",
     "category": "Math",
     "params": "(n, k)",
-    "description": "Returns the number of ways to choose some number of objects from a pool of a given size of objects, including ways that choose the same object multiple times. .",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -606,7 +539,6 @@
     "name": "COMPLEX",
     "category": "Engineering",
     "params": "(real_part, imaginary_part, [suffix])",
-    "description": "Creates a complex number given real and imaginary coefficients.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -615,7 +547,6 @@
     "name": "CONCAT",
     "category": "Operator",
     "params": "(value1, value2)",
-    "description": "Returns the concatenation of two values. Equivalent to the `&` operator.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -624,7 +555,6 @@
     "name": "CONCATENATE",
     "category": "Text",
     "params": "(string1, [string2])",
-    "description": "Appends strings to one another.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -633,7 +563,6 @@
     "name": "CONFIDENCE",
     "category": "Statistical",
     "params": "(alpha, standard_deviation, pop_size)",
-    "description": "See CONFIDENCE.NORM",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -642,7 +571,6 @@
     "name": "CONFIDENCE.NORM",
     "category": "Statistical",
     "params": "(alpha, standard_deviation, pop_size)",
-    "description": "Calculates the width of half the confidence interval for a normal distribution. .",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -651,7 +579,6 @@
     "name": "CONFIDENCE.T",
     "category": "Statistical",
     "params": "(alpha, standard_deviation, size)",
-    "description": "Calculates the width of half the confidence interval for a Student\u2019s t-distribution. .",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -660,7 +587,6 @@
     "name": "CONVERT",
     "category": "Parser",
     "params": "(value, start_unit, end_unit)",
-    "description": "Converts a numeric value to a different unit of measure.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -669,7 +595,6 @@
     "name": "CORREL",
     "category": "Statistical",
     "params": "(data_y, data_x)",
-    "description": "Calculates r, the Pearson product-moment correlation coefficient of a dataset.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -678,7 +603,6 @@
     "name": "COS",
     "category": "Math",
     "params": "(angle)",
-    "description": "Returns the cosine of an angle provided in radians.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -687,7 +611,6 @@
     "name": "COSH",
     "category": "Math",
     "params": "(value)",
-    "description": "Returns the hyperbolic cosine of any real number.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -696,7 +619,6 @@
     "name": "COT",
     "category": "Math",
     "params": "(angle)",
-    "description": "Cotangent of an angle provided in radians. .",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -705,7 +627,6 @@
     "name": "COTH",
     "category": "Math",
     "params": "(value)",
-    "description": "Returns the hyperbolic cotangent of any real number. .",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -714,7 +635,6 @@
     "name": "COUNT",
     "category": "Statistical",
     "params": "(value1, [value2, ...])",
-    "description": "Returns a count of the number of numeric values in a dataset.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -723,7 +643,6 @@
     "name": "COUNTA",
     "category": "Statistical",
     "params": "(value1, [value2, ...])",
-    "description": "Returns a count of the number of values in a dataset.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -732,7 +651,6 @@
     "name": "COUNTBLANK",
     "category": "Math",
     "params": "(range)",
-    "description": "Returns the number of empty cells in a given range.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -741,7 +659,6 @@
     "name": "COUNTIF",
     "category": "Math",
     "params": "(range, criterion)",
-    "description": "Returns a conditional count across a range.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -750,7 +667,6 @@
     "name": "COUNTIFS",
     "category": "Math",
     "params": "(criteria_range1, criterion1, [criteria_range2, criterion2, ...])",
-    "description": "Returns the count of a range depending on multiple criteria.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -759,7 +675,6 @@
     "name": "COUNTUNIQUE",
     "category": "Math",
     "params": "(value1, [value2, ...])",
-    "description": "Counts the number of unique values in a list of specified values and ranges.",
     "source": "both",
     "registered": false,
     "resolved": false
@@ -768,7 +683,6 @@
     "name": "COUPDAYBS",
     "category": "Financial",
     "params": "(settlement, maturity, frequency, [day_count_convention])",
-    "description": "Calculates the number of days from the first coupon, or interest payment, until settlement.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -777,7 +691,6 @@
     "name": "COUPDAYS",
     "category": "Financial",
     "params": "(settlement, maturity, frequency, [day_count_convention])",
-    "description": "Calculates the number of days in the coupon, or interest payment, period that contains the specified settlement date.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -786,7 +699,6 @@
     "name": "COUPDAYSNC",
     "category": "Financial",
     "params": "(settlement, maturity, frequency, [day_count_convention])",
-    "description": "Calculates the number of days from the settlement date until the next coupon, or interest payment.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -795,7 +707,6 @@
     "name": "COUPNCD",
     "category": "Financial",
     "params": "(settlement, maturity, frequency, [day_count_convention])",
-    "description": "Calculates next coupon, or interest payment, date after the settlement date.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -804,7 +715,6 @@
     "name": "COUPNUM",
     "category": "Financial",
     "params": "(settlement, maturity, frequency, [day_count_convention])",
-    "description": "Calculates the number of coupons, or interest payments, between the settlement date and the maturity date of the investment.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -813,7 +723,6 @@
     "name": "COUPPCD",
     "category": "Financial",
     "params": "(settlement, maturity, frequency, [day_count_convention])",
-    "description": "Calculates last coupon, or interest payment, date before the settlement date.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -822,7 +731,6 @@
     "name": "COVAR",
     "category": "Statistical",
     "params": "(data_y, data_x)",
-    "description": "Calculates the covariance of a dataset.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -831,7 +739,6 @@
     "name": "COVARIANCE.P",
     "category": "Statistical",
     "params": "(data_y, data_x)",
-    "description": "See COVAR",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -840,7 +747,6 @@
     "name": "COVARIANCE.S",
     "category": "Statistical",
     "params": "(data_y, data_x)",
-    "description": "Calculates the covariance of a dataset, where the dataset is a sample of the total population. .",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -849,7 +755,6 @@
     "name": "CRITBINOM",
     "category": "Statistical",
     "params": "(num_trials, prob_success, target_prob)",
-    "description": "Calculates the smallest value for which the cumulative binomial distribution is greater than or equal to a specified criteria.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -858,7 +763,6 @@
     "name": "CSC",
     "category": "Math",
     "params": "(angle)",
-    "description": "Returns the cosecant of an angle provided in radians. .",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -867,7 +771,6 @@
     "name": "CSCH",
     "category": "Math",
     "params": "CSCH(value)",
-    "description": "The CSCH function returns the hyperbolic cosecant of any real number. .",
     "source": "google",
     "registered": false,
     "resolved": true
@@ -876,7 +779,6 @@
     "name": "CUMIPMT",
     "category": "Financial",
     "params": "(rate, number_of_periods, present_value, first_period, last_period, end_or_beginning)",
-    "description": "Calculates the cumulative interest over a range of payment periods for an investment based on constant-amount periodic payments and a constant interest rate.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -885,7 +787,6 @@
     "name": "CUMPRINC",
     "category": "Financial",
     "params": "(rate, number_of_periods, present_value, first_period, last_period, end_or_beginning)",
-    "description": "Calculates the cumulative principal paid over a range of payment periods for an investment based on constant-amount periodic payments and a constant interest rate.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -894,7 +795,6 @@
     "name": "DATE",
     "category": "Date",
     "params": "(year, month, day)",
-    "description": "Converts a provided year, month, and day into a date.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -903,7 +803,6 @@
     "name": "DATEDIF",
     "category": "Date",
     "params": "(start_date, end_date, unit)",
-    "description": "Calculates the number of days, months, or years between two dates.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -912,7 +811,6 @@
     "name": "DATEVALUE",
     "category": "Date",
     "params": "(date_string)",
-    "description": "Converts a provided date string in a known format to a date value.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -921,7 +819,6 @@
     "name": "DAVERAGE",
     "category": "Database",
     "params": "(database, field, criteria)",
-    "description": "Returns the average of a set of values selected from a database table-like array or range using a SQL-like query.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -930,7 +827,6 @@
     "name": "DAY",
     "category": "Date",
     "params": "(date)",
-    "description": "Returns the day of the month that a specific date falls on, in numeric format.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -939,7 +835,6 @@
     "name": "DAYS",
     "category": "Date",
     "params": "(end_date, start_date)",
-    "description": "Returns the number of days between two dates. .",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -948,7 +843,6 @@
     "name": "DAYS360",
     "category": "Date",
     "params": "(start_date, end_date, [method])",
-    "description": "Returns the difference between two days based on the 360 day year used in some financial interest calculations.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -957,7 +851,6 @@
     "name": "DB",
     "category": "Financial",
     "params": "(cost, salvage, life, period, [month])",
-    "description": "Calculates the depreciation of an asset for a specified period using the arithmetic declining balance method.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -966,7 +859,6 @@
     "name": "DCOUNT",
     "category": "Database",
     "params": "(database, field, criteria)",
-    "description": "Counts numeric values selected from a database table-like array or range using a SQL-like query.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -975,7 +867,6 @@
     "name": "DCOUNTA",
     "category": "Database",
     "params": "(database, field, [criteria])",
-    "description": "Counts values, including text, selected from a database table-like array or range using a SQL-like query.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -984,7 +875,6 @@
     "name": "DDB",
     "category": "Financial",
     "params": "(cost, salvage, life, period, [factor])",
-    "description": "Calculates the depreciation of an asset for a specified period using the double-declining balance method.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -993,7 +883,6 @@
     "name": "DEC2BIN",
     "category": "Engineering",
     "params": "(decimal_number, [significant_digits])",
-    "description": "Converts a decimal number to signed binary format.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1002,7 +891,6 @@
     "name": "DEC2HEX",
     "category": "Engineering",
     "params": "(decimal_number, [significant_digits])",
-    "description": "Converts a decimal number to signed hexadecimal format.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1011,7 +899,6 @@
     "name": "DEC2OCT",
     "category": "Engineering",
     "params": "(decimal_number, [significant_digits])",
-    "description": "Converts a decimal number to signed octal format.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1020,7 +907,6 @@
     "name": "DECIMAL",
     "category": "Math",
     "params": "(value, base)",
-    "description": "The DECIMAL function converts the text representation of a number in another base, to base 10 (decimal). .",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1029,7 +915,6 @@
     "name": "DEGREES",
     "category": "Math",
     "params": "(angle)",
-    "description": "Converts an angle value in radians to degrees.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -1038,7 +923,6 @@
     "name": "DELTA",
     "category": "Engineering",
     "params": "(number1, [number2])",
-    "description": "Compare two numeric values, returning 1 if they're equal.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1047,7 +931,6 @@
     "name": "DETECTLANGUAGE",
     "category": "Google",
     "params": "(text_or_range)",
-    "description": "Identifies the language used in text within the specified range.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -1056,7 +939,6 @@
     "name": "DEVSQ",
     "category": "Statistical",
     "params": "(value1, [value2])",
-    "description": "Calculates the sum of squares of deviations based on a sample.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1065,7 +947,6 @@
     "name": "DGET",
     "category": "Database",
     "params": "(database, field, criteria)",
-    "description": "Returns a single value from a database table-like array or range using a SQL-like query.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1074,7 +955,6 @@
     "name": "DISC",
     "category": "Financial",
     "params": "(settlement, maturity, price, redemption, [day_count_convention])",
-    "description": "Calculates the discount rate of a security based on price.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1083,7 +963,6 @@
     "name": "DIVIDE",
     "category": "Operator",
     "params": "(dividend, divisor)",
-    "description": "Returns one number divided by another. Equivalent to the `/` operator.",
     "source": "both",
     "registered": false,
     "resolved": false
@@ -1092,7 +971,6 @@
     "name": "DMAX",
     "category": "Database",
     "params": "(database, field, criteria)",
-    "description": "Returns the maximum value selected from a database table-like array or range using a SQL-like query.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1101,7 +979,6 @@
     "name": "DMIN",
     "category": "Database",
     "params": "(database, field, criteria)",
-    "description": "Returns the minimum value selected from a database table-like array or range using a SQL-like query.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1110,7 +987,6 @@
     "name": "DOLLAR",
     "category": "Text",
     "params": "(number, [number_of_places])",
-    "description": "Formats a number into the locale-specific currency format.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1119,7 +995,6 @@
     "name": "DOLLARDE",
     "category": "Financial",
     "params": "(fractional_price, unit)",
-    "description": "Converts a price quotation given as a decimal fraction into a decimal value.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1128,7 +1003,6 @@
     "name": "DOLLARFR",
     "category": "Financial",
     "params": "(decimal_price, unit)",
-    "description": "Converts a price quotation given as a decimal value into a decimal fraction.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1137,7 +1011,6 @@
     "name": "DPRODUCT",
     "category": "Database",
     "params": "(database, field, criteria)",
-    "description": "Returns the product of values selected from a database table-like array or range using a SQL-like query.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1146,7 +1019,6 @@
     "name": "DSTDEV",
     "category": "Database",
     "params": "(database, field, [criteria])",
-    "description": "Returns the standard deviation of a population sample selected from a database table-like array or range using a SQL-like query.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1155,7 +1027,6 @@
     "name": "DSTDEVP",
     "category": "Database",
     "params": "(database, field, [criteria])",
-    "description": "Returns the standard deviation of an entire population selected from a database table-like array or range using a SQL-like query.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1164,7 +1035,6 @@
     "name": "DSUM",
     "category": "Database",
     "params": "(database, field, criteria)",
-    "description": "Returns the sum of values selected from a database table-like array or range using a SQL-like query.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1173,7 +1043,6 @@
     "name": "DURATION",
     "category": "Financial",
     "params": "(settlement, maturity, rate, yield, frequency, [day_count_convention])",
-    "description": "Calculates the number of compounding periods required for an investment of a specified present value appreciating at a given rate to reach a target value.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -1182,7 +1051,6 @@
     "name": "DVAR",
     "category": "Database",
     "params": "(database, field, [criteria])",
-    "description": "Returns the variance of a population sample selected from a database table-like array or range using a SQL-like query.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1191,7 +1059,6 @@
     "name": "DVARP",
     "category": "Database",
     "params": "(database, field, [criteria])",
-    "description": "Returns the variance of an entire population selected from a database table-like array or range using a SQL-like query.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1200,7 +1067,6 @@
     "name": "EDATE",
     "category": "Date",
     "params": "(start_date, months)",
-    "description": "Returns a date a specified number of months before or after another date.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1209,7 +1075,6 @@
     "name": "EFFECT",
     "category": "Financial",
     "params": "(nominal_rate, periods_per_year)",
-    "description": "Calculates the annual effective interest rate given the nominal rate and number of compounding periods per year.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1218,7 +1083,6 @@
     "name": "ENCODEURL",
     "category": "Web",
     "params": "(text)",
-    "description": "Encodes a string of text for the purpose of using in a URL query.\u00a0.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -1227,7 +1091,6 @@
     "name": "EOMONTH",
     "category": "Date",
     "params": "(start_date, months)",
-    "description": "Returns a date representing the last day of a month which falls a specified number of months before or after another date.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -1236,7 +1099,6 @@
     "name": "EPOCHTODATE",
     "category": "Date",
     "params": "(timestamp, [unit])",
-    "description": "Converts a Unix epoch timestamp in seconds, milliseconds, or microseconds to a datetime in UTC.",
     "source": "both",
     "registered": false,
     "resolved": false
@@ -1245,7 +1107,6 @@
     "name": "EQ",
     "category": "Operator",
     "params": "(value1, value2)",
-    "description": "Returns `TRUE` if two specified values are equal and `FALSE` otherwise. Equivalent to the `=` operator.",
     "source": "both",
     "registered": false,
     "resolved": false
@@ -1254,7 +1115,6 @@
     "name": "ERF",
     "category": "Engineering",
     "params": "(lower_bound, [upper_bound])",
-    "description": "The ERF function returns the integral of the Gauss error function over an interval of values. .",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1263,7 +1123,6 @@
     "name": "ERF.PRECISE",
     "category": "Engineering",
     "params": "(lower_bound, [upper_bound])",
-    "description": "See ERF",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1272,7 +1131,6 @@
     "name": "ERFC",
     "category": "Math",
     "params": "(z)",
-    "description": "Returns the complementary Gauss error function of a value.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1281,7 +1139,6 @@
     "name": "ERFC.PRECISE",
     "category": "Math",
     "params": "(z)",
-    "description": "See ERFC",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1290,7 +1147,6 @@
     "name": "ERROR.TYPE",
     "category": "Info",
     "params": "(reference)",
-    "description": "Returns a number corresponding to the error value in a different cell.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -1299,7 +1155,6 @@
     "name": "EVEN",
     "category": "Math",
     "params": "(value)",
-    "description": "Rounds a number up to the nearest even integer.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -1308,7 +1163,6 @@
     "name": "EXACT",
     "category": "Text",
     "params": "(string1, string2)",
-    "description": "Tests whether two strings are identical.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -1317,7 +1171,6 @@
     "name": "EXP",
     "category": "Math",
     "params": "(exponent)",
-    "description": "Returns Euler's number, e (~2.718) raised to a power.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -1326,7 +1179,6 @@
     "name": "EXPON.DIST",
     "category": "Statistical",
     "params": "(x, LAMBDA, cumulative)",
-    "description": "Returns the value of the exponential distribution function with a specified LAMBDA at a specified value. .",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1335,7 +1187,6 @@
     "name": "EXPONDIST",
     "category": "Statistical",
     "params": "(x, LAMBDA, cumulative)",
-    "description": "See\u00a0EXPON.DIST",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1344,7 +1195,6 @@
     "name": "F.DIST",
     "category": "Statistical",
     "params": "(x, degrees_freedom1, degrees_freedom2, cumulative)",
-    "description": "Calculates the left-tailed F probability distribution (degree of diversity) for two data sets with given input x. Alternately called Fisher-Snedecor distribution or Snedecor's F distribution.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1353,7 +1203,6 @@
     "name": "F.DIST.RT",
     "category": "Statistical",
     "params": "(x, degrees_freedom1, degrees_freedom2)",
-    "description": "Calculates the right-tailed F probability distribution (degree of diversity) for two data sets with given input x. Alternately called Fisher-Snedecor distribution or Snedecor's F distribution.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1362,7 +1211,6 @@
     "name": "F.INV",
     "category": "Statistical",
     "params": "(probability, degrees_freedom1, degrees_freedom2)",
-    "description": "Calculates the inverse of the left-tailed F probability distribution. Also called the Fisher-Snedecor distribution or Snedecor\u2019s F distribution.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1371,7 +1219,6 @@
     "name": "F.INV.RT",
     "category": "Statistical",
     "params": "(probability, degrees_freedom1, degrees_freedom2)",
-    "description": "Calculates the inverse of the right-tailed F probability distribution. Also called the Fisher-Snedecor distribution or Snedecor\u2019s F distribution.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1380,7 +1227,6 @@
     "name": "F.TEST",
     "category": "Statistical",
     "params": "(range1, range2)",
-    "description": "See FTEST.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1389,7 +1235,6 @@
     "name": "FACT",
     "category": "Math",
     "params": "(value)",
-    "description": "Returns the factorial of a number.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -1398,7 +1243,6 @@
     "name": "FACTDOUBLE",
     "category": "Math",
     "params": "(value)",
-    "description": "Returns the \"double factorial\" of a number.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1407,7 +1251,6 @@
     "name": "FALSE",
     "category": "Logical",
     "params": "()",
-    "description": "Returns the logical value `FALSE`.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -1416,7 +1259,6 @@
     "name": "FDIST",
     "category": "Statistical",
     "params": "(x, degrees_freedom1, degrees_freedom2)",
-    "description": "See\u00a0F.DIST.RT.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1425,7 +1267,6 @@
     "name": "FILTER",
     "category": "Filter",
     "params": "(range, condition1, [condition2])",
-    "description": "Returns a filtered version of the source range, returning only rows or columns which meet the specified conditions.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -1434,7 +1275,6 @@
     "name": "FIND",
     "category": "Text",
     "params": "(search_for, text_to_search, [starting_at])",
-    "description": "Returns the position at which a string is first found within text.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -1443,7 +1283,6 @@
     "name": "FINDB",
     "category": "Text",
     "params": "(search_for, text_to_search, [starting_at])",
-    "description": "Returns the position at which a string is first found within text counting each double-character as 2.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -1452,7 +1291,6 @@
     "name": "FINV",
     "category": "Statistical",
     "params": "(probability, degrees_freedom1, degrees_freedom2)",
-    "description": "See F.INV.RT",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1461,7 +1299,6 @@
     "name": "FISHER",
     "category": "Statistical",
     "params": "(value)",
-    "description": "Returns the Fisher transformation of a specified value.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1470,7 +1307,6 @@
     "name": "FISHERINV",
     "category": "Statistical",
     "params": "(value)",
-    "description": "Returns the inverse Fisher transformation of a specified value.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1479,7 +1315,6 @@
     "name": "FIXED",
     "category": "Text",
     "params": "(number, [number_of_places], [suppress_separator])",
-    "description": "Formats a number with a fixed number of decimal places.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1488,7 +1323,6 @@
     "name": "FLATTEN",
     "category": "Array",
     "params": "(range1, [range2,...])",
-    "description": "Flattens all the values from one or more ranges into a single column.",
     "source": "both",
     "registered": false,
     "resolved": false
@@ -1497,7 +1331,6 @@
     "name": "FLOOR",
     "category": "Math",
     "params": "(value, [factor])",
-    "description": "Rounds a number down to the nearest integer multiple of specified significance.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -1506,7 +1339,6 @@
     "name": "FLOOR.MATH",
     "category": "Math",
     "params": "(number, [significance], [mode])",
-    "description": "Rounds a number down to the nearest integer multiple of specified significance, with negative numbers rounding toward or away from 0 depending on the mode. .",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -1515,7 +1347,6 @@
     "name": "FLOOR.PRECISE",
     "category": "Math",
     "params": "(number, [significance])",
-    "description": "The FLOOR.PRECISE function rounds a number down to the nearest integer or multiple of specified significance. .",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1524,7 +1355,6 @@
     "name": "FORECAST",
     "category": "Statistical",
     "params": "(x, data_y, data_x)",
-    "description": "Calculates the expected y-value for a specified x based on a linear regression of a dataset.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -1533,7 +1363,6 @@
     "name": "FORECAST.LINEAR",
     "category": "Statistical",
     "params": "(x, data_y, data_x)",
-    "description": "See FORECAST",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1542,7 +1371,6 @@
     "name": "FORMULATEXT",
     "category": "Lookup",
     "params": "(cell)",
-    "description": "Returns the formula as a string.\u00a0.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -1551,7 +1379,6 @@
     "name": "FREQUENCY",
     "category": "Array",
     "params": "(data, classes)",
-    "description": "Calculates the frequency distribution of a one-column array into specified classes.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -1560,7 +1387,6 @@
     "name": "FTEST",
     "category": "Statistical",
     "params": "(range1, range2)",
-    "description": "Returns the probability associated with an F-test for equality of variances. Determines whether two samples are likely to have come from populations with the same variance.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1569,7 +1395,6 @@
     "name": "FV",
     "category": "Financial",
     "params": "(rate, number_of_periods, payment_amount, [present_value], [end_or_beginning])",
-    "description": "Calculates the future value of an annuity investment based on constant-amount periodic payments and a constant interest rate.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -1578,7 +1403,6 @@
     "name": "FVSCHEDULE",
     "category": "Financial",
     "params": "(principal, rate_schedule)",
-    "description": "Calculates the future value of some principal based on a specified series of potentially varying interest rates.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1587,7 +1411,6 @@
     "name": "GAMMA",
     "category": "Statistical",
     "params": "(number)",
-    "description": "Returns the Gamma function evaluated at the specified value. .",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1596,7 +1419,6 @@
     "name": "GAMMA.DIST",
     "category": "Statistical",
     "params": "(x, alpha, beta, cumulative)",
-    "description": "Calculates the gamma distribution, a two-parameter continuous probability distribution.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1605,7 +1427,6 @@
     "name": "GAMMA.INV",
     "category": "Statistical",
     "params": "(probability, alpha, beta)",
-    "description": "The GAMMA.INV function returns the value of the inverse gamma cumulative distribution function for the specified probability and alpha and beta parameters. .",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1614,7 +1435,6 @@
     "name": "GAMMADIST",
     "category": "Statistical",
     "params": "(x, alpha, beta, cumulative)",
-    "description": "See\u00a0GAMMA.DIST",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1623,7 +1443,6 @@
     "name": "GAMMAINV",
     "category": "Statistical",
     "params": "(probability, alpha, beta)",
-    "description": "See\u00a0GAMMA.INV.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1632,7 +1451,6 @@
     "name": "GAMMALN",
     "category": "Math",
     "params": "(value)",
-    "description": "Returns the the logarithm of a specified Gamma function, base e (Euler's number).",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1641,7 +1459,6 @@
     "name": "GAMMALN.PRECISE",
     "category": "Math",
     "params": "(value)",
-    "description": "See GAMMALN",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1650,7 +1467,6 @@
     "name": "GAUSS",
     "category": "Statistical",
     "params": "(z)",
-    "description": "The GAUSS function returns the probability that a random variable, drawn from a normal distribution, will be between the mean and z standard deviations above (or below) the mean. .",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1659,7 +1475,6 @@
     "name": "GCD",
     "category": "Math",
     "params": "(value1, value2)",
-    "description": "Returns the greatest common divisor of one or more integers.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1668,7 +1483,6 @@
     "name": "GEOMEAN",
     "category": "Statistical",
     "params": "(value1, value2, ...)",
-    "description": "Calculates the geometric mean of a dataset.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1677,7 +1491,6 @@
     "name": "GESTEP",
     "category": "Engineering",
     "params": "(value, [step])",
-    "description": "Returns 1 if the rate is strictly greater than or equal to the provided step value or 0 otherwise. If no step value is provided then the default value of 0 will be used. .",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1686,7 +1499,6 @@
     "name": "GETPIVOTDATA",
     "category": "Lookup",
     "params": "(value_name, any_pivot_table_cell, [original_column, ...], [pivot_item, ...])",
-    "description": "Extracts an aggregated value from a pivot table that corresponds to the specified row and column headings.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -1695,7 +1507,6 @@
     "name": "GOOGLEFINANCE",
     "category": "Google",
     "params": "(ticker, [attribute], [start_date], [end_date|num_days], [interval])",
-    "description": "Fetches current or historical securities information from Google Finance.",
     "source": "both",
     "registered": false,
     "resolved": false
@@ -1704,7 +1515,6 @@
     "name": "GOOGLETRANSLATE",
     "category": "Google",
     "params": "(text, [source_language], target_language)",
-    "description": "Translates text from one language into another",
     "source": "both",
     "registered": false,
     "resolved": false
@@ -1713,7 +1523,6 @@
     "name": "GROWTH",
     "category": "Array",
     "params": "(known_data_y, [known_data_x], [new_data_x], [b])",
-    "description": "Given partial data about an exponential growth trend, fits an ideal exponential growth trend and/or predicts further values.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1722,7 +1531,6 @@
     "name": "GT",
     "category": "Operator",
     "params": "GT(value1, value2)",
-    "description": "Returns `TRUE` if the first argument is strictly greater than the second, and `FALSE` otherwise. Equivalent to the `>` operator.",
     "source": "google",
     "registered": false,
     "resolved": false
@@ -1731,7 +1539,6 @@
     "name": "GTE",
     "category": "Operator",
     "params": "(value1, value2)",
-    "description": "Returns `TRUE` if the first argument is greater than or equal to the second, and `FALSE` otherwise. Equivalent to the `>=` operator.",
     "source": "both",
     "registered": false,
     "resolved": false
@@ -1740,7 +1547,6 @@
     "name": "HARMEAN",
     "category": "Statistical",
     "params": "HARMEAN(value1, value2)",
-    "description": "Calculates the harmonic mean of a dataset.",
     "source": "google",
     "registered": false,
     "resolved": true
@@ -1749,7 +1555,6 @@
     "name": "HEX2BIN",
     "category": "Engineering",
     "params": "(signed_hexadecimal_number, [significant_digits])",
-    "description": "Converts a signed hexadecimal number to signed binary format.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1758,7 +1563,6 @@
     "name": "HEX2DEC",
     "category": "Engineering",
     "params": "(signed_hexadecimal_number)",
-    "description": "Converts a signed hexadecimal number to decimal format.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1767,7 +1571,6 @@
     "name": "HEX2OCT",
     "category": "Engineering",
     "params": "(signed_hexadecimal_number, significant_digits)",
-    "description": "Converts a signed hexadecimal number to signed octal format.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1776,7 +1579,6 @@
     "name": "HLOOKUP",
     "category": "Lookup",
     "params": "(search_key, range, index, [is_sorted])",
-    "description": "Horizontal lookup. Searches across the first row of a range for a key and returns the value of a specified cell in the column found.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -1785,7 +1587,6 @@
     "name": "HOUR",
     "category": "Date",
     "params": "(time)",
-    "description": "Returns the hour component of a specific time, in numeric format.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -1793,8 +1594,7 @@
   {
     "name": "HSTACK",
     "category": "Array",
-    "params": "HSTACK(range1; [range2, \u2026])",
-    "description": "Appends ranges horizontally and in sequence to return a larger array.",
+    "params": "HSTACK(range1; [range2, …])",
     "source": "google",
     "registered": false,
     "resolved": true
@@ -1803,7 +1603,6 @@
     "name": "HYPERLINK",
     "category": "Web",
     "params": "(url, [link_label])",
-    "description": "Creates a hyperlink inside a cell.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -1812,7 +1611,6 @@
     "name": "HYPGEOM.DIST",
     "category": "Statistical",
     "params": "(num_successes, num_draws, successes_in_pop, pop_size)",
-    "description": "See HYPGEOMDIST",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1821,7 +1619,6 @@
     "name": "HYPGEOMDIST",
     "category": "Statistical",
     "params": "(num_successes, num_draws, successes_in_pop, pop_size)",
-    "description": "Calculates the probability of drawing a certain number of successes in a certain number of tries given a population of a certain size containing a certain number of successes, without replacement of draws.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1830,7 +1627,6 @@
     "name": "IF",
     "category": "Logical",
     "params": "(logical_expression, value_if_true, value_if_false)",
-    "description": "Returns one value if a logical expression is `TRUE` and another if it is `FALSE`.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -1839,7 +1635,6 @@
     "name": "IFERROR",
     "category": "Logical",
     "params": "(value, [value_if_error])",
-    "description": "Returns the first argument if it is not an error value, otherwise returns the second argument if present, or a blank if the second argument is absent.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -1848,7 +1643,6 @@
     "name": "IFNA",
     "category": "Logical",
     "params": "(value, value_if_na)",
-    "description": "Evaluates a value. If the value is an #N/A error, returns the specified value. .",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -1857,7 +1651,6 @@
     "name": "IFS",
     "category": "Logical",
     "params": "(condition1, condition2, ..., value1, value2, ...)",
-    "description": "Evaluates multiple conditions and returns a value that corresponds to the first true condition. .",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -1866,7 +1659,6 @@
     "name": "IMABS",
     "category": "Engineering",
     "params": "(number)",
-    "description": "Returns absolute value of a complex number.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1875,7 +1667,6 @@
     "name": "IMAGE",
     "category": "Google",
     "params": "(url, [mode], [height], [width])",
-    "description": "Inserts an image into a cell.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -1884,7 +1675,6 @@
     "name": "IMAGINARY",
     "category": "Engineering",
     "params": "(complex_number)",
-    "description": "Returns the imaginary coefficient of a complex number.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1893,7 +1683,6 @@
     "name": "IMARGUMENT",
     "category": "Engineering",
     "params": "(number)",
-    "description": "The IMARGUMENT function returns the angle (also known as the argument or \\theta) of the given complex number in radians. .",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1902,7 +1691,6 @@
     "name": "IMCONJUGATE",
     "category": "Engineering",
     "params": "(number)",
-    "description": "Returns the complex conjugate of a number.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1911,7 +1699,6 @@
     "name": "IMCOS",
     "category": "Engineering",
     "params": "IMCOS(number)",
-    "description": "The IMCOS function returns the cosine of the given complex number. .",
     "source": "google",
     "registered": false,
     "resolved": true
@@ -1920,7 +1707,6 @@
     "name": "IMCOSH",
     "category": "Engineering",
     "params": "(number)",
-    "description": "Returns the hyperbolic cosine of the given complex number. For example, a given complex number \"x+yi\" returns \"cosh(x+yi).\" .",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1929,7 +1715,6 @@
     "name": "IMCOT",
     "category": "Engineering",
     "params": "IMCOT(number)",
-    "description": "Returns the cotangent of the given complex number. For example, a given complex number \"x+yi\" returns \"cot(x+yi).\" .",
     "source": "google",
     "registered": false,
     "resolved": true
@@ -1938,7 +1723,6 @@
     "name": "IMCOTH",
     "category": "Engineering",
     "params": "IMCOTH(number)",
-    "description": "Returns the hyperbolic cotangent of the given complex number. For example, a given complex number \"x+yi\" returns \"coth(x+yi).\"\u00a0.",
     "source": "google",
     "registered": false,
     "resolved": false
@@ -1947,7 +1731,6 @@
     "name": "IMCSC",
     "category": "Engineering",
     "params": "IMCSC(number)",
-    "description": "Returns the cosecant of the given complex number. .",
     "source": "google",
     "registered": false,
     "resolved": true
@@ -1956,7 +1739,6 @@
     "name": "IMCSCH",
     "category": "Engineering",
     "params": "IMCSCH(number)",
-    "description": "Returns the hyperbolic cosecant of the given complex number. For example, a given complex number \"x+yi\" returns \"csch(x+yi).\"\u00a0.",
     "source": "google",
     "registered": false,
     "resolved": true
@@ -1965,7 +1747,6 @@
     "name": "IMDIV",
     "category": "Engineering",
     "params": "IMDIV(dividend, divisor)",
-    "description": "Returns one complex number divided by another.",
     "source": "google",
     "registered": false,
     "resolved": true
@@ -1974,7 +1755,6 @@
     "name": "IMEXP",
     "category": "Engineering",
     "params": "(exponent)",
-    "description": "Returns Euler's number, e (~2.718) raised to a complex power. .",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1983,7 +1763,6 @@
     "name": "IMLN",
     "category": "Math",
     "params": "(complex_value)",
-    "description": "Returns the logarithm of a complex number, base e (Euler's number).",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -1992,7 +1771,6 @@
     "name": "IMLOG",
     "category": "Engineering",
     "params": "IMLOG(value, base)",
-    "description": "Returns the logarithm of a complex number for a specified base.\u00a0.",
     "source": "google",
     "registered": false,
     "resolved": false
@@ -2001,7 +1779,6 @@
     "name": "IMLOG10",
     "category": "Engineering",
     "params": "(value)",
-    "description": "Returns the logarithm of a complex number with base 10.\u00a0.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -2010,7 +1787,6 @@
     "name": "IMLOG2",
     "category": "Engineering",
     "params": "IMLOG2(value)",
-    "description": "Returns the logarithm of a complex number with base 2.\u00a0.",
     "source": "google",
     "registered": false,
     "resolved": true
@@ -2019,7 +1795,6 @@
     "name": "IMPORTDATA",
     "category": "Web",
     "params": "(url)",
-    "description": "Imports data at a given url in .csv (comma-separated value) or .tsv (tab-separated value) format.",
     "source": "both",
     "registered": false,
     "resolved": false
@@ -2028,7 +1803,6 @@
     "name": "IMPORTFEED",
     "category": "Web",
     "params": "(url, [query], [headers], [num_items])",
-    "description": "Imports a RSS or ATOM feed.",
     "source": "both",
     "registered": false,
     "resolved": false
@@ -2037,7 +1811,6 @@
     "name": "IMPORTHTML",
     "category": "Web",
     "params": "(url, query, [index])",
-    "description": "Imports data from a table or list within an HTML page.",
     "source": "both",
     "registered": false,
     "resolved": false
@@ -2046,7 +1819,6 @@
     "name": "IMPORTRANGE",
     "category": "Web",
     "params": "(spreadsheet_url, range_string)",
-    "description": "Imports a range of cells from a specified spreadsheet.",
     "source": "both",
     "registered": false,
     "resolved": false
@@ -2055,7 +1827,6 @@
     "name": "IMPORTXML",
     "category": "Web",
     "params": "(url, xpath_query)",
-    "description": "Imports data from any of various structured data types including XML, HTML, CSV, TSV, and RSS and ATOM XML feeds.",
     "source": "both",
     "registered": false,
     "resolved": false
@@ -2064,7 +1835,6 @@
     "name": "IMPOWER",
     "category": "Math",
     "params": "IMPOWER(complex_base, exponent)",
-    "description": "Returns a complex number raised to a power.",
     "source": "google",
     "registered": false,
     "resolved": true
@@ -2073,7 +1843,6 @@
     "name": "IMPRODUCT",
     "category": "Engineering",
     "params": "(factor1, [factor2, ...])",
-    "description": "Returns the result of multiplying a series of complex numbers together.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -2082,7 +1851,6 @@
     "name": "IMREAL",
     "category": "Engineering",
     "params": "(complex_number)",
-    "description": "Returns the real coefficient of a complex number.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -2091,7 +1859,6 @@
     "name": "IMSEC",
     "category": "Engineering",
     "params": "IMSEC(number)",
-    "description": "Returns the secant of the given complex number. For example, a given complex number \"x+yi\" returns \"sec(x+yi).\"\u00a0.",
     "source": "google",
     "registered": false,
     "resolved": true
@@ -2100,7 +1867,6 @@
     "name": "IMSECH",
     "category": "Engineering",
     "params": "IMSECH(number)",
-    "description": "Returns the hyperbolic secant of the given complex number. For example, a given complex number \"x+yi\" returns \"sech(x+yi).\"\u00a0.",
     "source": "google",
     "registered": false,
     "resolved": true
@@ -2109,7 +1875,6 @@
     "name": "IMSIN",
     "category": "Engineering",
     "params": "(number)",
-    "description": "Returns the sine of the given complex number. .",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -2118,7 +1883,6 @@
     "name": "IMSINH",
     "category": "Engineering",
     "params": "(number)",
-    "description": "Returns the hyperbolic sine of the given complex number. For example, a given complex number \"x+yi\" returns \"sinh(x+yi).\"\u00a0.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -2127,7 +1891,6 @@
     "name": "IMSQRT",
     "category": "Math",
     "params": "IMSQRT(complex_number)",
-    "description": "Computes the square root of a complex number.",
     "source": "google",
     "registered": false,
     "resolved": true
@@ -2136,7 +1899,6 @@
     "name": "IMSUB",
     "category": "Engineering",
     "params": "IMSUB(first_number, second_number)",
-    "description": "Returns the difference between two complex numbers.",
     "source": "google",
     "registered": false,
     "resolved": true
@@ -2145,7 +1907,6 @@
     "name": "IMSUM",
     "category": "Engineering",
     "params": "(value1, [value2, ...])",
-    "description": "Returns the sum of a series of complex numbers.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -2154,7 +1915,6 @@
     "name": "IMTAN",
     "category": "Engineering",
     "params": "(number)",
-    "description": "Returns the tangent of the given complex number. .",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -2163,7 +1923,6 @@
     "name": "IMTANH",
     "category": "Engineering",
     "params": "(number)",
-    "description": "Returns the hyperbolic tangent of the given complex number. For example, a given complex number \"x+yi\" returns \"tanh(x+yi).\"\u00a0.",
     "source": "both",
     "registered": false,
     "resolved": false
@@ -2172,7 +1931,6 @@
     "name": "INDEX",
     "category": "Lookup",
     "params": "(reference, [row], [column])",
-    "description": "Returns the content of a cell, specified by row and column offset.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -2181,7 +1939,6 @@
     "name": "INDIRECT",
     "category": "Lookup",
     "params": "(cell_reference_as_string, [is_A1_notation])",
-    "description": "Returns a cell reference specified by a string.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -2190,7 +1947,6 @@
     "name": "INT",
     "category": "Math",
     "params": "(value)",
-    "description": "Rounds a number down to the nearest integer that is less than or equal to it.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -2199,7 +1955,6 @@
     "name": "INTERCEPT",
     "category": "Statistical",
     "params": "(data_y, data_x)",
-    "description": "Calculates the y-value at which the line resulting from linear regression of a dataset will intersect the y-axis (x=0).",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -2208,7 +1963,6 @@
     "name": "INTRATE",
     "category": "Financial",
     "params": "(buy_date, sell_date, buy_price, sell_price, [day_count_convention])",
-    "description": "Calculates the effective interest rate generated when an investment is purchased at one price and sold at another with no interest or dividends generated by the investment itself.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -2217,7 +1971,6 @@
     "name": "IPMT",
     "category": "Financial",
     "params": "(rate, period, number_of_periods, present_value, [future_value], [end_or_beginning])",
-    "description": "Calculates the payment on interest for an investment based on constant-amount periodic payments and a constant interest rate.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -2226,7 +1979,6 @@
     "name": "IRR",
     "category": "Financial",
     "params": "(cashflow_amounts, [rate_guess])",
-    "description": "Calculates the internal rate of return on an investment based on a series of periodic cash flows.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -2235,7 +1987,6 @@
     "name": "ISBETWEEN",
     "category": "Operator",
     "params": "(value_to_compare, lower_value, upper_value, [lower_value_is_inclusive], [upper_value_is_inclusive])",
-    "description": "Checks whether a provided number is between two other numbers\u00a0either inclusively or exclusively.",
     "source": "both",
     "registered": false,
     "resolved": false
@@ -2244,7 +1995,6 @@
     "name": "ISBLANK",
     "category": "Info",
     "params": "(value)",
-    "description": "Checks whether the referenced cell is empty.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -2253,7 +2003,6 @@
     "name": "ISDATE",
     "category": "Info",
     "params": "(value)",
-    "description": "Returns whether a value is a date. .",
     "source": "both",
     "registered": false,
     "resolved": false
@@ -2262,7 +2011,6 @@
     "name": "ISEMAIL",
     "category": "Info",
     "params": "(value)",
-    "description": "Checks whether a value is a valid email address.",
     "source": "both",
     "registered": false,
     "resolved": false
@@ -2271,7 +2019,6 @@
     "name": "ISERR",
     "category": "Info",
     "params": "(value)",
-    "description": "Checks whether a value is an error other than `#N/A`.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -2280,7 +2027,6 @@
     "name": "ISERROR",
     "category": "Info",
     "params": "(value)",
-    "description": "Checks whether a value is an error.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -2289,7 +2035,6 @@
     "name": "ISEVEN",
     "category": "Math",
     "params": "(value)",
-    "description": "Checks whether the provided value is even.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -2298,7 +2043,6 @@
     "name": "ISFORMULA",
     "category": "Info",
     "params": "(cell)",
-    "description": "Checks whether a formula is in the referenced cell.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -2307,7 +2051,6 @@
     "name": "ISLOGICAL",
     "category": "Info",
     "params": "(value)",
-    "description": "Checks whether a value is `TRUE` or `FALSE`.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -2316,7 +2059,6 @@
     "name": "ISNA",
     "category": "Info",
     "params": "(value)",
-    "description": "Checks whether a value is the error `#N/A`.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -2325,7 +2067,6 @@
     "name": "ISNONTEXT",
     "category": "Info",
     "params": "(value)",
-    "description": "Checks whether a value is non-textual.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -2334,7 +2075,6 @@
     "name": "ISNUMBER",
     "category": "Info",
     "params": "(value)",
-    "description": "Checks whether a value is a number.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -2343,7 +2083,6 @@
     "name": "ISO.CEILING",
     "category": "Math",
     "params": "(number, [significance])",
-    "description": "See CEILING.PRECISE",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -2352,7 +2091,6 @@
     "name": "ISODD",
     "category": "Math",
     "params": "(value)",
-    "description": "Checks whether the provided value is odd.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -2361,7 +2099,6 @@
     "name": "ISOWEEKNUM",
     "category": "Date",
     "params": "(date)",
-    "description": "Returns the number of the ISO week of the year where the provided date falls.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -2370,7 +2107,6 @@
     "name": "ISPMT",
     "category": "Financial",
     "params": "(rate, period, number_of_periods, present_value)",
-    "description": "The ISPMT function calculates the interest paid during a particular period of an investment. .",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -2379,7 +2115,6 @@
     "name": "ISREF",
     "category": "Info",
     "params": "(value)",
-    "description": "Checks whether a value is a valid cell reference.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -2388,7 +2123,6 @@
     "name": "ISTEXT",
     "category": "Info",
     "params": "(value)",
-    "description": "Checks whether a value is text.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -2397,7 +2131,6 @@
     "name": "ISURL",
     "category": "Web",
     "params": "(value)",
-    "description": "Checks whether a value is a valid URL.",
     "source": "both",
     "registered": false,
     "resolved": false
@@ -2406,7 +2139,6 @@
     "name": "JOIN",
     "category": "Text",
     "params": "(delimiter, value_or_array1, [value_or_array2, ...])",
-    "description": "Concatenates the elements of one or more one-dimensional arrays using a specified delimiter.",
     "source": "both",
     "registered": false,
     "resolved": false
@@ -2415,7 +2147,6 @@
     "name": "KURT",
     "category": "Statistical",
     "params": "(value1, [value2])",
-    "description": "Calculates the kurtosis of a dataset, which describes the shape, and in particular the \"peakedness\" of that dataset.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -2424,7 +2155,6 @@
     "name": "LAMBDA",
     "category": "Logical",
     "params": "(name, formula_expression)",
-    "description": "Creates and returns a custom function with a set of names and a formula_expression that uses them. To calculate the formula_expression, you can call the returned function with as many values as the name declares.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -2433,7 +2163,6 @@
     "name": "LARGE",
     "category": "Statistical",
     "params": "(data, n)",
-    "description": "Returns the nth largest element from a data set, where n is user-defined.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -2442,7 +2171,6 @@
     "name": "LCM",
     "category": "Math",
     "params": "(value1, value2)",
-    "description": "Returns the least common multiple of one or more integers.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -2451,7 +2179,6 @@
     "name": "LEFT",
     "category": "Text",
     "params": "(string, [number_of_characters])",
-    "description": "Returns a substring from the beginning of a specified string.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -2460,7 +2187,6 @@
     "name": "LEFTB",
     "category": "Text",
     "params": "(string, num_of_bytes)",
-    "description": "Returns the left portion of a string up to a certain number of bytes.\u00a0.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -2469,7 +2195,6 @@
     "name": "LEN",
     "category": "Text",
     "params": "(text)",
-    "description": "Returns the length of a string.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -2478,7 +2203,6 @@
     "name": "LENB",
     "category": "Text",
     "params": "(string)",
-    "description": "Returns the length of a string in bytes.\"\u00a0.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -2487,7 +2211,6 @@
     "name": "LET",
     "category": "Logical",
     "params": "(name1, value_expression1, [name2], [value_expression2], formula_expression)",
-    "description": "Assigns name with the value_expression results and returns the result of the formula_expression. The formula_expression can use the names defined in the scope of the LET function. The value_expressions are evaluated only once in the LET function even if the following value_expressions or the formula_expression use them multiple times.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -2496,7 +2219,6 @@
     "name": "LINEST",
     "category": "Array",
     "params": "(known_data_y, [known_data_x], [calculate_b], [verbose])",
-    "description": "Given partial data about a linear trend, calculates various parameters about the ideal linear trend using the least-squares method.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -2505,7 +2227,6 @@
     "name": "LN",
     "category": "Math",
     "params": "(value)",
-    "description": "Returns the the logarithm of a number, base e (Euler's number).",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -2514,7 +2235,6 @@
     "name": "LOG",
     "category": "Math",
     "params": "(value, [base])",
-    "description": "Returns the the logarithm of a number given a base.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -2523,7 +2243,6 @@
     "name": "LOG10",
     "category": "Math",
     "params": "(value)",
-    "description": "Returns the the logarithm of a number, base 10.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -2532,7 +2251,6 @@
     "name": "LOGEST",
     "category": "Array",
     "params": "(known_data_y, [known_data_x], [b], [verbose])",
-    "description": "Given partial data about an exponential growth curve, calculates various parameters about the best fit ideal exponential growth curve.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -2541,7 +2259,6 @@
     "name": "LOGINV",
     "category": "Statistical",
     "params": "(x, mean, standard_deviation)",
-    "description": "Returns the value of the inverse log-normal cumulative distribution with given mean and standard deviation at a specified value.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -2550,7 +2267,6 @@
     "name": "LOGNORM.DIST",
     "category": "Statistical",
     "params": "(x, mean, standard_deviation)",
-    "description": "See LOGNORMDIST",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -2559,7 +2275,6 @@
     "name": "LOGNORM.INV",
     "category": "Statistical",
     "params": "(x, mean, standard_deviation)",
-    "description": "See LOGINV",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -2568,7 +2283,6 @@
     "name": "LOGNORMDIST",
     "category": "Statistical",
     "params": "(x, mean, standard_deviation)",
-    "description": "Returns the value of the log-normal cumulative distribution with given mean and standard deviation at a specified value.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -2577,7 +2291,6 @@
     "name": "LOOKUP",
     "category": "Lookup",
     "params": "(search_key, search_range|search_result_array, [result_range])",
-    "description": "Looks through a row or column for a key and returns the value of the cell in a result range located in the same position as the search row or column.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -2586,7 +2299,6 @@
     "name": "LOWER",
     "category": "Text",
     "params": "(text)",
-    "description": "Converts a specified string to lowercase.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -2595,7 +2307,6 @@
     "name": "LT",
     "category": "Operator",
     "params": "LT(value1, value2)",
-    "description": "Returns `TRUE` if the first argument is strictly less than the second, and `FALSE` otherwise. Equivalent to the `<` operator.",
     "source": "google",
     "registered": false,
     "resolved": false
@@ -2604,7 +2315,6 @@
     "name": "LTE",
     "category": "Operator",
     "params": "LTE(value1, value2)",
-    "description": "Returns `TRUE` if the first argument is less than or equal to the second, and `FALSE` otherwise. Equivalent to the `<=` operator.",
     "source": "google",
     "registered": false,
     "resolved": false
@@ -2613,7 +2323,6 @@
     "name": "MAKEARRAY",
     "category": "Array",
     "params": "(rows, columns, LAMBDA)",
-    "description": "Returns an array of specified dimensions with values calculated by application of a LAMBDA function.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -2622,7 +2331,6 @@
     "name": "MAP",
     "category": "Array",
     "params": "(array1, [array2, ...], LAMBDA)",
-    "description": "Maps each value in the given arrays to a new value by application of a LAMBDA function to each value.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -2631,7 +2339,6 @@
     "name": "MARGINOFERROR",
     "category": "Statistical",
     "params": "MARGINOFERROR(range, confidence)",
-    "description": "Calculates the amount of random sampling error given a range of values and a confidence level.",
     "source": "google",
     "registered": false,
     "resolved": false
@@ -2640,7 +2347,6 @@
     "name": "MATCH",
     "category": "Lookup",
     "params": "(search_key, range, [search_type])",
-    "description": "Returns the relative position of an item in a range that matches a specified value.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -2649,7 +2355,6 @@
     "name": "MAX",
     "category": "Statistical",
     "params": "(value1, [value2, ...])",
-    "description": "Returns the maximum value in a numeric dataset.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -2658,7 +2363,6 @@
     "name": "MAXA",
     "category": "Statistical",
     "params": "(value1, [value2])",
-    "description": "Returns the maximum numeric value in a dataset.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -2667,7 +2371,6 @@
     "name": "MAXIFS",
     "category": "Statistical",
     "params": "(range, criteria_range1, criterion1, [criteria_range2], [criterion2])",
-    "description": "Returns the maximum value in a range of cells, filtered by a set of criteria. .",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -2676,7 +2379,6 @@
     "name": "MDETERM",
     "category": "Array",
     "params": "(square_matrix)",
-    "description": "Returns the matrix determinant of a square matrix specified as an array or range.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -2685,7 +2387,6 @@
     "name": "MDURATION",
     "category": "Financial",
     "params": "(settlement, maturity, rate, yield, frequency, [day_count_convention])",
-    "description": "Calculates the modified Macaulay duration of a security paying periodic interest, such as a US Treasury Bond, based on expected yield.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -2694,7 +2395,6 @@
     "name": "MEDIAN",
     "category": "Statistical",
     "params": "(value1, [value2, ...])",
-    "description": "Returns the median value in a numeric dataset.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -2703,7 +2403,6 @@
     "name": "MID",
     "category": "Text",
     "params": "(string, starting_at, extract_length)",
-    "description": "Returns a segment of a string.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -2712,7 +2411,6 @@
     "name": "MIDB",
     "category": "Text",
     "params": "MIDB(string)",
-    "description": "Returns a section of a string starting at a given character and up to a specified number of bytes.\u00a0.",
     "source": "google",
     "registered": true,
     "resolved": true
@@ -2721,7 +2419,6 @@
     "name": "MIN",
     "category": "Statistical",
     "params": "(value1, [value2, ...])",
-    "description": "Returns the minimum value in a numeric dataset.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -2730,7 +2427,6 @@
     "name": "MINA",
     "category": "Statistical",
     "params": "(value1, value2)",
-    "description": "Returns the minimum numeric value in a dataset.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -2739,7 +2435,6 @@
     "name": "MINIFS",
     "category": "Statistical",
     "params": "(range, criteria_range1, criterion1, [criteria_range2], [criterion2])",
-    "description": "Returns the minimum value in a range of cells, filtered by a set of criteria. .",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -2748,7 +2443,6 @@
     "name": "MINUS",
     "category": "Operator",
     "params": "(value1, value2)",
-    "description": "Returns the difference of two numbers. Equivalent to the `-` operator.",
     "source": "both",
     "registered": false,
     "resolved": false
@@ -2757,7 +2451,6 @@
     "name": "MINUTE",
     "category": "Date",
     "params": "(time)",
-    "description": "Returns the minute component of a specific time, in numeric format.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -2766,7 +2459,6 @@
     "name": "MINVERSE",
     "category": "Array",
     "params": "(square_matrix)",
-    "description": "Returns the multiplicative inverse of a square matrix specified as an array or range.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -2775,7 +2467,6 @@
     "name": "MIRR",
     "category": "Financial",
     "params": "(cashflow_amounts, financing_rate, reinvestment_return_rate)",
-    "description": "Calculates the modified internal rate of return on an investment based on a series of periodic cash flows and the difference between the interest rate paid on financing versus the return received on reinvested income.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -2784,7 +2475,6 @@
     "name": "MMULT",
     "category": "Array",
     "params": "(matrix1, matrix2)",
-    "description": "Calculates the matrix product of two matrices specified as arrays or ranges.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -2793,7 +2483,6 @@
     "name": "MOD",
     "category": "Math",
     "params": "(dividend, divisor)",
-    "description": "Returns the result of the modulo operator, the remainder after a division operation.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -2802,7 +2491,6 @@
     "name": "MODE",
     "category": "Statistical",
     "params": "(value1, [value2, ...])",
-    "description": "Returns the most commonly occurring value in a dataset.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -2811,7 +2499,6 @@
     "name": "MODE.MULT",
     "category": "Statistical",
     "params": "(value1, [value2])",
-    "description": "Returns the most commonly occurring values in a dataset.\u00a0.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -2820,7 +2507,6 @@
     "name": "MODE.SNGL",
     "category": "Statistical",
     "params": "(value1, [value2, ...])",
-    "description": "See MODE",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -2829,7 +2515,6 @@
     "name": "MONTH",
     "category": "Date",
     "params": "(date)",
-    "description": "Returns the month of the year a specific date falls in, in numeric format.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -2838,7 +2523,6 @@
     "name": "MROUND",
     "category": "Math",
     "params": "(value, factor)",
-    "description": "Rounds one number to the nearest integer multiple of another.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -2847,7 +2531,6 @@
     "name": "MULTINOMIAL",
     "category": "Math",
     "params": "(value1, value2)",
-    "description": "Returns the factorial of the sum of values divided by the product of the values' factorials.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -2856,7 +2539,6 @@
     "name": "MULTIPLY",
     "category": "Operator",
     "params": "(factor1, factor2)",
-    "description": "Returns the product of two numbers. Equivalent to the `*` operator.",
     "source": "both",
     "registered": false,
     "resolved": false
@@ -2865,7 +2547,6 @@
     "name": "MUNIT",
     "category": "Math",
     "params": "(dimension)",
-    "description": "Returns a unit matrix of size dimension x dimension.\u00a0.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -2874,7 +2555,6 @@
     "name": "N",
     "category": "Info",
     "params": "(value)",
-    "description": "Returns the argument provided as a number.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -2883,7 +2563,6 @@
     "name": "NA",
     "category": "Info",
     "params": "()",
-    "description": "Returns the \"value not available\" error, `#N/A`.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -2892,7 +2571,6 @@
     "name": "NAME",
     "category": "Type",
     "params": "Syntax",
-    "description": "Description",
     "source": "google",
     "registered": false,
     "resolved": false
@@ -2901,7 +2579,6 @@
     "name": "NE",
     "category": "Operator",
     "params": "(value1, value2)",
-    "description": "Returns `TRUE` if two specified values are not equal and `FALSE` otherwise. Equivalent to the `<>` operator.",
     "source": "both",
     "registered": false,
     "resolved": false
@@ -2910,7 +2587,6 @@
     "name": "NEGBINOM.DIST",
     "category": "Statistical",
     "params": "(num_failures, num_successes, prob_success)",
-    "description": "See NEGBINOMDIST",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -2919,7 +2595,6 @@
     "name": "NEGBINOMDIST",
     "category": "Statistical",
     "params": "(num_failures, num_successes, prob_success)",
-    "description": "Calculates the probability of drawing a certain number of failures before a certain number of successes given a probability of success in independent trials.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -2928,7 +2603,6 @@
     "name": "NETWORKDAYS",
     "category": "Date",
     "params": "(start_date, end_date, [holidays])",
-    "description": "Returns the number of net working days between two provided days.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -2937,7 +2611,6 @@
     "name": "NETWORKDAYS.INTL",
     "category": "Date",
     "params": "(start_date, end_date, [weekend], [holidays])",
-    "description": "Returns the number of net working days between two provided days excluding specified weekend days and holidays.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -2946,7 +2619,6 @@
     "name": "NOMINAL",
     "category": "Financial",
     "params": "(effective_rate, periods_per_year)",
-    "description": "Calculates the annual nominal interest rate given the effective rate and number of compounding periods per year.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -2955,7 +2627,6 @@
     "name": "NORM.DIST",
     "category": "Statistical",
     "params": "(x, mean, standard_deviation, [cumulative])",
-    "description": "See NORMDIST",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -2964,7 +2635,6 @@
     "name": "NORM.INV",
     "category": "Statistical",
     "params": "(x, mean, standard_deviation)",
-    "description": "See NORMINV",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -2973,7 +2643,6 @@
     "name": "NORM.S.DIST",
     "category": "Statistical",
     "params": "(x)",
-    "description": "See NORMSDIST",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -2982,7 +2651,6 @@
     "name": "NORM.S.INV",
     "category": "Statistical",
     "params": "(x)",
-    "description": "See NORMSINV",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -2991,7 +2659,6 @@
     "name": "NORMDIST",
     "category": "Statistical",
     "params": "(x, mean, standard_deviation, [cumulative])",
-    "description": "Returns the value of the normal distribution function (or normal cumulative distribution function) for a specified value, mean, and standard deviation.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -3000,7 +2667,6 @@
     "name": "NORMINV",
     "category": "Statistical",
     "params": "(x, mean, standard_deviation)",
-    "description": "Returns the value of the inverse normal distribution function for a specified value, mean, and standard deviation.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -3009,7 +2675,6 @@
     "name": "NORMSDIST",
     "category": "Statistical",
     "params": "(x)",
-    "description": "Returns the value of the standard normal cumulative distribution function for a specified value.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -3018,7 +2683,6 @@
     "name": "NORMSINV",
     "category": "Statistical",
     "params": "(x)",
-    "description": "Returns the value of the inverse standard normal distribution function for a specified value.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -3027,7 +2691,6 @@
     "name": "NOT",
     "category": "Logical",
     "params": "(logical_expression)",
-    "description": "Returns the opposite of a logical value - `NOT(TRUE)` returns `FALSE`; `NOT(FALSE)` returns `TRUE`.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3036,7 +2699,6 @@
     "name": "NOW",
     "category": "Date",
     "params": "()",
-    "description": "Returns the current date and time as a date value.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3045,7 +2707,6 @@
     "name": "NPER",
     "category": "Financial",
     "params": "(rate, payment_amount, present_value, [future_value], [end_or_beginning])",
-    "description": "Calculates the number of payment periods for an investment based on constant-amount periodic payments and a constant interest rate.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3054,7 +2715,6 @@
     "name": "NPV",
     "category": "Financial",
     "params": "(discount, cashflow1, [cashflow2, ...])",
-    "description": "Calculates the net present value of an investment based on a series of periodic cash flows and a discount rate.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3063,7 +2723,6 @@
     "name": "OCT2BIN",
     "category": "Engineering",
     "params": "(signed_octal_number, [significant_digits])",
-    "description": "Converts a signed octal number to signed binary format.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -3072,7 +2731,6 @@
     "name": "OCT2DEC",
     "category": "Engineering",
     "params": "(signed_octal_number)",
-    "description": "Converts a signed octal number to decimal format.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -3081,7 +2739,6 @@
     "name": "OCT2HEX",
     "category": "Engineering",
     "params": "(signed_octal_number, [significant_digits])",
-    "description": "Converts a signed octal number to signed hexadecimal format.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -3090,7 +2747,6 @@
     "name": "ODD",
     "category": "Math",
     "params": "(value)",
-    "description": "Rounds a number up to the nearest odd integer.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3099,7 +2755,6 @@
     "name": "OFFSET",
     "category": "Lookup",
     "params": "(cell_reference, offset_rows, offset_columns, [height], [width])",
-    "description": "Returns a range reference shifted a specified number of rows and columns from a starting cell reference.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3108,7 +2763,6 @@
     "name": "OR",
     "category": "Logical",
     "params": "(logical_expression1, [logical_expression2, ...])",
-    "description": "Returns true if any of the provided arguments are logically true, and false if all of the provided arguments are logically false.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3117,7 +2771,6 @@
     "name": "PDURATION",
     "category": "Financial",
     "params": "(rate, present_value, future_value)",
-    "description": "Returns the number of periods for an investment to reach a specific value at a given rate.\u00a0.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -3126,7 +2779,6 @@
     "name": "PEARSON",
     "category": "Statistical",
     "params": "(data_y, data_x)",
-    "description": "Calculates r, the Pearson product-moment correlation coefficient of a dataset.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -3135,7 +2787,6 @@
     "name": "PERCENTILE",
     "category": "Statistical",
     "params": "(data, percentile)",
-    "description": "Returns the value at a given percentile of a dataset.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -3144,7 +2795,6 @@
     "name": "PERCENTILE.EXC",
     "category": "Statistical",
     "params": "(data, percentile)",
-    "description": "Returns the value at a given percentile of a dataset, exclusive of 0 and 1.\u00a0.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -3153,7 +2803,6 @@
     "name": "PERCENTILE.INC",
     "category": "Statistical",
     "params": "(data, percentile)",
-    "description": "See PERCENTILE",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -3162,7 +2811,6 @@
     "name": "PERCENTRANK",
     "category": "Statistical",
     "params": "(data, value, [significant_digits])",
-    "description": "Returns the percentage rank (percentile) of a specified value in a dataset.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -3171,7 +2819,6 @@
     "name": "PERCENTRANK.EXC",
     "category": "Statistical",
     "params": "(data, value, [significant_digits])",
-    "description": "Returns the percentage rank (percentile) from 0 to 1 exclusive of a specified value in a dataset.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -3180,7 +2827,6 @@
     "name": "PERCENTRANK.INC",
     "category": "Statistical",
     "params": "(data, value, [significant_digits])",
-    "description": "Returns the percentage rank (percentile) from 0 to 1 inclusive of a specified value in a dataset.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -3189,7 +2835,6 @@
     "name": "PERMUT",
     "category": "Statistical",
     "params": "(n, k)",
-    "description": "Returns the number of ways to choose some number of objects from a pool of a given size of objects, considering order.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -3198,7 +2843,6 @@
     "name": "PERMUTATIONA",
     "category": "Statistical",
     "params": "(number, number_chosen)",
-    "description": "Returns the number of permutations for selecting a group of objects (with replacement) from a total number of objects.\u00a0.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -3207,7 +2851,6 @@
     "name": "PHI",
     "category": "Statistical",
     "params": "(x)",
-    "description": "The PHI function returns the value of the normal distribution with mean 0 and standard deviation 1. .",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -3216,7 +2859,6 @@
     "name": "PI",
     "category": "Math",
     "params": "()",
-    "description": "Returns the value of Pi to 14 decimal places.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3225,7 +2867,6 @@
     "name": "PMT",
     "category": "Financial",
     "params": "(rate, number_of_periods, present_value, [future_value], [end_or_beginning])",
-    "description": "Calculates the periodic payment for an annuity investment based on constant-amount periodic payments and a constant interest rate.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3234,7 +2875,6 @@
     "name": "POISSON",
     "category": "Statistical",
     "params": "(x, mean, [cumulative])",
-    "description": "See\u00a0POISSON.DIST",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -3243,7 +2883,6 @@
     "name": "POISSON.DIST",
     "category": "Statistical",
     "params": "(x, mean, [cumulative])",
-    "description": "Returns the value of the Poisson distribution function (or Poisson cumulative distribution function) for a specified value and mean. .",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -3252,7 +2891,6 @@
     "name": "POW",
     "category": "Operator",
     "params": "(base, exponent)",
-    "description": "Returns a number raised to a power.",
     "source": "both",
     "registered": false,
     "resolved": false
@@ -3261,7 +2899,6 @@
     "name": "POWER",
     "category": "Math",
     "params": "(base, exponent)",
-    "description": "Returns a number raised to a power.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3270,7 +2907,6 @@
     "name": "PPMT",
     "category": "Financial",
     "params": "(rate, period, number_of_periods, present_value, [future_value], [end_or_beginning])",
-    "description": "Calculates the payment on the principal of an investment based on constant-amount periodic payments and a constant interest rate.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -3279,7 +2915,6 @@
     "name": "PRICE",
     "category": "Financial",
     "params": "(settlement, maturity, rate, yield, redemption, frequency, [day_count_convention])",
-    "description": "Calculates the price of a security paying periodic interest, such as a US Treasury Bond, based on expected yield.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3288,7 +2923,6 @@
     "name": "PRICEDISC",
     "category": "Financial",
     "params": "(settlement, maturity, discount, redemption, [day_count_convention])",
-    "description": "Calculates the price of a discount (non-interest-bearing) security, based on expected yield.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -3297,7 +2931,6 @@
     "name": "PRICEMAT",
     "category": "Financial",
     "params": "(settlement, maturity, issue, rate, yield, [day_count_convention])",
-    "description": "Calculates the price of a security paying interest at maturity, based on expected yield.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3306,7 +2939,6 @@
     "name": "PROB",
     "category": "Statistical",
     "params": "(data, probabilities, low_limit, [high_limit])",
-    "description": "Given a set of values and corresponding probabilities, calculates the probability that a value chosen at random falls between two limits.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -3315,7 +2947,6 @@
     "name": "PRODUCT",
     "category": "Math",
     "params": "(factor1, [factor2, ...])",
-    "description": "Returns the result of multiplying a series of numbers together.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3324,7 +2955,6 @@
     "name": "PROPER",
     "category": "Text",
     "params": "(text_to_capitalize)",
-    "description": "Capitalizes each word in a specified string.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -3333,7 +2963,6 @@
     "name": "PV",
     "category": "Financial",
     "params": "(rate, number_of_periods, payment_amount, [future_value], [end_or_beginning])",
-    "description": "Calculates the present value of an annuity investment based on constant-amount periodic payments and a constant interest rate.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3342,7 +2971,6 @@
     "name": "QUARTILE",
     "category": "Statistical",
     "params": "(data, quartile_number)",
-    "description": "Returns a value nearest to a specified quartile of a dataset.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -3351,7 +2979,6 @@
     "name": "QUARTILE.EXC",
     "category": "Statistical",
     "params": "(data, quartile_number)",
-    "description": "Returns value nearest to a given quartile of a dataset, exclusive of 0 and 4.\u00a0.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -3360,7 +2987,6 @@
     "name": "QUARTILE.INC",
     "category": "Statistical",
     "params": "(data, quartile_number)",
-    "description": "See QUARTILE",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -3369,7 +2995,6 @@
     "name": "QUERY",
     "category": "Google",
     "params": "(data, query, [headers])",
-    "description": "Runs a Google Visualization API Query Language query across data.",
     "source": "both",
     "registered": false,
     "resolved": false
@@ -3378,7 +3003,6 @@
     "name": "QUOTIENT",
     "category": "Math",
     "params": "(dividend, divisor)",
-    "description": "Returns one number divided by another.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -3387,7 +3011,6 @@
     "name": "RADIANS",
     "category": "Math",
     "params": "(angle)",
-    "description": "Converts an angle value in degrees to radians.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3396,7 +3019,6 @@
     "name": "RAND",
     "category": "Math",
     "params": "()",
-    "description": "Returns a random number between 0 inclusive and 1 exclusive.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3405,7 +3027,6 @@
     "name": "RANDARRAY",
     "category": "Math",
     "params": "(rows, columns)",
-    "description": "Generates an array of random numbers between 0 and 1.\u00a0.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3414,7 +3035,6 @@
     "name": "RANDBETWEEN",
     "category": "Math",
     "params": "(low, high)",
-    "description": "Returns a uniformly random integer between two values, inclusive.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3423,7 +3043,6 @@
     "name": "RANK",
     "category": "Statistical",
     "params": "(value, data, [is_ascending])",
-    "description": "Returns the rank of a specified value in a dataset.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3432,7 +3051,6 @@
     "name": "RANK.AVG",
     "category": "Statistical",
     "params": "(value, data, [is_ascending])",
-    "description": "Returns the rank of a specified value in a dataset. If there is more than one entry of the same value in the dataset, the average rank of the entries will be returned.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -3441,7 +3059,6 @@
     "name": "RANK.EQ",
     "category": "Statistical",
     "params": "(value, data, [is_ascending])",
-    "description": "Returns the rank of a specified value in a dataset. If there is more than one entry of the same value in the dataset, the top rank of the entries will be returned.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3450,7 +3067,6 @@
     "name": "RATE",
     "category": "Financial",
     "params": "(number_of_periods, payment_per_period, present_value, [future_value], [end_or_beginning], [rate_guess])",
-    "description": "Calculates the interest rate of an annuity investment based on constant-amount periodic payments and the assumption of a constant interest rate.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3459,7 +3075,6 @@
     "name": "RECEIVED",
     "category": "Financial",
     "params": "RECEIVED(settlement, maturity, investment, discount, [day_count_convention])",
-    "description": "Calculates the amount received at maturity for an investment in fixed-income securities purchased on a given date.",
     "source": "google",
     "registered": true,
     "resolved": true
@@ -3468,7 +3083,6 @@
     "name": "REDUCE",
     "category": "Array",
     "params": "(initial_value, array_or_range, LAMBDA)",
-    "description": "Reduces an array to an accumulated result by application of a LAMBDA function to each value.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3477,7 +3091,6 @@
     "name": "REGEXEXTRACT",
     "category": "Text",
     "params": "(text, regular_expression)",
-    "description": "Extracts matching substrings according to a regular expression.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3486,7 +3099,6 @@
     "name": "REGEXMATCH",
     "category": "Text",
     "params": "(text, regular_expression)",
-    "description": "Whether a piece of text matches a regular expression.",
     "source": "both",
     "registered": false,
     "resolved": false
@@ -3495,7 +3107,6 @@
     "name": "REGEXREPLACE",
     "category": "Text",
     "params": "(text, regular_expression, replacement)",
-    "description": "Replaces part of a text string with a different text string using regular expressions.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3504,7 +3115,6 @@
     "name": "REPLACE",
     "category": "Text",
     "params": "(text, position, length, new_text)",
-    "description": "Replaces part of a text string with a different text string.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3513,7 +3123,6 @@
     "name": "REPLACEB",
     "category": "Text",
     "params": "(text, position, num_bytes, new_text)",
-    "description": "Replaces part of a text string, based on a number of bytes, with a different text string.\u00a0.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3522,7 +3131,6 @@
     "name": "REPT",
     "category": "Text",
     "params": "(text_to_repeat, number_of_repetitions)",
-    "description": "Returns specified text repeated a number of times.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3531,7 +3139,6 @@
     "name": "RIGHT",
     "category": "Text",
     "params": "(string, [number_of_characters])",
-    "description": "Returns a substring from the end of a specified string.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3540,7 +3147,6 @@
     "name": "RIGHTB",
     "category": "Text",
     "params": "(string, num_of_bytes)",
-    "description": "Returns the right portion of a string up to a certain number of bytes.\u00a0.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3549,7 +3155,6 @@
     "name": "ROMAN",
     "category": "Text",
     "params": "(number, [rule_relaxation])",
-    "description": "Formats a number in Roman numerals.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -3558,7 +3163,6 @@
     "name": "ROUND",
     "category": "Math",
     "params": "(value, [places])",
-    "description": "Rounds a number to a certain number of decimal places according to standard rules.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3567,7 +3171,6 @@
     "name": "ROUNDDOWN",
     "category": "Math",
     "params": "(value, [places])",
-    "description": "Rounds a number to a certain number of decimal places, always rounding down to the next valid increment.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3576,7 +3179,6 @@
     "name": "ROUNDUP",
     "category": "Math",
     "params": "(value, [places])",
-    "description": "Rounds a number to a certain number of decimal places, always rounding up to the next valid increment.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3585,7 +3187,6 @@
     "name": "ROW",
     "category": "Lookup",
     "params": "([cell_reference])",
-    "description": "Returns the row number of a specified cell.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3594,7 +3195,6 @@
     "name": "ROWS",
     "category": "Lookup",
     "params": "(range)",
-    "description": "Returns the number of rows in a specified array or range.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3603,7 +3203,6 @@
     "name": "RRI",
     "category": "Financial",
     "params": "(number_of_periods, present_value, future_value)",
-    "description": "Returns the interest rate needed for an investment to reach a specific value within a given number of periods.\u00a0.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -3612,7 +3211,6 @@
     "name": "RSQ",
     "category": "Statistical",
     "params": "(data_y, data_x)",
-    "description": "Calculates the square of r, the Pearson product-moment correlation coefficient of a dataset.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -3621,7 +3219,6 @@
     "name": "SCAN",
     "category": "Array",
     "params": "SCAN(initial_value, array_or_range, LAMBDA)",
-    "description": "Scans an array and produces intermediate values by application of a LAMBDA function to each value. Returns an array of the intermediate values obtained at each step.",
     "source": "google",
     "registered": true,
     "resolved": true
@@ -3630,7 +3227,6 @@
     "name": "SEARCH",
     "category": "Text",
     "params": "(search_for, text_to_search, [starting_at])",
-    "description": "Returns the position at which a string is first found within text.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3639,7 +3235,6 @@
     "name": "SEARCHB",
     "category": "Text",
     "params": "(search_for, text_to_search, [starting_at])",
-    "description": "Returns the position at which a string is first found within text counting each double-character as 2.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3648,7 +3243,6 @@
     "name": "SEC",
     "category": "Math",
     "params": "SEC(angle)",
-    "description": "The SEC function returns the secant of an angle, measured in radians. .",
     "source": "google",
     "registered": false,
     "resolved": true
@@ -3657,7 +3251,6 @@
     "name": "SECH",
     "category": "Math",
     "params": "(value)",
-    "description": "The SECH function returns the hyperbolic secant of an angle.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -3666,7 +3259,6 @@
     "name": "SECOND",
     "category": "Date",
     "params": "(time)",
-    "description": "Returns the second component of a specific time, in numeric format.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3675,7 +3267,6 @@
     "name": "SEQUENCE",
     "category": "Math",
     "params": "(rows, columns, [start], [step])",
-    "description": "Returns an array of sequential numbers, such as 1, 2, 3, 4.\u00a0.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3684,7 +3275,6 @@
     "name": "SERIESSUM",
     "category": "Math",
     "params": "(x, n, m, a)",
-    "description": "Given parameters x, n, m, and a, returns the power series sum a1xn + a2x(n+m) + ... + aix(n+(i-1)m), where i is the number of entries in range `a`.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -3693,7 +3283,6 @@
     "name": "SHEET",
     "category": "Lookup",
     "params": "([value])",
-    "description": "Returns the sheet number of the specified sheet or other reference.  about the SHEET function.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3702,7 +3291,6 @@
     "name": "SHEETS",
     "category": "Info",
     "params": "([reference])",
-    "description": "Returns the total number of sheets in the referenced spreadsheet.  about the SHEETS function.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3711,7 +3299,6 @@
     "name": "SIGN",
     "category": "Math",
     "params": "(value)",
-    "description": "Given an input number, returns `-1` if it is negative, `1` if positive, and `0` if it is zero.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3720,7 +3307,6 @@
     "name": "SIN",
     "category": "Math",
     "params": "(angle)",
-    "description": "Returns the sine of an angle provided in radians.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3729,7 +3315,6 @@
     "name": "SINH",
     "category": "Math",
     "params": "(value)",
-    "description": "Returns the hyperbolic sine of any real number.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -3738,7 +3323,6 @@
     "name": "SKEW",
     "category": "Statistical",
     "params": "(value1, [value2])",
-    "description": "Calculates the skewness of a dataset, which describes the symmetry of that dataset about the mean.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -3747,7 +3331,6 @@
     "name": "SKEW.P",
     "category": "Statistical",
     "params": "(value1, [value2])",
-    "description": "Calculates the skewness of a dataset that represents the entire population.\u00a0.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -3756,7 +3339,6 @@
     "name": "SLN",
     "category": "Financial",
     "params": "(cost, salvage, life)",
-    "description": "Calculates the depreciation of an asset for one period using the straight-line method.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -3765,7 +3347,6 @@
     "name": "SLOPE",
     "category": "Statistical",
     "params": "(data_y, data_x)",
-    "description": "Calculates the slope of the line resulting from linear regression of a dataset.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -3774,7 +3355,6 @@
     "name": "SMALL",
     "category": "Statistical",
     "params": "(data, n)",
-    "description": "Returns the nth smallest element from a data set, where n is user-defined.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3783,7 +3363,6 @@
     "name": "SORT",
     "category": "Filter",
     "params": "(range, sort_column, is_ascending, [sort_column2], [is_ascending2])",
-    "description": "Sorts the rows of a given array or range by the values in one or more columns.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3792,7 +3371,6 @@
     "name": "SORTN",
     "category": "Filter",
     "params": "(range, [n], [display_ties_mode], [sort_column1, is_ascending1])",
-    "description": "Returns the first n items in a data set after performing a sort.",
     "source": "both",
     "registered": false,
     "resolved": false
@@ -3801,7 +3379,6 @@
     "name": "SPARKLINE",
     "category": "Google",
     "params": "(data, [options])",
-    "description": "Creates a miniature chart contained within a single cell.",
     "source": "both",
     "registered": false,
     "resolved": false
@@ -3810,7 +3387,6 @@
     "name": "SPLIT",
     "category": "Text",
     "params": "(text, delimiter, [split_by_each], [remove_empty_text])",
-    "description": "Divides text around a specified character or string, and puts each fragment into a separate cell in the row.",
     "source": "both",
     "registered": false,
     "resolved": false
@@ -3819,7 +3395,6 @@
     "name": "SQRT",
     "category": "Math",
     "params": "(value)",
-    "description": "Returns the positive square root of a positive number.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3828,7 +3403,6 @@
     "name": "SQRTPI",
     "category": "Math",
     "params": "(value)",
-    "description": "Returns the positive square root of the product of Pi and the given positive number.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3837,7 +3411,6 @@
     "name": "STANDARDIZE",
     "category": "Statistical",
     "params": "(value, mean, standard_deviation)",
-    "description": "Calculates the normalized equivalent of a random variable given mean and standard deviation of the distribution.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -3846,7 +3419,6 @@
     "name": "STDEV",
     "category": "Statistical",
     "params": "(value1, [value2, ...])",
-    "description": "Calculates the standard deviation based on a sample.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3855,7 +3427,6 @@
     "name": "STDEV.P",
     "category": "Statistical",
     "params": "(value1, [value2, ...])",
-    "description": "See STDEVP",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3864,7 +3435,6 @@
     "name": "STDEV.S",
     "category": "Statistical",
     "params": "(value1, [value2, ...])",
-    "description": "See STDEV",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3873,7 +3443,6 @@
     "name": "STDEVA",
     "category": "Statistical",
     "params": "(value1, [value2])",
-    "description": "Calculates the standard deviation based on a sample, setting text to the value `0`.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -3882,7 +3451,6 @@
     "name": "STDEVP",
     "category": "Statistical",
     "params": "(value1, [value2])",
-    "description": "Calculates the standard deviation based on an entire population.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3891,7 +3459,6 @@
     "name": "STDEVPA",
     "category": "Statistical",
     "params": "(value1, value2)",
-    "description": "Calculates the standard deviation based on an entire population, setting text to the value `0`.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -3900,7 +3467,6 @@
     "name": "STEYX",
     "category": "Statistical",
     "params": "(data_y, data_x)",
-    "description": "Calculates the standard error of the predicted y-value for each x in the regression of a dataset.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -3909,7 +3475,6 @@
     "name": "SUBSTITUTE",
     "category": "Text",
     "params": "(text_to_search, search_for, replace_with, [occurrence_number])",
-    "description": "Replaces existing text with new text in a string.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3918,7 +3483,6 @@
     "name": "SUBTOTAL",
     "category": "Math",
     "params": "(function_code, range1, [range2, ...])",
-    "description": "Returns a subtotal for a vertical range of cells using a specified aggregation function.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3927,7 +3491,6 @@
     "name": "SUM",
     "category": "Math",
     "params": "(value1, [value2, ...])",
-    "description": "Returns the sum of a series of numbers and/or cells.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3936,7 +3499,6 @@
     "name": "SUMIF",
     "category": "Math",
     "params": "(range, criterion, [sum_range])",
-    "description": "Returns a conditional sum across a range.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3945,7 +3507,6 @@
     "name": "SUMIFS",
     "category": "Math",
     "params": "(sum_range, criteria_range1, criterion1, [criteria_range2, criterion2, ...])",
-    "description": "Returns the sum of a range depending on multiple criteria.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3954,7 +3515,6 @@
     "name": "SUMPRODUCT",
     "category": "Array",
     "params": "(array1, [[array2, ...]])",
-    "description": "Calculates the sum of the products of corresponding entries in two equal-sized arrays or ranges.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -3963,7 +3523,6 @@
     "name": "SUMSQ",
     "category": "Math",
     "params": "(value1, [value2, ...])",
-    "description": "Returns the sum of the squares of a series of numbers and/or cells.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -3972,7 +3531,6 @@
     "name": "SUMX2MY2",
     "category": "Array",
     "params": "SUMX2MY2(array_x, array_y)",
-    "description": "Calculates the sum of the differences of the squares of values in two arrays.",
     "source": "google",
     "registered": false,
     "resolved": true
@@ -3981,7 +3539,6 @@
     "name": "SUMX2PY2",
     "category": "Array",
     "params": "SUMX2PY2(array_x, array_y)",
-    "description": "Calculates the sum of the sums of the squares of values in two arrays.",
     "source": "google",
     "registered": false,
     "resolved": true
@@ -3990,7 +3547,6 @@
     "name": "SUMXMY2",
     "category": "Array",
     "params": "(array_x, array_y)",
-    "description": "Calculates the sum of the squares of differences of values in two arrays.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -3999,7 +3555,6 @@
     "name": "SWITCH",
     "category": "Logical",
     "params": "(expression, case1, value1, [default or case2], [value2])",
-    "description": "Tests an expression against a list of cases and returns the corresponding value of the first matching case, with an optional default value if nothing else is met.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -4008,7 +3563,6 @@
     "name": "SYD",
     "category": "Financial",
     "params": "(cost, salvage, life, period)",
-    "description": "Calculates the depreciation of an asset for a specified period using the sum of years digits method.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -4017,7 +3571,6 @@
     "name": "T",
     "category": "Text",
     "params": "(value)",
-    "description": "Returns string arguments as text.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -4026,7 +3579,6 @@
     "name": "T.DIST",
     "category": "Statistical",
     "params": "(x, degrees_freedom, cumulative)",
-    "description": "Returns the right tailed Student distribution for a value x.\u00a0.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -4035,7 +3587,6 @@
     "name": "T.DIST.2T",
     "category": "Statistical",
     "params": "(x, degrees_freedom)",
-    "description": "Returns the two tailed Student distribution for a value x.\u00a0.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -4044,7 +3595,6 @@
     "name": "T.DIST.RT",
     "category": "Statistical",
     "params": "(x, degrees_freedom)",
-    "description": "Returns the right tailed Student distribution for a value x.\u00a0.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -4053,7 +3603,6 @@
     "name": "T.INV",
     "category": "Statistical",
     "params": "(probability, degrees_freedom)",
-    "description": "Calculates the negative inverse of the one-tailed TDIST function.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -4062,7 +3611,6 @@
     "name": "T.INV.2T",
     "category": "Statistical",
     "params": "(probability, degrees_freedom)",
-    "description": "Calculates the inverse of the two-tailed TDIST function.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -4071,7 +3619,6 @@
     "name": "T.TEST",
     "category": "Statistical",
     "params": "(range1, range2, tails, [type])",
-    "description": "Returns the probability associated with Student's t-test. Determines whether two samples are likely to have come from the same two underlying populations that have the same mean. .",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -4080,7 +3627,6 @@
     "name": "TAN",
     "category": "Math",
     "params": "(angle)",
-    "description": "Returns the tangent of an angle provided in radians.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -4089,7 +3635,6 @@
     "name": "TANH",
     "category": "Math",
     "params": "(value)",
-    "description": "Returns the hyperbolic tangent of any real number.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -4098,7 +3643,6 @@
     "name": "TBILLEQ",
     "category": "Financial",
     "params": "(settlement, maturity, discount)",
-    "description": "Calculates the equivalent annualized rate of return of a US Treasury Bill based on discount rate.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -4107,7 +3651,6 @@
     "name": "TBILLPRICE",
     "category": "Financial",
     "params": "(settlement, maturity, discount)",
-    "description": "Calculates the price of a US Treasury Bill based on discount rate.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -4116,7 +3659,6 @@
     "name": "TBILLYIELD",
     "category": "Financial",
     "params": "(settlement, maturity, price)",
-    "description": "Calculates the yield of a US Treasury Bill based on price.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -4125,7 +3667,6 @@
     "name": "TDIST",
     "category": "Statistical",
     "params": "(x, degrees_freedom, tails)",
-    "description": "Calculates the probability for Student's t-distribution with a given input (x).",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -4134,7 +3675,6 @@
     "name": "TEXT",
     "category": "Text",
     "params": "(number, format)",
-    "description": "Converts a number into text according to a specified format.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -4143,7 +3683,6 @@
     "name": "TEXTJOIN",
     "category": "Text",
     "params": "(delimiter, ignore_empty, text1, [text2])",
-    "description": "Combines the text from multiple strings and/or arrays, with a specifiable delimiter separating the different texts. .",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -4152,7 +3691,6 @@
     "name": "TIME",
     "category": "Date",
     "params": "(hour, minute, second)",
-    "description": "Converts a provided hour, minute, and second into a time.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -4161,7 +3699,6 @@
     "name": "TIMEVALUE",
     "category": "Date",
     "params": "(time_string)",
-    "description": "Returns the fraction of a 24-hour day the time represents.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -4170,7 +3707,6 @@
     "name": "TINV",
     "category": "Statistical",
     "params": "(probability, degrees_freedom)",
-    "description": "See T.INV.2T",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -4179,7 +3715,6 @@
     "name": "TO_DATE",
     "category": "Parser",
     "params": "(value)",
-    "description": "Converts a provided number to a date.",
     "source": "both",
     "registered": false,
     "resolved": false
@@ -4188,7 +3723,6 @@
     "name": "TO_DOLLARS",
     "category": "Parser",
     "params": "(value)",
-    "description": "Converts a provided number to a dollar value.",
     "source": "both",
     "registered": false,
     "resolved": false
@@ -4197,7 +3731,6 @@
     "name": "TO_PERCENT",
     "category": "Parser",
     "params": "(value)",
-    "description": "Converts a provided number to a percentage.",
     "source": "both",
     "registered": false,
     "resolved": false
@@ -4206,7 +3739,6 @@
     "name": "TO_PURE_NUMBER",
     "category": "Parser",
     "params": "(value)",
-    "description": "Converts a provided date/time, percentage, currency or other formatted numeric value to a pure number without formatting.",
     "source": "both",
     "registered": false,
     "resolved": false
@@ -4215,7 +3747,6 @@
     "name": "TO_TEXT",
     "category": "Parser",
     "params": "(value)",
-    "description": "Converts a provided numeric value to a text value.",
     "source": "both",
     "registered": false,
     "resolved": false
@@ -4224,7 +3755,6 @@
     "name": "TOCOL",
     "category": "Array",
     "params": "(array_or_range, [ignore], [scan_by_column])",
-    "description": "Transforms an array or range of cells into a single column.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -4233,7 +3763,6 @@
     "name": "TODAY",
     "category": "Date",
     "params": "()",
-    "description": "Returns the current date as a date value.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -4242,7 +3771,6 @@
     "name": "TOROW",
     "category": "Array",
     "params": "TOROW(array_or_range, [ignore], [scan_by_column])",
-    "description": "Transforms an array or range of cells into a single row.",
     "source": "google",
     "registered": true,
     "resolved": true
@@ -4251,7 +3779,6 @@
     "name": "TRANSPOSE",
     "category": "Array",
     "params": "(array_or_range)",
-    "description": "Transposes the rows and columns of an array or range of cells.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -4260,7 +3787,6 @@
     "name": "TREND",
     "category": "Array",
     "params": "(known_data_y, [known_data_x], [new_data_x], [b])",
-    "description": "Given partial data about a linear trend, fits an ideal linear trend using the least squares method and/or predicts further values.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -4269,7 +3795,6 @@
     "name": "TRIM",
     "category": "Text",
     "params": "(text)",
-    "description": "Removes leading and trailing spaces in a specified string.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -4278,7 +3803,6 @@
     "name": "TRIMMEAN",
     "category": "Statistical",
     "params": "(data, exclude_proportion)",
-    "description": "Calculates the mean of a dataset excluding some proportion of data from the high and low ends of the dataset.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -4287,7 +3811,6 @@
     "name": "TRUE",
     "category": "Logical",
     "params": "([])",
-    "description": "Returns the logical value `TRUE`.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -4296,7 +3819,6 @@
     "name": "TRUNC",
     "category": "Math",
     "params": "(value, [places])",
-    "description": "Truncates a number to a certain number of significant digits by omitting less significant digits.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -4305,7 +3827,6 @@
     "name": "TTEST",
     "category": "Statistical",
     "params": "(range1, range2, tails, [type])",
-    "description": "See\u00a0T.TEST.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -4314,7 +3835,6 @@
     "name": "TYPE",
     "category": "Info",
     "params": "(value)",
-    "description": "Returns a number associated with the type of data passed into the function.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -4323,7 +3843,6 @@
     "name": "UMINUS",
     "category": "Operator",
     "params": "(value)",
-    "description": "Returns a number with the sign reversed.",
     "source": "both",
     "registered": false,
     "resolved": false
@@ -4332,7 +3851,6 @@
     "name": "UNARY_PERCENT",
     "category": "Operator",
     "params": "UNARY_PERCENT(percentage)",
-    "description": "Returns a value interpreted as a percentage; that is, `UNARY_PERCENT(100)` equals `1`.",
     "source": "google",
     "registered": false,
     "resolved": false
@@ -4341,7 +3859,6 @@
     "name": "UNICHAR",
     "category": "Text",
     "params": "(number)",
-    "description": "Returns the Unicode character for a number.\u00a0.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -4350,7 +3867,6 @@
     "name": "UNICODE",
     "category": "Text",
     "params": "(text)",
-    "description": "Returns the decimal Unicode value of the first character of the text. .",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -4359,7 +3875,6 @@
     "name": "UNIQUE",
     "category": "Operator",
     "params": "(range, [by_column], [exactly_once])",
-    "description": "Returns unique rows in the provided source range, discarding duplicates. Rows are returned in the order in which they first appear in the source range.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -4368,7 +3883,6 @@
     "name": "UPLUS",
     "category": "Operator",
     "params": "(value)",
-    "description": "Returns a specified number, unchanged.",
     "source": "both",
     "registered": false,
     "resolved": false
@@ -4377,7 +3891,6 @@
     "name": "UPPER",
     "category": "Text",
     "params": "(text)",
-    "description": "Converts a specified string to uppercase.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -4386,7 +3899,6 @@
     "name": "VALUE",
     "category": "Text",
     "params": "(text)",
-    "description": "Converts a string in any of the date, time or number formats that Google Sheets understands into a number.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -4395,7 +3907,6 @@
     "name": "VAR",
     "category": "Statistical",
     "params": "(value1, [value2, ...])",
-    "description": "Calculates the variance based on a sample.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -4404,7 +3915,6 @@
     "name": "VAR.P",
     "category": "Statistical",
     "params": "(value1, [value2, ...])",
-    "description": "See VARP",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -4413,7 +3923,6 @@
     "name": "VAR.S",
     "category": "Statistical",
     "params": "(value1, [value2, ...])",
-    "description": "See VAR",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -4422,7 +3931,6 @@
     "name": "VARA",
     "category": "Statistical",
     "params": "(value1, value2, ...)",
-    "description": "Calculates an estimate of variance based on a sample, setting text to the value `0`.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -4431,7 +3939,6 @@
     "name": "VARP",
     "category": "Statistical",
     "params": "(value1, [value2])",
-    "description": "Calculates the variance based on an entire population.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -4440,7 +3947,6 @@
     "name": "VARPA",
     "category": "Statistical",
     "params": "(value1, value2,...)",
-    "description": "Calculates the variance based on an entire population, setting text to the value `0`.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -4449,7 +3955,6 @@
     "name": "VDB",
     "category": "Financial",
     "params": "(cost, salvage, life, start_period, end_period, [factor], [no_switch])",
-    "description": "Returns the depreciation of an asset for a particular period (or partial period).\u00a0.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -4458,7 +3963,6 @@
     "name": "VLOOKUP",
     "category": "Lookup",
     "params": "(search_key, range, index, [is_sorted])",
-    "description": "Vertical lookup. Searches down the first column of a range for a key and returns the value of a specified cell in the row found.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -4467,7 +3971,6 @@
     "name": "VSTACK",
     "category": "Array",
     "params": "(range1, [range2, ...])",
-    "description": "Appends ranges vertically and in sequence to return a larger array.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -4476,7 +3979,6 @@
     "name": "WEEKDAY",
     "category": "Date",
     "params": "(date, [type])",
-    "description": "Returns a number representing the day of the week of the date provided.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -4485,7 +3987,6 @@
     "name": "WEEKNUM",
     "category": "Date",
     "params": "(date, [type])",
-    "description": "Returns a number representing the week of the year where the provided date falls.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -4494,7 +3995,6 @@
     "name": "WEIBULL",
     "category": "Statistical",
     "params": "(x, shape, scale, cumulative)",
-    "description": "Returns the value of the Weibull distribution function (or Weibull cumulative distribution function) for a specified shape and scale.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -4503,7 +4003,6 @@
     "name": "WEIBULL.DIST",
     "category": "Statistical",
     "params": "(x, shape, scale, [cumulative])",
-    "description": "See WEIBULL",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -4512,7 +4011,6 @@
     "name": "WORKDAY",
     "category": "Date",
     "params": "(start_date, num_days, [holidays])",
-    "description": "Calculates the end date after a specified number of working days.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -4521,7 +4019,6 @@
     "name": "WORKDAY.INTL",
     "category": "Date",
     "params": "(start_date, num_days, [weekend], [holidays])",
-    "description": "Calculates the date after a specified number of workdays excluding specified weekend days and holidays.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -4530,7 +4027,6 @@
     "name": "WRAPCOLS",
     "category": "Array",
     "params": "WRAPCOLS(range, wrap_count, [pad_with])",
-    "description": "Wraps the provided row or column of cells by columns after a specified number of elements to form a new array.",
     "source": "google",
     "registered": true,
     "resolved": true
@@ -4539,7 +4035,6 @@
     "name": "WRAPROWS",
     "category": "Array",
     "params": "WRAPROWS(range, wrap_count, [pad_with])",
-    "description": "Wraps the provided row or column of cells by rows after a specified number of elements to form a new array.",
     "source": "google",
     "registered": true,
     "resolved": true
@@ -4548,7 +4043,6 @@
     "name": "XIRR",
     "category": "Financial",
     "params": "(cashflow_amounts, cashflow_dates, [rate_guess])",
-    "description": "Calculates the internal rate of return of an investment based on a specified series of potentially irregularly spaced cash flows.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -4557,7 +4051,6 @@
     "name": "XLOOKUP",
     "category": "Lookup",
     "params": "(search_key, lookup_range, result_range, missing_value, [match_mode], [search_mode])",
-    "description": "Returns the values in the result range based on the position where a match was found in the lookup range. If no match is found, it returns the closest match.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -4566,7 +4059,6 @@
     "name": "XNPV",
     "category": "Financial",
     "params": "(discount, cashflow_amounts, cashflow_dates)",
-    "description": "Calculates the net present value of an investment based on a specified series of potentially irregularly spaced cash flows and a discount rate.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -4575,7 +4067,6 @@
     "name": "XOR",
     "category": "Logical",
     "params": "(logical_expression1, [logical_expression2, ...])",
-    "description": "The XOR function performs an exclusive or of 2 numbers that returns a 1 if the numbers are different, and a 0 otherwise. .",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -4584,7 +4075,6 @@
     "name": "YEAR",
     "category": "Date",
     "params": "(date)",
-    "description": "Returns the year specified by a given date.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -4593,7 +4083,6 @@
     "name": "YEARFRAC",
     "category": "Date",
     "params": "(start_date, end_date, [day_count_convention])",
-    "description": "Returns the number of years, including fractional years, between two dates using a specified day count convention.",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -4602,7 +4091,6 @@
     "name": "YIELD",
     "category": "Financial",
     "params": "(settlement, maturity, rate, price, redemption, frequency, [day_count_convention])",
-    "description": "Calculates the annual yield of a security paying periodic interest, such as a US Treasury Bond, based on price.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -4611,7 +4099,6 @@
     "name": "YIELDDISC",
     "category": "Financial",
     "params": "(settlement, maturity, price, redemption, [day_count_convention])",
-    "description": "Calculates the annual yield of a discount (non-interest-bearing) security, based on price.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -4620,7 +4107,6 @@
     "name": "YIELDMAT",
     "category": "Financial",
     "params": "(settlement, maturity, issue, rate, price, [day_count_convention])",
-    "description": "Calculates the annual yield of a security paying interest at maturity, based on price.",
     "source": "both",
     "registered": true,
     "resolved": true
@@ -4629,7 +4115,6 @@
     "name": "Z.TEST",
     "category": "Statistical",
     "params": "(data, value, [standard_deviation])",
-    "description": "Returns the one-tailed P-value of a Z-test with standard distribution. .",
     "source": "both",
     "registered": false,
     "resolved": true
@@ -4638,7 +4123,6 @@
     "name": "ZTEST",
     "category": "Statistical",
     "params": "(data, value, [standard_deviation])",
-    "description": "See\u00a0Z.TEST.",
     "source": "both",
     "registered": false,
     "resolved": true

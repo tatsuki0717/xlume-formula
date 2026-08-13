@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns inverse Fisher transformation value.
+Returns the inverse of the Fisher transformation: if y = FISHER(x), then FISHERINV(y) = x.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Returns inverse Fisher transformation value.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | y | number \| range/array | Yes | The value of the Fisher transformation to invert. |
+| 1 | y | number \| range/array | Yes | Is the value for which you want to perform the inverse of the transformation. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns inverse Fisher transformation value.
+Returns the inverse of the Fisher transformation: if y = FISHER(x), then FISHERINV(y) = x.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns inverse Fisher transformation value.
+> Returns the inverse of the Fisher transformation: if y = FISHER(x), then FISHERINV(y) = x.
 
 
 ## Type Coercion & Edge Cases
@@ -54,7 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=FISHERINV(0.5)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=FISHERINV(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

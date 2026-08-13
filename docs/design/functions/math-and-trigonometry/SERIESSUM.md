@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Evaluates series at a point.
+Returns the sum of a power series based on the formula.
 
 ## Excel Syntax
 ```excel
@@ -17,16 +17,16 @@ Evaluates series at a point.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | x | number \| string \| boolean \| range/array | Yes | The input value x to the power series. |
-| 2 | n | number \| string \| boolean \| range/array | Yes | The initial power n to raise x to. |
-| 3 | m | number \| string \| boolean \| range/array | Yes | The step m by which the power increases for each successive term. |
-| 4 | coefficients | range/array \| string \| number \| boolean | Yes | A range of coefficients multiplying each successive power of x. |
+| 1 | x | number \| string \| boolean \| range/array | Yes | Is the input value to the power series. |
+| 2 | n | number \| string \| boolean \| range/array | Yes | Is the initial power to which you want to raise x. |
+| 3 | m | number \| string \| boolean \| range/array | Yes | Is the step by which to increase n for each term in the series. |
+| 4 | coefficients | range/array \| string \| number \| boolean | Yes | Is a set of coefficients by which each successive power of x is multiplied. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Evaluates series at a point.
+Returns the sum of a power series based on the formula.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -35,7 +35,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Evaluates series at a point.
+> Returns the sum of a power series based on the formula.
 
 
 ## Type Coercion & Edge Cases
@@ -57,8 +57,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=SERIESSUM(1, 0, 1, A1:A3)`
-- `=SERIESSUM(2, 1, 2, B1:B4)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=SERIESSUM(..., ..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

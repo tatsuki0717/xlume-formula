@@ -38,54 +38,60 @@
   "Information": {
     "count": 22,
     "scopes": {
-      "implement": 21,
+      "implement": 18,
+      "deferred": 3,
       "out-of-scope": 1
     }
   },
   "Logical": {
     "count": 19,
     "scopes": {
-      "implement": 19
+      "implement": 11,
+      "deferred": 8
     }
   },
   "Lookup & Reference": {
     "count": 40,
     "scopes": {
-      "implement": 37,
-      "out-of-scope": 3
+      "implement": 17,
+      "deferred": 18,
+      "out-of-scope": 5
     }
   },
   "Math & Trigonometry": {
     "count": 82,
     "scopes": {
-      "implement": 82
+      "implement": 80,
+      "deferred": 2
     }
   },
   "Statistical": {
     "count": 110,
     "scopes": {
-      "implement": 110
+      "implement": 100,
+      "deferred": 10
     }
   },
   "Text": {
     "count": 49,
     "scopes": {
-      "implement": 47,
-      "out-of-scope": 2
+      "implement": 42,
+      "deferred": 1,
+      "out-of-scope": 6
     }
   },
   "User-defined / Add-in": {
     "count": 3,
     "scopes": {
       "out-of-scope": 2,
-      "implement": 1
+      "deferred": 1
     }
   },
   "Web": {
     "count": 3,
     "scopes": {
-      "implement": 2,
-      "out-of-scope": 1
+      "out-of-scope": 2,
+      "implement": 1
     }
   }
 }

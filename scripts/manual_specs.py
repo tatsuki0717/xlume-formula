@@ -1,8 +1,8 @@
 """
 Manual design metadata for Excel worksheet functions that are not covered by the
-authoritative sources used by the generator (HyperFormula, Office.js YAML,
-formula.js).  These entries provide signatures, descriptions and examples so
-that every function in the reference catalog can have a design document.
+authoritative sources used by the generator (Office.js YAML). These entries
+provide signatures, descriptions and examples so that every function in the
+reference catalog can have a design document.
 """
 
 EXTRA_SPECS = {

@@ -11,15 +11,15 @@ Looks up a value either from a one-row or one-column range or from an array. Pro
 
 ## Excel Syntax
 ```excel
-=LOOKUP(lookup_value, array, result_array)
+=LOOKUP(lookup_value, lookup_vector, result_vector)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
 | 1 | lookup_value | number \| string \| boolean \| range/array | Yes | Is a value that LOOKUP searches for in lookupVector and can be a number, text, a logical value, or a name or reference to a value. |
-| 2 | array | range/array | Yes | Is a range that contains only one row or one column of text, numbers, or logical values, placed in ascending order. |
-| 3 | result_array | range/array | Yes | Is a range that contains only one row or column, the same size as lookupVector. |
+| 2 | lookup_vector | range/array | Yes | Is a range that contains only one row or one column of text, numbers, or logical values, placed in ascending order. |
+| 3 | result_vector | range/array | Yes | Is a range that contains only one row or column, the same size as lookupVector. |
 
 ## Returns
 Scalar or array depending on arguments

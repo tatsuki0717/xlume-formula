@@ -8,7 +8,7 @@
 - **Dynamic array:** No (scalar)
 
 ## Description
-Returns a number raised to a power.
+See upstream spreadsheet function documentation.
 
 ## Google Sheets Syntax
 ```excel

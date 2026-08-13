@@ -7,34 +7,28 @@
 - **Volatile:** No
 
 ## Description
-Returns a value along a linear trend.
+→ `FORECAST.LINEAR`
 
 ## Excel Syntax
 ```excel
-=FORECAST(x, known_ys, known_xs)
+=FORECAST()
 ```
 
 ## Arguments
-| # | Name | Type | Required? | Description |
-|---|---|---|---|---|
-| 1 | x | any | Yes | The data point for which you want to predict a value. |
-| 2 | known_ys | range/array | Yes | The dependent array or range of data. |
-| 3 | known_xs | range/array | Yes | The independent array or range of data. |
+This function takes no arguments.
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns a value along a linear trend.
+→ `FORECAST.LINEAR`
 
 High-level algorithm:
-1. Validate argument count and coerce each argument according to its documented type.
-2. Propagate any input errors (`#VALUE!`, `#NUM!`, etc.) before computation.
-3. Execute the core calculation described below.
-4. Apply final coercion to the documented return type and return the result.
+1. Execute the core calculation.
+2. Return the result.
 
 Core calculation:
-> Returns a value along a linear trend.
+> → `FORECAST.LINEAR`
 
 
 ## Type Coercion & Edge Cases
@@ -58,8 +52,6 @@ Core calculation:
 ## Examples
 TBD — add representative Excel examples during implementation.
 
-Skeleton: `=FORECAST(..., ..., ...)`
-
 ## Test Cases
 | Input | Expected | Purpose |
 |---|---|---|
@@ -68,17 +60,6 @@ Skeleton: `=FORECAST(..., ..., ...)`
 | Blank/empty cells | Coerced `0` or `""` as appropriate | Blank handling |
 | Text that cannot be coerced | `#VALUE!` | Error propagation |
 | Too few/too many arguments | `#VALUE!` | Arity validation |
-
-## Verified Edge Cases
-- `FORECAST` is a compatibility alias for `FORECAST.LINEAR`; both should delegate to the same linear-regression implementation.
-- If `known_xs` has zero variance (`#DIV/0!` is returned in Excel), the regression slope is undefined.
-- Text/logical values in `known_xs`/`known_ys` should be coerced or ignored consistently with `FORECAST.LINEAR`.
-
-### Additional test cases
-| Input | Expected | Purpose |
-|---|---|---|
-| `=FORECAST(5, {1,2,3}, {2,4,6})` | `2.5` | Simple linear forecast |
-| `=FORECAST.LINEAR(5, {1,2,3}, {2,4,6})` | `2.5` | Alias produces same result |
 
 ## Implementation Notes
 Follow standard Excel semantics. Add inline KAT tests and, if the behavior depends on cell layout, a workbook fixture.

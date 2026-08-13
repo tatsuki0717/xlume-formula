@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns sign of a number.
+Returns the sign of a number: 1 if the number is positive, zero if the number is zero, or -1 if the number is negative.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Returns sign of a number.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number | number \| range/array | Yes | A number to test; returns 1 for positive, -1 for negative, and 0 for zero. |
+| 1 | number | number \| range/array | Yes | Is any real number. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns sign of a number.
+Returns the sign of a number: 1 if the number is positive, zero if the number is zero, or -1 if the number is negative.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns sign of a number.
+> Returns the sign of a number: 1 if the number is positive, zero if the number is zero, or -1 if the number is negative.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=SIGN(-5)`
-- `=SIGN(0)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=SIGN(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

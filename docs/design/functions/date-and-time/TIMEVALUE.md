@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Parses time_string and returns a number representing it as a fraction of a full day. It accepts the time format patterns configured for the workbook.
+Converts a text time to an Excel serial number for a time, a number from 0 (12:00:00 AM) to 0.999988426 (11:59:59 PM). Format the number with a time format after entering the formula.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Parses time_string and returns a number representing it as a fraction of a full 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | time_text | string \| number \| range/array | Yes | A text string representing a time, in one of the formats configured for the workbook. |
+| 1 | time_text | string \| number \| range/array | Yes | Is a text string that gives a time in any one of the Microsoft Excel time formats (date information in the string is ignored). |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Parses time_string and returns a number representing it as a fraction of a full day. It accepts the time format patterns configured for the workbook.
+Converts a text time to an Excel serial number for a time, a number from 0 (12:00:00 AM) to 0.999988426 (11:59:59 PM). Format the number with a time format after entering the formula.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Parses time_string and returns a number representing it as a fraction of a full day. It accepts the time format patterns configured for the workbook.
+> Converts a text time to an Excel serial number for a time, a number from 0 (12:00:00 AM) to 0.999988426 (11:59:59 PM). Format the number with a time format after entering the formula.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=TIMEVALUE("14:30:00")`
-- `=TIMEVALUE(A1)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=TIMEVALUE(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

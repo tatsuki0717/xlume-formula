@@ -7,7 +7,7 @@
 - **Volatile:** Yes
 
 ## Description
-Returns the current date and time as a serial day count from the workbook's date origin.
+Returns the current date and time formatted as a date and time.
 
 ## Excel Syntax
 ```excel
@@ -21,14 +21,14 @@ This function takes no arguments.
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the current date and time as a serial day count from the workbook's date origin.
+Returns the current date and time formatted as a date and time.
 
 High-level algorithm:
 1. Execute the core calculation.
 2. Return the result.
 
 Core calculation:
-> Returns the current date and time as a serial day count from the workbook's date origin.
+> Returns the current date and time formatted as a date and time.
 
 
 ## Type Coercion & Edge Cases
@@ -50,7 +50,7 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=NOW()`
+TBD — add representative Excel examples during implementation.
 
 ## Test Cases
 | Input | Expected | Purpose |

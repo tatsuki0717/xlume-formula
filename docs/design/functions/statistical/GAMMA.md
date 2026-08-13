@@ -7,23 +7,23 @@
 - **Volatile:** No
 
 ## Description
-Returns value of Gamma function.
+Returns the Gamma function value.
 
 ## Excel Syntax
 ```excel
-=GAMMA(number)
+=GAMMA(x)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number | number \| range/array | Yes | The value at which to evaluate the Gamma function; must not be zero or a negative integer. |
+| 1 | x | number \| range/array | Yes | Is the value for which you want to calculate Gamma. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns value of Gamma function.
+Returns the Gamma function value.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns value of Gamma function.
+> Returns the Gamma function value.
 
 
 ## Type Coercion & Edge Cases
@@ -54,7 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=GAMMA(5)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=GAMMA(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

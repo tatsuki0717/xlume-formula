@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns cotangent of a complex number.
+Returns the cotangent of a complex number.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Returns cotangent of a complex number.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | inumber | number \| string \| boolean \| range/array | Yes | The complex number, given as text such as "3+4i", whose cotangent is calculated. |
+| 1 | inumber | number \| string \| boolean \| range/array | Yes | Is a complex number for which you want the cotangent. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns cotangent of a complex number.
+Returns the cotangent of a complex number.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns cotangent of a complex number.
+> Returns the cotangent of a complex number.
 
 
 ## Type Coercion & Edge Cases
@@ -54,7 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=IMCOT("3+4i")`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=IMCOT(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |
