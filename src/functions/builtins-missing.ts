@@ -16,6 +16,7 @@ import { excelCoerceBoolean, excelCoerceNumber, excelCoerceString, excelCompare 
 import { flattenArgs } from "../formula/evaluator.js";
 import type { EvaluationContext, ExcelFunction, FunctionRegistry } from "../formula/functions-types.js";
 import { columnIndexToLetters } from "../model/address.js";
+import jaconv from "jaconv";
 
 function fn(
   name: string,
@@ -818,11 +819,23 @@ export function registerMissingFunctions(add: (f: ExcelFunction) => void, reg: F
     }),
   );
 
+  add(fn("ASC", "none", (args) => {
+    const s = args[0] ? excelCoerceString(args[0]) : BLANK;
+    if (s.kind !== "string") return s;
+    return str(jaconv.toHan(s.value));
+  }));
+
+  add(fn("DBCS", "none", (args) => {
+    const s = args[0] ? excelCoerceString(args[0]) : BLANK;
+    if (s.kind !== "string") return s;
+    return str(jaconv.toZen(s.value));
+  }));
+
   const stubNames = [
     // External / locale / add-in
-    "ASC", "BAHTTEXT", "CALL", "CELL", "CUBEKPIMEMBER", "CUBEMEMBER",
+    "BAHTTEXT", "CALL", "CELL", "CUBEKPIMEMBER", "CUBEMEMBER",
     "CUBEMEMBERPROPERTY", "CUBERANKEDMEMBER", "CUBESET", "CUBESETCOUNT",
-    "CUBEVALUE", "DBCS", "DETECTLANGUAGE",
+    "CUBEVALUE",
     "FORMULATEXT", "IMAGE", "ISFORMULA",
     "LAMBDA", "LET", "MAKEARRAY", "MAP", "PHONETIC", "PIVOTBY", "REDUCE",
     "REGISTER.ID", "RTD", "SCAN", "STOCKHISTORY", "TRANSLATE", "WEBSERVICE",

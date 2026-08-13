@@ -24,6 +24,7 @@ import {
 import { flattenArgs } from "../formula/evaluator.js";
 import type { ExcelFunction } from "../formula/functions-types.js";
 import { evaluateQuery } from "./google-query.js";
+import { detect } from "tinyld";
 
 const EPOCH = Date.UTC(1899, 11, 30);
 const UNIX_EPOCH_SERIAL = 25569; // days between 1899-12-30 and 1970-01-01
@@ -767,5 +768,26 @@ export function registerGoogleSheetsFunctions(add: (f: ExcelFunction) => void): 
       }
     }
     return sparkline(data, options);
+  }));
+
+  add(fn("DETECTLANGUAGE", "none", (args) => {
+    if (args.length === 0) return err(ExcelErrorCode.Value);
+    let text = "";
+    const first = args[0]!;
+    if (first.kind === "array") {
+      const parts: string[] = [];
+      for (const v of flattenArgs([first])) {
+        if (v.kind === "string") parts.push(v.value);
+        else if (v.kind === "number" || v.kind === "boolean") parts.push(String(v.value));
+      }
+      text = parts.join(" ");
+    } else {
+      const s = excelCoerceString(first);
+      if (s.kind === "error") return s;
+      text = s.kind === "string" ? s.value : "";
+    }
+    if (!text.trim()) return str("und");
+    const lang = detect(text);
+    return str(lang || "und");
   }));
 }

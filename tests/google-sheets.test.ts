@@ -227,4 +227,11 @@ describe("Google Sheets offline functions", () => {
     expect(ev.evaluateText("=BESSELJ(1.5, 1)", ctx())).toEqual(num(0.5579365078908043));
     expect(ev.evaluateText("=BESSELI(2, 1)", ctx())).toEqual(num(1.5906368572633083));
   });
+
+  it("DETECTLANGUAGE returns language codes", () => {
+    expect(ev.evaluateText('=DETECTLANGUAGE("The quick brown fox jumps over the lazy dog.")', ctx())).toEqual(str("en"));
+    expect(ev.evaluateText('=DETECTLANGUAGE("Ceci est une phrase en français.")', ctx())).toEqual(str("fr"));
+    expect(ev.evaluateText('=DETECTLANGUAGE("これは日本語です。")', ctx())).toEqual(str("ja"));
+    expect(ev.evaluateText('=DETECTLANGUAGE("")', ctx())).toEqual(str("und"));
+  });
 });

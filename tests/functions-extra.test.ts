@@ -251,4 +251,14 @@ describe("Extra functions toward full compatibility", () => {
     expect(ev.evaluateText("LET(f, LAMBDA(a, b, IF(ISOMITTED(b), a, a+b)), f(5))", ctx())).toEqual(num(5));
     expect(ev.evaluateText("LET(f, LAMBDA(a, b, IF(ISOMITTED(b), a, a+b)), f(5, 3))", ctx())).toEqual(num(8));
   });
+
+  it("ASC converts full-width to half-width", () => {
+    expect(ev.evaluateText('ASC("Ｈｅｌｌｏ　Ｗｏｒｌｄ")', ctx())).toEqual(str("Hello World"));
+    expect(ev.evaluateText('ASC("アイウエオ")', ctx())).toEqual(str("ｱｲｳｴｵ"));
+  });
+
+  it("DBCS converts half-width to full-width", () => {
+    expect(ev.evaluateText('DBCS("Hello World")', ctx())).toEqual(str("Ｈｅｌｌｏ　Ｗｏｒｌｄ"));
+    expect(ev.evaluateText('DBCS("ｱｲｳｴｵ")', ctx())).toEqual(str("アイウエオ"));
+  });
 });
