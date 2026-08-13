@@ -1,8 +1,12 @@
 /**
  * Full-width / half-width conversions for Japanese text.
  *
- * Tables are adapted from jaconv (Apache-2.0) so ASC/DBCS remain
+ * Tables are adapted from jaconv (MIT License) so ASC/DBCS remain
  * behavior-compatible with the removed dependency.
+ *
+ * Copyright (c) 2011 Kazuhiko Arase
+ * Licensed under the MIT license.
+ * https://github.com/kazuhikoarase/jaconv
  */
 
 const asciiPairs: [string, string][] = [
