@@ -5,7 +5,9 @@
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -65,6 +67,7 @@
     "@finprecise/cashflow": "^0.3.0",
     "@finprecise/depreciation": "^0.3.0",
     "@floydspace/bond-calculator": "^0.2.0",
-    "@formulajs/formulajs": "^4.6.1"
+    "bessel": "^1.0.2",
+    "jstat": "^1.9.6"
   }
 }

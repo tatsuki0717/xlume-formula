@@ -11,6 +11,7 @@ import {
 } from "../model/value.js";
 import { excelCoerceNumber, excelCoerceString } from "../formula/coercion.js";
 import type { ExcelFunction } from "../formula/functions-types.js";
+import bessel from "bessel";
 
 function fn(
   name: string,
@@ -153,7 +154,8 @@ function complexMul(a: Complex, b: Complex): Complex {
   return { re: a.re * b.re - a.im * b.im, im: a.re * b.im + a.im * b.re, suffix: a.suffix };
 }
 
-function complexDiv(a: Complex, b: Complex): Complex | null {
+function complexDiv(a: Complex | null, b: Complex | null): Complex | null {
+  if (!a || !b) return null;
   const denom = b.re * b.re + b.im * b.im;
   if (denom === 0) return null;
   return { re: (a.re * b.re + a.im * b.im) / denom, im: (a.im * b.re - a.re * b.im) / denom, suffix: a.suffix };
@@ -184,6 +186,30 @@ function complexPow(c: Complex, n: number): Complex {
   const theta = Math.atan2(c.im, c.re);
   const rn = r ** n;
   return { re: rn * Math.cos(n * theta), im: rn * Math.sin(n * theta), suffix: c.suffix };
+}
+
+function complexSin(c: Complex): Complex {
+  return { re: Math.sin(c.re) * Math.cosh(c.im), im: Math.cos(c.re) * Math.sinh(c.im), suffix: c.suffix };
+}
+
+function complexCos(c: Complex): Complex {
+  return { re: Math.cos(c.re) * Math.cosh(c.im), im: -Math.sin(c.re) * Math.sinh(c.im), suffix: c.suffix };
+}
+
+function complexSinh(c: Complex): Complex {
+  return { re: Math.sinh(c.re) * Math.cos(c.im), im: Math.cosh(c.re) * Math.sin(c.im), suffix: c.suffix };
+}
+
+function complexCosh(c: Complex): Complex {
+  return { re: Math.cosh(c.re) * Math.cos(c.im), im: Math.sinh(c.re) * Math.sin(c.im), suffix: c.suffix };
+}
+
+function complexTan(c: Complex): Complex | null {
+  return complexDiv(complexSin(c), complexCos(c));
+}
+
+function complexTanh(c: Complex): Complex | null {
+  return complexDiv(complexSinh(c), complexCosh(c));
 }
 
 function parseComplexArg(arg: ExcelValue): Complex | null {
@@ -580,5 +606,57 @@ export function registerEngineeringFunctions(add: (f: ExcelFunction) => void): v
     const base = n.value * f.factor ** f.power;
     const result = base / (t.factor ** t.power);
     return num(result);
+  }));
+
+  // Complex trigonometric and hyperbolic
+  function withComplex(arg: ExcelValue, fn: (c: Complex) => Complex | null): ExcelValue {
+    const c = parseComplexArg(arg);
+    return toComplexResult(c ? fn(c) : null);
+  }
+  add(fn("IMSIN", "none", (args) => withComplex(args[0] ?? BLANK, complexSin)));
+  add(fn("IMCOS", "none", (args) => withComplex(args[0] ?? BLANK, complexCos)));
+  add(fn("IMTAN", "none", (args) => withComplex(args[0] ?? BLANK, complexTan)));
+  add(fn("IMCOT", "none", (args) => withComplex(args[0] ?? BLANK, (c) => complexDiv({ re: 1, im: 0, suffix: c.suffix }, complexTan(c)))));
+  add(fn("IMCSC", "none", (args) => withComplex(args[0] ?? BLANK, (c) => complexDiv({ re: 1, im: 0, suffix: c.suffix }, complexSin(c)))));
+  add(fn("IMSEC", "none", (args) => withComplex(args[0] ?? BLANK, (c) => complexDiv({ re: 1, im: 0, suffix: c.suffix }, complexCos(c)))));
+
+  add(fn("IMSINH", "none", (args) => withComplex(args[0] ?? BLANK, complexSinh)));
+  add(fn("IMCOSH", "none", (args) => withComplex(args[0] ?? BLANK, complexCosh)));
+  add(fn("IMTANH", "none", (args) => withComplex(args[0] ?? BLANK, complexTanh)));
+  add(fn("IMCSCH", "none", (args) => withComplex(args[0] ?? BLANK, (c) => complexDiv({ re: 1, im: 0, suffix: c.suffix }, complexSinh(c)))));
+  add(fn("IMSECH", "none", (args) => withComplex(args[0] ?? BLANK, (c) => complexDiv({ re: 1, im: 0, suffix: c.suffix }, complexCosh(c)))));
+
+  // Bessel functions
+  add(fn("BESSELJ", "none", (args) => {
+    const x = excelCoerceNumber(args[0] ?? BLANK);
+    const n = excelCoerceNumber(args[1] ?? BLANK);
+    if (x.kind !== "number" || n.kind !== "number") return err(ExcelErrorCode.Value);
+    const r = bessel.besselj(x.value, Math.trunc(n.value));
+    if (Number.isNaN(r) || !Number.isFinite(r)) return err(ExcelErrorCode.Num);
+    return num(r);
+  }));
+  add(fn("BESSELY", "none", (args) => {
+    const x = excelCoerceNumber(args[0] ?? BLANK);
+    const n = excelCoerceNumber(args[1] ?? BLANK);
+    if (x.kind !== "number" || n.kind !== "number") return err(ExcelErrorCode.Value);
+    const r = bessel.bessely(x.value, Math.trunc(n.value));
+    if (Number.isNaN(r) || !Number.isFinite(r)) return err(ExcelErrorCode.Num);
+    return num(r);
+  }));
+  add(fn("BESSELI", "none", (args) => {
+    const x = excelCoerceNumber(args[0] ?? BLANK);
+    const n = excelCoerceNumber(args[1] ?? BLANK);
+    if (x.kind !== "number" || n.kind !== "number") return err(ExcelErrorCode.Value);
+    const r = bessel.besseli(x.value, Math.trunc(n.value));
+    if (Number.isNaN(r) || !Number.isFinite(r)) return err(ExcelErrorCode.Num);
+    return num(r);
+  }));
+  add(fn("BESSELK", "none", (args) => {
+    const x = excelCoerceNumber(args[0] ?? BLANK);
+    const n = excelCoerceNumber(args[1] ?? BLANK);
+    if (x.kind !== "number" || n.kind !== "number") return err(ExcelErrorCode.Value);
+    const r = bessel.besselk(x.value, Math.trunc(n.value));
+    if (Number.isNaN(r) || !Number.isFinite(r)) return err(ExcelErrorCode.Num);
+    return num(r);
   }));
 }

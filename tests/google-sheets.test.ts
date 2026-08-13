@@ -222,5 +222,9 @@ describe("Google Sheets offline functions", () => {
     expect(ev.evaluateText("=IMAGINARY(\"3+4i\")", ctx())).toEqual(num(4));
     expect(ev.evaluateText("=CONVERT(1, \"mi\", \"m\")", ctx())).toEqual(num(1609.344));
     expect(ev.evaluateText("=CONVERT(100, \"C\", \"F\")", ctx())).toEqual(num(212));
+    expect(ev.evaluateText('=IMSIN("1+i")', ctx())).toEqual(str("1.2984575814159773+0.6349639147847361i"));
+    expect(ev.evaluateText('=IMCOS("1+i")', ctx())).toEqual(str("0.8337300251311491-0.9888977057628651i"));
+    expect(ev.evaluateText("=BESSELJ(1.5, 1)", ctx())).toEqual(num(0.5579365078908043));
+    expect(ev.evaluateText("=BESSELI(2, 1)", ctx())).toEqual(num(1.5906368572633083));
   });
 });
