@@ -261,4 +261,8 @@ describe("Extra functions toward full compatibility", () => {
     expect(ev.evaluateText('DBCS("Hello World")', ctx())).toEqual(str("Ｈｅｌｌｏ　Ｗｏｒｌｄ"));
     expect(ev.evaluateText('DBCS("ｱｲｳｴｵ")', ctx())).toEqual(str("アイウエオ"));
   });
+
+  it("BAHTTEXT returns Thai baht text", () => {
+    expect(ev.evaluateText("BAHTTEXT(1234.56)", ctx())).toEqual(str("หนึ่งพันสองร้อยสามสิบสี่บาทห้าสิบหกสตางค์"));
+  });
 });

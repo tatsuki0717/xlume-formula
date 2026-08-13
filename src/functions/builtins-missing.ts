@@ -17,6 +17,7 @@ import { flattenArgs } from "../formula/evaluator.js";
 import type { EvaluationContext, ExcelFunction, FunctionRegistry } from "../formula/functions-types.js";
 import { columnIndexToLetters } from "../model/address.js";
 import jaconv from "jaconv";
+import { bahttext } from "bahttext";
 
 function fn(
   name: string,
@@ -831,9 +832,16 @@ export function registerMissingFunctions(add: (f: ExcelFunction) => void, reg: F
     return str(jaconv.toZen(s.value));
   }));
 
+  add(fn("BAHTTEXT", "none", (args) => {
+    if (args.length === 0) return BLANK;
+    const n = excelCoerceNumber(args[0]!);
+    if (n.kind !== "number") return n;
+    return str(bahttext(n.value));
+  }));
+
   const stubNames = [
     // External / locale / add-in
-    "BAHTTEXT", "CALL", "CELL", "CUBEKPIMEMBER", "CUBEMEMBER",
+    "CALL", "CELL", "CUBEKPIMEMBER", "CUBEMEMBER",
     "CUBEMEMBERPROPERTY", "CUBERANKEDMEMBER", "CUBESET", "CUBESETCOUNT",
     "CUBEVALUE",
     "FORMULATEXT", "IMAGE", "ISFORMULA",
