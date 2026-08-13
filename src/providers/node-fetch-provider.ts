@@ -1,6 +1,7 @@
 import { execSync } from "child_process";
 import { evaluateXml } from "../functions/builtins-filterxml.js";
 import type { ExternalFunctionProvider } from "../formula/functions-types.js";
+import { parseA1Range } from "../model/address.js";
 import { BLANK, err, ExcelErrorCode, num, str, type ArrayValue, type ExcelValue } from "../model/value.js";
 
 export interface NodeFetchProviderOptions {
@@ -227,9 +228,37 @@ export class NodeFetchProvider implements ExternalFunctionProvider {
     return { kind: "array", width: 1, height: rows.length, values: rows };
   }
 
-  importRange(_spreadsheetUrl: string, _rangeString: string): ExcelValue | undefined {
-    // IMPORTRANGE requires Google Sheets API access; no default implementation.
-    return undefined;
+  importRange(spreadsheetUrl: string, rangeString: string): ExcelValue | undefined {
+    try {
+      const idMatch = /\/d\/([a-zA-Z0-9_-]+)/.exec(spreadsheetUrl);
+      if (!idMatch) return undefined;
+      const id = idMatch[1]!;
+
+      const rangeParts = rangeString.split("!");
+      const a1Ref = rangeParts[rangeParts.length - 1]!.trim();
+      const sheet = rangeParts.length > 1 ? rangeParts[0]!.replace(/^'|'$/g, "").trim() : "";
+      const range = parseA1Range(a1Ref);
+      const width = range.endColumn - range.startColumn + 1;
+      const height = range.endRow - range.startRow + 1;
+
+      let url = `https://docs.google.com/spreadsheets/d/${id}/export?format=csv`;
+      if (sheet) url += `&sheet=${encodeURIComponent(sheet)}`;
+      const csv = this.getText(url);
+      const rows = parseCsv(csv);
+      if (rows.length === 0) return undefined;
+
+      const values: ExcelValue[] = [];
+      for (let r = 0; r < height; r++) {
+        const row = rows[range.startRow + r];
+        for (let c = 0; c < width; c++) {
+          const raw = row?.[range.startColumn + c] ?? "";
+          values.push(csvCellToValue(raw));
+        }
+      }
+      return { kind: "array", width, height, values };
+    } catch {
+      return undefined;
+    }
   }
 
   private parseStockArgs(args: (string | number)[]) {
@@ -357,6 +386,46 @@ function htmlListToArray(listHtml: string): ArrayValue {
   let m: RegExpExecArray | null;
   while ((m = regex.exec(listHtml)) !== null) out.push(str(stripTags(m[1]!)));
   return { kind: "array", width: 1, height: out.length, values: out };
+}
+
+function parseCsv(csv: string): string[][] {
+  const rows: string[][] = [];
+  let row: string[] = [];
+  let cell = "";
+  let inQuotes = false;
+  for (let i = 0; i < csv.length; i++) {
+    const ch = csv[i]!;
+    if (ch === '"') {
+      if (inQuotes && csv[i + 1] === '"') {
+        cell += '"';
+        i++;
+      } else {
+        inQuotes = !inQuotes;
+      }
+    } else if (ch === "," && !inQuotes) {
+      row.push(cell);
+      cell = "";
+    } else if ((ch === "\n" || ch === "\r") && !inQuotes) {
+      row.push(cell);
+      if (row.length > 1 || row[0] !== "") rows.push(row);
+      row = [];
+      cell = "";
+      if (ch === "\r" && csv[i + 1] === "\n") i++;
+    } else {
+      cell += ch;
+    }
+  }
+  row.push(cell);
+  if (row.length > 1 || row[0] !== "") rows.push(row);
+  return rows;
+}
+
+function csvCellToValue(raw: string): ExcelValue {
+  const trimmed = raw.trim();
+  if (trimmed === "") return BLANK;
+  const num = Number(trimmed);
+  if (!Number.isNaN(num) && trimmed.match(/^[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?$/)) return { kind: "number" as const, value: num };
+  return str(trimmed);
 }
 
 function detectMime(buffer: Buffer): string {
