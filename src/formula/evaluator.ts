@@ -121,6 +121,9 @@ export class FormulaEvaluator {
         if (upper === "CELL") {
           return this.evalCell(node.args, ctx);
         }
+        if (upper === "ISREF") {
+          return this.evalIsRef(node.args, ctx);
+        }
         if (upper === "LAMBDA") {
           return this.evalLambda(node.args, ctx);
         }
@@ -278,6 +281,26 @@ export class FormulaEvaluator {
     const text = ctx.getFormulaText(ref.sheet, ref.row, ref.col);
     if (text === undefined || text.length === 0) return err(ExcelErrorCode.NA);
     return str(text);
+  }
+
+  private evalIsRef(args: FormulaNode[], ctx: EvaluationContext): ExcelValue {
+    if (args.length === 0) return err(ExcelErrorCode.Value);
+    const arg = args[0]!;
+    if (arg.kind === "reference" || arg.kind === "range") return bool(true);
+    if (arg.kind === "name") {
+      const resolved = ctx.resolveName(arg.name);
+      if (resolved && typeof resolved === "object" && "kind" in resolved) {
+        const n = resolved as FormulaNode;
+        if (n.kind === "reference" || n.kind === "range") return bool(true);
+      }
+      return bool(false);
+    }
+    if (arg.kind === "function") {
+      const upper = arg.name.toUpperCase();
+      // INDIRECT and OFFSET always return references when they succeed.
+      if (upper === "INDIRECT" || upper === "OFFSET") return bool(true);
+    }
+    return bool(false);
   }
 
   private evalCell(args: FormulaNode[], ctx: EvaluationContext): ExcelValue {
