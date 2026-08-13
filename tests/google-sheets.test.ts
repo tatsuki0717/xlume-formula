@@ -225,7 +225,15 @@ describe("Google Sheets offline functions", () => {
     expect(ev.evaluateText('=IMSIN("1+i")', ctx())).toEqual(str("1.2984575814159773+0.6349639147847361i"));
     expect(ev.evaluateText('=IMCOS("1+i")', ctx())).toEqual(str("0.8337300251311491-0.9888977057628651i"));
     expect(ev.evaluateText("=BESSELJ(1.5, 1)", ctx())).toEqual(num(0.5579365078908043));
+    expect(ev.evaluateText("=BESSELJ(-1.5, 1)", ctx())).toEqual(num(-0.5579365078908043));
+    expect(ev.evaluateText("=BESSELJ(1.5, 1.9)", ctx())).toEqual(num(0.5579365078908043));
     expect(ev.evaluateText("=BESSELI(2, 1)", ctx())).toEqual(num(1.5906368572633083));
+    expect(ev.evaluateText("=BESSELI(-2, 1)", ctx())).toEqual(num(-1.5906368572633083));
+    expect(ev.evaluateText("=BESSELY(1.5, 1)", ctx())).toEqual(num(-0.41230862689590375));
+    expect(ev.evaluateText("=BESSELK(2, 1)", ctx())).toEqual(num(0.13986588));
+    expect(ev.evaluateText("=BESSELJ(1.5, -1)", ctx()).kind).toBe("error");
+    expect(ev.evaluateText("=BESSELY(-1.5, 1)", ctx()).kind).toBe("error");
+    expect(ev.evaluateText("=BESSELK(-2, 1)", ctx()).kind).toBe("error");
   });
 
   it("DETECTLANGUAGE returns language codes", () => {
