@@ -3,7 +3,7 @@
 ## Metadata
 - **Category:** Logical
 - **Priority tags:** LAMBDA
-- **Scope:** deferred
+- **Scope:** implement
 - **Volatile:** No
 - **Dynamic array:** Yes
 - **LAMBDA support:** Yes
@@ -27,11 +27,11 @@ Applies a LAMBDA to each value in one or more arrays and returns an array of res
 Dynamic array
 
 ## Behavior / Algorithm
-Implementation is deferred (Requires the LAMBDA/closures engine, Requires dynamic-array / spill support).
+Implemented in the engine (Requires the LAMBDA/closures engine, Requires dynamic-array / spill support).
 
 High-level behavior: Applies a LAMBDA to each value in one or more arrays and returns an array of results.
 
-Detailed step-by-step algorithm, type coercion and edge-case handling will be added when this function is prioritized.
+See the corresponding source implementation for the detailed algorithm.
 
 ## Type Coercion & Edge Cases
 - Numbers provided as text are coerced to numeric values when the function expects a number.

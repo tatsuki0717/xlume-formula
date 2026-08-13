@@ -3,7 +3,7 @@
 ## Metadata
 - **Category:** Text
 - **Priority tags:** DA
-- **Scope:** deferred
+- **Scope:** implement
 - **Volatile:** No
 - **Dynamic array:** Yes
 

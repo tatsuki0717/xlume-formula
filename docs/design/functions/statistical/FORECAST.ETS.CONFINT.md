@@ -3,7 +3,7 @@
 ## Metadata
 - **Category:** Statistical
 - **Priority tags:** T3
-- **Scope:** deferred
+- **Scope:** implement
 - **Volatile:** No
 
 ## Description
@@ -29,11 +29,11 @@ Returns a confidence interval for a forecast value at a specified target date.
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Implementation is deferred.
+Implemented in the engine.
 
 High-level behavior: Returns a confidence interval for a forecast value at a specified target date.
 
-Detailed step-by-step algorithm, type coercion and edge-case handling will be added when this function is prioritized.
+See the corresponding source implementation for the detailed algorithm.
 
 ## Type Coercion & Edge Cases
 - Numbers provided as text are coerced to numeric values when the function expects a number.

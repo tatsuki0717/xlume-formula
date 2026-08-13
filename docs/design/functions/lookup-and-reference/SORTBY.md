@@ -3,7 +3,7 @@
 ## Metadata
 - **Category:** Lookup & Reference
 - **Priority tags:** DA
-- **Scope:** deferred
+- **Scope:** implement
 - **Volatile:** No
 - **Dynamic array:** Yes
 
@@ -27,11 +27,11 @@ Sorts a range or array based on the values in one or more corresponding arrays.
 Dynamic array
 
 ## Behavior / Algorithm
-Implementation is deferred (Requires dynamic-array / spill support).
+Implemented in the engine (Requires dynamic-array / spill support).
 
 High-level behavior: Sorts a range or array based on the values in one or more corresponding arrays.
 
-Detailed step-by-step algorithm, type coercion and edge-case handling will be added when this function is prioritized.
+See the corresponding source implementation for the detailed algorithm.
 
 ## Type Coercion & Edge Cases
 - Numbers provided as text are coerced to numeric values when the function expects a number.

@@ -3,7 +3,7 @@
 ## Metadata
 - **Category:** Lookup & Reference
 - **Priority tags:** T2
-- **Scope:** deferred
+- **Scope:** implement
 - **Volatile:** Yes
 
 ## Description
@@ -24,11 +24,11 @@ Returns the reference specified by a text string.
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Implementation is deferred.
+Implemented in the engine.
 
 High-level behavior: Returns the reference specified by a text string.
 
-Detailed step-by-step algorithm, type coercion and edge-case handling will be added when this function is prioritized.
+See the corresponding source implementation for the detailed algorithm.
 
 ## Type Coercion & Edge Cases
 - Numbers provided as text are coerced to numeric values when the function expects a number.

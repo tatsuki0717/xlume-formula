@@ -3,7 +3,7 @@
 ## Metadata
 - **Category:** User-defined / Add-in
 - **Priority tags:** T3
-- **Scope:** deferred
+- **Scope:** implement
 - **Volatile:** No
 
 ## Description
@@ -27,11 +27,11 @@ Converts a number to euros, or from euros to a participating currency.
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Implementation is deferred.
+Implemented in the engine.
 
 High-level behavior: Converts a number to euros, or from euros to a participating currency.
 
-Detailed step-by-step algorithm, type coercion and edge-case handling will be added when this function is prioritized.
+See the corresponding source implementation for the detailed algorithm.
 
 ## Type Coercion & Edge Cases
 - Numbers provided as text are coerced to numeric values when the function expects a number.
