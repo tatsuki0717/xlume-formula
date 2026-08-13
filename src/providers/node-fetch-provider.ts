@@ -1,4 +1,5 @@
 import { execSync } from "child_process";
+import { evaluateXml } from "../functions/builtins-filterxml.js";
 import type { ExternalFunctionProvider } from "../formula/functions-types.js";
 import { BLANK, err, ExcelErrorCode, num, str, type ArrayValue, type ExcelValue } from "../model/value.js";
 
@@ -27,6 +28,13 @@ export class NodeFetchProvider implements ExternalFunctionProvider {
     this.image = this.image.bind(this);
     this.translate = this.translate.bind(this);
     this.stockHistory = this.stockHistory.bind(this);
+    this.googleTranslate = this.googleTranslate.bind(this);
+    this.googleFinance = this.googleFinance.bind(this);
+    this.importData = this.importData.bind(this);
+    this.importXml = this.importXml.bind(this);
+    this.importHtml = this.importHtml.bind(this);
+    this.importFeed = this.importFeed.bind(this);
+    this.importRange = this.importRange.bind(this);
   }
 
   webService(url: string): string | undefined {
@@ -125,6 +133,105 @@ export class NodeFetchProvider implements ExternalFunctionProvider {
     }
   }
 
+  googleTranslate(text: string, source: string, target: string): string | undefined {
+    // GOOGLETRANSLATE uses the same endpoint as TRANSLATE.
+    return this.translate(text, source, target);
+  }
+
+  googleFinance(ticker: string, attribute?: string): ExcelValue | undefined {
+    try {
+      const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(ticker)}?interval=1d&range=1mo`;
+      const body = this.getText(url);
+      const json = JSON.parse(body) as {
+        chart?: {
+          result?: Array<{
+            timestamp: number[];
+            indicators: { quote: Array<{ close: (number | null)[]; volume: (number | null)[] }> };
+          }>;
+          error?: { description?: string };
+        };
+      };
+      const result = json.chart?.result?.[0];
+      if (!result) return undefined;
+      const attr = (attribute || "price").toLowerCase();
+      const close = result.indicators.quote[0]?.close ?? [];
+      const volume = result.indicators.quote[0]?.volume ?? [];
+      for (let i = close.length - 1; i >= 0; i--) {
+        if (attr === "price" || attr === "close") {
+          if (close[i] !== null) return num(close[i]!);
+        } else if (attr === "volume") {
+          if (volume[i] !== null) return num(volume[i]!);
+        }
+      }
+      return undefined;
+    } catch {
+      return undefined;
+    }
+  }
+
+  importData(url: string): string | undefined {
+    return this.webService(url);
+  }
+
+  importXml(url: string, xpath: string): ExcelValue | undefined {
+    try {
+      const xml = this.getText(url);
+      return evaluateXml(xml, xpath) ?? undefined;
+    } catch {
+      return undefined;
+    }
+  }
+
+  importHtml(url: string, query: string, index: number): ExcelValue | undefined {
+    try {
+      const html = this.getText(url);
+      const q = query.toLowerCase();
+      if (q === "table") {
+        const tables = extractHtmlElements(html, "table");
+        const table = tables[index];
+        if (!table) return undefined;
+        return htmlTableToArray(table);
+      }
+      if (q === "list") {
+        const lists: string[] = [];
+        for (const tag of ["ul", "ol"]) {
+          lists.push(...extractHtmlElements(html, tag));
+        }
+        const list = lists[index];
+        if (!list) return undefined;
+        return htmlListToArray(list);
+      }
+      return undefined;
+    } catch {
+      return undefined;
+    }
+  }
+
+  importFeed(url: string, query?: string, headers?: boolean, numItems?: number): ExcelValue | undefined {
+    // Parse the feed as XML and evaluate a simple XPath.
+    const feedQuery = query?.toLowerCase() || "items title";
+    const match = feedQuery.match(/^items?\s+(.+)$/);
+    const xpath = match ? `//item/${match[1]}` : `//item/title`;
+    const result = this.importXml(url, xpath);
+    if (!result) return undefined;
+    const max = numItems && numItems > 0 ? numItems : Number.MAX_SAFE_INTEGER;
+    let values: ExcelValue[];
+    if (result.kind === "array") {
+      values = result.values.slice(0, max);
+    } else {
+      values = [result];
+    }
+    const rows: ExcelValue[] = [];
+    if (headers) rows.push(str("Title"));
+    rows.push(...values);
+    return { kind: "array", width: 1, height: rows.length, values: rows };
+  }
+
+  importRange(_spreadsheetUrl: string, _rangeString: string): ExcelValue | undefined {
+    // IMPORTRANGE requires Google Sheets API access; no default implementation.
+    return undefined;
+  }
+
   private parseStockArgs(args: (string | number)[]) {
     let start: number | undefined;
     let end: number | undefined;
@@ -192,6 +299,64 @@ export class NodeFetchProvider implements ExternalFunctionProvider {
     if (typeof out !== "string") throw new Error("non-string response");
     return out;
   }
+}
+
+function extractHtmlElements(html: string, tag: string): string[] {
+  const regex = new RegExp(`<${tag}\\b[^>]*>([\\s\\S]*?)<\\/${tag}>`, "gi");
+  const out: string[] = [];
+  let m: RegExpExecArray | null;
+  while ((m = regex.exec(html)) !== null) {
+    out.push(m[1]!);
+  }
+  return out;
+}
+
+function stripTags(s: string): string {
+  return s.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+}
+
+function htmlTableToArray(tableHtml: string): ArrayValue | undefined {
+  const rows = extractHtmlRows(tableHtml);
+  if (rows.length === 0) return undefined;
+  const values: ExcelValue[] = [];
+  let width = 0;
+  for (const row of rows) {
+    const cells = extractHtmlCells(row);
+    width = Math.max(width, cells.length);
+    for (const cell of cells) values.push(str(stripTags(cell)));
+  }
+  // Pad short rows.
+  for (let i = 0; i < rows.length; i++) {
+    const cells = extractHtmlCells(rows[i]!);
+    for (let j = cells.length; j < width; j++) {
+      values[i * width + j] = BLANK;
+    }
+  }
+  return { kind: "array", width, height: rows.length, values };
+}
+
+function extractHtmlRows(tableHtml: string): string[] {
+  const out: string[] = [];
+  const regex = /<tr\b[^>]*>([\s\S]*?)<\/tr>/gi;
+  let m: RegExpExecArray | null;
+  while ((m = regex.exec(tableHtml)) !== null) out.push(m[1]!);
+  return out;
+}
+
+function extractHtmlCells(rowHtml: string): string[] {
+  const out: string[] = [];
+  const regex = /<t[dh]\b[^>]*>([\s\S]*?)<\/t[dh]>/gi;
+  let m: RegExpExecArray | null;
+  while ((m = regex.exec(rowHtml)) !== null) out.push(m[1]!);
+  return out;
+}
+
+function htmlListToArray(listHtml: string): ArrayValue {
+  const out: ExcelValue[] = [];
+  const regex = /<li\b[^>]*>([\s\S]*?)<\/li>/gi;
+  let m: RegExpExecArray | null;
+  while ((m = regex.exec(listHtml)) !== null) out.push(str(stripTags(m[1]!)));
+  return { kind: "array", width: 1, height: out.length, values: out };
 }
 
 function detectMime(buffer: Buffer): string {
