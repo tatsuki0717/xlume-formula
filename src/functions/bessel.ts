@@ -39,15 +39,16 @@ const j0A1b = [1.0, -0.1098628627e-2, 0.2734510407e-4, -0.2073370639e-5, 0.20938
 const j0A2b = [-0.1562499995e-1, 0.1430488765e-3, -0.6911147651e-5, 0.7621095161e-6, -0.934935152e-7].reverse();
 
 function besselJ0(x: number): number {
-  const y = x * x;
-  if (x < 8) {
+  const ax = Math.abs(x);
+  const y = ax * ax;
+  if (ax < 8) {
     return _horner(j0A1a, y) / _horner(j0A2a, y);
   }
-  const xx = x - 0.785398164;
+  const xx = ax - 0.785398164;
   const z = 64 / y;
   const a1 = _horner(j0A1b, z);
   const a2 = _horner(j0A2b, z);
-  return Math.sqrt(W / x) * (Math.cos(xx) * a1 - Math.sin(xx) * a2 * (8 / x));
+  return Math.sqrt(W / ax) * (Math.cos(xx) * a1 - Math.sin(xx) * a2 * (8 / ax));
 }
 
 const j1A1a = [72362614232.0, -7895059235.0, 242396853.1, -2972611.439, 15704.4826, -30.16036606].reverse();
