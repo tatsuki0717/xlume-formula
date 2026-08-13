@@ -57,19 +57,16 @@ function intToThai(n: number, hasHigher = false): string {
 }
 
 export function bahttext(value: number): string {
-  if (!Number.isFinite(value)) {
-    return "ศูนย์บาทถ้วน";
-  }
-
   const negative = value < 0;
   const abs = Math.abs(value);
+
+  if (!Number.isFinite(value) || abs > Number.MAX_SAFE_INTEGER / 100) {
+    throw new RangeError("bahttext input out of range");
+  }
+
   const totalSatang = Math.round(abs * 100);
   const baht = Math.floor(totalSatang / 100);
   const satang = totalSatang % 100;
-
-  if (!Number.isSafeInteger(baht)) {
-    return "ศูนย์บาทถ้วน";
-  }
 
   const useSign = negative && (baht > 0 || satang > 0);
   let text = useSign ? "ลบ" : "";

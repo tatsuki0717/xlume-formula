@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { FormulaEvaluator } from "../src/formula/evaluator.js";
 import { createBuiltinFunctions } from "../src/functions/builtins.js";
-import { BLANK, bool, ExcelErrorCode, num, str } from "../src/model/value.js";
+import { BLANK, bool, err, ExcelErrorCode, num, str } from "../src/model/value.js";
 import type { EvaluationContext } from "../src/formula/functions-types.js";
 
 function ctx(
@@ -281,6 +281,10 @@ describe("Extra functions toward full compatibility", () => {
     expect(ev.evaluateText("BAHTTEXT(0.25)", ctx())).toEqual(str("ยี่สิบห้าสตางค์"));
     expect(ev.evaluateText("BAHTTEXT(-201)", ctx())).toEqual(str("ลบสองร้อยเอ็ดบาทถ้วน"));
     expect(ev.evaluateText("BAHTTEXT(1.999)", ctx())).toEqual(str("สองบาทถ้วน"));
+  });
+
+  it("BAHTTEXT returns #NUM! for out-of-range or non-finite inputs", () => {
+    expect(ev.evaluateText("BAHTTEXT(1e16)", ctx())).toEqual(err(ExcelErrorCode.Num));
   });
 
   it("GROUPBY groups and aggregates with eta function", () => {
