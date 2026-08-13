@@ -1,8 +1,10 @@
 /**
  * Minimal workbook model with dynamic-array spill support.
  *
- * This is intentionally simple: it recalculates all formulas in repeated passes
- * until values stabilize, which is correct for small acyclic workbooks.
+ * Maintains a static dependency graph for formula cells and recalculates
+ * cells in topological order. Volatile functions (RAND, NOW, INDIRECT, ...)
+ * are recalculated on every change. Dynamic-array spills trigger a full
+ * recalc pass when their shape changes.
  */
 import { parseFormula, type FormulaNode } from "../formula/ast.js";
 import { FormulaEvaluator } from "../formula/evaluator.js";
@@ -78,6 +80,22 @@ export class Workbook {
   // Named values/ranges. Names stored upper-case.
   private names = new Map<string, ExcelValue | FormulaNode>();
 
+  /** Static dependency graph: key -> set of keys it depends on. */
+  private deps = new Map<string, Set<string>>();
+  /** Reverse dependency graph: key -> set of keys that depend on it. */
+  private dependents = new Map<string, Set<string>>();
+  /** Formula cells that contain volatile functions. */
+  private volatileCells = new Set<string>();
+  /** True if a spill changed shape during the current recalc pass. */
+  private spillChanged = false;
+  /** Cells that are currently blocking a dynamic-array spill: blocker key -> origins. */
+  private spillBlockers = new Map<string, Set<string>>();
+
+  private volatileFunctions = new Set<string>([
+    "RAND", "RANDBETWEEN", "RANDARRAY", "NOW", "TODAY",
+    "INFO", "CELL", "INDIRECT", "OFFSET", "INDEX",
+  ]);
+
   private nextSheetId = 1;
 
   addSheet(name?: string): number {
@@ -102,18 +120,28 @@ export class Workbook {
     const cell = this.ensureCell(sheetId, row, col);
     cell.formula = formula;
     cell.value = undefined;
-    this.formulaCells.add(this.globalKey(sheetId, row, col));
+    const key = this.globalKey(sheetId, row, col);
+    this.formulaCells.add(key);
     this.clearSpill(sheetId, row, col);
-    this.recalc();
+    this.rebuildDeps(key);
+    const dirty = [key, ...this.blockerOrigins(key)];
+    this.recalcDirty(dirty);
   }
 
   setValue(sheetId: number, row: number, col: number, value: ExcelValue): void {
     const cell = this.ensureCell(sheetId, row, col);
+    const key = this.globalKey(sheetId, row, col);
     cell.formula = undefined;
     cell.value = value;
-    this.formulaCells.delete(this.globalKey(sheetId, row, col));
+    this.formulaCells.delete(key);
     this.clearSpill(sheetId, row, col);
-    this.recalc();
+    this.rebuildDeps(key);
+    const dirty = [key, ...this.blockerOrigins(key)];
+    this.recalcDirty(dirty);
+  }
+
+  private blockerOrigins(key: string): string[] {
+    return [...(this.spillBlockers.get(key) ?? [])];
   }
 
   getValue(sheetId: number, row: number, col: number): ExcelValue {
@@ -125,22 +153,216 @@ export class Workbook {
     return cell?.formula;
   }
 
+  /** Recalculate all formula cells (useful for explicit full recalc). */
   recalc(): void {
+    this.recalcAll();
+  }
+
+  private recalcAll(): void {
+    this.recalcDirty([...this.formulaCells]);
+  }
+
+  private recalcDirty(changedKeys: string[]): void {
+    const dirty = new Set<string>();
+    for (const key of changedKeys) {
+      this.addWithDependents(key, dirty);
+    }
+    for (const key of this.volatileCells) dirty.add(key);
+
     const maxPasses = Math.max(1, this.formulaCells.size + 1);
     for (let pass = 0; pass < maxPasses; pass++) {
+      this.spillChanged = false;
+      const order = this.topologicalOrder(dirty);
       let changed = false;
-      for (const key of this.formulaCells) {
+      for (const key of order) {
+        if (!this.formulaCells.has(key)) continue;
         const { sheetId, row, column } = this.parseGlobalKey(key);
-        const newValue = this.evaluateCell(sheetId, row, column);
         const cell = this.cells.get(sheetId)?.get(cellKey(row, column));
         if (!cell) continue;
-        if (!valuesEqual(cell.value, newValue)) {
+        const oldValue = cell.value;
+        const newValue = this.evaluateCell(sheetId, row, column);
+        if (!valuesEqual(oldValue, newValue)) {
           cell.value = newValue;
           changed = true;
+          for (const dep of this.dependents.get(key) ?? []) dirty.add(dep);
         }
       }
-      if (!changed) break;
+      if (!changed && !this.spillChanged) break;
+      // A spill shape changed or a volatile/dynamic value changed:
+      // recompute all formula cells that might be affected by spills.
+      if (this.spillChanged) {
+        for (const key of this.formulaCells) dirty.add(key);
+      }
     }
+  }
+
+  private addWithDependents(key: string, set: Set<string>): void {
+    const stack = [key];
+    while (stack.length > 0) {
+      const k = stack.pop()!;
+      if (set.has(k)) continue;
+      set.add(k);
+      for (const dep of this.dependents.get(k) ?? []) {
+        if (!set.has(dep)) stack.push(dep);
+      }
+    }
+  }
+
+  private topologicalOrder(keys: Set<string>): string[] {
+    const result: string[] = [];
+    const visiting = new Set<string>();
+    const visited = new Set<string>();
+
+    const visit = (k: string) => {
+      if (visited.has(k)) return;
+      if (visiting.has(k)) return; // cycle — skip
+      visiting.add(k);
+      for (const dep of this.deps.get(k) ?? []) {
+        if (keys.has(dep)) visit(dep);
+      }
+      visiting.delete(k);
+      visited.add(k);
+      result.push(k);
+    };
+
+    for (const k of keys) visit(k);
+    return result;
+  }
+
+  private rebuildDeps(key: string): void {
+    this.removeDeps(key);
+    const { sheetId, row, column } = this.parseGlobalKey(key);
+    const cell = this.cells.get(sheetId)?.get(cellKey(row, column));
+    if (!cell?.formula) return;
+    try {
+      const node = parseFormula(cell.formula);
+      const flags = { volatile: false };
+      const deps = this.collectDeps(node, sheetId, row, column, new Set<string>(), flags);
+      for (const dep of deps) this.addDep(key, dep);
+      if (flags.volatile) this.volatileCells.add(key);
+      else this.volatileCells.delete(key);
+    } catch {
+      // Invalid formula will fail during evaluateCell; leave graph empty.
+    }
+  }
+
+  private collectDeps(
+    node: FormulaNode,
+    sheetId: number,
+    row: number,
+    col: number,
+    deps: Set<string>,
+    flags: { volatile: boolean },
+  ): Set<string> {
+    switch (node.kind) {
+      case "reference":
+        this.addReferenceDep(node, sheetId, row, col, deps);
+        break;
+      case "range":
+        this.addRangeDep(node, sheetId, deps);
+        break;
+      case "name": {
+        const resolved = this.names.get(node.name.toUpperCase());
+        if (resolved && typeof resolved === "object" && "kind" in resolved) {
+          this.collectDeps(resolved as FormulaNode, sheetId, row, col, deps, flags);
+        }
+        break;
+      }
+      case "function": {
+        if (this.volatileFunctions.has(node.name.toUpperCase())) flags.volatile = true;
+        for (const arg of node.args) this.collectDeps(arg, sheetId, row, col, deps, flags);
+        break;
+      }
+      case "binary":
+        this.collectDeps(node.left, sheetId, row, col, deps, flags);
+        this.collectDeps(node.right, sheetId, row, col, deps, flags);
+        break;
+      case "union":
+        for (const item of node.items) this.collectDeps(item, sheetId, row, col, deps, flags);
+        break;
+      case "intersection":
+        this.collectDeps(node.left, sheetId, row, col, deps, flags);
+        this.collectDeps(node.right, sheetId, row, col, deps, flags);
+        break;
+      case "unary":
+        this.collectDeps(node.expr, sheetId, row, col, deps, flags);
+        break;
+      case "array":
+        for (const r of node.rows) for (const item of r) this.collectDeps(item, sheetId, row, col, deps, flags);
+        break;
+      case "spill":
+      case "implicitIntersection":
+        this.collectDeps(node.expr, sheetId, row, col, deps, flags);
+        break;
+      case "structured":
+      case "external":
+      case "literal":
+      case "missing":
+        break;
+    }
+    return deps;
+  }
+
+  private addReferenceDep(
+    node: Extract<FormulaNode, { kind: "reference" }>,
+    sheetId: number,
+    _row: number,
+    _col: number,
+    deps: Set<string>,
+  ): void {
+    let id = sheetId;
+    if (node.sheet) {
+      const resolved = this.sheetId(node.sheet);
+      if (resolved !== undefined) id = resolved;
+      else return;
+    }
+    const key = this.globalKey(id, node.address.row, node.address.column);
+    deps.add(key);
+  }
+
+  private addRangeDep(
+    node: Extract<FormulaNode, { kind: "range" }>,
+    sheetId: number,
+    deps: Set<string>,
+  ): void {
+    let id = sheetId;
+    if (node.sheet) {
+      const resolved = this.sheetId(node.sheet);
+      if (resolved !== undefined) id = resolved;
+      else return;
+    }
+    const range = node.range;
+    for (let r = range.startRow; r <= range.endRow; r++) {
+      for (let c = range.startColumn; c <= range.endColumn; c++) {
+        deps.add(this.globalKey(id, r, c));
+      }
+    }
+  }
+
+  private addDep(from: string, to: string): void {
+    if (from === to) return;
+    let set = this.deps.get(from);
+    if (!set) {
+      set = new Set<string>();
+      this.deps.set(from, set);
+    }
+    set.add(to);
+
+    let rev = this.dependents.get(to);
+    if (!rev) {
+      rev = new Set<string>();
+      this.dependents.set(to, rev);
+    }
+    rev.add(from);
+  }
+
+  private removeDeps(key: string): void {
+    const deps = this.deps.get(key);
+    if (deps) {
+      for (const dep of deps) this.dependents.get(dep)?.delete(key);
+      this.deps.delete(key);
+    }
+    this.volatileCells.delete(key);
   }
 
   private ensureCell(sheetId: number, row: number, col: number): Cell {
@@ -269,41 +491,70 @@ export class Workbook {
     const originKey = this.globalKey(sheetId, row, col);
     const sheet = this.cells.get(sheetId);
 
-    // Check for blockers, ignoring cells already owned by this spill.
+    // Desired spill area (excluding the origin cell).
+    const desired = new Set<string>();
     for (let r = row; r <= endRow; r++) {
       for (let c = col; c <= endCol; c++) {
         if (r === row && c === col) continue;
-        const key = this.globalKey(sheetId, r, c);
-        const existing = sheet?.get(cellKey(r, c));
-        if (existing && (existing.formula !== undefined || !isEmptyValue(existing.value))) {
-          // Blocked by an existing formula or non-empty value.
-          this.clearSpill(sheetId, row, col);
-          return err(ExcelErrorCode.Spill);
-        }
-        const otherSpillOwner = this.spills.get(key);
-        if (otherSpillOwner && otherSpillOwner !== originKey) {
-          this.clearSpill(sheetId, row, col);
-          return err(ExcelErrorCode.Spill);
-        }
+        desired.add(this.globalKey(sheetId, r, c));
       }
     }
 
-    // Clear previous spill for this origin, then set new one.
+    // Check for blockers.
+    for (const key of desired) {
+      const parts = this.parseGlobalKey(key);
+      const existing = sheet?.get(cellKey(parts.row, parts.column));
+      if (existing && (existing.formula !== undefined || !isEmptyValue(existing.value))) {
+        this.addSpillBlocker(key, originKey);
+        this.clearSpill(sheetId, row, col);
+        return err(ExcelErrorCode.Spill);
+      }
+      const otherSpillOwner = this.spills.get(key);
+      if (otherSpillOwner && otherSpillOwner !== originKey) {
+        this.addSpillBlocker(key, originKey);
+        this.clearSpill(sheetId, row, col);
+        return err(ExcelErrorCode.Spill);
+      }
+    }
+
+    const oldKeys = new Set<string>();
+    for (const [key, owner] of this.spills.entries()) {
+      if (owner === originKey) oldKeys.add(key);
+    }
+
+    const changed = oldKeys.size !== desired.size || ![...desired].every((k) => oldKeys.has(k));
+    if (!changed) return arr;
+
     this.clearSpill(sheetId, row, col);
-    for (let r = row; r <= endRow; r++) {
-      for (let c = col; c <= endCol; c++) {
-        if (r === row && c === col) continue;
-        this.spills.set(this.globalKey(sheetId, r, c), originKey);
-      }
-    }
-
+    for (const key of desired) this.spills.set(key, originKey);
+    this.spillChanged = true;
     return arr;
+  }
+
+  private addSpillBlocker(blockerKey: string, originKey: string): void {
+    let set = this.spillBlockers.get(blockerKey);
+    if (!set) {
+      set = new Set<string>();
+      this.spillBlockers.set(blockerKey, set);
+    }
+    set.add(originKey);
   }
 
   private clearSpill(sheetId: number, row: number, col: number): void {
     const originKey = this.globalKey(sheetId, row, col);
+    const removed: string[] = [];
     for (const [key, owner] of this.spills.entries()) {
-      if (owner === originKey) this.spills.delete(key);
+      if (owner === originKey) {
+        removed.push(key);
+      }
+    }
+    if (removed.length === 0) return;
+    for (const key of removed) this.spills.delete(key);
+    this.spillChanged = true;
+    // Blockers for this origin are no longer blocked by this origin.
+    for (const [key, set] of this.spillBlockers.entries()) {
+      set.delete(originKey);
+      if (set.size === 0) this.spillBlockers.delete(key);
     }
   }
 }
