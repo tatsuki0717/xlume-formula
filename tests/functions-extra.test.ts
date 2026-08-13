@@ -255,11 +255,17 @@ describe("Extra functions toward full compatibility", () => {
   it("ASC converts full-width to half-width", () => {
     expect(ev.evaluateText('ASC("Ｈｅｌｌｏ　Ｗｏｒｌｄ")', ctx())).toEqual(str("Hello World"));
     expect(ev.evaluateText('ASC("アイウエオ")', ctx())).toEqual(str("ｱｲｳｴｵ"));
+    expect(ev.evaluateText('ASC("ガ")', ctx())).toEqual(str("ｶﾞ"));
+    expect(ev.evaluateText('ASC("”")', ctx())).toEqual(str('"'));
+    expect(ev.evaluateText('ASC("“")', ctx())).toEqual(str('"'));
   });
 
   it("DBCS converts half-width to full-width", () => {
     expect(ev.evaluateText('DBCS("Hello World")', ctx())).toEqual(str("Ｈｅｌｌｏ　Ｗｏｒｌｄ"));
     expect(ev.evaluateText('DBCS("ｱｲｳｴｵ")', ctx())).toEqual(str("アイウエオ"));
+    expect(ev.evaluateText('DBCS("ｶﾞ")', ctx())).toEqual(str("ガ"));
+    expect(ev.evaluateText('DBCS("ｶ")', ctx())).toEqual(str("カ"));
+    expect(ev.evaluateText('DBCS("ｲ")', ctx())).toEqual(str("イ"));
   });
 
   it("BAHTTEXT returns Thai baht text", () => {

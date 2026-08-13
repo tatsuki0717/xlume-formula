@@ -14,9 +14,6 @@ importers:
       fast-xml-parser:
         specifier: 5.10.1
         version: 5.10.1
-      jaconv:
-        specifier: 1.0.4
-        version: 1.0.4
       jstat:
         specifier: ^1.9.6
         version: 1.9.6
@@ -458,9 +455,6 @@ packages:
 
   is-unsafe@2.0.0:
     resolution: {integrity: sha512-2LdV822R+wmI86unXA93WCFpL6g+av8ynWk0nrHyJqGop5VoocYsSLFgN8jrfalT6iGeLNM4KXuVSsULP53kEA==}
-
-  jaconv@1.0.4:
-    resolution: {integrity: sha512-7cB2JN+sMAf5zpdeclDh1Rzqi5E/9fX348GsRg83HrusRvBFDqsRKH+czME55glrW3nBcBYrOzl9OCp7r39psg==}
 
   js-tokens@9.0.1:
     resolution: {integrity: sha512-mxa9E9ITFOt0ban3j6L5MpjwegGz6lBQmM1IJkWeBZGcMxto50+eWdjC/52xDbS2vy0k7vIMK0Fe2wfL9OQSpQ==}
@@ -945,8 +939,6 @@ snapshots:
     optional: true
 
   is-unsafe@2.0.0: {}
-
-  jaconv@1.0.4: {}
 
   js-tokens@9.0.1: {}
 
