@@ -46,4 +46,25 @@ describe("FILTERXML", () => {
     if (attr.kind !== "array") return;
     expect(attr.values).toEqual([num(1), num(2)]);
   });
+
+  it("handles nested elements, declarations, comments, entities and CDATA", () => {
+    const nested = "<r><b><c>3</c></b><b><c>4</c></b></r>";
+    const nestedResult = ev.evaluateText(`FILTERXML("${nested}", "//c")`, ctx());
+    expect(nestedResult.kind).toBe("array");
+    if (nestedResult.kind !== "array") return;
+    expect(nestedResult.values).toEqual([str("3"), str("4")]);
+
+    const declared = "<?xml version='1.0'?><!-- comment --><r><a>ok</a></r>";
+    expect(ev.evaluateText(`FILTERXML("${declared}", "/r/a")`, ctx())).toEqual(str("ok"));
+
+    const empty = "<r><a/></r>";
+    expect(ev.evaluateText(`FILTERXML("${empty}", "/r/a")`, ctx())).toEqual(str(""));
+
+    const entities = "<r a='&amp;b'>&lt;x&gt;</r>";
+    expect(ev.evaluateText(`FILTERXML("${entities}", "/r/@a")`, ctx())).toEqual(str("&b"));
+    expect(ev.evaluateText(`FILTERXML("${entities}", "/r")`, ctx())).toEqual(str("<x>"));
+
+    const cdata = "<r><![CDATA[<x>]]></r>";
+    expect(ev.evaluateText(`FILTERXML("${cdata}", "/r")`, ctx())).toEqual(str("<x>"));
+  });
 });
