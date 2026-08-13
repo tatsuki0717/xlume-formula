@@ -11,7 +11,7 @@ import {
 } from "../model/value.js";
 import { excelCoerceNumber, excelCoerceString } from "../formula/coercion.js";
 import type { ExcelFunction } from "../formula/functions-types.js";
-import bessel from "bessel";
+import { besselI, besselJ, besselK, besselY } from "./bessel.js";
 
 function fn(
   name: string,
@@ -631,7 +631,7 @@ export function registerEngineeringFunctions(add: (f: ExcelFunction) => void): v
     const x = excelCoerceNumber(args[0] ?? BLANK);
     const n = excelCoerceNumber(args[1] ?? BLANK);
     if (x.kind !== "number" || n.kind !== "number") return err(ExcelErrorCode.Value);
-    const r = bessel.besselj(x.value, Math.trunc(n.value));
+    const r = besselJ(x.value, Math.trunc(n.value));
     if (Number.isNaN(r) || !Number.isFinite(r)) return err(ExcelErrorCode.Num);
     return num(r);
   }));
@@ -639,7 +639,7 @@ export function registerEngineeringFunctions(add: (f: ExcelFunction) => void): v
     const x = excelCoerceNumber(args[0] ?? BLANK);
     const n = excelCoerceNumber(args[1] ?? BLANK);
     if (x.kind !== "number" || n.kind !== "number") return err(ExcelErrorCode.Value);
-    const r = bessel.bessely(x.value, Math.trunc(n.value));
+    const r = besselY(x.value, Math.trunc(n.value));
     if (Number.isNaN(r) || !Number.isFinite(r)) return err(ExcelErrorCode.Num);
     return num(r);
   }));
@@ -647,7 +647,7 @@ export function registerEngineeringFunctions(add: (f: ExcelFunction) => void): v
     const x = excelCoerceNumber(args[0] ?? BLANK);
     const n = excelCoerceNumber(args[1] ?? BLANK);
     if (x.kind !== "number" || n.kind !== "number") return err(ExcelErrorCode.Value);
-    const r = bessel.besseli(x.value, Math.trunc(n.value));
+    const r = besselI(x.value, Math.trunc(n.value));
     if (Number.isNaN(r) || !Number.isFinite(r)) return err(ExcelErrorCode.Num);
     return num(r);
   }));
@@ -655,7 +655,7 @@ export function registerEngineeringFunctions(add: (f: ExcelFunction) => void): v
     const x = excelCoerceNumber(args[0] ?? BLANK);
     const n = excelCoerceNumber(args[1] ?? BLANK);
     if (x.kind !== "number" || n.kind !== "number") return err(ExcelErrorCode.Value);
-    const r = bessel.besselk(x.value, Math.trunc(n.value));
+    const r = besselK(x.value, Math.trunc(n.value));
     if (Number.isNaN(r) || !Number.isFinite(r)) return err(ExcelErrorCode.Num);
     return num(r);
   }));

@@ -72,7 +72,6 @@
   },
   "dependencies": {
     "bahttext": "2.4.0",
-    "bessel": "^1.0.2",
     "fast-xml-parser": "5.10.1",
     "jaconv": "1.0.4",
     "jstat": "^1.9.6",

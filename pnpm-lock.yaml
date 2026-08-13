@@ -11,9 +11,6 @@ importers:
       bahttext:
         specifier: 2.4.0
         version: 2.4.0
-      bessel:
-        specifier: ^1.0.2
-        version: 1.0.2
       fast-xml-parser:
         specifier: 5.10.1
         version: 5.10.1
@@ -397,10 +394,6 @@ packages:
   bahttext@2.4.0:
     resolution: {integrity: sha512-VneSe+GrPDRc7YEP3C+qvUx0R5qIcWi498kREAI5cI2Jc/C1IhAVdfDEu3sAZTgAzkLAslT2tzHmmgk8GXiQzw==}
     engines: {node: '>=18'}
-
-  bessel@1.0.2:
-    resolution: {integrity: sha512-Al3nHGQGqDYqqinXhQzmwmcRToe/3WyBv4N8aZc5Pef8xw2neZlR9VPi84Sa23JtgWcucu18HxVZrnI0fn2etw==}
-    engines: {node: '>=0.8'}
 
   cac@6.7.14:
     resolution: {integrity: sha512-b6Ilus+c3RrdDk+JhLKUAQfzzgLEPy6wcXqS7f/xe1EETvsDP6GORG7SFuOs6cID5YkqchW/LXZbX5bc8j7ZcQ==}
@@ -874,8 +867,6 @@ snapshots:
   assertion-error@2.0.1: {}
 
   bahttext@2.4.0: {}
-
-  bessel@1.0.2: {}
 
   cac@6.7.14: {}
 
