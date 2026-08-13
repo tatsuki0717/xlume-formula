@@ -12,7 +12,7 @@ import {
   type ArrayValue,
   type ExcelValue,
 } from "../model/value.js";
-import { excelCoerceNumber, excelCoerceString, excelCompare } from "../formula/coercion.js";
+import { excelCoerceBoolean, excelCoerceNumber, excelCoerceString, excelCompare } from "../formula/coercion.js";
 import { flattenArgs } from "../formula/evaluator.js";
 import type { EvaluationContext, ExcelFunction, FunctionRegistry } from "../formula/functions-types.js";
 import { columnIndexToLetters } from "../model/address.js";
@@ -728,12 +728,102 @@ export function registerMissingFunctions(add: (f: ExcelFunction) => void, reg: F
     }),
   );
 
+  // Euro fixed conversion rates (EU Council Regulation). EUR = 1.
+  const euroRates: Record<string, number> = {
+    EUR: 1,
+    BEF: 40.3399,
+    DEM: 1.95583,
+    EEK: 15.6466,
+    ESP: 166.386,
+    FIM: 5.94573,
+    FRF: 6.55957,
+    GRD: 340.75,
+    IEP: 0.787564,
+    ITL: 1936.27,
+    LTL: 3.4528,
+    LUF: 40.3399,
+    LVL: 0.702804,
+    MTL: 0.4293,
+    NLG: 2.20371,
+    ATS: 13.7603,
+    PTE: 200.482,
+    SIT: 239.64,
+    SKK: 30.126,
+    CYP: 0.585274,
+  };
+  const euroPrecision: Record<string, { calc: number; display: number }> = {
+    BEF: { calc: 0, display: 0 },
+    LUF: { calc: 0, display: 0 },
+    DEM: { calc: 2, display: 2 },
+    ESP: { calc: 0, display: 0 },
+    FRF: { calc: 2, display: 2 },
+    IEP: { calc: 2, display: 2 },
+    ITL: { calc: 0, display: 0 },
+    NLG: { calc: 2, display: 2 },
+    ATS: { calc: 2, display: 2 },
+    PTE: { calc: 0, display: 2 },
+    FIM: { calc: 2, display: 2 },
+    GRD: { calc: 0, display: 2 },
+    SIT: { calc: 2, display: 2 },
+    EUR: { calc: 2, display: 2 },
+  };
+
+  add(
+    fn("EUROCONVERT", "none", (args) => {
+      const nArg = args[0] ? excelCoerceNumber(args[0]) : BLANK;
+      if (nArg.kind !== "number") return err(ExcelErrorCode.Value);
+      const srcArg = args[1] ? excelCoerceString(args[1]) : BLANK;
+      if (srcArg.kind !== "string") return err(ExcelErrorCode.Value);
+      const tgtArg = args[2] ? excelCoerceString(args[2]) : BLANK;
+      if (tgtArg.kind !== "string") return err(ExcelErrorCode.Value);
+      const src = srcArg.value.toUpperCase();
+      const tgt = tgtArg.value.toUpperCase();
+      const srcRate = euroRates[src];
+      const tgtRate = euroRates[tgt];
+      if (srcRate === undefined || tgtRate === undefined || srcRate <= 0 || tgtRate <= 0) {
+        return err(ExcelErrorCode.Value);
+      }
+      if (src === tgt) return num(nArg.value);
+
+      const fullPrec = args[3] ? excelCoerceBoolean(args[3]) : bool(false);
+      if (fullPrec.kind === "error") return fullPrec;
+      const triArg = args[4] ? excelCoerceNumber(args[4]) : BLANK;
+      const triDigits = triArg.kind === "number" ? triArg.value : undefined;
+
+      let euros: number;
+      if (src === "EUR") {
+        euros = nArg.value;
+      } else {
+        euros = nArg.value / srcRate;
+      }
+      if (triDigits !== undefined && triDigits >= 3) {
+        const factor = 10 ** Math.floor(triDigits);
+        euros = Math.round(euros * factor) / factor;
+      }
+
+      let result: number;
+      if (tgt === "EUR") {
+        result = euros;
+      } else {
+        result = euros * tgtRate;
+      }
+
+      if (fullPrec.kind === "boolean" && fullPrec.value) {
+        return num(result);
+      }
+
+      const precision = euroPrecision[tgt]?.display ?? euroPrecision[src]?.display ?? 2;
+      const rounded = Math.round(result * 10 ** precision) / 10 ** precision;
+      return num(rounded);
+    }),
+  );
+
   const stubNames = [
     // External / locale / add-in
     "ASC", "BAHTTEXT", "CALL", "CELL", "CUBEKPIMEMBER", "CUBEMEMBER",
     "CUBEMEMBERPROPERTY", "CUBERANKEDMEMBER", "CUBESET", "CUBESETCOUNT",
-    "CUBEVALUE", "DBCS", "DETECTLANGUAGE", "EUROCONVERT",
-    "FILTERXML", "FORMULATEXT", "IMAGE", "ISFORMULA",
+    "CUBEVALUE", "DBCS", "DETECTLANGUAGE",
+    "FORMULATEXT", "IMAGE", "ISFORMULA",
     "LAMBDA", "LET", "MAKEARRAY", "MAP", "PHONETIC", "PIVOTBY", "REDUCE",
     "REGISTER.ID", "RTD", "SCAN", "STOCKHISTORY", "TRANSLATE", "WEBSERVICE",
     // LAMBDA helpers that need first-class function support
