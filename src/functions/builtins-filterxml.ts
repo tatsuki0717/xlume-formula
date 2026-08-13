@@ -211,6 +211,18 @@ function toExcelValue(node: XmlNode): ExcelValue {
   return str(textOf(node));
 }
 
+export function evaluateXml(xml: string, xpath: string): ExcelValue | null {
+  const nodes = xmlToNodes(xml);
+  if (nodes === null) return null;
+  const steps = tokenize(xpath);
+  if (steps.length === 0) return null;
+  const result = query(nodes, steps);
+  if (result.length === 0) return null;
+  if (result.length === 1) return toExcelValue(result[0]!);
+  const values = result.map(toExcelValue);
+  return { kind: "array", width: 1, height: values.length, values };
+}
+
 export function registerFilterXmlFunction(add: (f: ExcelFunction) => void): void {
   add({
     name: "FILTERXML",

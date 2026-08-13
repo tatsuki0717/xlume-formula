@@ -22,6 +22,22 @@ export interface ExternalFunctionProvider {
   call?(registerId: ExcelValue, args: ExcelValue[]): ExcelValue | undefined;
   /** Synchronously return phonetic text (e.g. furigana) for a string, or undefined. */
   phonetic?(text: string): string | undefined;
+
+  // Google Sheets network functions
+  /** Synchronously translate text for GOOGLETRANSLATE. */
+  googleTranslate?(text: string, source: string, target: string): string | undefined;
+  /** Synchronously return finance info for GOOGLEFINANCE. */
+  googleFinance?(ticker: string, attribute?: string): ExcelValue | undefined;
+  /** Synchronously return raw data for IMPORTDATA. */
+  importData?(url: string): string | undefined;
+  /** Synchronously return parsed XML query results for IMPORTXML. */
+  importXml?(url: string, xpath: string): ExcelValue | undefined;
+  /** Synchronously return parsed HTML table/list results for IMPORTHTML. */
+  importHtml?(url: string, query: string, index: number): ExcelValue | undefined;
+  /** Synchronously return feed data for IMPORTFEED. */
+  importFeed?(url: string, query?: string, headers?: boolean, numItems?: number): ExcelValue | undefined;
+  /** Synchronously return cells from another spreadsheet for IMPORTRANGE. */
+  importRange?(spreadsheetUrl: string, rangeString: string): ExcelValue | undefined;
 }
 
 export interface EvaluationContext {

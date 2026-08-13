@@ -6,6 +6,12 @@
 - `IMAGE(url)`
 - `TRANSLATE(text, source_language, target_language)`
 - `STOCKHISTORY(ticker, start_date, end_date, [interval], [headers])`
+- `GOOGLETRANSLATE(text, source_language, target_language)`
+- `GOOGLEFINANCE(ticker, attribute)`
+- `IMPORTDATA(url)`
+- `IMPORTXML(url, xpath)`
+- `IMPORTHTML(url, query, index)`
+- `IMPORTFEED(url, query, headers, numItems)`
 
 ## Usage
 
