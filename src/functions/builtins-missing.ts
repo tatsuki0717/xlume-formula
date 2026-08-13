@@ -16,7 +16,7 @@ import { excelCoerceBoolean, excelCoerceNumber, excelCoerceString, excelCompare 
 import { flattenArgs } from "../formula/evaluator.js";
 import type { EvaluationContext, ExcelFunction, FunctionRegistry } from "../formula/functions-types.js";
 import { columnIndexToLetters } from "../model/address.js";
-import jaconv from "jaconv";
+import { toHan, toZen } from "./zenhan.js";
 import { bahttext } from "bahttext";
 
 function fn(
@@ -823,13 +823,13 @@ export function registerMissingFunctions(add: (f: ExcelFunction) => void, reg: F
   add(fn("ASC", "none", (args) => {
     const s = args[0] ? excelCoerceString(args[0]) : BLANK;
     if (s.kind !== "string") return s;
-    return str(jaconv.toHan(s.value));
+    return str(toHan(s.value));
   }));
 
   add(fn("DBCS", "none", (args) => {
     const s = args[0] ? excelCoerceString(args[0]) : BLANK;
     if (s.kind !== "string") return s;
-    return str(jaconv.toZen(s.value));
+    return str(toZen(s.value));
   }));
 
   add(fn("BAHTTEXT", "none", (args) => {
