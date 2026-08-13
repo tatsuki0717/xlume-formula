@@ -362,10 +362,26 @@ export function createBuiltinFunctions(): FunctionRegistry {
       const text = args[0];
       const oldT = args[1];
       const newT = args[2];
+      const instance = args[3] !== undefined ? excelCoerceNumber(args[3]) : undefined;
       if (text?.kind !== "string" || oldT?.kind !== "string" || newT?.kind !== "string") {
         return err(ExcelErrorCode.Value);
       }
-      return str(text.value.split(oldT.value).join(newT.value));
+      if (instance !== undefined && instance.kind === "error") return instance;
+      if (instance !== undefined && instance.kind !== "number") return err(ExcelErrorCode.Value);
+      if (oldT.value.length === 0) return text;
+      if (instance === undefined) return str(text.value.split(oldT.value).join(newT.value));
+      const which = Math.floor(instance.value);
+      if (which <= 0) return err(ExcelErrorCode.Value);
+      let idx = -1;
+      let pos = 0;
+      for (let i = 0; i < which; i++) {
+        idx = text.value.indexOf(oldT.value, pos);
+        if (idx < 0) return text;
+        pos = idx + oldT.value.length;
+      }
+      return str(
+        text.value.slice(0, idx) + newT.value + text.value.slice(idx + oldT.value.length),
+      );
     }),
   );
 
@@ -1054,10 +1070,34 @@ export function createBuiltinFunctions(): FunctionRegistry {
   }));
   add(fn("WEEKDAY", "none", (args) => {
     const n = excelCoerceNumber(args[0] ?? BLANK);
-    if (n.kind !== "number") return n;
+    const rtArg = args[1] !== undefined ? excelCoerceNumber(args[1]) : num(1);
+    if (n.kind !== "number" || rtArg.kind !== "number") return n.kind !== "number" ? n : rtArg;
     const epoch = Date.UTC(1899, 11, 30);
     const d = new Date(epoch + n.value * 86400000);
-    return num(d.getUTCDay() + 1);
+    const wd = d.getUTCDay(); // 0=Sun ... 6=Sat
+    const rt = Math.round(rtArg.value);
+    switch (rt) {
+      case 1:
+      case 17:
+        return num(wd + 1);
+      case 2:
+      case 11:
+        return num(((wd + 6) % 7) + 1);
+      case 3:
+        return num((wd + 6) % 7);
+      case 12:
+        return num(((wd + 5) % 7) + 1);
+      case 13:
+        return num(((wd + 4) % 7) + 1);
+      case 14:
+        return num(((wd + 3) % 7) + 1);
+      case 15:
+        return num(((wd + 2) % 7) + 1);
+      case 16:
+        return num(((wd + 1) % 7) + 1);
+      default:
+        return err(ExcelErrorCode.Num);
+    }
   }));
   add(fn("EOMONTH", "none", (args) => {
     const start = excelCoerceNumber(args[0] ?? BLANK);
