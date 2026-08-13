@@ -160,44 +160,21 @@ def extract_balanced(text, start, open_ch='{', close_ch='}'):
 
 
 def parse_function_block(block):
-    """Extract fields from a single HyperFormula function object literal."""
+    """Extract structural fields (category and parameter names) from a single
+    HyperFormula function object literal. Prose fields (shortDescription,
+    examples, documentationUrl, parameter descriptions) are intentionally not
+    captured so generated docs do not copy third-party text."""
     result = {}
     m = re.search(r"category\s*:\s*'([^']*)'", block)
     if m:
         result['category'] = m.group(1)
-    m = re.search(r"shortDescription\s*:\s*'((?:\\'|[^'])*)'", block)
-    if m:
-        result['shortDescription'] = m.group(1).replace("\\'", "'")
-
     params = []
-    pattern = r"\{name\s*:\s*'((?:\\'|[^'])*)'\s*,\s*description\s*:\s*'((?:\\'|[^'])*)'\}"
-    for pm in re.finditer(pattern, block):
-        params.append({
-            'name': pm.group(1).replace("\\'", "'"),
-            'description': pm.group(2).replace("\\'", "'"),
-        })
+    for pm in re.finditer(r"\{name\s*:\s*'((?:\\'|[^'])*)'", block):
+        params.append({'name': pm.group(1).replace("\\'", "'"), 'description': ''})
     if not params:
-        for pm in re.finditer(r'\{name\s*:\s*"((?:\\"|[^"])*)"\s*,\s*description\s*:\s*"((?:\\"|[^"])*)"\}', block):
-            params.append({
-                'name': pm.group(1).replace('\\"', '"'),
-                'description': pm.group(2).replace('\\"', '"'),
-            })
+        for pm in re.finditer(r'\{name\s*:\s*"((?:\\"|[^"])*)"', block):
+            params.append({'name': pm.group(1).replace('\\"', '"'), 'description': ''})
     result['parameters'] = params
-
-    examples = []
-    m = re.search(r"examples\s*:\s*\[([^\[\]]*)\]", block, re.DOTALL)
-    if m:
-        arr = m.group(1)
-        for em in re.finditer(r"'((?:\\'|[^'])*)'", arr):
-            examples.append(em.group(1).replace("\\'", "'"))
-        if not examples:
-            for em in re.finditer(r'"((?:\\"|[^"])*)"', arr):
-                examples.append(em.group(1).replace('\\"', '"'))
-    result['examples'] = examples
-
-    m = re.search(r"documentationUrl\s*:\s*'([^']*)'", block)
-    if m:
-        result['documentationUrl'] = m.group(1)
     return result
 
 
@@ -265,6 +242,9 @@ def parse_office_js_yaml(path):
 # ---------------------------------------------------------------------------
 
 def parse_formulajs(src_dir):
+    """Parse formula.js source for structural names/signatures only.
+    JSDoc prose (summary and parameter descriptions) is intentionally not
+    captured to avoid copying third-party text into generated docs."""
     funcs = {}
     for fname in os.listdir(src_dir):
         if not fname.endswith('.js'):
@@ -288,14 +268,8 @@ def parse_formulajs(src_dir):
             if not jsdocs:
                 continue
             jsdoc = jsdocs[-1]
-            summary = ''
-            for line in jsdoc.split('\n'):
-                line = line.strip().lstrip('*').strip()
-                if line and not line.startswith('@'):
-                    summary = line
-                    break
             params = []
-            for pm in re.finditer(r'^[^\S\n\r]*\*[^\S\n\r]*@param[^\S\n\r]*\{([^}]*)\}[^\S\n\r]+(\S+)[^\S\n\r]*(.*)$', jsdoc, re.MULTILINE):
+            for pm in re.finditer(r'^[^\S\n\r]*\*[^\S\n\r]*@param[^\S\n\r]*\{([^}]*)\}[^\S\n\r]+(\S+)', jsdoc, re.MULTILINE):
                 pname = pm.group(2).strip()
                 optional = False
                 if pname.startswith('[') and pname.endswith(']'):
@@ -304,12 +278,12 @@ def parse_formulajs(src_dir):
                 params.append({
                     'type': pm.group(1).strip(),
                     'name': pname,
-                    'description': pm.group(3).strip(),
+                    'description': '',
                     'optional': optional,
                 })
             funcs[name] = {
                 'category': cat,
-                'shortDescription': summary,
+                'shortDescription': '',
                 'parameters': params,
                 'examples': [],
             }
