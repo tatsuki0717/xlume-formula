@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns the date of the last day of the month that falls the given number of months away from start_date. Returns the value in the form of number of full days since [`nullDate`](https://hyperformula.handsontable.com/docs/api/interfaces/configparams.html#nulldate).<br>The return value complies with the OpenDocument standard, but the return type does not; see the [compatibility notes](https://hyperformula.handsontable.com/docs/guide/list-of-differences.html).
+Returns the date of the last day of the month that is the given number of months away from start_date, expressed as a serial day count from the workbook's date origin.
 
 ## Excel Syntax
 ```excel
@@ -24,7 +24,7 @@ Returns the date of the last day of the month that falls the given number of mon
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the date of the last day of the month that falls the given number of months away from start_date. Returns the value in the form of number of full days since [`nullDate`](https://hyperformula.handsontable.com/docs/api/interfaces/configparams.html#nulldate).<br>The return value complies with the OpenDocument standard, but the return type does not; see the [compatibility notes](https://hyperformula.handsontable.com/docs/guide/list-of-differences.html).
+Returns the date of the last day of the month that is the given number of months away from start_date, expressed as a serial day count from the workbook's date origin.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -33,7 +33,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the date of the last day of the month that falls the given number of months away from start_date. Returns the value in the form of number of full days since [`nullDate`](https://hyperformula.handsontable.com/docs/api/interfaces/configparams.html#nulldate).<br>The return value complies with the OpenDocument standard, but the return type does not; see the [compatibility notes](https://hyperformula.handsontable.com/docs/guide/list-of-differences.html).
+> Returns the date of the last day of the month that is the given number of months away from start_date, expressed as a serial day count from the workbook's date origin.
 
 
 ## Type Coercion & Edge Cases

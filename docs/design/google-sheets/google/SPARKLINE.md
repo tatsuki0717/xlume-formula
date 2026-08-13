@@ -18,8 +18,8 @@ Creates a miniature chart contained within a single cell.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | data | range/array | Yes | The range or array containing the data to plot. |
-| 2 | options | range/array | No | - A range or array of optional settings and associated values used to customize the chart. |
+| 1 | data | range/array | Yes |  |
+| 2 | options | range/array | No |  |
 
 ## Returns
 sparkline value / metadata
@@ -69,66 +69,3 @@ Implement natively in the appropriate builtins module (e.g. `src/functions/built
 - [Google Sheets function list](https://support.google.com/docs/table/25273)
 - [Google Docs Editors Help - SPARKLINE](https://support.google.com/docs/answer/3093289?hl=en)
 
-
-## Google Sheets Documentation Excerpts
-
-### Sample Usage
-SPARKLINE(A1:F1) 
- SPARKLINE(A2:E2,{"charttype","bar";"max",40}) 
- SPARKLINE(A2:E2,A4:B5) 
- SPARKLINE(A1:A5, {"charttype","column"; "axis", true; "axiscolor", "red"})
-
-### Notes
-- Colors can be written using their names (e.g., "green") or as a hex code (e.g., "#3D3D3D").
-- To modify the color of a line chart, change the font color of the cell.
-
-### See Also
-IMAGE : Inserts an image into a cell.
- GOOGLEFINANCE : Fetches current or historical securities information from Google Finance.
-##  
- 
-## Need more help?
- 
-### Try these next steps:
- 
- 
- Post to the help community Get answers from community members true 
-## Google 
-- 1 of 10 
- 
- Google Sheets function list 
-- 2 of 10 
- 
- ARRAYFORMULA 
-- 3 of 10 
- 
- DETECTLANGUAGE 
-- 4 of 10 
- 
- GOOGLEFINANCE 
-- 5 of 10 
- 
- GOOGLETRANSLATE 
-- 6 of 10 
- 
- IMAGE 
-- 7 of 10 
- 
- QUERY function 
-- 8 of 10 
- 
- SPARKLINE 
-- 9 of 10 
- 
- Create & use named functions 
-- 10 of 10 
- 
- LAMBDA function 
- Visit the Learning Center 
-Using Google products, like Google Docs, at work or school? Try powerful tips, tutorials, and templates. Learn to work on Office files without installing Office, create dynamic project plans and team calendars, auto-organize your inbox, and more.
- ©2026 Google 
-- Privacy Policy 
-- Terms of Service 
- Language català‎ dansk‎ Deutsch‎ English (United Kingdom)‎ español‎ español (Latinoamérica)‎ français‎ Indonesia‎ italiano‎ magyar‎ Melayu‎ Nederlands‎ norsk‎ polski‎ português‎ português (Brasil)‎ română‎ suomi‎ svenska‎ Tiếng Việt‎ Türkçe‎ čeština‎ Ελληνικά‎ русский‎ українська‎ ‏ עברית ‏ العربية मराठी‎ हिन्दी‎ தமிழ்‎ తెలుగు‎ ไทย‎ 中文（简体）‎ 中文（繁體）‎ 日本語‎ 한국어‎ English‎ 
- 
- Enable Dark Mode Send feedback on... This help content & information General Help Center experience Search Clear search Close search Google apps Main menu 10422302086683108387 true Search Help Center false true true true true true 35 false false false false false

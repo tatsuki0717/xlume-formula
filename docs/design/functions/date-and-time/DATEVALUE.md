@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Parses date_string and returns it as the number of full days since [`nullDate`](https://hyperformula.handsontable.com/docs/api/interfaces/configparams.html#nulldate).<br>Accepts formats set by the [`dateFormats`](https://hyperformula.handsontable.com/docs/api/interfaces/configparams.html#dateformats) option.
+Parses date_string and returns it as a serial day count from the workbook's date origin. It accepts the date format patterns configured for the workbook.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Parses date_string and returns it as the number of full days since [`nullDate`](
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | date_text | string \| range/array | Yes | A text string representing a date, in one of the formats configured via dateFormats. |
+| 1 | date_text | string \| range/array | Yes | A text string representing a date, in one of the formats configured for the workbook. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Parses date_string and returns it as the number of full days since [`nullDate`](https://hyperformula.handsontable.com/docs/api/interfaces/configparams.html#nulldate).<br>Accepts formats set by the [`dateFormats`](https://hyperformula.handsontable.com/docs/api/interfaces/configparams.html#dateformats) option.
+Parses date_string and returns it as a serial day count from the workbook's date origin. It accepts the date format patterns configured for the workbook.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Parses date_string and returns it as the number of full days since [`nullDate`](https://hyperformula.handsontable.com/docs/api/interfaces/configparams.html#nulldate).<br>Accepts formats set by the [`dateFormats`](https://hyperformula.handsontable.com/docs/api/interfaces/configparams.html#dateformats) option.
+> Parses date_string and returns it as a serial day count from the workbook's date origin. It accepts the date format patterns configured for the workbook.
 
 
 ## Type Coercion & Edge Cases

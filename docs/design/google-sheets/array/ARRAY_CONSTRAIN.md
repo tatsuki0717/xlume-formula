@@ -18,9 +18,9 @@ Constrains an array result to a specified size.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | input_range | range/array | Yes | The range to constrain. |
-| 2 | num_rows | number | Yes | The number of rows the result should contain. |
-| 3 | num_cols | number | Yes | The number of columns the result should contain |
+| 1 | input_range | range/array | Yes |  |
+| 2 | num_rows | number | Yes |  |
+| 3 | num_cols | number | Yes |  |
 
 ## Returns
 array
@@ -69,79 +69,3 @@ Implement natively in the appropriate builtins module (e.g. `src/functions/built
 - [Google Sheets function list](https://support.google.com/docs/table/25273)
 - [Google Docs Editors Help - ARRAY_CONSTRAIN](https://support.google.com/docs/answer/3267036?hl=en)
 
-
-## Google Sheets Documentation Excerpts
-
-### Sample Usage
-ARRAY_CONSTRAIN(A1:C10, 2, 3) 
- ARRAY_CONSTRAIN(SORT(A1:F100, 1, TRUE), 10, 6)
-
-### Notes
-- Generally used in combination with other functions that return an array result when a fewer number of rows or columns are desired.
-
-### See Also
-ARRAYFORMULA : Enables the display of values returned from an array formula into multiple rows and/or columns and the use of non-array functions with arrays.
- 
-## Need more help?
- 
-### Try these next steps:
- 
- 
- Post to the help community Get answers from community members true 
-## Array 
-- 1 of 16 
- 
- Google Sheets function list 
-- 2 of 16 
- 
- ARRAY_CONSTRAIN 
-- 3 of 16 
- 
- FREQUENCY 
-- 4 of 16 
- 
- GROWTH 
-- 5 of 16 
- 
- LINEST 
-- 6 of 16 
- 
- LOGEST 
-- 7 of 16 
- 
- MDETERM 
-- 8 of 16 
- 
- MINVERSE 
-- 9 of 16 
- 
- MMULT 
-- 10 of 16 
- 
- SUMPRODUCT 
-- 11 of 16 
- 
- SUMX2MY2 
-- 12 of 16 
- 
- SUMX2PY2 
-- 13 of 16 
- 
- SUMXMY2 
-- 14 of 16 
- 
- TRANSPOSE 
-- 15 of 16 
- 
- TREND 
-- 16 of 16 
- 
- FLATTEN 
- Visit the Learning Center 
-Using Google products, like Google Docs, at work or school? Try powerful tips, tutorials, and templates. Learn to work on Office files without installing Office, create dynamic project plans and team calendars, auto-organize your inbox, and more.
- ©2026 Google 
-- Privacy Policy 
-- Terms of Service 
- Language català‎ dansk‎ Deutsch‎ English (United Kingdom)‎ español‎ español (Latinoamérica)‎ français‎ Indonesia‎ italiano‎ magyar‎ Melayu‎ Nederlands‎ norsk‎ polski‎ português‎ português (Brasil)‎ română‎ suomi‎ svenska‎ Tiếng Việt‎ Türkçe‎ čeština‎ Ελληνικά‎ русский‎ українська‎ ‏ עברית ‏ العربية मराठी‎ हिन्दी‎ தமிழ்‎ తెలుగు‎ ไทย‎ 中文（简体）‎ 中文（繁體）‎ 日本語‎ 한국어‎ English‎ 
- 
- Enable Dark Mode Send feedback on... This help content & information General Help Center experience Search Clear search Close search Google apps Main menu 15176464360382584808 true Search Help Center false true true true true true 35 false false false false false

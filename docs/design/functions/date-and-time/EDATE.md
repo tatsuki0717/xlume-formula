@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Shifts start_date by the given number of months and returns it as the number of full days since [`nullDate`](https://hyperformula.handsontable.com/docs/api/interfaces/configparams.html#nulldate).<br>The return value complies with the OpenDocument standard, but the return type does not; see the [compatibility notes](https://hyperformula.handsontable.com/docs/guide/list-of-differences.html).
+Shifts start_date by the given number of months and returns the result as a serial day count from the workbook's date origin.
 
 ## Excel Syntax
 ```excel
@@ -24,7 +24,7 @@ Shifts start_date by the given number of months and returns it as the number of 
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Shifts start_date by the given number of months and returns it as the number of full days since [`nullDate`](https://hyperformula.handsontable.com/docs/api/interfaces/configparams.html#nulldate).<br>The return value complies with the OpenDocument standard, but the return type does not; see the [compatibility notes](https://hyperformula.handsontable.com/docs/guide/list-of-differences.html).
+Shifts start_date by the given number of months and returns the result as a serial day count from the workbook's date origin.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -33,7 +33,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Shifts start_date by the given number of months and returns it as the number of full days since [`nullDate`](https://hyperformula.handsontable.com/docs/api/interfaces/configparams.html#nulldate).<br>The return value complies with the OpenDocument standard, but the return type does not; see the [compatibility notes](https://hyperformula.handsontable.com/docs/guide/list-of-differences.html).
+> Shifts start_date by the given number of months and returns the result as a serial day count from the workbook's date origin.
 
 
 ## Type Coercion & Edge Cases

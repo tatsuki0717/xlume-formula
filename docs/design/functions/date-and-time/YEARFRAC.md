@@ -17,7 +17,7 @@ Computes the difference between two date values, in fraction of years.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | start_date | number \| string \| boolean \| range/array | Yes | One of the two boundary dates of the period; HyperFormula automatically reorders end_date/start_date so the result is never negative. |
+| 1 | start_date | number \| string \| boolean \| range/array | Yes | One of the two boundary dates of the period; the implementation should reorder the arguments so the result is never negative. |
 | 2 | end_date | number \| string \| boolean \| range/array | Yes | The other boundary date of the period. |
 | 3 | basis | number \| string \| boolean \| range/array | No | A basis code selecting the day-count convention: 0 = US 30/360 (default), 1 = actual/actual, 2 = actual/360, 3 = actual/365, or 4 = European 30/360. |
 

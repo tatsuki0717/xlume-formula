@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Parses time_string and returns a number that represents it as a fraction of a full day.<br>Accepts formats set by the [`timeFormats`](https://hyperformula.handsontable.com/docs/api/interfaces/configparams.html#timeformats) option.
+Parses time_string and returns a number representing it as a fraction of a full day. It accepts the time format patterns configured for the workbook.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Parses time_string and returns a number that represents it as a fraction of a fu
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | time_text | string \| number \| range/array | Yes | A text string representing a time, in one of the formats configured via timeFormats. |
+| 1 | time_text | string \| number \| range/array | Yes | A text string representing a time, in one of the formats configured for the workbook. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Parses time_string and returns a number that represents it as a fraction of a full day.<br>Accepts formats set by the [`timeFormats`](https://hyperformula.handsontable.com/docs/api/interfaces/configparams.html#timeformats) option.
+Parses time_string and returns a number representing it as a fraction of a full day. It accepts the time format patterns configured for the workbook.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Parses time_string and returns a number that represents it as a fraction of a full day.<br>Accepts formats set by the [`timeFormats`](https://hyperformula.handsontable.com/docs/api/interfaces/configparams.html#timeformats) option.
+> Parses time_string and returns a number representing it as a fraction of a full day. It accepts the time format patterns configured for the workbook.
 
 
 ## Type Coercion & Edge Cases

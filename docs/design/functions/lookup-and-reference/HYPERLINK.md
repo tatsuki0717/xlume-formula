@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Stores the url in the cell's metadata. It can be read using method [`getCellHyperlink`](https://hyperformula.handsontable.com/docs/api/classes/hyperformula.html#getcellhyperlink)
+Stores the URL in the cell metadata as a hyperlink value that the host can display or retrieve.
 
 ## Excel Syntax
 ```excel
@@ -17,14 +17,14 @@ Stores the url in the cell's metadata. It can be read using method [`getCellHype
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | link_location | string \| range/array | Yes | The URL stored in the cell's metadata, readable via getCellHyperlink. |
+| 1 | link_location | string \| range/array | Yes | The URL to store in the cell metadata. |
 | 2 | friendly_name | number \| string \| boolean \| range/array | No | The text displayed in the cell. When omitted, url is displayed instead. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Stores the url in the cell's metadata. It can be read using method [`getCellHyperlink`](https://hyperformula.handsontable.com/docs/api/classes/hyperformula.html#getcellhyperlink)
+Stores the URL in the cell metadata as a hyperlink value that the host can display or retrieve.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -33,7 +33,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Stores the url in the cell's metadata. It can be read using method [`getCellHyperlink`](https://hyperformula.handsontable.com/docs/api/classes/hyperformula.html#getcellhyperlink)
+> Stores the URL in the cell metadata as a hyperlink value that the host can display or retrieve.
 
 
 ## Type Coercion & Edge Cases
@@ -55,8 +55,8 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=HYPERLINK("https://hyperformula.handsontable.com")`
-- `=HYPERLINK("https://hyperformula.handsontable.com", "HyperFormula docs")`
+- `=HYPERLINK("https://example.com")`
+- `=HYPERLINK("https://example.com", "Example site")`
 
 ## Test Cases
 | Input | Expected | Purpose |
