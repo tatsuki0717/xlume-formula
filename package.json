@@ -41,14 +41,6 @@
       "types": "./dist/formula/ast.d.ts",
       "import": "./dist/formula/ast.js"
     },
-    "./providers": {
-      "types": "./dist/providers/index.d.ts",
-      "import": "./dist/providers/index.js"
-    },
-    "./node-fetch-provider": {
-      "types": "./dist/providers/node-fetch-provider.d.ts",
-      "import": "./dist/providers/node-fetch-provider.js"
-    },
     "./functions/builtins": {
       "types": "./dist/functions/builtins.d.ts",
       "import": "./dist/functions/builtins.js"

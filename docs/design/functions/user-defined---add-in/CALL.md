@@ -3,7 +3,7 @@
 ## Metadata
 - **Category:** User-defined / Add-in
 - **Priority tags:** EXT
-- **Scope:** in-scope
+- **Scope:** out-of-scope
 - **Volatile:** No
 
 ## Description
@@ -24,9 +24,8 @@
 The value returned by the provider, or `#N/A` if no provider is configured.
 
 ## Behavior / Algorithm
-1. Evaluate `register_id` and remaining arguments.
-2. If `EvaluationContext.external.call` is defined, call `call(registerId, args)`.
-3. Return the provider's `ExcelValue`.
+
+This function depends on external services, spreadsheet data, or an external runtime (network, OLAP, pivot cache, XLL, RTD, etc.). The core `xlume-formula` engine does not perform network calls or access external data sources; the registered implementation always returns `#N/A`.
 
 ## Type Coercion & Edge Cases
 - Arguments are passed through as `ExcelValue[]`.
@@ -44,7 +43,7 @@ The value returned by the provider, or `#N/A` if no provider is configured.
 ```
 
 ## Implementation Notes
-- Implemented in `src/functions/builtins-missing.ts`.
+- Not implemented in the core engine; registered as a stub that returns `#N/A`missing.ts`.
 - The host application must supply a provider that maps `register_id` to an actual function call.
 
 ## References

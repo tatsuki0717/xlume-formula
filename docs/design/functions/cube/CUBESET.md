@@ -3,7 +3,7 @@
 ## Metadata
 - **Category:** Cube
 - **Priority tags:** EXT
-- **Scope:** in-scope
+- **Scope:** out-of-scope
 - **Volatile:** No
 
 ## Description
@@ -27,9 +27,8 @@
 The `ExcelValue` returned by the provider (typically a set object), or `#N/A` if no provider is configured.
 
 ## Behavior / Algorithm
-1. Evaluate all arguments.
-2. If `EvaluationContext.external.cube` is defined, call `cube("CUBESET", args)`.
-3. Return the provider result.
+
+This function depends on external services, spreadsheet data, or an external runtime (network, OLAP, pivot cache, XLL, RTD, etc.). The core `xlume-formula` engine does not perform network calls or access external data sources; the registered implementation always returns `#N/A`.
 
 ## Error Handling
 | Error | When |
@@ -43,7 +42,7 @@ The `ExcelValue` returned by the provider (typically a set object), or `#N/A` if
 ```
 
 ## Implementation Notes
-- Implemented in `src/functions/builtins-missing.ts`.
+- Not implemented in the core engine; registered as a stub that returns `#N/A`missing.ts`.
 - The host application must supply an OLAP/data provider.
 
 ## References

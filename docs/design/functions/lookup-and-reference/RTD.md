@@ -3,7 +3,7 @@
 ## Metadata
 - **Category:** Lookup & Reference
 - **Priority tags:** EXT
-- **Scope:** in-scope
+- **Scope:** out-of-scope
 - **Volatile:** Yes
 
 ## Description
@@ -25,10 +25,8 @@
 The value returned by the provider, or `#N/A` if no provider is configured.
 
 ## Behavior / Algorithm
-1. Coerce `progID` and optional `server` to strings.
-2. If more than two arguments are given, the second argument is treated as `server` and the rest as topics. If only two arguments are given, `server` is omitted and the second argument is a topic.
-3. If `EvaluationContext.external.rtd` is defined, call `rtd(progID, server, topics)`.
-4. Return the provider's `ExcelValue`.
+
+This function depends on external services, spreadsheet data, or an external runtime (network, OLAP, pivot cache, XLL, RTD, etc.). The core `xlume-formula` engine does not perform network calls or access external data sources; the registered implementation always returns `#N/A`.
 
 ## Type Coercion & Edge Cases
 - All arguments are coerced to strings.
@@ -46,7 +44,7 @@ The value returned by the provider, or `#N/A` if no provider is configured.
 ```
 
 ## Implementation Notes
-- Implemented in `src/functions/builtins-missing.ts`.
+- Not implemented in the core engine; registered as a stub that returns `#N/A`missing.ts`.
 - The library does not connect to RTD servers itself. The host application must supply a synchronous provider (or a pre-fetched value).
 
 ## References

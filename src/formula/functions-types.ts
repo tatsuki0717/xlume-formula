@@ -1,47 +1,7 @@
-import type { ExcelValue, ArrayValue } from "../model/value.js";
+import type { ExcelValue } from "../model/value.js";
 import type { FormulaNode } from "./ast.js";
 
 export type FormulaArgument = ExcelValue | FormulaNode;
-
-export interface ExternalFunctionProvider {
-  /** Synchronously return the text at `url`, or undefined if not available. */
-  webService?(url: string): string | undefined;
-  /** Synchronously return an image value for `url`, or undefined. */
-  image?(url: string): ExcelValue | undefined;
-  /** Synchronously translate `text` from `source` to `target`, or undefined. */
-  translate?(text: string, source: string, target: string): string | undefined;
-  /** Synchronously return stock history data, or undefined. */
-  stockHistory?(ticker: string, ...args: (string | number)[]): ArrayValue | undefined;
-  /** Synchronously handle CUBE* worksheet functions by name. */
-  cube?(name: string, args: ExcelValue[]): ExcelValue | undefined;
-  /** Synchronously handle RTD(progID, server, ...topics). */
-  rtd?(progID: string, server: string | undefined, topics: ExcelValue[]): ExcelValue | undefined;
-  /** Synchronously handle REGISTER.ID(module, procedure, typeText). */
-  registerID?(module: string, procedure: string, typeText?: string): ExcelValue | undefined;
-  /** Synchronously handle CALL(registerId, ...args). */
-  call?(registerId: ExcelValue, args: ExcelValue[]): ExcelValue | undefined;
-  /** Synchronously return phonetic text (e.g. furigana) for a string, or undefined. */
-  phonetic?(text: string): string | undefined;
-
-  // Google Sheets network functions
-  /** Synchronously translate text for GOOGLETRANSLATE. */
-  googleTranslate?(text: string, source: string, target: string): string | undefined;
-  /** Synchronously return finance info for GOOGLEFINANCE. */
-  googleFinance?(ticker: string, attribute?: string): ExcelValue | undefined;
-  /** Synchronously return raw data for IMPORTDATA. */
-  importData?(url: string): string | undefined;
-  /** Synchronously return parsed XML query results for IMPORTXML. */
-  importXml?(url: string, xpath: string): ExcelValue | undefined;
-  /** Synchronously return parsed HTML table/list results for IMPORTHTML. */
-  importHtml?(url: string, query: string, index: number): ExcelValue | undefined;
-  /** Synchronously return feed data for IMPORTFEED. */
-  importFeed?(url: string, query?: string, headers?: boolean, numItems?: number): ExcelValue | undefined;
-  /** Synchronously return cells from another spreadsheet for IMPORTRANGE. */
-  importRange?(spreadsheetUrl: string, rangeString: string): ExcelValue | undefined;
-
-  /** Synchronously look up a value from a pivot table for GETPIVOTDATA. */
-  pivot?(dataField: string | undefined, pivotTable: string, filters: { field: string; item: ExcelValue }[]): ExcelValue | undefined;
-}
 
 export interface EvaluationContext {
   /** Resolve sheet by numeric id or name (undefined / current => active sheet). */
@@ -59,8 +19,6 @@ export interface EvaluationContext {
   resolveTableColumn(table: string, column?: string): ExcelValue[];
   todaySerial(): number;
   random(): number;
-  /** Optional provider for external/API-dependent worksheet functions. */
-  external?: ExternalFunctionProvider;
   sheetId: number;
   sheetName?: string;
   row: number;

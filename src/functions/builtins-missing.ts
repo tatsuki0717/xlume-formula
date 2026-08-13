@@ -839,154 +839,44 @@ export function registerMissingFunctions(add: (f: ExcelFunction) => void, reg: F
     return str(bahttext(n.value));
   }));
 
-  add(fn("WEBSERVICE", "none", (args, ctx) => {
+  add(fn("WEBSERVICE", "none", (args) => {
     if (args.length === 0) return err(ExcelErrorCode.Value);
-    const url = excelCoerceString(args[0]!);
-    if (url.kind !== "string") return url;
-    const provider = ctx.external?.webService;
-    if (!provider) return err(ExcelErrorCode.NA);
-    try {
-      const result = provider(url.value);
-      return result === undefined ? err(ExcelErrorCode.NA) : str(result);
-    } catch {
-      return err(ExcelErrorCode.Value);
-    }
+    return err(ExcelErrorCode.NA);
   }));
 
-  add(fn("IMAGE", "none", (args, ctx) => {
+  add(fn("IMAGE", "none", (args) => {
     if (args.length === 0) return err(ExcelErrorCode.Value);
-    const url = excelCoerceString(args[0]!);
-    if (url.kind !== "string") return url;
-    const provider = ctx.external?.image;
-    if (!provider) return err(ExcelErrorCode.NA);
-    try {
-      const result = provider(url.value);
-      return result === undefined ? err(ExcelErrorCode.NA) : result;
-    } catch {
-      return err(ExcelErrorCode.Value);
-    }
+    return err(ExcelErrorCode.NA);
   }));
 
-  add(fn("TRANSLATE", "none", (args, ctx) => {
+  add(fn("TRANSLATE", "none", (args) => {
     if (args.length === 0) return err(ExcelErrorCode.Value);
-    const text = excelCoerceString(args[0]!);
-    if (text.kind !== "string") return text;
-    const source = args[1] ? excelCoerceString(args[1]) : str("");
-    const target = args[2] ? excelCoerceString(args[2]) : str("");
-    if (source.kind !== "string") return source;
-    if (target.kind !== "string") return target;
-    const provider = ctx.external?.translate;
-    if (!provider) return err(ExcelErrorCode.NA);
-    try {
-      const result = provider(text.value, source.value, target.value);
-      return result === undefined ? err(ExcelErrorCode.NA) : str(result);
-    } catch {
-      return err(ExcelErrorCode.Value);
-    }
+    return err(ExcelErrorCode.NA);
   }));
 
-  add(fn("STOCKHISTORY", "none", (args, ctx) => {
+  add(fn("STOCKHISTORY", "none", (args) => {
     if (args.length === 0) return err(ExcelErrorCode.Value);
-    const ticker = excelCoerceString(args[0]!);
-    if (ticker.kind !== "string") return ticker;
-    const rest: (string | number)[] = [];
-    for (let i = 1; i < args.length; i++) {
-      const v = args[i]!;
-      const n = excelCoerceNumber(v);
-      if (n.kind === "number") {
-        rest.push(n.value);
-      } else {
-        const s = excelCoerceString(v);
-        if (s.kind !== "string") return s;
-        rest.push(s.value);
-      }
-    }
-    const provider = ctx.external?.stockHistory;
-    if (!provider) return err(ExcelErrorCode.NA);
-    try {
-      const result = provider(ticker.value, ...rest);
-      return result === undefined ? err(ExcelErrorCode.NA) : result;
-    } catch {
-      return err(ExcelErrorCode.Value);
-    }
+    return err(ExcelErrorCode.NA);
   }));
 
-  add(fn("PHONETIC", "none", (args, ctx) => {
+  add(fn("PHONETIC", "none", (args) => {
     if (args.length === 0) return err(ExcelErrorCode.Value);
-    const ref = args[0]!;
-    let text = "";
-    if (ref.kind === "array") {
-      const first = ref.values[0] ?? BLANK;
-      const s = excelCoerceString(first);
-      if (s.kind !== "string") return s;
-      text = s.value;
-    } else {
-      const s = excelCoerceString(ref);
-      if (s.kind !== "string") return s;
-      text = s.value;
-    }
-    const provider = ctx.external?.phonetic;
-    if (!provider) return err(ExcelErrorCode.NA);
-    try {
-      const result = provider(text);
-      return result === undefined ? err(ExcelErrorCode.NA) : str(result);
-    } catch {
-      return err(ExcelErrorCode.Value);
-    }
+    return err(ExcelErrorCode.NA);
   }));
 
-  add(fn("RTD", "none", (args, ctx) => {
+  add(fn("RTD", "none", (args) => {
     if (args.length === 0) return err(ExcelErrorCode.Value);
-    const progID = excelCoerceString(args[0]!);
-    if (progID.kind !== "string") return progID;
-    let server: string | undefined;
-    let topics: ExcelValue[] = [];
-    if (args.length > 2) {
-      const s = excelCoerceString(args[1]!);
-      if (s.kind !== "string") return s;
-      server = s.value || undefined;
-      topics = args.slice(2);
-    } else if (args.length === 2) {
-      topics = [args[1]!];
-    }
-    const provider = ctx.external?.rtd;
-    if (!provider) return err(ExcelErrorCode.NA);
-    try {
-      const result = provider(progID.value, server, topics);
-      return result === undefined ? err(ExcelErrorCode.NA) : result;
-    } catch {
-      return err(ExcelErrorCode.Value);
-    }
+    return err(ExcelErrorCode.NA);
   }));
 
-  add(fn("REGISTER.ID", "none", (args, ctx) => {
+  add(fn("REGISTER.ID", "none", (args) => {
     if (args.length < 2) return err(ExcelErrorCode.Value);
-    const module = excelCoerceString(args[0]!);
-    const procedure = excelCoerceString(args[1]!);
-    if (module.kind !== "string") return module;
-    if (procedure.kind !== "string") return procedure;
-    const typeText = args[2] ? excelCoerceString(args[2]) : str("");
-    if (typeText.kind !== "string") return typeText;
-    const provider = ctx.external?.registerID;
-    if (!provider) return err(ExcelErrorCode.NA);
-    try {
-      const result = provider(module.value, procedure.value, typeText.value || undefined);
-      return result === undefined ? err(ExcelErrorCode.NA) : result;
-    } catch {
-      return err(ExcelErrorCode.Value);
-    }
+    return err(ExcelErrorCode.NA);
   }));
 
-  add(fn("CALL", "none", (args, ctx) => {
+  add(fn("CALL", "none", (args) => {
     if (args.length === 0) return err(ExcelErrorCode.Value);
-    const provider = ctx.external?.call;
-    if (!provider) return err(ExcelErrorCode.NA);
-    try {
-      const result = provider(args[0]!, args.slice(1));
-      return result === undefined ? err(ExcelErrorCode.NA) : result;
-    } catch {
-      return err(ExcelErrorCode.Value);
-    }
+    return err(ExcelErrorCode.NA);
   }));
 
   const cubeNames = [
@@ -994,16 +884,7 @@ export function registerMissingFunctions(add: (f: ExcelFunction) => void, reg: F
     "CUBEKPIMEMBER", "CUBERANKEDMEMBER", "CUBESET", "CUBESETCOUNT",
   ];
   for (const name of cubeNames) {
-    add(fn(name, "none", (args, ctx) => {
-      const provider = ctx.external?.cube;
-      if (!provider) return err(ExcelErrorCode.NA);
-      try {
-        const result = provider(name, args);
-        return result === undefined ? err(ExcelErrorCode.NA) : result;
-      } catch {
-        return err(ExcelErrorCode.Value);
-      }
-    }));
+    add(fn(name, "none", () => err(ExcelErrorCode.NA)));
   }
 
   // Functions handled directly by the evaluator; these placeholders keep the
@@ -1020,7 +901,7 @@ export function registerMissingFunctions(add: (f: ExcelFunction) => void, reg: F
 
   const stubNames: string[] = [
     // Functions that cannot be implemented in a pure JS worksheet engine.
-    // All other external/API/locale functions are wired through ExternalFunctionProvider.
+    // External/API functions are not wired into the core engine.
   ];
   for (const name of stubNames) {
     add(fn(name, "none", () => err(ExcelErrorCode.NA)));

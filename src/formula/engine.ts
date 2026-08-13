@@ -3,7 +3,7 @@ import { defineCustomFunction, defineFunction } from "../functions/custom.js";
 import type { ExcelValue } from "../model/value.js";
 import type { UserFunction } from "../functions/custom.js";
 import { FormulaEvaluator } from "./evaluator.js";
-import type { EvaluationContext, ExcelFunction, ExternalFunctionProvider } from "./functions-types.js";
+import type { EvaluationContext, ExcelFunction } from "./functions-types.js";
 
 /** High-level formula engine that wraps the registry and evaluator.
  * Users can register custom Excel functions and evaluate formulas against a context.
@@ -11,8 +11,6 @@ import type { EvaluationContext, ExcelFunction, ExternalFunctionProvider } from 
 export class XlumeFormulaEngine {
   private functions = createBuiltinFunctions();
   private evaluator = new FormulaEvaluator(this.functions);
-
-  constructor(private external?: ExternalFunctionProvider) {}
 
   /** Register an already-built ExcelFunction. */
   registerFunction(fn: ExcelFunction): this {
@@ -53,7 +51,6 @@ export class XlumeFormulaEngine {
         return serial >= 60 ? serial + 1 : serial;
       },
       random: () => Math.random(),
-      external: this.external,
     };
   }
 

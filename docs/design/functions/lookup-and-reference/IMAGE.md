@@ -3,7 +3,7 @@
 ## Metadata
 - **Category:** Lookup & Reference
 - **Priority tags:** EXT
-- **Scope:** in-scope
+- **Scope:** out-of-scope
 - **Volatile:** No
 
 ## Description
@@ -27,10 +27,8 @@
 The `ExcelValue` returned by the provider, typically a string or custom image object.
 
 ## Behavior / Algorithm
-1. Coerce the first argument to text.
-2. If `EvaluationContext.external.image` is defined, call `image(url)`.
-3. Return the provider's `ExcelValue` directly.
-4. If the provider is not defined, return `#N/A`.
+
+This function depends on external services, spreadsheet data, or an external runtime (network, OLAP, pivot cache, XLL, RTD, etc.). The core `xlume-formula` engine does not perform network calls or access external data sources; the registered implementation always returns `#N/A`.
 
 ## Type Coercion & Edge Cases
 - Additional IMAGE options (`sizing`, `height`, `width`) are accepted but not used.
@@ -54,7 +52,7 @@ The `ExcelValue` returned by the provider, typically a string or custom image ob
 | `=IMAGE("https://example.com")` with no provider | `#N/A` | Missing provider |
 
 ## Implementation Notes
-- Implemented in `src/functions/builtins-missing.ts`.
+- Not implemented in the core engine; registered as a stub that returns `#N/A`missing.ts`.
 - The library does not fetch or render images itself. The host application controls networking, caching, and image representation.
 
 ## References
