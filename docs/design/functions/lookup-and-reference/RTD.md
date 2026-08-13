@@ -3,60 +3,51 @@
 ## Metadata
 - **Category:** Lookup & Reference
 - **Priority tags:** EXT
-- **Scope:** out-of-scope
-- **Volatile:** No
+- **Scope:** in-scope
+- **Volatile:** Yes
 
 ## Description
-real-time data
+`RTD` retrieves real-time data by delegating to an `ExternalFunctionProvider.rtd(progID, server, topics)` callback supplied by the host application.
 
 ## Excel Syntax
 ```excel
-=RTD()
+=RTD(progID, [server], [topic1], [topic2], ...)
 ```
 
 ## Arguments
-This function takes no arguments.
+| Argument | Required | Description |
+|---|---|---|
+| `progID` | Yes | ProgID of the RTD server. |
+| `server` | No | Server name. If omitted when multiple arguments are given, the second argument is treated as the first topic. |
+| `topicN` | No | Additional topic strings passed to the provider. |
 
 ## Returns
-Scalar or array depending on arguments
+The value returned by the provider, or `#N/A` if no provider is configured.
 
 ## Behavior / Algorithm
-This function requires external data or runtime infrastructure (network, OLAP, pivot cache, XLL, RTD, etc.) that is outside the scope of a pure worksheet calculation engine.
-
-Stub implementation: return `#N/A` or `#VALUE!` with a message that the function is not supported.
+1. Coerce `progID` and optional `server` to strings.
+2. If more than two arguments are given, the second argument is treated as `server` and the rest as topics. If only two arguments are given, `server` is omitted and the second argument is a topic.
+3. If `EvaluationContext.external.rtd` is defined, call `rtd(progID, server, topics)`.
+4. Return the provider's `ExcelValue`.
 
 ## Type Coercion & Edge Cases
-- Numbers provided as text are coerced to numeric values when the function expects a number.
-- Logical `TRUE`/`FALSE` coerce to `1`/`0` in numeric contexts and to `"TRUE"`/`"FALSE"` in text contexts.
-- Blank cells are treated as `0` in numeric contexts and as `""` in text contexts, unless the function explicitly ignores blanks.
-- Errors in any argument propagate to the result, except where the function is explicitly designed to trap them (e.g., IFERROR, IFNA, AGGREGATE options).
-- Range/array arguments are evaluated element-wise or consumed as a whole depending on the function semantics.
+- All arguments are coerced to strings.
+- Topics are passed through as `ExcelValue[]`.
 
 ## Error Handling
 | Error | When |
 |---|---|
-| `#VALUE!` | Argument type or count is invalid, or an argument cannot be coerced. |
-| `#NUM!` | A numeric argument is outside the allowed domain. |
-| `#DIV/0!` | Division by zero or an empty denominator. |
-| `#N/A` | Lookup/match not found or optional fallback triggered. |
-| `#REF!` | Invalid cell/range reference or out-of-bounds index. |
-| `#NAME?` | Function name not recognized. |
-| `#SPILL!` | Dynamic-array result cannot fit in the target range. |
+| `#VALUE!` | Provider throws. |
+| `#N/A` | No `external.rtd` provider is configured. |
 
 ## Examples
-TBD — add representative Excel examples during implementation.
-
-## Test Cases
-| Input | Expected | Purpose |
-|---|---|---|
-| Normal inputs | Correct numeric/text result | Golden path |
-| Boundary values (0, 1, negatives, very large/small) | Correct or `#NUM!` | Domain edges |
-| Blank/empty cells | Coerced `0` or `""` as appropriate | Blank handling |
-| Text that cannot be coerced | `#VALUE!` | Error propagation |
-| Too few/too many arguments | `#VALUE!` | Arity validation |
+```excel
+=RTD("My.RTD.Server", "localhost", "topic1")
+```
 
 ## Implementation Notes
-Return `#N/A` or `#VALUE!` unsupported. Do not attempt external network/OLAP calls.
+- Implemented in `src/functions/builtins-missing.ts`.
+- The library does not connect to RTD servers itself. The host application must supply a synchronous provider (or a pre-fetched value).
 
 ## References
-- [Microsoft Excel function documentation](https://support.microsoft.com/en-us/office/excel-functions-by-category-5f91f4e9-7b42-46d2-9bd1-63f26a86c0eb)
+- [Microsoft Excel RTD function](https://support.microsoft.com/en-us/office/rtd-function)

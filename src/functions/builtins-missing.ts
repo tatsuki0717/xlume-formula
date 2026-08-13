@@ -911,6 +911,101 @@ export function registerMissingFunctions(add: (f: ExcelFunction) => void, reg: F
     }
   }));
 
+  add(fn("PHONETIC", "none", (args, ctx) => {
+    if (args.length === 0) return err(ExcelErrorCode.Value);
+    const ref = args[0]!;
+    let text = "";
+    if (ref.kind === "array") {
+      const first = ref.values[0] ?? BLANK;
+      const s = excelCoerceString(first);
+      if (s.kind !== "string") return s;
+      text = s.value;
+    } else {
+      const s = excelCoerceString(ref);
+      if (s.kind !== "string") return s;
+      text = s.value;
+    }
+    const provider = ctx.external?.phonetic;
+    if (!provider) return err(ExcelErrorCode.NA);
+    try {
+      const result = provider(text);
+      return result === undefined ? err(ExcelErrorCode.NA) : str(result);
+    } catch {
+      return err(ExcelErrorCode.Value);
+    }
+  }));
+
+  add(fn("RTD", "none", (args, ctx) => {
+    if (args.length === 0) return err(ExcelErrorCode.Value);
+    const progID = excelCoerceString(args[0]!);
+    if (progID.kind !== "string") return progID;
+    let server: string | undefined;
+    let topics: ExcelValue[] = [];
+    if (args.length > 2) {
+      const s = excelCoerceString(args[1]!);
+      if (s.kind !== "string") return s;
+      server = s.value || undefined;
+      topics = args.slice(2);
+    } else if (args.length === 2) {
+      topics = [args[1]!];
+    }
+    const provider = ctx.external?.rtd;
+    if (!provider) return err(ExcelErrorCode.NA);
+    try {
+      const result = provider(progID.value, server, topics);
+      return result === undefined ? err(ExcelErrorCode.NA) : result;
+    } catch {
+      return err(ExcelErrorCode.Value);
+    }
+  }));
+
+  add(fn("REGISTER.ID", "none", (args, ctx) => {
+    if (args.length < 2) return err(ExcelErrorCode.Value);
+    const module = excelCoerceString(args[0]!);
+    const procedure = excelCoerceString(args[1]!);
+    if (module.kind !== "string") return module;
+    if (procedure.kind !== "string") return procedure;
+    const typeText = args[2] ? excelCoerceString(args[2]) : str("");
+    if (typeText.kind !== "string") return typeText;
+    const provider = ctx.external?.registerID;
+    if (!provider) return err(ExcelErrorCode.NA);
+    try {
+      const result = provider(module.value, procedure.value, typeText.value || undefined);
+      return result === undefined ? err(ExcelErrorCode.NA) : result;
+    } catch {
+      return err(ExcelErrorCode.Value);
+    }
+  }));
+
+  add(fn("CALL", "none", (args, ctx) => {
+    if (args.length === 0) return err(ExcelErrorCode.Value);
+    const provider = ctx.external?.call;
+    if (!provider) return err(ExcelErrorCode.NA);
+    try {
+      const result = provider(args[0]!, args.slice(1));
+      return result === undefined ? err(ExcelErrorCode.NA) : result;
+    } catch {
+      return err(ExcelErrorCode.Value);
+    }
+  }));
+
+  const cubeNames = [
+    "CUBEVALUE", "CUBEMEMBER", "CUBEMEMBERPROPERTY",
+    "CUBEKPIMEMBER", "CUBERANKEDMEMBER", "CUBESET", "CUBESETCOUNT",
+  ];
+  for (const name of cubeNames) {
+    add(fn(name, "none", (args, ctx) => {
+      const provider = ctx.external?.cube;
+      if (!provider) return err(ExcelErrorCode.NA);
+      try {
+        const result = provider(name, args);
+        return result === undefined ? err(ExcelErrorCode.NA) : result;
+      } catch {
+        return err(ExcelErrorCode.Value);
+      }
+    }));
+  }
+
   // Functions handled directly by the evaluator; these placeholders keep the
   // registry complete so that catalog coverage checks pass.
   const evaluatorFunctions = [
@@ -923,15 +1018,9 @@ export function registerMissingFunctions(add: (f: ExcelFunction) => void, reg: F
     add(fn(name, "none", () => err(ExcelErrorCode.NA)));
   }
 
-  const stubNames = [
-    // External / API / add-in
-    "CALL", "CUBEKPIMEMBER", "CUBEMEMBER", "CUBEMEMBERPROPERTY",
-    "CUBERANKEDMEMBER", "CUBESET", "CUBESETCOUNT", "CUBEVALUE",
-    "REGISTER.ID", "RTD",
-    // Locale / dictionary-dependent
-    "PHONETIC",
-    // Dynamic-array grouping (deferred)
-    // PIVOTBY is handled by the evaluator
+  const stubNames: string[] = [
+    // Functions that cannot be implemented in a pure JS worksheet engine.
+    // All other external/API/locale functions are wired through ExternalFunctionProvider.
   ];
   for (const name of stubNames) {
     add(fn(name, "none", () => err(ExcelErrorCode.NA)));

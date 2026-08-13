@@ -61,8 +61,43 @@ describe("External/API worksheet functions", () => {
     expect(result.kind).toBe("array");
   });
 
-  it("CUBEVALUE remains #N/A", () => {
-    const result = ev.evaluateText('CUBEVALUE("connection","[Measures].[Sales]")', ctx({}));
-    expect(result).toEqual(err(ExcelErrorCode.NA));
+  it("CUBEVALUE uses cube provider", () => {
+    const provider: ExternalFunctionProvider = {
+      cube: (name, args) => str(`${name}:${args.length}`),
+    };
+    const result = ev.evaluateText('CUBEVALUE("connection","[Measures].[Sales]")', ctx(provider));
+    expect(result).toEqual(str("CUBEVALUE:2"));
+  });
+
+  it("RTD uses rtd provider", () => {
+    const provider: ExternalFunctionProvider = {
+      rtd: (progID, server, topics) => str(`${progID}:${server}:${topics.length}`),
+    };
+    const result = ev.evaluateText('RTD("My.RTD.Server","localhost","topic1")', ctx(provider));
+    expect(result).toEqual(str("My.RTD.Server:localhost:1"));
+  });
+
+  it("REGISTER.ID uses registerID provider", () => {
+    const provider: ExternalFunctionProvider = {
+      registerID: (module, procedure, typeText) => str(`${module}:${procedure}:${typeText ?? "none"}`),
+    };
+    const result = ev.evaluateText('REGISTER.ID("MyDLL","MyProc","A")', ctx(provider));
+    expect(result).toEqual(str("MyDLL:MyProc:A"));
+  });
+
+  it("CALL uses call provider", () => {
+    const provider: ExternalFunctionProvider = {
+      call: (registerId, args) => str(`${registerId.kind}:${args.length}`),
+    };
+    const result = ev.evaluateText('CALL("MyProc",1,2)', ctx(provider));
+    expect(result).toEqual(str("string:2"));
+  });
+
+  it("PHONETIC uses phonetic provider", () => {
+    const provider: ExternalFunctionProvider = {
+      phonetic: (text) => `${text}（ふりがな）`,
+    };
+    const result = ev.evaluateText('PHONETIC("日本語")', ctx(provider));
+    expect(result).toEqual(str("日本語（ふりがな）"));
   });
 });

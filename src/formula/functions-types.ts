@@ -12,6 +12,16 @@ export interface ExternalFunctionProvider {
   translate?(text: string, source: string, target: string): string | undefined;
   /** Synchronously return stock history data, or undefined. */
   stockHistory?(ticker: string, ...args: (string | number)[]): ArrayValue | undefined;
+  /** Synchronously handle CUBE* worksheet functions by name. */
+  cube?(name: string, args: ExcelValue[]): ExcelValue | undefined;
+  /** Synchronously handle RTD(progID, server, ...topics). */
+  rtd?(progID: string, server: string | undefined, topics: ExcelValue[]): ExcelValue | undefined;
+  /** Synchronously handle REGISTER.ID(module, procedure, typeText). */
+  registerID?(module: string, procedure: string, typeText?: string): ExcelValue | undefined;
+  /** Synchronously handle CALL(registerId, ...args). */
+  call?(registerId: ExcelValue, args: ExcelValue[]): ExcelValue | undefined;
+  /** Synchronously return phonetic text (e.g. furigana) for a string, or undefined. */
+  phonetic?(text: string): string | undefined;
 }
 
 export interface EvaluationContext {

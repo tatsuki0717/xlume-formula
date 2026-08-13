@@ -3,60 +3,49 @@
 ## Metadata
 - **Category:** User-defined / Add-in
 - **Priority tags:** EXT
-- **Scope:** out-of-scope
+- **Scope:** in-scope
 - **Volatile:** No
 
 ## Description
-call DLL/code resource (XLL infra — not supported)
+`CALL` invokes a function registered with `REGISTER.ID` by delegating to an `ExternalFunctionProvider.call(registerId, args)` callback supplied by the host application.
 
 ## Excel Syntax
 ```excel
-=CALL()
+=CALL(register_id, [argument1], [argument2], ...)
 ```
 
 ## Arguments
-This function takes no arguments.
+| Argument | Required | Description |
+|---|---|---|
+| `register_id` | Yes | A value returned by `REGISTER.ID` or a textual procedure name. |
+| `argumentN` | No | Arguments to pass to the provider. |
 
 ## Returns
-Scalar or array depending on arguments
+The value returned by the provider, or `#N/A` if no provider is configured.
 
 ## Behavior / Algorithm
-This function requires external data or runtime infrastructure (network, OLAP, pivot cache, XLL, RTD, etc.) that is outside the scope of a pure worksheet calculation engine.
-
-Stub implementation: return `#N/A` or `#VALUE!` with a message that the function is not supported.
+1. Evaluate `register_id` and remaining arguments.
+2. If `EvaluationContext.external.call` is defined, call `call(registerId, args)`.
+3. Return the provider's `ExcelValue`.
 
 ## Type Coercion & Edge Cases
-- Numbers provided as text are coerced to numeric values when the function expects a number.
-- Logical `TRUE`/`FALSE` coerce to `1`/`0` in numeric contexts and to `"TRUE"`/`"FALSE"` in text contexts.
-- Blank cells are treated as `0` in numeric contexts and as `""` in text contexts, unless the function explicitly ignores blanks.
-- Errors in any argument propagate to the result, except where the function is explicitly designed to trap them (e.g., IFERROR, IFNA, AGGREGATE options).
-- Range/array arguments are evaluated element-wise or consumed as a whole depending on the function semantics.
+- Arguments are passed through as `ExcelValue[]`.
+- The engine does not load native libraries.
 
 ## Error Handling
 | Error | When |
 |---|---|
-| `#VALUE!` | Argument type or count is invalid, or an argument cannot be coerced. |
-| `#NUM!` | A numeric argument is outside the allowed domain. |
-| `#DIV/0!` | Division by zero or an empty denominator. |
-| `#N/A` | Lookup/match not found or optional fallback triggered. |
-| `#REF!` | Invalid cell/range reference or out-of-bounds index. |
-| `#NAME?` | Function name not recognized. |
-| `#SPILL!` | Dynamic-array result cannot fit in the target range. |
+| `#VALUE!` | Provider throws. |
+| `#N/A` | No `external.call` provider is configured. |
 
 ## Examples
-TBD — add representative Excel examples during implementation.
-
-## Test Cases
-| Input | Expected | Purpose |
-|---|---|---|
-| Normal inputs | Correct numeric/text result | Golden path |
-| Boundary values (0, 1, negatives, very large/small) | Correct or `#NUM!` | Domain edges |
-| Blank/empty cells | Coerced `0` or `""` as appropriate | Blank handling |
-| Text that cannot be coerced | `#VALUE!` | Error propagation |
-| Too few/too many arguments | `#VALUE!` | Arity validation |
+```excel
+=CALL(REGISTER.ID("MyDLL", "MyProc"), 1, 2)
+```
 
 ## Implementation Notes
-Return `#N/A` or `#VALUE!` unsupported. Do not attempt external network/OLAP calls.
+- Implemented in `src/functions/builtins-missing.ts`.
+- The host application must supply a provider that maps `register_id` to an actual function call.
 
 ## References
-- [Microsoft Excel function documentation](https://support.microsoft.com/en-us/office/excel-functions-by-category-5f91f4e9-7b42-46d2-9bd1-63f26a86c0eb)
+- [Microsoft Excel CALL function](https://support.microsoft.com/en-us/office/call-function)

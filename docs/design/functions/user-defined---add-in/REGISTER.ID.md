@@ -3,60 +3,50 @@
 ## Metadata
 - **Category:** User-defined / Add-in
 - **Priority tags:** EXT
-- **Scope:** out-of-scope
+- **Scope:** in-scope
 - **Volatile:** No
 
 ## Description
-registered function ID (XLL infra — not supported)
+`REGISTER.ID` registers an external function by delegating to an `ExternalFunctionProvider.registerID(module, procedure, typeText)` callback supplied by the host application.
 
 ## Excel Syntax
 ```excel
-=REGISTER.ID()
+=REGISTER.ID(module_text, procedure, [type_text])
 ```
 
 ## Arguments
-This function takes no arguments.
+| Argument | Required | Description |
+|---|---|---|
+| `module_text` | Yes | Module or library name. |
+| `procedure` | Yes | Procedure/function name. |
+| `type_text` | No | Type signature text. |
 
 ## Returns
-Scalar or array depending on arguments
+A value returned by the provider that can later be used with `CALL`, or `#N/A` if no provider is configured.
 
 ## Behavior / Algorithm
-This function requires external data or runtime infrastructure (network, OLAP, pivot cache, XLL, RTD, etc.) that is outside the scope of a pure worksheet calculation engine.
-
-Stub implementation: return `#N/A` or `#VALUE!` with a message that the function is not supported.
+1. Coerce `module_text`, `procedure`, and optional `type_text` to strings.
+2. If `EvaluationContext.external.registerID` is defined, call `registerID(module, procedure, typeText)`.
+3. Return the provider's `ExcelValue`.
 
 ## Type Coercion & Edge Cases
-- Numbers provided as text are coerced to numeric values when the function expects a number.
-- Logical `TRUE`/`FALSE` coerce to `1`/`0` in numeric contexts and to `"TRUE"`/`"FALSE"` in text contexts.
-- Blank cells are treated as `0` in numeric contexts and as `""` in text contexts, unless the function explicitly ignores blanks.
-- Errors in any argument propagate to the result, except where the function is explicitly designed to trap them (e.g., IFERROR, IFNA, AGGREGATE options).
-- Range/array arguments are evaluated element-wise or consumed as a whole depending on the function semantics.
+- Arguments are coerced to strings.
+- `type_text` is omitted from the provider call if it is empty/blank.
 
 ## Error Handling
 | Error | When |
 |---|---|
-| `#VALUE!` | Argument type or count is invalid, or an argument cannot be coerced. |
-| `#NUM!` | A numeric argument is outside the allowed domain. |
-| `#DIV/0!` | Division by zero or an empty denominator. |
-| `#N/A` | Lookup/match not found or optional fallback triggered. |
-| `#REF!` | Invalid cell/range reference or out-of-bounds index. |
-| `#NAME?` | Function name not recognized. |
-| `#SPILL!` | Dynamic-array result cannot fit in the target range. |
+| `#VALUE!` | Provider throws. |
+| `#N/A` | No `external.registerID` provider is configured. |
 
 ## Examples
-TBD — add representative Excel examples during implementation.
-
-## Test Cases
-| Input | Expected | Purpose |
-|---|---|---|
-| Normal inputs | Correct numeric/text result | Golden path |
-| Boundary values (0, 1, negatives, very large/small) | Correct or `#NUM!` | Domain edges |
-| Blank/empty cells | Coerced `0` or `""` as appropriate | Blank handling |
-| Text that cannot be coerced | `#VALUE!` | Error propagation |
-| Too few/too many arguments | `#VALUE!` | Arity validation |
+```excel
+=REGISTER.ID("MyDLL", "MyProc", "A")
+```
 
 ## Implementation Notes
-Return `#N/A` or `#VALUE!` unsupported. Do not attempt external network/OLAP calls.
+- Implemented in `src/functions/builtins-missing.ts`.
+- The library does not load native libraries. The host application must supply a provider that maps module/procedure to a callable object.
 
 ## References
-- [Microsoft Excel function documentation](https://support.microsoft.com/en-us/office/excel-functions-by-category-5f91f4e9-7b42-46d2-9bd1-63f26a86c0eb)
+- [Microsoft Excel REGISTER.ID function](https://support.microsoft.com/en-us/office/register-id-function)

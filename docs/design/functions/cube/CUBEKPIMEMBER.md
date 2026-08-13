@@ -3,60 +3,47 @@
 ## Metadata
 - **Category:** Cube
 - **Priority tags:** EXT
-- **Scope:** out-of-scope
+- **Scope:** in-scope
 - **Volatile:** No
 
 ## Description
-No description available.
+`CUBEKPIMEMBER` returns a KPI property by delegating to `EvaluationContext.external.cube("CUBEKPIMEMBER", args)`.
 
 ## Excel Syntax
 ```excel
-=CUBEKPIMEMBER()
+=CUBEKPIMEMBER(connection, kpi_name, kpi_property, [caption])
 ```
 
 ## Arguments
-This function takes no arguments.
+| Argument | Required | Description |
+|---|---|---|
+| `connection` | Yes | A text string naming the cube connection. |
+| `kpi_name` | Yes | The name of the KPI. |
+| `kpi_property` | Yes | The KPI property to retrieve. |
+| `caption` | No | An optional caption. |
 
 ## Returns
-Scalar or array depending on arguments
+The `ExcelValue` returned by the provider, or `#N/A` if no provider is configured.
 
 ## Behavior / Algorithm
-This function requires external data or runtime infrastructure (network, OLAP, pivot cache, XLL, RTD, etc.) that is outside the scope of a pure worksheet calculation engine.
-
-Stub implementation: return `#N/A` or `#VALUE!` with a message that the function is not supported.
-
-## Type Coercion & Edge Cases
-- Numbers provided as text are coerced to numeric values when the function expects a number.
-- Logical `TRUE`/`FALSE` coerce to `1`/`0` in numeric contexts and to `"TRUE"`/`"FALSE"` in text contexts.
-- Blank cells are treated as `0` in numeric contexts and as `""` in text contexts, unless the function explicitly ignores blanks.
-- Errors in any argument propagate to the result, except where the function is explicitly designed to trap them (e.g., IFERROR, IFNA, AGGREGATE options).
-- Range/array arguments are evaluated element-wise or consumed as a whole depending on the function semantics.
+1. Evaluate all arguments.
+2. If `EvaluationContext.external.cube` is defined, call `cube("CUBEKPIMEMBER", args)`.
+3. Return the provider result.
 
 ## Error Handling
 | Error | When |
 |---|---|
-| `#VALUE!` | Argument type or count is invalid, or an argument cannot be coerced. |
-| `#NUM!` | A numeric argument is outside the allowed domain. |
-| `#DIV/0!` | Division by zero or an empty denominator. |
-| `#N/A` | Lookup/match not found or optional fallback triggered. |
-| `#REF!` | Invalid cell/range reference or out-of-bounds index. |
-| `#NAME?` | Function name not recognized. |
-| `#SPILL!` | Dynamic-array result cannot fit in the target range. |
+| `#VALUE!` | Provider throws. |
+| `#N/A` | No `external.cube` provider is configured. |
 
 ## Examples
-TBD — add representative Excel examples during implementation.
-
-## Test Cases
-| Input | Expected | Purpose |
-|---|---|---|
-| Normal inputs | Correct numeric/text result | Golden path |
-| Boundary values (0, 1, negatives, very large/small) | Correct or `#NUM!` | Domain edges |
-| Blank/empty cells | Coerced `0` or `""` as appropriate | Blank handling |
-| Text that cannot be coerced | `#VALUE!` | Error propagation |
-| Too few/too many arguments | `#VALUE!` | Arity validation |
+```excel
+=CUBEKPIMEMBER("Sales","[SalesKPI]","Value")
+```
 
 ## Implementation Notes
-Return `#N/A` or `#VALUE!` unsupported. Do not attempt external network/OLAP calls.
+- Implemented in `src/functions/builtins-missing.ts`.
+- The host application must supply an OLAP/data provider.
 
 ## References
-- [Microsoft Excel function documentation](https://support.microsoft.com/en-us/office/excel-functions-by-category-5f91f4e9-7b42-46d2-9bd1-63f26a86c0eb)
+- [Microsoft Excel CUBEKPIMEMBER function](https://support.microsoft.com/en-us/office/cubekpimember-function)
