@@ -1,9 +1,10 @@
 const DIGITS = ["ศูนย์", "หนึ่ง", "สอง", "สาม", "สี่", "ห้า", "หก", "เจ็ด", "แปด", "เก้า"];
 const PLACES = ["", "สิบ", "ร้อย", "พัน", "หมื่น", "แสน"];
 
-function sixDigitToWords(n: number): string {
+function sixDigitToWords(n: number, hasHigher = false): string {
   if (n === 0) return "";
   if (n < 10) {
+    if (n === 1 && hasHigher) return "เอ็ด";
     return DIGITS[n]!;
   }
 
@@ -16,14 +17,14 @@ function sixDigitToWords(n: number): string {
     }
   }
 
+  const higher = hasHigher || n >= 100;
   const lastTwo = n % 100;
   const tens = Math.floor(lastTwo / 10);
   const unit = lastTwo % 10;
 
   if (tens === 0) {
-    if (unit !== 0) {
-      result += DIGITS[unit]!;
-    }
+    if (unit === 1 && higher) result += "เอ็ด";
+    else if (unit !== 0) result += DIGITS[unit]!;
   } else if (tens === 1) {
     result += "สิบ";
     if (unit === 1) result += "เอ็ด";
@@ -41,16 +42,16 @@ function sixDigitToWords(n: number): string {
   return result;
 }
 
-function intToThai(n: number): string {
+function intToThai(n: number, hasHigher = false): string {
   if (n === 0) return "";
   if (n < 1_000_000) {
-    return sixDigitToWords(n);
+    return sixDigitToWords(n, hasHigher);
   }
   const high = Math.floor(n / 1_000_000);
   const low = n % 1_000_000;
-  let result = intToThai(high) + "ล้าน";
+  let result = intToThai(high, hasHigher) + "ล้าน";
   if (low > 0) {
-    result += intToThai(low);
+    result += sixDigitToWords(low, true);
   }
   return result;
 }
@@ -62,14 +63,13 @@ export function bahttext(value: number): string {
 
   const negative = value < 0;
   const abs = Math.abs(value);
-  const baht = Math.trunc(abs);
+  const totalSatang = Math.round(abs * 100);
+  const baht = Math.floor(totalSatang / 100);
+  const satang = totalSatang % 100;
 
   if (!Number.isSafeInteger(baht)) {
     return "ศูนย์บาทถ้วน";
   }
-
-  const fraction = abs - baht;
-  const satang = Math.min(99, Math.max(0, Math.floor((fraction + 1e-9) * 100)));
 
   const useSign = negative && (baht > 0 || satang > 0);
   let text = useSign ? "ลบ" : "";
