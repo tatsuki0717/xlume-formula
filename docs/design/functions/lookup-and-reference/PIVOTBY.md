@@ -2,61 +2,80 @@
 
 ## Metadata
 - **Category:** Lookup & Reference
-- **Priority tags:** DA, EXT
-- **Scope:** out-of-scope
+- **Priority tags:** DA
+- **Scope:** in-scope
 - **Volatile:** No
 
 ## Description
-pivot array
+The `PIVOTBY` function creates a two-dimensional summary of data by grouping rows and columns and aggregating the associated values. It returns a dynamic-array pivot table.
 
 ## Excel Syntax
 ```excel
-=PIVOTBY()
+=PIVOTBY(row_fields, col_fields, values, function, [field_headers], [row_total_depth], [row_sort_order], [col_total_depth], [col_sort_order], [filter_array], [relative_to])
 ```
 
 ## Arguments
-This function takes no arguments.
+
+| Argument | Required | Description |
+|---|---|---|
+| `row_fields` | Yes | A column-oriented array or range containing the values used to group rows. |
+| `col_fields` | Yes | A column-oriented array or range containing the values used to group columns. |
+| `values` | Yes | A column-oriented array or range of the data to aggregate. |
+| `function` | Yes | An explicit `LAMBDA` or an eta-reduced function reference (e.g. `SUM`, `AVERAGE`, `COUNT`, `MAX`, `MIN`, `PRODUCT`, `MEDIAN`, `STDEV.S`, `STDEV.P`, `VAR.S`, `VAR.P`, `PERCENTOF`). |
+| `field_headers` | No | `0` = no header, `1` or `3` = first row is header and should be skipped. Defaults to showing a generated header row. |
+| `row_total_depth` | No | Currently ignored except `0` (no row totals). Defaults to no row totals. |
+| `row_sort_order` | No | Currently ignored; row keys are sorted ascending. |
+| `col_total_depth` | No | Currently ignored except `0` (no column totals). Defaults to no column totals. |
+| `col_sort_order` | No | Currently ignored; column keys are sorted ascending. |
+| `filter_array` | No | A 1D boolean array indicating which rows to include. Must have the same length as `row_fields`. |
+| `relative_to` | No | Currently ignored. |
 
 ## Returns
-Scalar or array depending on arguments
+A dynamic 2D array. The first row contains column headers, and the first column contains row labels.
 
 ## Behavior / Algorithm
-This function requires external data or runtime infrastructure (network, OLAP, pivot cache, XLL, RTD, etc.) that is outside the scope of a pure worksheet calculation engine.
-
-Stub implementation: return `#N/A` or `#VALUE!` with a message that the function is not supported.
+1. Convert `row_fields`, `col_fields`, and `values` to arrays.
+2. Validate that all three arrays have the same height.
+3. Resolve the aggregation function as in `GROUPBY`.
+4. If `field_headers` is `1` or `3`, skip the first data row from aggregation.
+5. If `filter_array` is provided, exclude rows where the filter is `FALSE`/`0`.
+6. Collect unique row keys and unique column keys, sorted ascending.
+7. For each `(row_key, col_key)` combination, gather matching values and apply the aggregator.
+8. Build the output matrix with a header row and one row per row key.
 
 ## Type Coercion & Edge Cases
-- Numbers provided as text are coerced to numeric values when the function expects a number.
-- Logical `TRUE`/`FALSE` coerce to `1`/`0` in numeric contexts and to `"TRUE"`/`"FALSE"` in text contexts.
-- Blank cells are treated as `0` in numeric contexts and as `""` in text contexts, unless the function explicitly ignores blanks.
-- Errors in any argument propagate to the result, except where the function is explicitly designed to trap them (e.g., IFERROR, IFNA, AGGREGATE options).
-- Range/array arguments are evaluated element-wise or consumed as a whole depending on the function semantics.
+- `row_fields`, `col_fields`, and `values` must be arrays, ranges, or single values; mismatched heights return `#VALUE!`.
+- `function` must be a lambda or resolvable built-in aggregate name; otherwise returns `#VALUE!`.
+- `filter_array` values are coerced to boolean.
+- Empty combinations produce an empty value list for the aggregator.
 
 ## Error Handling
 | Error | When |
 |---|---|
-| `#VALUE!` | Argument type or count is invalid, or an argument cannot be coerced. |
-| `#NUM!` | A numeric argument is outside the allowed domain. |
-| `#DIV/0!` | Division by zero or an empty denominator. |
-| `#N/A` | Lookup/match not found or optional fallback triggered. |
-| `#REF!` | Invalid cell/range reference or out-of-bounds index. |
-| `#NAME?` | Function name not recognized. |
-| `#SPILL!` | Dynamic-array result cannot fit in the target range. |
+| `#VALUE!` | Argument count < 4, mismatched heights, or invalid function reference. |
+| `#NAME?` | The function name in `function` is not recognized. |
 
 ## Examples
-TBD — add representative Excel examples during implementation.
+```excel
+=PIVOTBY({"a";"a";"b";"b"},{"x";"y";"x";"y"},{1;2;3;4},SUM)
+-- returns --
+    x  y
+a   1  2
+b   3  4
+```
 
 ## Test Cases
 | Input | Expected | Purpose |
 |---|---|---|
-| Normal inputs | Correct numeric/text result | Golden path |
-| Boundary values (0, 1, negatives, very large/small) | Correct or `#NUM!` | Domain edges |
-| Blank/empty cells | Coerced `0` or `""` as appropriate | Blank handling |
-| Text that cannot be coerced | `#VALUE!` | Error propagation |
-| Too few/too many arguments | `#VALUE!` | Arity validation |
+| `=PIVOTBY({"a";"a";"b";"b"},{"x";"y";"x";"y"},{1;2;3;4},SUM)` | Header row blank, x, y; rows a:1,2 and b:3,4 | Basic 2D pivot with SUM |
+| `=PIVOTBY({"a";"a";"b";"b"},{"x";"y";"x";"y"},{1;2;3;4},AVERAGE)` | Same layout with averages 1.5, 2, 3.5, 4 | Average aggregation |
+| `=PIVOTBY({"a";"a";"b";"b"},{"x";"y";"x";"y"},{1;2;3;4},SUM,0)` | No header row | field_headers=0 |
 
 ## Implementation Notes
-Return `#N/A` or `#VALUE!` unsupported. Do not attempt external network/OLAP calls.
+- Implemented as an evaluator special-case in `src/formula/evaluator.ts`.
+- Bare function names like `SUM` are looked up in the function registry.
+- Column and row keys are sorted for deterministic output; `row_sort_order` and `col_sort_order` are not yet implemented.
+- Total rows/columns (`row_total_depth`/`col_total_depth`) are not yet implemented.
 
 ## References
-- [Microsoft Excel function documentation](https://support.microsoft.com/en-us/office/excel-functions-by-category-5f91f4e9-7b42-46d2-9bd1-63f26a86c0eb)
+- [Microsoft Excel PIVOTBY function](https://support.microsoft.com/en-us/office/pivotby-function)

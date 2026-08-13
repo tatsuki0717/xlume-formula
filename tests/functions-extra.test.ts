@@ -297,4 +297,31 @@ describe("Extra functions toward full compatibility", () => {
     expect(result.values[2]).toEqual(num(2));
     expect(result.values[3]).toEqual(num(60));
   });
+
+  it("PIVOTBY creates a 2D summary with eta function", () => {
+    const result = ev.evaluateText('PIVOTBY({"a";"a";"b";"b"},{"x";"y";"x";"y"},{1;2;3;4},SUM)', ctx());
+    expect(result.kind).toBe("array");
+    if (result.kind !== "array") return;
+    expect(result.width).toBe(3);
+    expect(result.height).toBe(3);
+    expect(result.values[0]).toEqual(BLANK);
+    expect(result.values[1]).toEqual(str("x"));
+    expect(result.values[2]).toEqual(str("y"));
+    expect(result.values[3]).toEqual(str("a"));
+    expect(result.values[4]).toEqual(num(1));
+    expect(result.values[5]).toEqual(num(2));
+    expect(result.values[6]).toEqual(str("b"));
+    expect(result.values[7]).toEqual(num(3));
+    expect(result.values[8]).toEqual(num(4));
+  });
+
+  it("PIVOTBY respects field_headers=0", () => {
+    const result = ev.evaluateText('PIVOTBY({"a";"a";"b";"b"},{"x";"y";"x";"y"},{1;2;3;4},SUM,0)', ctx());
+    expect(result.kind).toBe("array");
+    if (result.kind !== "array") return;
+    expect(result.height).toBe(2);
+    expect(result.values[0]).toEqual(str("a"));
+    expect(result.values[1]).toEqual(num(1));
+    expect(result.values[2]).toEqual(num(2));
+  });
 });

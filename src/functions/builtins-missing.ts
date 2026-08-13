@@ -845,7 +845,7 @@ export function registerMissingFunctions(add: (f: ExcelFunction) => void, reg: F
     "CELL", "FORMULATEXT", "ISFORMULA",
     "LAMBDA", "LET", "MAKEARRAY", "MAP", "REDUCE", "SCAN",
     "BYCOL", "BYROW", "ISOMITTED",
-    "GROUPBY",
+    "GROUPBY", "PIVOTBY",
   ];
   for (const name of evaluatorFunctions) {
     add(fn(name, "none", () => err(ExcelErrorCode.NA)));
@@ -859,7 +859,7 @@ export function registerMissingFunctions(add: (f: ExcelFunction) => void, reg: F
     // Locale / dictionary-dependent
     "PHONETIC",
     // Dynamic-array grouping (deferred)
-    "PIVOTBY",
+    // PIVOTBY is handled by the evaluator
   ];
   for (const name of stubNames) {
     add(fn(name, "none", () => err(ExcelErrorCode.NA)));

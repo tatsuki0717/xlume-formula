@@ -161,6 +161,9 @@ export class FormulaEvaluator {
         if (upper === "GROUPBY") {
           return this.evalGroupBy(node.args, ctx);
         }
+        if (upper === "PIVOTBY") {
+          return this.evalPivotBy(node.args, ctx);
+        }
         // Named lambda call (LET-bound or otherwise) takes precedence over function fallback
         const named = ctx.resolveName(node.name);
         if (named && isExcelValue(named) && named.kind === "lambda") {
@@ -887,6 +890,115 @@ export class FormulaEvaluator {
 
     if (headerRow) outRows.unshift(headerRow);
 
+    const height = outRows.length;
+    const flat: ExcelValue[] = [];
+    for (const row of outRows) {
+      if (row.length !== outWidth) return err(ExcelErrorCode.Value);
+      flat.push(...row);
+    }
+    return { kind: "array", width: outWidth, height, values: flat };
+  }
+
+  private evalPivotBy(args: FormulaNode[], ctx: EvaluationContext): ExcelValue {
+    if (args.length < 4) return err(ExcelErrorCode.Value);
+
+    const rowArrRaw = this.toArray(this.evaluate(args[0]!, ctx));
+    const colArrRaw = this.toArray(this.evaluate(args[1]!, ctx));
+    const valArrRaw = this.toArray(this.evaluate(args[2]!, ctx));
+    if (rowArrRaw.kind === "error") return rowArrRaw;
+    if (colArrRaw.kind === "error") return colArrRaw;
+    if (valArrRaw.kind === "error") return valArrRaw;
+    if (rowArrRaw.kind !== "array" || colArrRaw.kind !== "array" || valArrRaw.kind !== "array") {
+      return err(ExcelErrorCode.Value);
+    }
+    const rowArr = rowArrRaw;
+    const colArr = colArrRaw;
+    const valArr = valArrRaw;
+    if (rowArr.height !== colArr.height || rowArr.height !== valArr.height) return err(ExcelErrorCode.Value);
+    const H = rowArr.height;
+
+    const aggregator = this.groupByAggregator(args[3]!, ctx);
+    if (aggregator === null) return err(ExcelErrorCode.Value);
+
+    let startRow = 0;
+    let includeHeader = true;
+    if (args.length >= 5) {
+      const h = excelCoerceNumber(this.evaluate(args[4]!, ctx));
+      if (h.kind !== "number") return h;
+      const fieldHeaders = Math.trunc(h.value);
+      if (fieldHeaders === 0) includeHeader = false;
+      if (fieldHeaders === 1 || fieldHeaders === 3) startRow = 1;
+    }
+
+    let filter: boolean[] | undefined;
+    if (args.length >= 11) {
+      const f = this.evaluate(args[10]!, ctx);
+      if (f.kind === "array") {
+        if (f.values.length !== H) return err(ExcelErrorCode.Value);
+        filter = f.values.map((v) => {
+          const b = excelCoerceBoolean(v);
+          return b.kind === "boolean" ? b.value : false;
+        });
+      } else {
+        const b = excelCoerceBoolean(f);
+        if (b.kind !== "boolean") return b;
+        filter = Array(H).fill(b.value);
+      }
+    }
+
+    const rows = new Map<string, { key: ExcelValue; cols: Map<string, { key: ExcelValue; values: ExcelValue[] }> }>();
+    const allColKeys: ExcelValue[] = [];
+    const allRowKeys: ExcelValue[] = [];
+
+    for (let r = startRow; r < H; r++) {
+      if (filter && !filter[r]) continue;
+      const rowKeyVal = rowArr.values[r * rowArr.width] ?? BLANK;
+      const colKeyVal = colArr.values[r * colArr.width] ?? BLANK;
+      const rowKeyStr = valueToKey(rowKeyVal);
+      const colKeyStr = valueToKey(colKeyVal);
+
+      if (!rows.has(rowKeyStr)) {
+        rows.set(rowKeyStr, { key: rowKeyVal, cols: new Map() });
+        allRowKeys.push(rowKeyVal);
+      }
+      const rowGroup = rows.get(rowKeyStr)!;
+
+      if (!rowGroup.cols.has(colKeyStr)) {
+        rowGroup.cols.set(colKeyStr, { key: colKeyVal, values: [] });
+        allColKeys.push(colKeyVal);
+      }
+      const colGroup = rowGroup.cols.get(colKeyStr)!;
+      for (let c = 0; c < valArr.width; c++) {
+        colGroup.values.push(valArr.values[r * valArr.width + c] ?? BLANK);
+      }
+    }
+
+    // Unique sorted keys
+    const uniqueColKeys = Array.from(new Map(allColKeys.map((k) => [valueToKey(k), k])).values()).sort(compareExcelValues);
+    const uniqueRowKeys = Array.from(new Map(allRowKeys.map((k) => [valueToKey(k), k])).values()).sort(compareExcelValues);
+
+    const outRows: ExcelValue[][] = [];
+    if (includeHeader) {
+      const header: ExcelValue[] = [BLANK];
+      for (const colKey of uniqueColKeys) header.push(colKey);
+      outRows.push(header);
+    }
+
+    for (const rowKey of uniqueRowKeys) {
+      const rowGroup = rows.get(valueToKey(rowKey))!;
+      const row: ExcelValue[] = [rowKey];
+      for (const colKey of uniqueColKeys) {
+        const colKeyStr = valueToKey(colKey);
+        const colGroup = rowGroup.cols.get(colKeyStr);
+        const groupValues = colGroup?.values ?? [];
+        const result = aggregator.aggregate(groupValues, []);
+        if (result.kind === "error") return result;
+        row.push(result);
+      }
+      outRows.push(row);
+    }
+
+    const outWidth = uniqueColKeys.length + 1;
     const height = outRows.length;
     const flat: ExcelValue[] = [];
     for (const row of outRows) {
