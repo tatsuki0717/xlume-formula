@@ -3,7 +3,7 @@
 ## Metadata
 - **Category:** Lookup & Reference
 - **Priority tags:** DA
-- **Scope:** in-scope
+- **Scope:** implement
 - **Volatile:** No
 
 ## Description

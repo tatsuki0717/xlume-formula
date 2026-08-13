@@ -3,7 +3,7 @@
 ## Metadata
 - **Category:** Statistical
 - **Priority tags:** DA
-- **Scope:** deferred
+- **Scope:** implement
 - **Volatile:** No
 - **Dynamic array:** Yes
 
@@ -24,11 +24,11 @@ Returns a vertical array of the most frequently occurring values.
 Dynamic array
 
 ## Behavior / Algorithm
-Implementation is deferred (Requires dynamic-array / spill support).
+Implemented in the engine (Requires dynamic-array / spill support).
 
 High-level behavior: Returns a vertical array of the most frequently occurring values.
 
-Detailed step-by-step algorithm, type coercion and edge-case handling will be added when this function is prioritized.
+See the corresponding source implementation for the detailed algorithm.
 
 ## Type Coercion & Edge Cases
 - Numbers provided as text are coerced to numeric values when the function expects a number.

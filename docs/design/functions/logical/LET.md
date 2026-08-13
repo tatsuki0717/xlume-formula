@@ -3,7 +3,7 @@
 ## Metadata
 - **Category:** Logical
 - **Priority tags:** LAMBDA
-- **Scope:** deferred
+- **Scope:** implement
 - **Volatile:** No
 - **LAMBDA support:** Yes
 
@@ -27,11 +27,11 @@ Assigns names to values and then evaluates a calculation using those names.
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Implementation is deferred (Requires the LAMBDA/closures engine).
+Implemented in the engine (Requires the LAMBDA/closures engine).
 
 High-level behavior: Assigns names to values and then evaluates a calculation using those names.
 
-Detailed step-by-step algorithm, type coercion and edge-case handling will be added when this function is prioritized.
+See the corresponding source implementation for the detailed algorithm.
 
 ## Type Coercion & Edge Cases
 - Numbers provided as text are coerced to numeric values when the function expects a number.
