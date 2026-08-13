@@ -1,30 +1,10 @@
 /**
- * FILTERXML implementation using fast-xml-parser and a limited XPath evaluator.
+ * FILTERXML implementation using a native XML parser and a limited XPath evaluator.
  */
-import { XMLParser } from "fast-xml-parser";
 import { BLANK, err, ExcelErrorCode, num, str, type ExcelValue } from "../model/value.js";
 import { excelCoerceString } from "../formula/coercion.js";
 import type { ExcelFunction } from "../formula/functions-types.js";
-
-const parser = new XMLParser({
-  preserveOrder: true,
-  ignoreAttributes: false,
-  attributeNamePrefix: "",
-  parseAttributeValue: false,
-  parseTagValue: false,
-  trimValues: true,
-});
-
-type XmlNode = XmlElement | XmlText;
-
-interface XmlElement {
-  ":@"?: Record<string, string>;
-  [tag: string]: unknown;
-}
-
-interface XmlText {
-  "#text": string | number;
-}
+import { parseXml, type XmlElement, type XmlNode, type XmlText } from "./xml-parser.js";
 
 function isText(node: XmlNode): node is XmlText {
   return node !== null && typeof node === "object" && "#text" in node;
@@ -194,8 +174,7 @@ function query(nodes: XmlNode[], steps: XPathStep[]): XmlNode[] {
 
 function xmlToNodes(xml: string): XmlNode[] | null {
   try {
-    const parsed = parser.parse(xml);
-    return Array.isArray(parsed) ? (parsed as XmlNode[]) : [parsed as XmlNode];
+    return parseXml(xml);
   } catch {
     return null;
   }

@@ -72,7 +72,6 @@
   },
   "dependencies": {
     "bahttext": "2.4.0",
-    "fast-xml-parser": "5.10.1",
     "jstat": "^1.9.6",
     "tinyld": "1.3.4"
   }

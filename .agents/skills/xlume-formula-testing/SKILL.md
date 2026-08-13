@@ -58,7 +58,7 @@ console.log(wb.getValue(sheet, 0, 1));
 - `Workbook` is exported from `./dist/index.js` and provides `setValue`, `setFormula`, `getValue`, `defineName`, `addSheet`, and automatic recalc/spill handling.
 
 ## New-function notes
-- `FILTERXML` needs `fast-xml-parser` (already in `dependencies`).
+- `FILTERXML` uses a native XML parser (no external XML dependency).
 - `EUROCONVERT` is a native implementation with fixed EU rates; triangulation goes via EUR.
 - `ISREF`, `FORMULATEXT`, `CELL`, `ISFORMULA`, `LAMBDA`, `LET`, `MAP`, etc. are handled directly in the evaluator; they require the workbook context (`getFormulaText`, `resolveName`) to work fully.
 
