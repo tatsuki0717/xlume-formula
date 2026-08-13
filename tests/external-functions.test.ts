@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { createBuiltinFunctions, FormulaEvaluator, parseFormula } from "../dist/index.js";
 import { BLANK, str, num, err, ExcelErrorCode } from "../dist/index.js";
 import type { EvaluationContext, ExternalFunctionProvider } from "../dist/index.js";
+import { NodeFetchProvider } from "../dist/providers/node-fetch-provider.js";
 
 describe("External/API worksheet functions", () => {
   const ev = new FormulaEvaluator(createBuiltinFunctions());
@@ -121,5 +122,17 @@ describe("External/API worksheet functions", () => {
   it("GETPIVOTDATA returns #N/A without a pivot provider", () => {
     const result = ev.evaluateText('GETPIVOTDATA("Sales", "Pivot1")', ctx({}));
     expect(result).toEqual(err(ExcelErrorCode.NA));
+  });
+
+  it("NodeFetchProvider importRange parses CSV and slices range", () => {
+    const provider = new NodeFetchProvider({ timeout: 1 });
+    (provider as unknown as { getText(): string }).getText = () => "A,B,C\n1,2,3\n4,5,6\n";
+    const result = provider.importRange("https://docs.google.com/spreadsheets/d/ABC123/edit", "Sheet1!A1:B2");
+    expect(result).toEqual({
+      kind: "array",
+      width: 2,
+      height: 2,
+      values: [str("A"), str("B"), num(1), num(2)],
+    });
   });
 });
