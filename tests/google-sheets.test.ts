@@ -187,6 +187,7 @@ describe("Google Sheets offline functions", () => {
   it("Math2 replacements", () => {
     expect(ev.evaluateText("=SINH(0)", ctx())).toEqual(num(0));
     expect(ev.evaluateText("=COSH(0)", ctx())).toEqual(num(1));
+    expect(ev.evaluateText("=TANH(0)", ctx())).toEqual(num(0));
     expect(ev.evaluateText("=MROUND(17, 5)", ctx())).toEqual(num(15));
     expect(ev.evaluateText("=QUOTIENT(10, 3)", ctx())).toEqual(num(3));
     expect(ev.evaluateText("=GCD(24, 36)", ctx())).toEqual(num(12));
@@ -196,6 +197,30 @@ describe("Google Sheets offline functions", () => {
     expect(ev.evaluateText("=ROMAN(58)", ctx())).toEqual(str("LVIII"));
     expect(ev.evaluateText("=ARABIC(\"LVIII\")", ctx())).toEqual(num(58));
     expect(ev.evaluateText("=SUMSQ(3, 4)", ctx())).toEqual(num(25));
+    expect(ev.evaluateText("=SUMX2MY2({1,2},{3,4})", ctx())).toEqual(num(-20));
+    expect(ev.evaluateText("=SUMX2PY2({1,2},{3,4})", ctx())).toEqual(num(30));
+    expect(ev.evaluateText("=SUMXMY2({1,2},{3,4})", ctx())).toEqual(num(8));
     expect(ev.evaluateText("=SERIESSUM(2, 0, 1, {1,2,3})", ctx())).toEqual(num(17));
+  });
+
+  it("Engineering functions", () => {
+    expect(ev.evaluateText("=BIN2DEC(\"1111111111\")", ctx())).toEqual(num(-1));
+    expect(ev.evaluateText("=DEC2BIN(-1)", ctx())).toEqual(str("1111111111"));
+    expect(ev.evaluateText("=HEX2DEC(\"FFFFFFFFFF\")", ctx())).toEqual(num(-1));
+    expect(ev.evaluateText("=DEC2HEX(31, 4)", ctx())).toEqual(str("001F"));
+    expect(ev.evaluateText("=BITAND(5, 3)", ctx())).toEqual(num(1));
+    expect(ev.evaluateText("=BITOR(5, 3)", ctx())).toEqual(num(7));
+    expect(ev.evaluateText("=BITLSHIFT(5, 2)", ctx())).toEqual(num(20));
+    expect(ev.evaluateText("=BITRSHIFT(20, 2)", ctx())).toEqual(num(5));
+    expect(ev.evaluateText("=DELTA(5, 5)", ctx())).toEqual(num(1));
+    expect(ev.evaluateText("=GESTEP(5, 4)", ctx())).toEqual(num(1));
+    expect(ev.evaluateText("=ERF(1)", ctx())).toEqual(num(expect.closeTo(0.8427, 4)));
+    expect(ev.evaluateText("=ERFC(1)", ctx())).toEqual(num(expect.closeTo(0.1573, 4)));
+    expect(ev.evaluateText('=COMPLEX(3, 4, "i")', ctx())).toEqual(str("3+4i"));
+    expect(ev.evaluateText("=IMABS(\"3+4i\")", ctx())).toEqual(num(5));
+    expect(ev.evaluateText("=IMREAL(\"3+4i\")", ctx())).toEqual(num(3));
+    expect(ev.evaluateText("=IMAGINARY(\"3+4i\")", ctx())).toEqual(num(4));
+    expect(ev.evaluateText("=CONVERT(1, \"mi\", \"m\")", ctx())).toEqual(num(1609.344));
+    expect(ev.evaluateText("=CONVERT(100, \"C\", \"F\")", ctx())).toEqual(num(212));
   });
 });

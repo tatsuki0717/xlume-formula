@@ -304,6 +304,30 @@ export function registerMath2Functions(add: (f: ExcelFunction) => void): void {
     return num(sum);
   }));
 
+  add(fn("TANH", "none", (args) => {
+    const n = excelCoerceNumber(args[0] ?? BLANK);
+    return n.kind === "number" ? num(Math.tanh(n.value)) : n;
+  }));
+
+  function sumXY(args: ExcelValue[], op: (x: number, y: number) => number): ExcelValue {
+    if (args.length < 2) return err(ExcelErrorCode.Value);
+    const a = args[0]!;
+    const b = args[1]!;
+    if (a.kind !== "array" || b.kind !== "array") return err(ExcelErrorCode.Value);
+    if (a.values.length !== b.values.length) return err(ExcelErrorCode.NA);
+    let sum = 0;
+    for (let i = 0; i < a.values.length; i++) {
+      const x = excelCoerceNumber(a.values[i] ?? BLANK);
+      const y = excelCoerceNumber(b.values[i] ?? BLANK);
+      if (x.kind !== "number" || y.kind !== "number") return err(ExcelErrorCode.Value);
+      sum += op(x.value, y.value);
+    }
+    return num(sum);
+  }
+  add(fn("SUMX2MY2", "none", (args) => sumXY(args, (x, y) => x * x - y * y)));
+  add(fn("SUMX2PY2", "none", (args) => sumXY(args, (x, y) => x * x + y * y)));
+  add(fn("SUMXMY2", "none", (args) => sumXY(args, (x, y) => (x - y) ** 2)));
+
   add(fn("SUMSQ", "none", (args) => {
     let sum = 0;
     for (const a of args) {
