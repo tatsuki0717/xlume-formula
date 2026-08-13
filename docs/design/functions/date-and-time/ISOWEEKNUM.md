@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns an ISO week number that corresponds to the week of year.
+Returns the ISO week number in the year for a given date.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Returns an ISO week number that corresponds to the week of year.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | date | number \| range/array | Yes | The date value whose ISO-8601 week number (Monday-based) is returned. |
+| 1 | date | number \| range/array | Yes | Is the date-time code used by Microsoft Excel for date and time calculation. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns an ISO week number that corresponds to the week of year.
+Returns the ISO week number in the year for a given date.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns an ISO week number that corresponds to the week of year.
+> Returns the ISO week number in the year for a given date.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=ISOWEEKNUM(DATE(2020, 1, 1))`
-- `=ISOWEEKNUM(A1)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=ISOWEEKNUM(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

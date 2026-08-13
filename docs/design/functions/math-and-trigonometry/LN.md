@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns the natural logarithm based on the constant e of a number.
+Returns the natural logarithm of a number.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Returns the natural logarithm based on the constant e of a number.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number | number \| range/array | Yes | A positive number whose natural logarithm is returned. |
+| 1 | number | number \| range/array | Yes | Is the positive real number for which you want the natural logarithm. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the natural logarithm based on the constant e of a number.
+Returns the natural logarithm of a number.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the natural logarithm based on the constant e of a number.
+> Returns the natural logarithm of a number.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=LN(1)`
-- `=LN(2.718281828)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=LN(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

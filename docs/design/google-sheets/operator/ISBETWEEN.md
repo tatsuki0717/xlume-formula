@@ -8,7 +8,7 @@
 - **Dynamic array:** No (scalar)
 
 ## Description
-Checks whether a provided number is between two other numbers either inclusively or exclusively.
+See upstream spreadsheet function documentation.
 
 ## Google Sheets Syntax
 ```excel

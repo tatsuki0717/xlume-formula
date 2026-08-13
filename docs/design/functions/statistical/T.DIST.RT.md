@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns density of Student-t distribution, right-tailed.
+Returns the right-tailed Student's t-distribution.
 
 ## Excel Syntax
 ```excel
@@ -17,14 +17,14 @@ Returns density of Student-t distribution, right-tailed.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | x | number \| range/array | Yes | The value at which to evaluate the distribution. |
-| 2 | deg_freedom | number \| range/array | Yes | The number of degrees of freedom. |
+| 1 | x | number \| range/array | Yes | Is the numeric value at which to evaluate the distribution. |
+| 2 | deg_freedom | number \| range/array | Yes | Is an integer indicating the number of degrees of freedom that characterize the distribution. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns density of Student-t distribution, right-tailed.
+Returns the right-tailed Student's t-distribution.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -33,7 +33,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns density of Student-t distribution, right-tailed.
+> Returns the right-tailed Student's t-distribution.
 
 
 ## Type Coercion & Edge Cases
@@ -55,7 +55,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=T.DIST.RT(1, 10)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=T.DIST.RT(..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

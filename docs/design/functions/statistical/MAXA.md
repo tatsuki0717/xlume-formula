@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns the maximum value in a list of arguments, counting text and logical values found in ranges.
+Returns the largest value in a set of values. Does not ignore logical values and text.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Returns the maximum value in a list of arguments, counting text and logical valu
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | value1 | number \| range/array (repeatable) | Yes | A value, cell reference, or range compared against the current maximum; inside a range, text counts as 0, TRUE as 1 and FALSE as 0, where the non-A variant would skip them, while a non-numeric text passed directly as an argument gives a #VALUE! error. Further values or ranges can be passed as additional arguments. |
+| 1 | values | number \| range/array (repeatable) | Yes | List of parameters, whose elements are 1 to 255 numbers, empty cells, logical values, or text numbers for which you want the maximum. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the maximum value in a list of arguments, counting text and logical values found in ranges.
+Returns the largest value in a set of values. Does not ignore logical values and text.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the maximum value in a list of arguments, counting text and logical values found in ranges.
+> Returns the largest value in a set of values. Does not ignore logical values and text.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=MAXA(1, 2, TRUE())`
-- `=MAXA(A1:A10)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=MAXA(1, 2, 3)`
 
 ## Test Cases
 | Input | Expected | Purpose |

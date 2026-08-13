@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns the inverse trigonometric tangent of the specified x and y coordinates.
+Returns the arctangent of the specified x- and y- coordinates, in radians between -Pi and Pi, excluding -Pi.
 
 ## Excel Syntax
 ```excel
@@ -17,14 +17,14 @@ Returns the inverse trigonometric tangent of the specified x and y coordinates.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | x_num | number \| range/array | Yes | The x-coordinate of the point. |
-| 2 | y_num | number \| range/array | Yes | The y-coordinate of the point. |
+| 1 | x_num | number \| range/array | Yes | Is the x-coordinate of the point. |
+| 2 | y_num | number \| range/array | Yes | Is the y-coordinate of the point. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the inverse trigonometric tangent of the specified x and y coordinates.
+Returns the arctangent of the specified x- and y- coordinates, in radians between -Pi and Pi, excluding -Pi.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -33,7 +33,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the inverse trigonometric tangent of the specified x and y coordinates.
+> Returns the arctangent of the specified x- and y- coordinates, in radians between -Pi and Pi, excluding -Pi.
 
 
 ## Type Coercion & Edge Cases
@@ -55,8 +55,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=ATAN2(1, 1)`
-- `=ATAN2(-1, 2)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=ATAN2(..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

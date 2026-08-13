@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns a double factorial of a number.
+Returns the double factorial of a number.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Returns a double factorial of a number.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number | number \| string \| boolean \| range/array | Yes | A non-negative number whose double factorial is returned; the value is truncated to an integer. |
+| 1 | number | number \| string \| boolean \| range/array | Yes | Is the value for which to return the double factorial. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns a double factorial of a number.
+Returns the double factorial of a number.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns a double factorial of a number.
+> Returns the double factorial of a number.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=FACTDOUBLE(6)`
-- `=FACTDOUBLE(7)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=FACTDOUBLE(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

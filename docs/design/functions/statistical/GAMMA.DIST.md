@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns density of Gamma distribution.
+Returns the gamma distribution.
 
 ## Excel Syntax
 ```excel
@@ -17,16 +17,16 @@ Returns density of Gamma distribution.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | x | number \| range/array | Yes | The value at which to evaluate the distribution; must be non-negative. |
-| 2 | alpha | number \| range/array | Yes | The alpha shape parameter of the distribution; must be greater than 0. |
-| 3 | beta | number \| range/array | Yes | The beta scale parameter of the distribution; must be greater than 0. |
-| 4 | cumulative | boolean \| range/array | Yes | TRUE returns the cumulative distribution function; FALSE returns the probability density function. |
+| 1 | x | number \| range/array | Yes | Is the value at which you want to evaluate the distribution, a nonnegative number. |
+| 2 | alpha | number \| range/array | Yes | Is a parameter to the distribution, a positive number. |
+| 3 | beta | number \| range/array | Yes | Is a parameter to the distribution, a positive number. If beta = 1, GAMMA.DIST returns the standard gamma distribution. |
+| 4 | cumulative | boolean \| range/array | Yes | Is a logical value: return the cumulative distribution function = TRUE; return the probability mass function = FALSE or omitted. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns density of Gamma distribution.
+Returns the gamma distribution.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -35,7 +35,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns density of Gamma distribution.
+> Returns the gamma distribution.
 
 
 ## Type Coercion & Edge Cases
@@ -57,8 +57,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=GAMMA.DIST(2, 1, 2, TRUE())`
-- `=GAMMA.DIST(2, 1, 2, FALSE())`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=GAMMA.DIST(..., ..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

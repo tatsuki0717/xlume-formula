@@ -7,24 +7,24 @@
 - **Volatile:** No
 
 ## Description
-Rounds a number down toward negative infinity to the nearest multiple of significance, whatever the sign of significance.
+Rounds a number down, to the nearest integer or to the nearest multiple of significance.
 
 ## Excel Syntax
 ```excel
-=FLOOR.PRECISE(number, [significance])
+=FLOOR.PRECISE(number, significance)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number | number \| range/array | Yes | The value to round down. |
-| 2 | significance | number \| range/array | No | The multiple to round down to; its sign is ignored. Defaults to 1 when omitted. |
+| 1 | number | number \| range/array | Yes | Is the numeric value you want to round. |
+| 2 | significance | number \| range/array | Yes | Is the multiple to which you want to round. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Rounds a number down toward negative infinity to the nearest multiple of significance, whatever the sign of significance.
+Rounds a number down, to the nearest integer or to the nearest multiple of significance.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -33,7 +33,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Rounds a number down toward negative infinity to the nearest multiple of significance, whatever the sign of significance.
+> Rounds a number down, to the nearest integer or to the nearest multiple of significance.
 
 
 ## Type Coercion & Edge Cases
@@ -55,8 +55,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=FLOOR.PRECISE(4.7, 1)`
-- `=FLOOR.PRECISE(-4.7, 2)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=FLOOR.PRECISE(..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

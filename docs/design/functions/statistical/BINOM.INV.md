@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns inverse binomial distribution value.
+Returns the smallest value for which the cumulative binomial distribution is greater than or equal to a criterion value.
 
 ## Excel Syntax
 ```excel
@@ -17,15 +17,15 @@ Returns inverse binomial distribution value.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | trials | number \| range/array | Yes | The total number of Bernoulli trials. |
-| 2 | probability_s | number \| range/array | Yes | The probability of success on a single trial. |
-| 3 | alpha | number \| range/array | Yes | The criterion probability value; the function returns the smallest value for which the cumulative binomial distribution is greater than or equal to it. |
+| 1 | trials | number \| range/array | Yes | Is the number of Bernoulli trials. |
+| 2 | probability_s | number \| range/array | Yes | Is the probability of success on each trial, a number between 0 and 1 inclusive. |
+| 3 | alpha | number \| range/array | Yes | Is the criterion value, a number between 0 and 1 inclusive. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns inverse binomial distribution value.
+Returns the smallest value for which the cumulative binomial distribution is greater than or equal to a criterion value.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -34,7 +34,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns inverse binomial distribution value.
+> Returns the smallest value for which the cumulative binomial distribution is greater than or equal to a criterion value.
 
 
 ## Type Coercion & Edge Cases
@@ -56,7 +56,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=BINOM.INV(10, 0.5, 0.75)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=BINOM.INV(..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

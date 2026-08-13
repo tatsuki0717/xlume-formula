@@ -8,7 +8,7 @@
 - **Dynamic array:** No (scalar)
 
 ## Description
-Returns the sum of two numbers. Equivalent to the `+` operator.
+See upstream spreadsheet function documentation.
 
 ## Google Sheets Syntax
 ```excel

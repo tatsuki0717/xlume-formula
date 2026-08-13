@@ -8,7 +8,7 @@
 - **Dynamic array:** No (scalar)
 
 ## Description
-Returns a number with the sign reversed.
+See upstream spreadsheet function documentation.
 
 ## Google Sheets Syntax
 ```excel

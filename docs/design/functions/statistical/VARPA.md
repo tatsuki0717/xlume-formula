@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns variance of a population, counting text and logical values found in ranges.
+Calculates variance based on the entire population, including logical values and text. Text and the logical value FALSE have the value 0; the logical value TRUE has the value 1.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Returns variance of a population, counting text and logical values found in rang
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | value1 | number \| range/array (repeatable) | Yes | A value, cell reference, or range included in the population variance calculation; inside a range, text counts as 0, TRUE as 1 and FALSE as 0, where the non-A variant would skip them, while a non-numeric text passed directly as an argument gives a #VALUE! error. Further values or ranges can be passed as additional arguments. |
+| 1 | values | number \| range/array (repeatable) | Yes | List of parameters, whose elements are 1 to 255 value arguments corresponding to a population. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns variance of a population, counting text and logical values found in ranges.
+Calculates variance based on the entire population, including logical values and text. Text and the logical value FALSE have the value 0; the logical value TRUE has the value 1.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns variance of a population, counting text and logical values found in ranges.
+> Calculates variance based on the entire population, including logical values and text. Text and the logical value FALSE have the value 0; the logical value TRUE has the value 1.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=VARPA(1, TRUE(), 3)`
-- `=VARPA(A1:A10)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=VARPA(1, 2, 3)`
 
 ## Test Cases
 | Input | Expected | Purpose |

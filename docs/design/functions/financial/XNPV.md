@@ -7,25 +7,25 @@
 - **Volatile:** No
 
 ## Description
-Returns the net present value for a schedule of cash flows that is not necessarily periodic.
+Returns the net present value for a schedule of cash flows.
 
 ## Excel Syntax
 ```excel
-=XNPV(rate, payments, dates)
+=XNPV(rate, values, dates)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | rate | number \| string \| boolean \| range/array | Yes | The discount rate applied to the cash flows. |
-| 2 | payments | number \| string \| range/array \| boolean | Yes | A range of cash flow values; paid-out amounts are negative, received amounts are positive. |
-| 3 | dates | number \| string \| range/array \| boolean | Yes | A range of dates, one per payment, that must be the same length as payments; the first date is the reference point, and every other date must fall on or after it. |
+| 1 | rate | number \| string \| boolean \| range/array | Yes | Is the discount rate to apply to the cash flows. |
+| 2 | values | number \| string \| range/array \| boolean | Yes | Is a series of cash flows that correspond to a schedule of payments in dates. |
+| 3 | dates | number \| string \| range/array \| boolean | Yes | Is a schedule of payment dates that corresponds to the cash flow payments. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the net present value for a schedule of cash flows that is not necessarily periodic.
+Returns the net present value for a schedule of cash flows.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -34,7 +34,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the net present value for a schedule of cash flows that is not necessarily periodic.
+> Returns the net present value for a schedule of cash flows.
 
 
 ## Type Coercion & Edge Cases
@@ -56,8 +56,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=XNPV(0.09, A1:A4, B1:B4)`
-- `=XNPV(0.1, C2:C6, D2:D6)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=XNPV(..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

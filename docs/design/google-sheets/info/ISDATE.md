@@ -8,7 +8,7 @@
 - **Dynamic array:** No (scalar)
 
 ## Description
-Returns whether a value is a date. .
+See upstream spreadsheet function documentation.
 
 ## Google Sheets Syntax
 ```excel

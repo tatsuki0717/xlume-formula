@@ -7,35 +7,28 @@
 - **Volatile:** No
 
 ## Description
-Returns the probability that values in a range are between two limits.
+probability in range
 
 ## Excel Syntax
 ```excel
-=PROB(x_range, prob_range, [lower_limit], [upper_limit])
+=PROB()
 ```
 
 ## Arguments
-| # | Name | Type | Required? | Description |
-|---|---|---|---|---|
-| 1 | x_range | number \| range/array | Yes | The range of numeric values of x with which there are associated probabilities. |
-| 2 | prob_range | any | Yes | A set of probabilities associated with values in x_range. |
-| 3 | lower_limit | any | No | Optional. The lower bound on the value for which you want a probability. |
-| 4 | upper_limit | any | No | Optional. The optional upper bound on the value for which you want a probability. |
+This function takes no arguments.
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the probability that values in a range are between two limits.
+probability in range
 
 High-level algorithm:
-1. Validate argument count and coerce each argument according to its documented type.
-2. Propagate any input errors (`#VALUE!`, `#NUM!`, etc.) before computation.
-3. Execute the core calculation described below.
-4. Apply final coercion to the documented return type and return the result.
+1. Execute the core calculation.
+2. Return the result.
 
 Core calculation:
-> Returns the probability that values in a range are between two limits.
+> probability in range
 
 
 ## Type Coercion & Edge Cases
@@ -58,8 +51,6 @@ Core calculation:
 
 ## Examples
 TBD — add representative Excel examples during implementation.
-
-Skeleton: `=PROB(..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

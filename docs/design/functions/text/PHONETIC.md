@@ -7,49 +7,56 @@
 - **Volatile:** No
 
 ## Description
-`PHONETIC` extracts the phonetic reading of a string (e.g. furigana for Japanese) by delegating to an `ExternalFunctionProvider.phonetic(text)` callback supplied by the host application.
+extract furigana
 
 ## Excel Syntax
 ```excel
-=PHONETIC(reference)
+=PHONETIC()
 ```
 
 ## Arguments
-| Argument | Required | Description |
-|---|---|---|
-| `reference` | Yes | A text value or range whose first cell's text is processed. |
+This function takes no arguments.
 
 ## Returns
-The phonetic text returned by the provider, or `#N/A` if no provider is configured.
+Scalar or array depending on arguments
 
 ## Behavior / Algorithm
+This function requires external data or runtime infrastructure (network, OLAP, pivot cache, XLL, RTD, etc.) that is outside the scope of a pure worksheet calculation engine.
 
-This function depends on external services, spreadsheet data, or an external runtime (network, OLAP, pivot cache, XLL, RTD, etc.). The core `xlume-formula` engine does not perform network calls or access external data sources; the registered implementation always returns `#N/A`.
+Stub implementation: return `#N/A` or `#VALUE!` with a message that the function is not supported.
 
 ## Type Coercion & Edge Cases
-- Arrays/ranges use the first element.
-- Non-text values are coerced to text.
+- Numbers provided as text are coerced to numeric values when the function expects a number.
+- Logical `TRUE`/`FALSE` coerce to `1`/`0` in numeric contexts and to `"TRUE"`/`"FALSE"` in text contexts.
+- Blank cells are treated as `0` in numeric contexts and as `""` in text contexts, unless the function explicitly ignores blanks.
+- Errors in any argument propagate to the result, except where the function is explicitly designed to trap them (e.g., IFERROR, IFNA, AGGREGATE options).
+- Range/array arguments are evaluated element-wise or consumed as a whole depending on the function semantics.
 
 ## Error Handling
 | Error | When |
 |---|---|
-| `#VALUE!` | Provider throws or argument is invalid. |
-| `#N/A` | No `external.phonetic` provider is configured. |
+| `#VALUE!` | Argument type or count is invalid, or an argument cannot be coerced. |
+| `#NUM!` | A numeric argument is outside the allowed domain. |
+| `#DIV/0!` | Division by zero or an empty denominator. |
+| `#N/A` | Lookup/match not found or optional fallback triggered. |
+| `#REF!` | Invalid cell/range reference or out-of-bounds index. |
+| `#NAME?` | Function name not recognized. |
+| `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-```excel
-=PHONETIC("日本語")
-```
+TBD — add representative Excel examples during implementation.
 
 ## Test Cases
 | Input | Expected | Purpose |
 |---|---|---|
-| `=PHONETIC("日本語")` with provider returning "にほんご" | "にほんご" | Provider invoked |
-| `=PHONETIC("日本語")` with no provider | `#N/A` | Missing provider |
+| Normal inputs | Correct numeric/text result | Golden path |
+| Boundary values (0, 1, negatives, very large/small) | Correct or `#NUM!` | Domain edges |
+| Blank/empty cells | Coerced `0` or `""` as appropriate | Blank handling |
+| Text that cannot be coerced | `#VALUE!` | Error propagation |
+| Too few/too many arguments | `#VALUE!` | Arity validation |
 
 ## Implementation Notes
-- Not implemented in the core engine; registered as a stub that returns `#N/A`missing.ts`.
-- The engine does not include a built-in Japanese reading dictionary; the host application must supply one.
+Return `#N/A` or `#VALUE!` unsupported. Do not attempt external network/OLAP calls.
 
 ## References
-- [Microsoft Excel PHONETIC function](https://support.microsoft.com/en-us/office/phonetic-function)
+- [Microsoft Excel function documentation](https://support.microsoft.com/en-us/office/excel-functions-by-category-5f91f4e9-7b42-46d2-9bd1-63f26a86c0eb)

@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns value of F distribution.
+Returns the (left-tailed) F probability distribution (degree of diversity) for two data sets.
 
 ## Excel Syntax
 ```excel
@@ -17,16 +17,16 @@ Returns value of F distribution.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | x | number \| range/array | Yes | The value at which to evaluate the distribution; must be non-negative. |
-| 2 | deg_freedom1 | number \| range/array | Yes | The numerator degrees of freedom. |
-| 3 | deg_freedom2 | number \| range/array | Yes | The denominator degrees of freedom. |
-| 4 | cumulative | boolean \| range/array | Yes | TRUE returns the cumulative distribution function; FALSE returns the probability density function. |
+| 1 | x | number \| range/array | Yes | Is the value at which to evaluate the function, a nonnegative number. |
+| 2 | deg_freedom1 | number \| range/array | Yes | Is the numerator degrees of freedom, a number between 1 and 10^10, excluding 10^10. |
+| 3 | deg_freedom2 | number \| range/array | Yes | Is the denominator degrees of freedom, a number between 1 and 10^10, excluding 10^10. |
+| 4 | cumulative | boolean \| range/array | Yes | Is a logical value for the function to return: the cumulative distribution function = TRUE; the probability density function = FALSE. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns value of F distribution.
+Returns the (left-tailed) F probability distribution (degree of diversity) for two data sets.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -35,7 +35,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns value of F distribution.
+> Returns the (left-tailed) F probability distribution (degree of diversity) for two data sets.
 
 
 ## Type Coercion & Edge Cases
@@ -57,8 +57,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=F.DIST(2, 3, 10, TRUE())`
-- `=F.DIST(2, 3, 10, FALSE())`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=F.DIST(..., ..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

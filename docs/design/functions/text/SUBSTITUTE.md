@@ -7,26 +7,26 @@
 - **Volatile:** No
 
 ## Description
-Returns a string where occurrences of old_text are replaced by new_text. Replaces only specific occurrence if last parameter is provided.
+Replaces existing text with new text in a text string.
 
 ## Excel Syntax
 ```excel
-=SUBSTITUTE(text, old_text, new_text, [instance_num])
+=SUBSTITUTE(text, old_text, new_text, instance_num)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | text | string \| range/array | Yes | The text in which occurrences of old_text are replaced. |
-| 2 | old_text | string \| range/array | Yes | The text to search for and replace. |
-| 3 | new_text | string \| range/array | Yes | The text that replaces each matched occurrence of old_text. |
-| 4 | instance_num | string \| range/array | No | The 1-based occurrence of old_text to replace. When omitted, every occurrence is replaced. |
+| 1 | text | string \| range/array | Yes | Is the text or the reference to a cell containing text in which you want to substitute characters. |
+| 2 | old_text | string \| range/array | Yes | Is the existing text you want to replace. If the case of oldText does not match the case of text, SUBSTITUTE will not replace the text. |
+| 3 | new_text | string \| range/array | Yes | Is the text you want to replace oldText with. |
+| 4 | instance_num | string \| range/array | Yes | Specifies which occurrence of oldText you want to replace. If omitted, every instance of oldText is replaced. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns a string where occurrences of old_text are replaced by new_text. Replaces only specific occurrence if last parameter is provided.
+Replaces existing text with new text in a text string.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -35,7 +35,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns a string where occurrences of old_text are replaced by new_text. Replaces only specific occurrence if last parameter is provided.
+> Replaces existing text with new text in a text string.
 
 
 ## Type Coercion & Edge Cases
@@ -57,8 +57,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=SUBSTITUTE("a-b-c", "-", ":")`
-- `=SUBSTITUTE("a-b-c", "-", ":", 2)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=SUBSTITUTE(..., ..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

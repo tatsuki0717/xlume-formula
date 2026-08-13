@@ -7,24 +7,24 @@
 - **Volatile:** No
 
 ## Description
-Returns TRUE (1) if both numbers are equal, otherwise returns FALSE (0).
+Tests whether two numbers are equal.
 
 ## Excel Syntax
 ```excel
-=DELTA(number1, [number2])
+=DELTA(number1, number2)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number1 | number \| string \| boolean \| range/array | Yes | The first number to compare. |
-| 2 | number2 | number \| string \| boolean \| range/array | No | The second number to compare; defaults to 0 when omitted. |
+| 1 | number1 | number \| string \| boolean \| range/array | Yes | Is the first number. |
+| 2 | number2 | number \| string \| boolean \| range/array | Yes | Is the second number. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns TRUE (1) if both numbers are equal, otherwise returns FALSE (0).
+Tests whether two numbers are equal.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -33,7 +33,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns TRUE (1) if both numbers are equal, otherwise returns FALSE (0).
+> Tests whether two numbers are equal.
 
 
 ## Type Coercion & Edge Cases
@@ -55,9 +55,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=DELTA(5, 5)`
-- `=DELTA(5, 4)`
-- `=DELTA(0)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=DELTA(..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

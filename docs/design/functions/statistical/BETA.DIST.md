@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns the density of the beta distribution.
+Returns the beta probability distribution function.
 
 ## Excel Syntax
 ```excel
@@ -17,18 +17,18 @@ Returns the density of the beta distribution.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | x | number \| range/array | Yes | The value at which to evaluate the distribution, within the interval bounded by lower_bound and upper_bound. |
-| 2 | alpha | number \| range/array | Yes | The alpha shape parameter of the distribution; must be greater than 0. |
-| 3 | beta | number \| range/array | Yes | The beta shape parameter of the distribution; must be greater than 0. |
-| 4 | cumulative | boolean \| range/array | Yes | TRUE returns the cumulative distribution function; FALSE returns the probability density function. |
-| 5 | a | number \| range/array | No | The lower bound of the interval of x; defaults to 0 when omitted. |
-| 6 | b | number \| range/array | No | The upper bound of the interval of x; defaults to 1 when omitted. |
+| 1 | x | number \| range/array | Yes | Is the value between A and B at which to evaluate the function. |
+| 2 | alpha | number \| range/array | Yes | Is a parameter to the distribution and must be greater than 0. |
+| 3 | beta | number \| range/array | Yes | Is a parameter to the distribution and must be greater than 0. |
+| 4 | cumulative | boolean \| range/array | Yes | Is a logical value: for the cumulative distribution function, use TRUE; for the probability density function, use FALSE. |
+| 5 | a | number \| range/array | No | Is an optional lower bound to the interval of x. If omitted, A = 0. |
+| 6 | b | number \| range/array | No | Is an optional upper bound to the interval of x. If omitted, B = 1. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the density of the beta distribution.
+Returns the beta probability distribution function.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -37,7 +37,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the density of the beta distribution.
+> Returns the beta probability distribution function.
 
 
 ## Type Coercion & Edge Cases
@@ -59,8 +59,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=BETA.DIST(0.5, 2, 3, TRUE())`
-- `=BETA.DIST(2, 2, 3, TRUE(), 0, 4)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=BETA.DIST(..., ..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

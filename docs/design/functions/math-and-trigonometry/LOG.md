@@ -7,24 +7,24 @@
 - **Volatile:** No
 
 ## Description
-Returns the logarithm of a number to the specified base.
+Returns the logarithm of a number to the base you specify.
 
 ## Excel Syntax
 ```excel
-=LOG(number, [base])
+=LOG(number, base)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number | number \| range/array | Yes | A positive number whose logarithm is returned. |
-| 2 | base | number \| range/array | No | The base of the logarithm. Defaults to 10 when omitted. |
+| 1 | number | number \| range/array | Yes | Is the positive real number for which you want the logarithm. |
+| 2 | base | number \| range/array | Yes | Is the base of the logarithm; 10 if omitted. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the logarithm of a number to the specified base.
+Returns the logarithm of a number to the base you specify.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -33,7 +33,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the logarithm of a number to the specified base.
+> Returns the logarithm of a number to the base you specify.
 
 
 ## Type Coercion & Edge Cases
@@ -55,8 +55,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=LOG(100, 10)`
-- `=LOG(8, 2)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=LOG(..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

@@ -8,7 +8,7 @@
 - **Dynamic array:** Yes
 
 ## Description
-Divides text around a specified character or string, and puts each fragment into a separate cell in the row.
+See upstream spreadsheet function documentation.
 
 ## Google Sheets Syntax
 ```excel

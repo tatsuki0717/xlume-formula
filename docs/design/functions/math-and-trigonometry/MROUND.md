@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Rounds a number to the nearest multiple.
+Returns a number rounded to the desired multiple.
 
 ## Excel Syntax
 ```excel
@@ -17,14 +17,14 @@ Rounds a number to the nearest multiple.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number | number \| string \| boolean \| range/array | Yes | The value to round. |
-| 2 | multiple | number \| string \| boolean \| range/array | Yes | The multiple to round number to; must have the same sign as number, otherwise the result is a #NUM! error. When it is 0 the result is 0. |
+| 1 | number | number \| string \| boolean \| range/array | Yes | Is the value to round. |
+| 2 | multiple | number \| string \| boolean \| range/array | Yes | Is the multiple to which you want to round number. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Rounds a number to the nearest multiple.
+Returns a number rounded to the desired multiple.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -33,7 +33,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Rounds a number to the nearest multiple.
+> Returns a number rounded to the desired multiple.
 
 
 ## Type Coercion & Edge Cases
@@ -55,8 +55,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=MROUND(10, 3)`
-- `=MROUND(-10, -3)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=MROUND(..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

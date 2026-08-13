@@ -7,34 +7,28 @@
 - **Volatile:** No
 
 ## Description
-Returns the location of search_string inside text. Case-insensitive. Allows the use of wildcards.
+case-insensitive locate
 
 ## Excel Syntax
 ```excel
-=SEARCH(find_text, within_text, [start_num])
+=SEARCH()
 ```
 
 ## Arguments
-| # | Name | Type | Required? | Description |
-|---|---|---|---|---|
-| 1 | find_text | string | Yes | The text to search for. The search is case-insensitive and may contain "?" and "*" wildcards. |
-| 2 | within_text | string | Yes | The text to search within. |
-| 3 | start_num | string | No | The 1-based character position in text at which to start searching. Defaults to 1. |
+This function takes no arguments.
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the location of search_string inside text. Case-insensitive. Allows the use of wildcards.
+case-insensitive locate
 
 High-level algorithm:
-1. Validate argument count and coerce each argument according to its documented type.
-2. Propagate any input errors (`#VALUE!`, `#NUM!`, etc.) before computation.
-3. Execute the core calculation described below.
-4. Apply final coercion to the documented return type and return the result.
+1. Execute the core calculation.
+2. Return the result.
 
 Core calculation:
-> Returns the location of search_string inside text. Case-insensitive. Allows the use of wildcards.
+> case-insensitive locate
 
 
 ## Type Coercion & Edge Cases
@@ -56,8 +50,7 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=SEARCH("o", "Hello World")`
-- `=SEARCH("w*d", "Hello World")`
+TBD — add representative Excel examples during implementation.
 
 ## Test Cases
 | Input | Expected | Purpose |

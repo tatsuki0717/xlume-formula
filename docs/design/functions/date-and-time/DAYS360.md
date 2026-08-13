@@ -7,25 +7,25 @@
 - **Volatile:** No
 
 ## Description
-Calculates the difference between two date values in days, in 360-day basis.
+Returns the number of days between two dates based on a 360-day year (twelve 30-day months).
 
 ## Excel Syntax
 ```excel
-=DAYS360(start_date, end_date, [method])
+=DAYS360(start_date, end_date, method)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | start_date | number \| range/array | Yes | The start date of the 360-day (30-day-month) period. |
-| 2 | end_date | number \| range/array | Yes | The end date of the 360-day period; the result is end_date minus start_date measured with 30-day months. |
-| 3 | method | boolean \| range/array | No | TRUE uses the European 30/360 method; FALSE (default) uses the US (NASD) method. |
+| 1 | start_date | number \| range/array | Yes | startDate and endDate are the two dates between which you want to know the number of days. |
+| 2 | end_date | number \| range/array | Yes | startDate and endDate are the two dates between which you want to know the number of days. |
+| 3 | method | boolean \| range/array | Yes | Is a logical value specifying the calculation method: U.S. (NASD) = FALSE or omitted; European = TRUE. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Calculates the difference between two date values in days, in 360-day basis.
+Returns the number of days between two dates based on a 360-day year (twelve 30-day months).
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -34,7 +34,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Calculates the difference between two date values in days, in 360-day basis.
+> Returns the number of days between two dates based on a 360-day year (twelve 30-day months).
 
 
 ## Type Coercion & Edge Cases
@@ -56,8 +56,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=DAYS360(DATE(2020,3,1), DATE(2020,3,31))`
-- `=DAYS360(A1, A2, TRUE())`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=DAYS360(..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

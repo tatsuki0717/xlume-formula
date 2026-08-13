@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns modulus of a complex number.
+Returns the absolute value (modulus) of a complex number.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Returns modulus of a complex number.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | inumber | number \| string \| boolean \| range/array | Yes | The complex number, given as text such as "3+4i", whose modulus is calculated. |
+| 1 | inumber | number \| string \| boolean \| range/array | Yes | Is a complex number for which you want the absolute value. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns modulus of a complex number.
+Returns the absolute value (modulus) of a complex number.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns modulus of a complex number.
+> Returns the absolute value (modulus) of a complex number.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=IMABS("3+4i")`
-- `=IMABS("-i")`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=IMABS(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

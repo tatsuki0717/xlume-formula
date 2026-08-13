@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns value of inverse lognormal distribution.
+Returns the inverse of the lognormal cumulative distribution function of x, where ln(x) is normally distributed with parameters Mean and Standard\_dev.
 
 ## Excel Syntax
 ```excel
@@ -17,15 +17,15 @@ Returns value of inverse lognormal distribution.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | probability | number \| range/array | Yes | The probability associated with the lognormal distribution, between 0 and 1. |
-| 2 | mean | number \| range/array | Yes | The mean of the natural logarithm of the distribution. |
-| 3 | standard_dev | number \| range/array | Yes | The standard deviation of the natural logarithm of the distribution; must be greater than 0. |
+| 1 | probability | number \| range/array | Yes | Is a probability associated with the lognormal distribution, a number between 0 and 1, inclusive. |
+| 2 | mean | number \| range/array | Yes | Is the mean of ln(x). |
+| 3 | standard_dev | number \| range/array | Yes | Is the standard deviation of ln(x), a positive number. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns value of inverse lognormal distribution.
+Returns the inverse of the lognormal cumulative distribution function of x, where ln(x) is normally distributed with parameters Mean and Standard\_dev.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -34,7 +34,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns value of inverse lognormal distribution.
+> Returns the inverse of the lognormal cumulative distribution function of x, where ln(x) is normally distributed with parameters Mean and Standard\_dev.
 
 
 ## Type Coercion & Edge Cases
@@ -56,7 +56,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=LOGNORM.INV(0.5, 0, 1)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=LOGNORM.INV(..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

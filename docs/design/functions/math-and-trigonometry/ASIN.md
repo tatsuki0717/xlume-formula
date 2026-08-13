@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns the inverse trigonometric sine of a number.
+Returns the arcsine of a number in radians, in the range -Pi/2 to Pi/2.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Returns the inverse trigonometric sine of a number.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number | number \| range/array | Yes | A number between -1 and 1 whose arcsine, in radians, is returned. |
+| 1 | number | number \| range/array | Yes | Is the sine of the angle you want and must be from -1 to 1. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the inverse trigonometric sine of a number.
+Returns the arcsine of a number in radians, in the range -Pi/2 to Pi/2.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the inverse trigonometric sine of a number.
+> Returns the arcsine of a number in radians, in the range -Pi/2 to Pi/2.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=ASIN(1)`
-- `=ASIN(0.5)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=ASIN(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

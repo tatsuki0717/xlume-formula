@@ -8,7 +8,7 @@
 - **Dynamic array:** No (scalar)
 
 ## Description
-Returns `TRUE` if two specified values are equal and `FALSE` otherwise. Equivalent to the `=` operator.
+See upstream spreadsheet function documentation.
 
 ## Google Sheets Syntax
 ```excel

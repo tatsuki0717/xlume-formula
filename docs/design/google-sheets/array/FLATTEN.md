@@ -8,7 +8,7 @@
 - **Dynamic array:** Yes
 
 ## Description
-Flattens all the values from one or more ranges into a single column.
+See upstream spreadsheet function documentation.
 
 ## Google Sheets Syntax
 ```excel

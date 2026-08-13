@@ -7,26 +7,26 @@
 - **Volatile:** No
 
 ## Description
-Replaces substring of a text of a given length that starts at given position.
+Replaces part of a text string with a different text string.
 
 ## Excel Syntax
 ```excel
-=REPLACE(old_text, num_chars, length, new_text)
+=REPLACE(old_text, start_num, num_chars, new_text)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | old_text | string \| range/array | Yes | The text in which characters are replaced. |
-| 2 | num_chars | number \| range/array | Yes | The 1-based position of the first character to replace. |
-| 3 | length | number \| range/array | Yes | The number of characters to replace, starting at start_position. |
-| 4 | new_text | string \| range/array | Yes | The text that replaces the removed characters. |
+| 1 | old_text | string \| range/array | Yes | Is text in which you want to replace some characters. |
+| 2 | start_num | number \| range/array | Yes | Is the position of the character in oldText that you want to replace with newText. |
+| 3 | num_chars | number \| range/array | Yes | Is the number of characters in oldText that you want to replace. |
+| 4 | new_text | string \| range/array | Yes | Is the text that will replace characters in oldText. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Replaces substring of a text of a given length that starts at given position.
+Replaces part of a text string with a different text string.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -35,7 +35,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Replaces substring of a text of a given length that starts at given position.
+> Replaces part of a text string with a different text string.
 
 
 ## Type Coercion & Edge Cases
@@ -57,8 +57,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=REPLACE("Hello World", 7, 5, "There")`
-- `=REPLACE(A1, 1, 3, "New")`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=REPLACE(..., ..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

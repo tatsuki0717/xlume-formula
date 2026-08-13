@@ -7,24 +7,24 @@
 - **Volatile:** No
 
 ## Description
-Returns net present value.
+Returns the net present value of an investment based on a discount rate and a series of future payments (negative values) and income (positive values).
 
 ## Excel Syntax
 ```excel
-=NPV(rate, value1, [value2], ...)
+=NPV(rate, values)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | rate | number \| range/array | Yes | The discount rate applied over one period. |
-| 2 | value1 | number \| range/array (repeatable) | Yes | A cash flow value, cell reference, or range occurring at the end of a period. Further cash flow values can be passed as additional arguments. |
+| 1 | rate | number \| range/array | Yes | Is the rate of discount over the length of one period. |
+| 2 | values | number \| range/array | Yes | List of parameters, whose elements are 1 to 254 payments and income, equally spaced in time and occurring at the end of each period. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns net present value.
+Returns the net present value of an investment based on a discount rate and a series of future payments (negative values) and income (positive values).
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -33,7 +33,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns net present value.
+> Returns the net present value of an investment based on a discount rate and a series of future payments (negative values) and income (positive values).
 
 
 ## Type Coercion & Edge Cases
@@ -55,8 +55,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=NPV(0.1, -1000, 300, 400, 500)`
-- `=NPV(0.08, A1:A5)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=NPV(..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

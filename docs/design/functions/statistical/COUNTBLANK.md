@@ -7,23 +7,23 @@
 - **Volatile:** No
 
 ## Description
-Returns the number of empty cells.
+Counts the number of empty cells in a specified range of cells.
 
 ## Excel Syntax
 ```excel
-=COUNTBLANK(range1, [range2], ...)
+=COUNTBLANK(range)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | range | range/array (repeatable) | Yes | A value, cell reference, or range checked for emptiness. Further values or ranges can be passed as additional arguments. |
+| 1 | range | range/array | Yes | Is the range from which you want to count the empty cells. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the number of empty cells.
+Counts the number of empty cells in a specified range of cells.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the number of empty cells.
+> Counts the number of empty cells in a specified range of cells.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=COUNTBLANK(A1:A10)`
-- `=COUNTBLANK(A1:A10, C1:C10)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=COUNTBLANK(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

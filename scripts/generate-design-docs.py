@@ -949,10 +949,9 @@ Each file records:
 ## Sources
 
 - `FUNCTIONS-reference.md` — canonical function list and priority tags.
-- HyperFormula source metadata — descriptions, parameters, examples.
-- `excel-functions-office-js.yml` — Office.js signatures.
-- `formulajs` source — fallback summaries and argument names.
-- `scripts/manual_specs.py` — manually authored signatures for functions not covered above.
+- `excel-functions-office-js.yml` — Office.js descriptions, signatures, and parameter metadata (MIT).
+- `scripts/manual_specs.py` — manually authored signatures and algorithms for functions not covered above.
+- HyperFormula / formula.js source metadata is used only for structural names/signatures when available locally; descriptions and examples are intentionally not copied from those sources.
 '''
 
 

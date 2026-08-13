@@ -3,33 +3,30 @@
 ## Metadata
 - **Category:** Lookup & Reference
 - **Priority tags:** DA
-- **Scope:** implement
+- **Scope:** deferred
 - **Volatile:** No
 - **Dynamic array:** Yes
 
 ## Description
-Stacks arrays vertically into a single array.
+stack vertically
 
 ## Excel Syntax
 ```excel
-=VSTACK(array1, [array2, ...], otherArrays)
+=VSTACK()
 ```
 
 ## Arguments
-| # | Name | Type | Required? | Description |
-|---|---|---|---|---|
-| 1 | array | range/array (repeatable) | Yes | A range or array to stack. Further ranges or arrays can be passed as additional arguments; they are stacked top to bottom into one array. |
-| 2 | otherArrays | any (repeatable) | Yes |  |
+This function takes no arguments.
 
 ## Returns
 Dynamic array
 
 ## Behavior / Algorithm
-Implemented in the engine (Requires dynamic-array / spill support).
+Implementation is deferred (Requires dynamic-array / spill support).
 
-High-level behavior: Stacks arrays vertically into a single array.
+High-level behavior: stack vertically
 
-See the corresponding source implementation for the detailed algorithm.
+Detailed step-by-step algorithm, type coercion and edge-case handling will be added when this function is prioritized.
 
 ## Type Coercion & Edge Cases
 - Numbers provided as text are coerced to numeric values when the function expects a number.
@@ -50,8 +47,7 @@ See the corresponding source implementation for the detailed algorithm.
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=VSTACK(A1:B2, A3:B4)`
-- `=VSTACK(A1:C1, A2:C2)`
+TBD — add representative Excel examples during implementation.
 
 ## Test Cases
 | Input | Expected | Purpose |

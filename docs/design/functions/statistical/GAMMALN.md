@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns natural logarithm of Gamma function.
+Returns the natural logarithm of the gamma function.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Returns natural logarithm of Gamma function.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | x | number \| range/array | Yes | The value at which to evaluate the natural logarithm of the Gamma function; must be greater than 0. |
+| 1 | x | number \| range/array | Yes | Is the value for which you want to calculate GAMMALN, a positive number. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns natural logarithm of Gamma function.
+Returns the natural logarithm of the gamma function.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns natural logarithm of Gamma function.
+> Returns the natural logarithm of the gamma function.
 
 
 ## Type Coercion & Edge Cases
@@ -54,7 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=GAMMALN(5)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=GAMMALN(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

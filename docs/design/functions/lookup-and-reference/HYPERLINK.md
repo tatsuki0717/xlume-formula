@@ -7,24 +7,24 @@
 - **Volatile:** No
 
 ## Description
-Stores the URL in the cell metadata as a hyperlink value that the host can display or retrieve.
+Creates a shortcut or jump that opens a document stored on your hard drive, a network server, or on the Internet.
 
 ## Excel Syntax
 ```excel
-=HYPERLINK(link_location, [friendly_name])
+=HYPERLINK(link_location, friendly_name)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | link_location | string \| range/array | Yes | The URL to store in the cell metadata. |
-| 2 | friendly_name | number \| string \| boolean \| range/array | No | The text displayed in the cell. When omitted, url is displayed instead. |
+| 1 | link_location | string \| range/array | Yes | Is the text giving the path and file name to the document to be opened, a hard drive location, UNC address, or URL path. |
+| 2 | friendly_name | number \| string \| boolean \| range/array | Yes | Is text or a number that is displayed in the cell. If omitted, the cell displays the linkLocation text. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Stores the URL in the cell metadata as a hyperlink value that the host can display or retrieve.
+Creates a shortcut or jump that opens a document stored on your hard drive, a network server, or on the Internet.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -33,7 +33,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Stores the URL in the cell metadata as a hyperlink value that the host can display or retrieve.
+> Creates a shortcut or jump that opens a document stored on your hard drive, a network server, or on the Internet.
 
 
 ## Type Coercion & Edge Cases
@@ -55,8 +55,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=HYPERLINK("https://example.com")`
-- `=HYPERLINK("https://example.com", "Example site")`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=HYPERLINK(..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

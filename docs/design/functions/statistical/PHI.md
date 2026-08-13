@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns probability density of normal distribution.
+Returns the value of the density function for a standard normal distribution.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Returns probability density of normal distribution.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | x | number \| range/array | Yes | The value at which to evaluate the standard normal probability density function. |
+| 1 | x | number \| range/array | Yes | Is the number for which you want the density of the standard normal distribution. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns probability density of normal distribution.
+Returns the value of the density function for a standard normal distribution.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns probability density of normal distribution.
+> Returns the value of the density function for a standard normal distribution.
 
 
 ## Type Coercion & Edge Cases
@@ -54,7 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=PHI(1)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=PHI(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

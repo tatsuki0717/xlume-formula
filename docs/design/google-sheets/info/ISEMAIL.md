@@ -8,7 +8,7 @@
 - **Dynamic array:** No (scalar)
 
 ## Description
-Checks whether a value is a valid email address.
+See upstream spreadsheet function documentation.
 
 ## Google Sheets Syntax
 ```excel

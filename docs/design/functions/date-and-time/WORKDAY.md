@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns the date a given number of working days after the start date, skipping Saturdays and Sundays.
+Returns the serial number of the date before or after a specified number of workdays.
 
 ## Excel Syntax
 ```excel
@@ -17,15 +17,15 @@ Returns the date a given number of working days after the start date, skipping S
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | start_date | number \| string \| boolean \| range/array | Yes | The start date to count from. |
-| 2 | days | number \| string \| boolean \| range/array | Yes | The number of working days to add (positive) or subtract (negative), skipping weekends (Saturday and Sunday). |
-| 3 | holidays | number \| string \| range/array \| boolean | No | An optional range of dates to also skip, in addition to weekends. |
+| 1 | start_date | number \| string \| boolean \| range/array | Yes | Is a serial date number that represents the start date. |
+| 2 | days | number \| string \| boolean \| range/array | Yes | Is the number of nonweekend and non-holiday days before or after startDate. |
+| 3 | holidays | number \| string \| range/array \| boolean | No | Is an optional array of one or more serial date numbers to exclude from the working calendar, such as state and federal holidays and floating holidays. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the date a given number of working days after the start date, skipping Saturdays and Sundays.
+Returns the serial number of the date before or after a specified number of workdays.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -34,7 +34,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the date a given number of working days after the start date, skipping Saturdays and Sundays.
+> Returns the serial number of the date before or after a specified number of workdays.
 
 
 ## Type Coercion & Edge Cases
@@ -56,8 +56,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=WORKDAY(A1, 10)`
-- `=WORKDAY(DATE(2020,1,1), 5, C1:C3)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=WORKDAY(..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

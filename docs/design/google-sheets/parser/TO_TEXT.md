@@ -8,7 +8,7 @@
 - **Dynamic array:** No (scalar)
 
 ## Description
-Converts a provided numeric value to a text value.
+See upstream spreadsheet function documentation.
 
 ## Google Sheets Syntax
 ```excel

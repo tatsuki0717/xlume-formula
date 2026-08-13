@@ -8,7 +8,7 @@
 - **Dynamic array:** No (scalar)
 
 ## Description
-Converts a provided date/time, percentage, currency or other formatted numeric value to a pure number without formatting.
+See upstream spreadsheet function documentation.
 
 ## Google Sheets Syntax
 ```excel

@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns the number that represents a given time as a fraction of full day.
+Converts hours, minutes, and seconds given as numbers to an Excel serial number, formatted with a time format.
 
 ## Excel Syntax
 ```excel
@@ -17,15 +17,15 @@ Returns the number that represents a given time as a fraction of full day.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | hour | number \| range/array | Yes | The hour component of the time. |
-| 2 | minute | number \| range/array | Yes | The minute component of the time. |
-| 3 | second | number \| range/array | Yes | The second component of the time. |
+| 1 | hour | number \| range/array | Yes | Is a number from 0 to 23 representing the hour. |
+| 2 | minute | number \| range/array | Yes | Is a number from 0 to 59 representing the minute. |
+| 3 | second | number \| range/array | Yes | Is a number from 0 to 59 representing the second. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the number that represents a given time as a fraction of full day.
+Converts hours, minutes, and seconds given as numbers to an Excel serial number, formatted with a time format.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -34,7 +34,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the number that represents a given time as a fraction of full day.
+> Converts hours, minutes, and seconds given as numbers to an Excel serial number, formatted with a time format.
 
 
 ## Type Coercion & Edge Cases
@@ -56,8 +56,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=TIME(14, 30, 0)`
-- `=TIME(A1, A2, A3)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=TIME(..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

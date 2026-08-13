@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns Fisher transformation value.
+Returns the Fisher transformation.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Returns Fisher transformation value.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | x | number \| range/array | Yes | The value to transform; must be greater than -1 and less than 1. |
+| 1 | x | number \| range/array | Yes | Is the value for which you want the transformation, a number between -1 and 1, excluding -1 and 1. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns Fisher transformation value.
+Returns the Fisher transformation.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns Fisher transformation value.
+> Returns the Fisher transformation.
 
 
 ## Type Coercion & Edge Cases
@@ -54,7 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=FISHER(0.5)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=FISHER(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

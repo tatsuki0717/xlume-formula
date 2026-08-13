@@ -7,23 +7,23 @@
 - **Volatile:** No
 
 ## Description
-Returns the average deviation of the arguments.
+Returns the average of the absolute deviations of data points from their mean. Arguments can be numbers or names, arrays, or references that contain numbers.
 
 ## Excel Syntax
 ```excel
-=AVEDEV(number1, [number2], ...)
+=AVEDEV(value1, [value2], ...)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number1 | number \| range/array (repeatable) | Yes | A number, cell reference, or range included in the deviation calculation. Further numbers or ranges can be passed as additional arguments. |
+| 1 | values | number \| range/array (repeatable) | Yes | List of parameters, whose elements are 1 to 255 arguments for which you want the average of the absolute deviations. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the average deviation of the arguments.
+Returns the average of the absolute deviations of data points from their mean. Arguments can be numbers or names, arrays, or references that contain numbers.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the average deviation of the arguments.
+> Returns the average of the absolute deviations of data points from their mean. Arguments can be numbers or names, arrays, or references that contain numbers.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=AVEDEV(1, 2, 3)`
-- `=AVEDEV(A1:A10)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=AVEDEV(1, 2, 3)`
 
 ## Test Cases
 | Input | Expected | Purpose |

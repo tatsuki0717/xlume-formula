@@ -7,33 +7,28 @@
 - **Volatile:** No
 
 ## Description
-Returns column number of a given reference or formula reference if argument not provided.
+column number
 
 ## Excel Syntax
 ```excel
-=COLUMN([reference], index)
+=COLUMN()
 ```
 
 ## Arguments
-| # | Name | Type | Required? | Description |
-|---|---|---|---|---|
-| 1 | reference | number \| range/array | No | A cell reference whose column number is returned. When omitted, returns the column number of the cell containing the formula. |
-| 2 | index | any | Yes |  |
+This function takes no arguments.
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns column number of a given reference or formula reference if argument not provided.
+column number
 
 High-level algorithm:
-1. Validate argument count and coerce each argument according to its documented type.
-2. Propagate any input errors (`#VALUE!`, `#NUM!`, etc.) before computation.
-3. Execute the core calculation described below.
-4. Apply final coercion to the documented return type and return the result.
+1. Execute the core calculation.
+2. Return the result.
 
 Core calculation:
-> Returns column number of a given reference or formula reference if argument not provided.
+> column number
 
 
 ## Type Coercion & Edge Cases
@@ -55,8 +50,7 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=COLUMN(C5)`
-- `=COLUMN()`
+TBD — add representative Excel examples during implementation.
 
 ## Test Cases
 | Input | Expected | Purpose |

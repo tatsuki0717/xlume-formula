@@ -7,34 +7,28 @@
 - **Volatile:** No
 
 ## Description
-Returns density of Student-t distribution, both-sided or right-tailed.
+→ `T.DIST.2T` / `T.DIST.RT` (tails arg)
 
 ## Excel Syntax
 ```excel
-=TDIST(x, degrees, tails)
+=TDIST()
 ```
 
 ## Arguments
-| # | Name | Type | Required? | Description |
-|---|---|---|---|---|
-| 1 | x | any | Yes | The value at which to evaluate the distribution; must be non-negative. |
-| 2 | degrees | number | Yes | The number of degrees of freedom. |
-| 3 | tails | number | Yes | The number of distribution tails to return: 1 for right-tailed, or 2 for two-tailed. |
+This function takes no arguments.
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns density of Student-t distribution, both-sided or right-tailed.
+→ `T.DIST.2T` / `T.DIST.RT` (tails arg)
 
 High-level algorithm:
-1. Validate argument count and coerce each argument according to its documented type.
-2. Propagate any input errors (`#VALUE!`, `#NUM!`, etc.) before computation.
-3. Execute the core calculation described below.
-4. Apply final coercion to the documented return type and return the result.
+1. Execute the core calculation.
+2. Return the result.
 
 Core calculation:
-> Returns density of Student-t distribution, both-sided or right-tailed.
+> → `T.DIST.2T` / `T.DIST.RT` (tails arg)
 
 
 ## Type Coercion & Edge Cases
@@ -56,8 +50,7 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=TDIST(1, 10, 1)`
-- `=TDIST(1, 10, 2)`
+TBD — add representative Excel examples during implementation.
 
 ## Test Cases
 | Input | Expected | Purpose |

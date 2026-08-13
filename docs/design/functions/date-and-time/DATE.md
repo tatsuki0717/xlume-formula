@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns the specified date as a serial day count from the workbook's date origin.
+Returns the number that represents the date in Microsoft Excel date-time code.
 
 ## Excel Syntax
 ```excel
@@ -17,15 +17,15 @@ Returns the specified date as a serial day count from the workbook's date origin
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | year | number \| range/array | Yes | The year of the date; values below the workbook's epoch year are added to that epoch year. |
-| 2 | month | number \| range/array | Yes | The month of the date. Values outside 1-12 roll over into adjacent years. |
-| 3 | day | number \| range/array | Yes | The day of the month. Values outside the month's range roll over into adjacent months. |
+| 1 | year | number \| range/array | Yes | Is a number from 1900 or 1904 (depending on the workbook's date system) to 9999. |
+| 2 | month | number \| range/array | Yes | Is a number from 1 to 12 representing the month of the year. |
+| 3 | day | number \| range/array | Yes | Is a number from 1 to 31 representing the day of the month. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the specified date as a serial day count from the workbook's date origin.
+Returns the number that represents the date in Microsoft Excel date-time code.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -34,7 +34,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the specified date as a serial day count from the workbook's date origin.
+> Returns the number that represents the date in Microsoft Excel date-time code.
 
 
 ## Type Coercion & Edge Cases
@@ -56,8 +56,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=DATE(2020, 1, 15)`
-- `=DATE(2020, 13, 1)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=DATE(..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

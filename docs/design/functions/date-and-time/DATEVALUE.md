@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Parses date_string and returns it as a serial day count from the workbook's date origin. It accepts the date format patterns configured for the workbook.
+Converts a date in the form of text to a number that represents the date in Microsoft Excel date-time code.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Parses date_string and returns it as a serial day count from the workbook's date
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | date_text | string \| range/array | Yes | A text string representing a date, in one of the formats configured for the workbook. |
+| 1 | date_text | string \| range/array | Yes | Is text that represents a date in a Microsoft Excel date format, between 1/1/1900 or 1/1/1904 (depending on the workbook's date system) and 12/31/9999. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Parses date_string and returns it as a serial day count from the workbook's date origin. It accepts the date format patterns configured for the workbook.
+Converts a date in the form of text to a number that represents the date in Microsoft Excel date-time code.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Parses date_string and returns it as a serial day count from the workbook's date origin. It accepts the date format patterns configured for the workbook.
+> Converts a date in the form of text to a number that represents the date in Microsoft Excel date-time code.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=DATEVALUE("30/03/2020")`
-- `=DATEVALUE("31/12/2020")`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=DATEVALUE(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

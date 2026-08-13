@@ -8,7 +8,7 @@
 - **Dynamic array:** No (scalar)
 
 ## Description
-Calculates the amount of random sampling error given a range of values and a confidence level.
+See upstream spreadsheet function documentation.
 
 ## Google Sheets Syntax
 ```excel

@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns value of inverse normal distribution.
+Returns the inverse of the normal cumulative distribution for the specified mean and standard deviation.
 
 ## Excel Syntax
 ```excel
@@ -17,15 +17,15 @@ Returns value of inverse normal distribution.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | probability | number \| range/array | Yes | The probability associated with the normal distribution, between 0 and 1. |
-| 2 | mean | number \| range/array | Yes | The arithmetic mean of the distribution. |
-| 3 | standard_dev | number \| range/array | Yes | The standard deviation of the distribution; must be greater than 0. |
+| 1 | probability | number \| range/array | Yes | Is a probability corresponding to the normal distribution, a number between 0 and 1 inclusive. |
+| 2 | mean | number \| range/array | Yes | Is the arithmetic mean of the distribution. |
+| 3 | standard_dev | number \| range/array | Yes | Is the standard deviation of the distribution, a positive number. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns value of inverse normal distribution.
+Returns the inverse of the normal cumulative distribution for the specified mean and standard deviation.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -34,7 +34,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns value of inverse normal distribution.
+> Returns the inverse of the normal cumulative distribution for the specified mean and standard deviation.
 
 
 ## Type Coercion & Edge Cases
@@ -56,7 +56,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=NORM.INV(0.5, 0, 1)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=NORM.INV(..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

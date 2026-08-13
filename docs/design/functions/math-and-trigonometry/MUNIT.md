@@ -7,32 +7,28 @@
 - **Volatile:** No
 
 ## Description
-Returns the unit matrix for the specified dimension.
+identity matrix
 
 ## Excel Syntax
 ```excel
-=MUNIT(dimension)
+=MUNIT()
 ```
 
 ## Arguments
-| # | Name | Type | Required? | Description |
-|---|---|---|---|---|
-| 1 | dimension | number \| range/array | Yes | Required. Dimension is an integer specifying the dimension of the unit matrix that you want to return. It returns an array. The dimension has to be greater than zero. |
+This function takes no arguments.
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the unit matrix for the specified dimension.
+identity matrix
 
 High-level algorithm:
-1. Validate argument count and coerce each argument according to its documented type.
-2. Propagate any input errors (`#VALUE!`, `#NUM!`, etc.) before computation.
-3. Execute the core calculation described below.
-4. Apply final coercion to the documented return type and return the result.
+1. Execute the core calculation.
+2. Return the result.
 
 Core calculation:
-> Returns the unit matrix for the specified dimension.
+> identity matrix
 
 
 ## Type Coercion & Edge Cases
@@ -55,8 +51,6 @@ Core calculation:
 
 ## Examples
 TBD — add representative Excel examples during implementation.
-
-Skeleton: `=MUNIT(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Converts a number into text according to the supplied format code. The implementation should support the standard date, time, and number format codes used by Excel-compatible engines.
+Converts a value to text in a specific number format.
 
 ## Excel Syntax
 ```excel
@@ -17,14 +17,14 @@ Converts a number into text according to the supplied format code. The implement
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | value | number \| string \| boolean \| range/array | Yes | The number or date serial value to format as text. |
-| 2 | format_text | string \| range/array | Yes | The format pattern used to render number as text, e.g. "0.00" or "YYYY-MM-DD". |
+| 1 | value | number \| string \| boolean \| range/array | Yes | Is a number, a formula that evaluates to a numeric value, or a reference to a cell containing a numeric value. |
+| 2 | format_text | string \| range/array | Yes | Is a number format in text form from the Category box on the Number tab in the Format Cells dialog box. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Converts a number into text according to the supplied format code. The implementation should support the standard date, time, and number format codes used by Excel-compatible engines.
+Converts a value to text in a specific number format.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -33,7 +33,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Converts a number into text according to the supplied format code. The implementation should support the standard date, time, and number format codes used by Excel-compatible engines.
+> Converts a value to text in a specific number format.
 
 
 ## Type Coercion & Edge Cases
@@ -55,8 +55,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=TEXT(1234.5, "0.00")`
-- `=TEXT(TODAY(), "YYYY-MM-DD")`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=TEXT(..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

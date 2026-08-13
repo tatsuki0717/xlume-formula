@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns the "sum-of-years" depreciation for an asset in a period.
+Returns the sum-of-years' digits depreciation of an asset for a specified period.
 
 ## Excel Syntax
 ```excel
@@ -17,16 +17,16 @@ Returns the "sum-of-years" depreciation for an asset in a period.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | cost | number \| range/array | Yes | The initial cost of the asset. |
-| 2 | salvage | number \| range/array | Yes | The value of the asset at the end of its depreciation. |
-| 3 | life | number \| range/array | Yes | The number of periods over which the asset is depreciated. |
-| 4 | per | number \| range/array | Yes | The period, in the same units as life, for which depreciation is calculated. |
+| 1 | cost | number \| range/array | Yes | Is the initial cost of the asset. |
+| 2 | salvage | number \| range/array | Yes | Is the salvage value at the end of the life of the asset. |
+| 3 | life | number \| range/array | Yes | Is the number of periods over which the asset is being depreciated (sometimes called the useful life of the asset). |
+| 4 | per | number \| range/array | Yes | Is the period and must use the same units as Life. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the "sum-of-years" depreciation for an asset in a period.
+Returns the sum-of-years' digits depreciation of an asset for a specified period.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -35,7 +35,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the "sum-of-years" depreciation for an asset in a period.
+> Returns the sum-of-years' digits depreciation of an asset for a specified period.
 
 
 ## Type Coercion & Edge Cases
@@ -57,8 +57,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=SYD(10000, 1000, 6, 2)`
-- `=SYD(5000, 500, 10, 1)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=SYD(..., ..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

@@ -7,51 +7,56 @@
 - **Volatile:** No
 
 ## Description
-Extracts data stored in a PivotTable report.
+read pivot table
 
 ## Excel Syntax
 ```excel
-=GETPIVOTDATA(data_field, pivot_table, [field1, item1], ...)
-=GETPIVOTDATA(pivot_table, [field1, item1], ...)
+=GETPIVOTDATA()
 ```
 
 ## Arguments
-| # | Name | Type | Required? | Description |
-|---|---|---|---|---|
-| 1 | data_field | string | Yes (first form) | The name of the data field to retrieve, e.g. `"Sum of Sales"`. |
-| 1/2 | pivot_table | string \| reference | Yes | The pivot table name or a reference to a cell in the pivot table. |
-| ... | field/item pairs | string, any | No | Filter pairs limiting the data to a specific row/column. |
+This function takes no arguments.
 
 ## Returns
-The aggregated value from the pivot table matching the requested data field and filters.
+Scalar or array depending on arguments
 
 ## Behavior / Algorithm
+This function requires external data or runtime infrastructure (network, OLAP, pivot cache, XLL, RTD, etc.) that is outside the scope of a pure worksheet calculation engine.
 
-This function depends on external services, spreadsheet data, or an external runtime (network, OLAP, pivot cache, XLL, RTD, etc.). The core `xlume-formula` engine does not perform network calls or access external data sources; the registered implementation always returns `#N/A`.
+Stub implementation: return `#N/A` or `#VALUE!` with a message that the function is not supported.
 
 ## Type Coercion & Edge Cases
-- Reference arguments are resolved to their cell values before being passed to the provider.
-- `data_field` may be omitted (second form); the provider should determine the default aggregation.
+- Numbers provided as text are coerced to numeric values when the function expects a number.
+- Logical `TRUE`/`FALSE` coerce to `1`/`0` in numeric contexts and to `"TRUE"`/`"FALSE"` in text contexts.
+- Blank cells are treated as `0` in numeric contexts and as `""` in text contexts, unless the function explicitly ignores blanks.
+- Errors in any argument propagate to the result, except where the function is explicitly designed to trap them (e.g., IFERROR, IFNA, AGGREGATE options).
+- Range/array arguments are evaluated element-wise or consumed as a whole depending on the function semantics.
 
 ## Error Handling
 | Error | When |
 |---|---|
-| `#VALUE!` | Argument count or types are invalid. |
-| `#N/A` | No `external.pivot` provider is configured or the lookup has no match. |
+| `#VALUE!` | Argument type or count is invalid, or an argument cannot be coerced. |
+| `#NUM!` | A numeric argument is outside the allowed domain. |
+| `#DIV/0!` | Division by zero or an empty denominator. |
+| `#N/A` | Lookup/match not found or optional fallback triggered. |
+| `#REF!` | Invalid cell/range reference or out-of-bounds index. |
+| `#NAME?` | Function name not recognized. |
+| `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-```excel
-=GETPIVOTDATA("Sum of Sales", A3, "Region", "North")
-```
+TBD — add representative Excel examples during implementation.
 
 ## Test Cases
 | Input | Expected | Purpose |
 |---|---|---|
-| `=GETPIVOTDATA("Sales", "Pivot1", "Region", "North")` with provider | provider result | Golden path |
-| `=GETPIVOTDATA("Sales", "Pivot1")` with no provider | `#N/A` | Missing provider |
+| Normal inputs | Correct numeric/text result | Golden path |
+| Boundary values (0, 1, negatives, very large/small) | Correct or `#NUM!` | Domain edges |
+| Blank/empty cells | Coerced `0` or `""` as appropriate | Blank handling |
+| Text that cannot be coerced | `#VALUE!` | Error propagation |
+| Too few/too many arguments | `#VALUE!` | Arity validation |
 
 ## Implementation Notes
-Not implemented in the core engine; registered as a stub that returns `#N/A`extra.ts`. The engine does not include a pivot cache; the host application must supply a provider via `EvaluationContext.external.pivot`.
+Return `#N/A` or `#VALUE!` unsupported. Do not attempt external network/OLAP calls.
 
 ## References
-- [Microsoft Excel GETPIVOTDATA function](https://support.microsoft.com/en-us/office/getpivotdata-function)
+- [Microsoft Excel function documentation](https://support.microsoft.com/en-us/office/excel-functions-by-category-5f91f4e9-7b42-46d2-9bd1-63f26a86c0eb)

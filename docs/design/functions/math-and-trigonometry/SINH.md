@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns the hyperbolic sine of the given value.
+Returns the hyperbolic sine of a number.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Returns the hyperbolic sine of the given value.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number | number \| range/array | Yes | A number whose hyperbolic sine is returned. |
+| 1 | number | number \| range/array | Yes | Is any real number. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the hyperbolic sine of the given value.
+Returns the hyperbolic sine of a number.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the hyperbolic sine of the given value.
+> Returns the hyperbolic sine of a number.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=SINH(0)`
-- `=SINH(1)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=SINH(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

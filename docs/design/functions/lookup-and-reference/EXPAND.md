@@ -3,35 +3,30 @@
 ## Metadata
 - **Category:** Lookup & Reference
 - **Priority tags:** DA
-- **Scope:** implement
+- **Scope:** deferred
 - **Volatile:** No
 - **Dynamic array:** Yes
 
 ## Description
-Expands or pads an array to specified row and column dimensions.
+pad array to size
 
 ## Excel Syntax
 ```excel
-=EXPAND(array, rows, columns, pad_with)
+=EXPAND()
 ```
 
 ## Arguments
-| # | Name | Type | Required? | Description |
-|---|---|---|---|---|
-| 1 | array | range/array | Yes | The array to expand. |
-| 2 | rows | number \| range/array | Yes | The number of rows in the expanded array. If missing, rows will not be expanded. |
-| 3 | columns | number \| range/array | Yes | The number of columns in the expanded array. If missing, columns will not be expanded. |
-| 4 | pad_with | any | Yes | The value with which to pad. If missing, #N/A will be used. |
+This function takes no arguments.
 
 ## Returns
 Dynamic array
 
 ## Behavior / Algorithm
-Implemented in the engine (Requires dynamic-array / spill support).
+Implementation is deferred (Requires dynamic-array / spill support).
 
-High-level behavior: Expands or pads an array to specified row and column dimensions.
+High-level behavior: pad array to size
 
-See the corresponding source implementation for the detailed algorithm.
+Detailed step-by-step algorithm, type coercion and edge-case handling will be added when this function is prioritized.
 
 ## Type Coercion & Edge Cases
 - Numbers provided as text are coerced to numeric values when the function expects a number.
@@ -53,8 +48,6 @@ See the corresponding source implementation for the detailed algorithm.
 
 ## Examples
 TBD — add representative Excel examples during implementation.
-
-Skeleton: `=EXPAND(..., ..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

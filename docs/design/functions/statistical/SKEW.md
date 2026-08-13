@@ -7,23 +7,23 @@
 - **Volatile:** No
 
 ## Description
-Returns skewness of a sample.
+Returns the skewness of a distribution: a characterization of the degree of asymmetry of a distribution around its mean.
 
 ## Excel Syntax
 ```excel
-=SKEW(number1, [number2], ...)
+=SKEW(value1, [value2], ...)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number1 | number \| range/array (repeatable) | Yes | A number, cell reference, or range included in the sample skewness calculation. Further numbers or ranges can be passed as additional arguments. |
+| 1 | values | number \| range/array (repeatable) | Yes | List of parameters, whose elements are 1 to 255 numbers or names, arrays, or references that contain numbers for which you want the skewness. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns skewness of a sample.
+Returns the skewness of a distribution: a characterization of the degree of asymmetry of a distribution around its mean.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns skewness of a sample.
+> Returns the skewness of a distribution: a characterization of the degree of asymmetry of a distribution around its mean.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=SKEW(1, 2, 3, 10)`
-- `=SKEW(A1:A10)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=SKEW(1, 2, 3)`
 
 ## Test Cases
 | Input | Expected | Purpose |

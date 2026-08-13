@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns standard deviation of a population.
+Calculates standard deviation based on the entire population given as arguments (ignores logical values and text).
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Returns standard deviation of a population.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | value1 | number \| range/array (repeatable) | Yes | A number, cell reference, or range included in the population standard deviation calculation. Further values or ranges can be passed as additional arguments. |
+| 1 | values | number \| range/array (repeatable) | Yes | List of parameters, whose elements are 1 to 255 numbers corresponding to a population and can be numbers or references that contain numbers. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns standard deviation of a population.
+Calculates standard deviation based on the entire population given as arguments (ignores logical values and text).
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns standard deviation of a population.
+> Calculates standard deviation based on the entire population given as arguments (ignores logical values and text).
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=STDEV.P(1, 2, 3)`
-- `=STDEV.P(A1:A10)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=STDEV.P(1, 2, 3)`
 
 ## Test Cases
 | Input | Expected | Purpose |

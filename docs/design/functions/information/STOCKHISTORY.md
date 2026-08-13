@@ -7,55 +7,56 @@
 - **Volatile:** No
 
 ## Description
-`STOCKHISTORY` returns historical stock data by delegating to an `ExternalFunctionProvider.stockHistory(ticker, ...args)` callback supplied by the host application.
+historical stock data
 
 ## Excel Syntax
 ```excel
-=STOCKHISTORY(stock, start_date, [end_date], [interval], [headers], [property0], [property1], ...)
+=STOCKHISTORY()
 ```
 
 ## Arguments
-| Argument | Required | Description |
-|---|---|---|
-| `stock` | Yes | Stock ticker as text. |
-| `start_date` | No | Start of the date range (serial number or text). |
-| `end_date` | No | End of the date range. |
-| `interval` | No | `"daily"`, `"weekly"`, or `"monthly"`. |
-| `headers` | No | Whether to include headers. |
-| `propertyN` | No | Additional properties passed through to the provider. |
+This function takes no arguments.
 
 ## Returns
-An array returned by the provider, or `#N/A` if no provider is configured.
+Scalar or array depending on arguments
 
 ## Behavior / Algorithm
+This function requires external data or runtime infrastructure (network, OLAP, pivot cache, XLL, RTD, etc.) that is outside the scope of a pure worksheet calculation engine.
 
-This function depends on external services, spreadsheet data, or an external runtime (network, OLAP, pivot cache, XLL, RTD, etc.). The core `xlume-formula` engine does not perform network calls or access external data sources; the registered implementation always returns `#N/A`.
+Stub implementation: return `#N/A` or `#VALUE!` with a message that the function is not supported.
 
 ## Type Coercion & Edge Cases
-- Dates may be passed as serial numbers or text and are passed through to the provider.
-- `interval` may be passed as text.
+- Numbers provided as text are coerced to numeric values when the function expects a number.
+- Logical `TRUE`/`FALSE` coerce to `1`/`0` in numeric contexts and to `"TRUE"`/`"FALSE"` in text contexts.
+- Blank cells are treated as `0` in numeric contexts and as `""` in text contexts, unless the function explicitly ignores blanks.
+- Errors in any argument propagate to the result, except where the function is explicitly designed to trap them (e.g., IFERROR, IFNA, AGGREGATE options).
+- Range/array arguments are evaluated element-wise or consumed as a whole depending on the function semantics.
 
 ## Error Handling
 | Error | When |
 |---|---|
-| `#VALUE!` | Provider throws. |
-| `#N/A` | No `external.stockHistory` provider is configured. |
+| `#VALUE!` | Argument type or count is invalid, or an argument cannot be coerced. |
+| `#NUM!` | A numeric argument is outside the allowed domain. |
+| `#DIV/0!` | Division by zero or an empty denominator. |
+| `#N/A` | Lookup/match not found or optional fallback triggered. |
+| `#REF!` | Invalid cell/range reference or out-of-bounds index. |
+| `#NAME?` | Function name not recognized. |
+| `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-```excel
-=STOCKHISTORY("AAPL")
-=STOCKHISTORY("MSFT", 45000, 45030, "daily")
-```
+TBD — add representative Excel examples during implementation.
 
 ## Test Cases
 | Input | Expected | Purpose |
 |---|---|---|
-| `=STOCKHISTORY("AAPL")` with provider returning an array | that array | Provider invoked |
-| `=STOCKHISTORY("AAPL")` with no provider | `#N/A` | Missing provider |
+| Normal inputs | Correct numeric/text result | Golden path |
+| Boundary values (0, 1, negatives, very large/small) | Correct or `#NUM!` | Domain edges |
+| Blank/empty cells | Coerced `0` or `""` as appropriate | Blank handling |
+| Text that cannot be coerced | `#VALUE!` | Error propagation |
+| Too few/too many arguments | `#VALUE!` | Arity validation |
 
 ## Implementation Notes
-- Not implemented in the core engine; registered as a stub that returns `#N/A`missing.ts`.
-- Synchronous-only: the provider must return data synchronously (e.g. from a cache). The library does not perform async market-data fetching.
+Return `#N/A` or `#VALUE!` unsupported. Do not attempt external network/OLAP calls.
 
 ## References
-- [Microsoft Excel STOCKHISTORY function](https://support.microsoft.com/en-us/office/stockhistory-function)
+- [Microsoft Excel function documentation](https://support.microsoft.com/en-us/office/excel-functions-by-category-5f91f4e9-7b42-46d2-9bd1-63f26a86c0eb)

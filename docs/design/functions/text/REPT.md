@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Repeats text a given number of times.
+Repeats text a given number of times. Use REPT to fill a cell with a number of instances of a text string.
 
 ## Excel Syntax
 ```excel
@@ -17,14 +17,14 @@ Repeats text a given number of times.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | text | string \| range/array | Yes | The text to repeat. |
-| 2 | number_times | number \| range/array | Yes | The number of times to repeat text. |
+| 1 | text | string \| range/array | Yes | Is the text you want to repeat. |
+| 2 | number_times | number \| range/array | Yes | Is a positive number specifying the number of times to repeat text. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Repeats text a given number of times.
+Repeats text a given number of times. Use REPT to fill a cell with a number of instances of a text string.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -33,7 +33,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Repeats text a given number of times.
+> Repeats text a given number of times. Use REPT to fill a cell with a number of instances of a text string.
 
 
 ## Type Coercion & Edge Cases
@@ -55,8 +55,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=REPT("ab", 3)`
-- `=REPT(A1, 2)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=REPT(..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

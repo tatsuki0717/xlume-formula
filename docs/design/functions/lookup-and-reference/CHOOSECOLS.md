@@ -3,34 +3,30 @@
 ## Metadata
 - **Category:** Lookup & Reference
 - **Priority tags:** DA
-- **Scope:** implement
+- **Scope:** deferred
 - **Volatile:** No
 - **Dynamic array:** Yes
 
 ## Description
-Returns the specified columns from an array.
+pick columns
 
 ## Excel Syntax
 ```excel
-=CHOOSECOLS(array, col_num1, col_nums)
+=CHOOSECOLS()
 ```
 
 ## Arguments
-| # | Name | Type | Required? | Description |
-|---|---|---|---|---|
-| 1 | array | range/array | Yes | range of values or an array constant. |
-| 2 | col_num1 | any | Yes | required column index |
-| 3 | col_nums | any | Yes | additionnal column indexes |
+This function takes no arguments.
 
 ## Returns
 Dynamic array
 
 ## Behavior / Algorithm
-Implemented in the engine (Requires dynamic-array / spill support).
+Implementation is deferred (Requires dynamic-array / spill support).
 
-High-level behavior: Returns the specified columns from an array.
+High-level behavior: pick columns
 
-See the corresponding source implementation for the detailed algorithm.
+Detailed step-by-step algorithm, type coercion and edge-case handling will be added when this function is prioritized.
 
 ## Type Coercion & Edge Cases
 - Numbers provided as text are coerced to numeric values when the function expects a number.
@@ -52,8 +48,6 @@ See the corresponding source implementation for the detailed algorithm.
 
 ## Examples
 TBD — add representative Excel examples during implementation.
-
-Skeleton: `=CHOOSECOLS(..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

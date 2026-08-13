@@ -3,7 +3,7 @@
 ## Metadata
 - **Category:** Logical
 - **Priority tags:** LAMBDA
-- **Scope:** implement
+- **Scope:** deferred
 - **Volatile:** No
 - **Dynamic array:** Yes
 - **LAMBDA support:** Yes
@@ -27,11 +27,11 @@ Generates an array of the given size by applying a LAMBDA for each row/column in
 Dynamic array
 
 ## Behavior / Algorithm
-Implemented in the engine (Requires the LAMBDA/closures engine, Requires dynamic-array / spill support).
+Implementation is deferred (Requires the LAMBDA/closures engine, Requires dynamic-array / spill support).
 
 High-level behavior: Generates an array of the given size by applying a LAMBDA for each row/column index.
 
-See the corresponding source implementation for the detailed algorithm.
+Detailed step-by-step algorithm, type coercion and edge-case handling will be added when this function is prioritized.
 
 ## Type Coercion & Edge Cases
 - Numbers provided as text are coerced to numeric values when the function expects a number.

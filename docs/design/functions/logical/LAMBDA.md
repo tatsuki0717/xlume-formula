@@ -3,7 +3,7 @@
 ## Metadata
 - **Category:** Logical
 - **Priority tags:** LAMBDA
-- **Scope:** implement
+- **Scope:** deferred
 - **Volatile:** No
 - **LAMBDA support:** Yes
 
@@ -25,11 +25,11 @@ Creates a custom, reusable function value that can be called by name or inline.
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Implemented in the engine (Requires the LAMBDA/closures engine).
+Implementation is deferred (Requires the LAMBDA/closures engine).
 
 High-level behavior: Creates a custom, reusable function value that can be called by name or inline.
 
-See the corresponding source implementation for the detailed algorithm.
+Detailed step-by-step algorithm, type coercion and edge-case handling will be added when this function is prioritized.
 
 ## Type Coercion & Edge Cases
 - Numbers provided as text are coerced to numeric values when the function expects a number.

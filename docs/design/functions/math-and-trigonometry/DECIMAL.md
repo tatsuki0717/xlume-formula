@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Converts text with characters from a number system to a non-negative integer in the base radix given.
+Converts a text representation of a number in a given base into a decimal number.
 
 ## Excel Syntax
 ```excel
@@ -17,14 +17,14 @@ Converts text with characters from a number system to a non-negative integer in 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number | string \| range/array | Yes | The text representation of the number to convert. |
-| 2 | radix | number \| range/array | Yes | The base (from 2 to 36) that text is expressed in. |
+| 1 | number | string \| range/array | Yes | Is the number that you want to convert. |
+| 2 | radix | number \| range/array | Yes | Is the base Radix of the number you are converting. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Converts text with characters from a number system to a non-negative integer in the base radix given.
+Converts a text representation of a number in a given base into a decimal number.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -33,7 +33,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Converts text with characters from a number system to a non-negative integer in the base radix given.
+> Converts a text representation of a number in a given base into a decimal number.
 
 
 ## Type Coercion & Edge Cases
@@ -55,8 +55,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=DECIMAL("1100", 2)`
-- `=DECIMAL("FF", 16)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=DECIMAL(..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

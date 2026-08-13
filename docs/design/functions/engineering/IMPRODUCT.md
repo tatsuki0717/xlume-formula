@@ -7,23 +7,23 @@
 - **Volatile:** No
 
 ## Description
-Multiplies complex numbers.
+Returns the product of 1 to 255 complex numbers.
 
 ## Excel Syntax
 ```excel
-=IMPRODUCT(complex1, [complex2], ...)
+=IMPRODUCT(value1, [value2], ...)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | complex1 | range/array \| number \| string \| boolean (repeatable) | Yes | A complex number, cell, or range to multiply. Further complex numbers or ranges can be passed as additional arguments. |
+| 1 | values | range/array \| number \| string \| boolean (repeatable) | Yes | Inumber1, Inumber2,... are from 1 to 255 complex numbers to multiply. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Multiplies complex numbers.
+Returns the product of 1 to 255 complex numbers.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Multiplies complex numbers.
+> Returns the product of 1 to 255 complex numbers.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=IMPRODUCT("3+4i", "1-2i")`
-- `=IMPRODUCT(A1:A5)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=IMPRODUCT(1, 2, 3)`
 
 ## Test Cases
 | Input | Expected | Purpose |

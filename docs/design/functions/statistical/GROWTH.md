@@ -3,35 +3,30 @@
 ## Metadata
 - **Category:** Statistical
 - **Priority tags:** DA
-- **Scope:** implement
+- **Scope:** deferred
 - **Volatile:** No
 - **Dynamic array:** Yes
 
 ## Description
-Returns values along an exponential trend.
+exponential trend array
 
 ## Excel Syntax
 ```excel
-=GROWTH(known_y, [known_x], [new_x], [use_const])
+=GROWTH()
 ```
 
 ## Arguments
-| # | Name | Type | Required? | Description |
-|---|---|---|---|---|
-| 1 | known_y | any | Yes | The set of y-values you already know in the relationship y = b*m^x. |
-| 2 | known_x | any | No | Optional. An optional set of x-values that you may already know in the relationship y = b*m^x. |
-| 3 | new_x | any | No | Optional. Are new x-values for which you want GROWTH to return corresponding y-values. |
-| 4 | use_const | boolean | No | Optional. A logical value specifying whether to force the constant b to equal 1. If const is TRUE or omitted, b is calculated normally. If const is FALSE, b is set equal to 1 and the m-values are adjusted so that y = m^x. |
+This function takes no arguments.
 
 ## Returns
 Dynamic array
 
 ## Behavior / Algorithm
-Implemented in the engine (Requires dynamic-array / spill support).
+Implementation is deferred (Requires dynamic-array / spill support).
 
-High-level behavior: Returns values along an exponential trend.
+High-level behavior: exponential trend array
 
-See the corresponding source implementation for the detailed algorithm.
+Detailed step-by-step algorithm, type coercion and edge-case handling will be added when this function is prioritized.
 
 ## Type Coercion & Edge Cases
 - Numbers provided as text are coerced to numeric values when the function expects a number.
@@ -53,8 +48,6 @@ See the corresponding source implementation for the detailed algorithm.
 
 ## Examples
 TBD — add representative Excel examples during implementation.
-
-Skeleton: `=GROWTH(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

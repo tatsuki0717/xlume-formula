@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Converts a price displayed as a decimal number to a price entered with a special notation.
+Converts a dollar price, expressed as a decimal number, into a dollar price, expressed as a fraction.
 
 ## Excel Syntax
 ```excel
@@ -17,14 +17,14 @@ Converts a price displayed as a decimal number to a price entered with a special
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | decimal_dollar | number \| string \| boolean \| range/array | Yes | The price expressed as a decimal number. |
-| 2 | fraction | number \| string \| boolean \| range/array | Yes | The denominator to use in the fractional notation, e.g. 16 for sixteenths. |
+| 1 | decimal_dollar | number \| string \| boolean \| range/array | Yes | Is a decimal number. |
+| 2 | fraction | number \| string \| boolean \| range/array | Yes | Is the integer to use in the denominator of a fraction. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Converts a price displayed as a decimal number to a price entered with a special notation.
+Converts a dollar price, expressed as a decimal number, into a dollar price, expressed as a fraction.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -33,7 +33,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Converts a price displayed as a decimal number to a price entered with a special notation.
+> Converts a dollar price, expressed as a decimal number, into a dollar price, expressed as a fraction.
 
 
 ## Type Coercion & Edge Cases
@@ -55,8 +55,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=DOLLARFR(1.125, 16)`
-- `=DOLLARFR(1.3, 32)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=DOLLARFR(..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

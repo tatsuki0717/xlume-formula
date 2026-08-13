@@ -7,50 +7,56 @@
 - **Volatile:** No
 
 ## Description
-`WEBSERVICE` returns the raw text content at the given URL by delegating to an `ExternalFunctionProvider.webService(url)` callback supplied by the host application.
+HTTP GET
 
 ## Excel Syntax
 ```excel
-=WEBSERVICE(url)
+=WEBSERVICE()
 ```
 
 ## Arguments
-| Argument | Required | Description |
-|---|---|---|
-| `url` | Yes | A text value containing the URL to fetch. |
+This function takes no arguments.
 
 ## Returns
-The text returned by the provider, or an error if no provider is configured or the fetch fails.
+Scalar or array depending on arguments
 
 ## Behavior / Algorithm
+This function requires external data or runtime infrastructure (network, OLAP, pivot cache, XLL, RTD, etc.) that is outside the scope of a pure worksheet calculation engine.
 
-This function depends on external services, spreadsheet data, or an external runtime (network, OLAP, pivot cache, XLL, RTD, etc.). The core `xlume-formula` engine does not perform network calls or access external data sources; the registered implementation always returns `#N/A`.
+Stub implementation: return `#N/A` or `#VALUE!` with a message that the function is not supported.
 
 ## Type Coercion & Edge Cases
-- Non-text `url` values are coerced to text before the request.
-- Blank `url` coerces to `""` and will typically fail or return an error.
+- Numbers provided as text are coerced to numeric values when the function expects a number.
+- Logical `TRUE`/`FALSE` coerce to `1`/`0` in numeric contexts and to `"TRUE"`/`"FALSE"` in text contexts.
+- Blank cells are treated as `0` in numeric contexts and as `""` in text contexts, unless the function explicitly ignores blanks.
+- Errors in any argument propagate to the result, except where the function is explicitly designed to trap them (e.g., IFERROR, IFNA, AGGREGATE options).
+- Range/array arguments are evaluated element-wise or consumed as a whole depending on the function semantics.
 
 ## Error Handling
 | Error | When |
 |---|---|
-| `#VALUE!` | Missing `url` or provider throws. |
-| `#N/A` | No `external.webService` provider is configured. |
+| `#VALUE!` | Argument type or count is invalid, or an argument cannot be coerced. |
+| `#NUM!` | A numeric argument is outside the allowed domain. |
+| `#DIV/0!` | Division by zero or an empty denominator. |
+| `#N/A` | Lookup/match not found or optional fallback triggered. |
+| `#REF!` | Invalid cell/range reference or out-of-bounds index. |
+| `#NAME?` | Function name not recognized. |
+| `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-```excel
-=WEBSERVICE("https://example.com/data")
-```
+TBD — add representative Excel examples during implementation.
 
 ## Test Cases
 | Input | Expected | Purpose |
 |---|---|---|
-| `=WEBSERVICE("https://example.com/data")` with provider returning `"ok"` | `"ok"` | Provider is invoked |
-| `=WEBSERVICE("https://example.com")` with no provider | `#N/A` | Missing provider |
+| Normal inputs | Correct numeric/text result | Golden path |
+| Boundary values (0, 1, negatives, very large/small) | Correct or `#NUM!` | Domain edges |
+| Blank/empty cells | Coerced `0` or `""` as appropriate | Blank handling |
+| Text that cannot be coerced | `#VALUE!` | Error propagation |
+| Too few/too many arguments | `#VALUE!` | Arity validation |
 
 ## Implementation Notes
-- Not implemented in the core engine; registered as a stub that returns `#N/A`missing.ts`.
-- Synchronous-only: the provider must return the result synchronously (e.g. from a cache or pre-fetched map). The library itself does not perform async network calls.
-- The host application is responsible for networking, caching, CORS, and security.
+Return `#N/A` or `#VALUE!` unsupported. Do not attempt external network/OLAP calls.
 
 ## References
-- [Microsoft Excel WEBSERVICE function](https://support.microsoft.com/en-us/office/webservice-function)
+- [Microsoft Excel function documentation](https://support.microsoft.com/en-us/office/excel-functions-by-category-5f91f4e9-7b42-46d2-9bd1-63f26a86c0eb)

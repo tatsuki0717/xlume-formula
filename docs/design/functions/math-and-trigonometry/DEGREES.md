@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Converts radians into degrees.
+Converts radians to degrees.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Converts radians into degrees.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | angle | number \| range/array | Yes | An angle in radians to convert to degrees. |
+| 1 | angle | number \| range/array | Yes | Is the angle in radians that you want to convert. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Converts radians into degrees.
+Converts radians to degrees.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Converts radians into degrees.
+> Converts radians to degrees.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=DEGREES(PI())`
-- `=DEGREES(1)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=DEGREES(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

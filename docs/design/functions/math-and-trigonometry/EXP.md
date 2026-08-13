@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns constant e raised to the power of a number.
+Returns e raised to the power of a given number.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Returns constant e raised to the power of a number.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number | number \| range/array | Yes | The exponent to which the constant e is raised. |
+| 1 | number | number \| range/array | Yes | Is the exponent applied to the base e. The constant e equals 2.71828182845904, the base of the natural logarithm. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns constant e raised to the power of a number.
+Returns e raised to the power of a given number.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns constant e raised to the power of a number.
+> Returns e raised to the power of a given number.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=EXP(1)`
-- `=EXP(0)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=EXP(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

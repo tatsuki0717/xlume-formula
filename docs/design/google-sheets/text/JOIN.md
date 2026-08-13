@@ -8,7 +8,7 @@
 - **Dynamic array:** No (scalar)
 
 ## Description
-Concatenates the elements of one or more one-dimensional arrays using a specified delimiter.
+See upstream spreadsheet function documentation.
 
 ## Google Sheets Syntax
 ```excel

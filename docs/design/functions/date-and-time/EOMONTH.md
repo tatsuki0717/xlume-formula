@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns the date of the last day of the month that is the given number of months away from start_date, expressed as a serial day count from the workbook's date origin.
+Returns the serial number of the last day of the month before or after a specified number of months.
 
 ## Excel Syntax
 ```excel
@@ -17,14 +17,14 @@ Returns the date of the last day of the month that is the given number of months
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | start_date | number \| string \| boolean \| range/array | Yes | The date value to start counting from. |
-| 2 | months | number \| string \| boolean \| range/array | Yes | The number of months to add to start_date before finding the end of that month; negative values go backwards. |
+| 1 | start_date | number \| string \| boolean \| range/array | Yes | Is a serial date number that represents the start date. |
+| 2 | months | number \| string \| boolean \| range/array | Yes | Is the number of months before or after the startDate. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the date of the last day of the month that is the given number of months away from start_date, expressed as a serial day count from the workbook's date origin.
+Returns the serial number of the last day of the month before or after a specified number of months.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -33,7 +33,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the date of the last day of the month that is the given number of months away from start_date, expressed as a serial day count from the workbook's date origin.
+> Returns the serial number of the last day of the month before or after a specified number of months.
 
 
 ## Type Coercion & Edge Cases
@@ -55,8 +55,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=EOMONTH(A1, 1)`
-- `=EOMONTH(DATE(2020, 1, 15), 0)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=EOMONTH(..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

@@ -8,7 +8,7 @@
 - **Dynamic array:** No (scalar)
 
 ## Description
-Whether a piece of text matches a regular expression.
+See upstream spreadsheet function documentation.
 
 ## Google Sheets Syntax
 ```excel

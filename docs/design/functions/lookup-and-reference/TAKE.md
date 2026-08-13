@@ -3,34 +3,30 @@
 ## Metadata
 - **Category:** Lookup & Reference
 - **Priority tags:** DA
-- **Scope:** implement
+- **Scope:** deferred
 - **Volatile:** No
 - **Dynamic array:** Yes
 
 ## Description
-Returns a specified number of contiguous rows or columns from the start or end of an array.
+take rows/cols
 
 ## Excel Syntax
 ```excel
-=TAKE(array, rows, columns)
+=TAKE()
 ```
 
 ## Arguments
-| # | Name | Type | Required? | Description |
-|---|---|---|---|---|
-| 1 | array | range/array | Yes | The array from which to take rows or columns. |
-| 2 | rows | number | Yes | The number of rows to take. A positive value takes from the start, a negative value takes from the end. |
-| 3 | columns | number | Yes | The number of columns to take. A positive value takes from the start, a negative value takes from the end. |
+This function takes no arguments.
 
 ## Returns
 Dynamic array
 
 ## Behavior / Algorithm
-Implemented in the engine (Requires dynamic-array / spill support).
+Implementation is deferred (Requires dynamic-array / spill support).
 
-High-level behavior: Returns a specified number of contiguous rows or columns from the start or end of an array.
+High-level behavior: take rows/cols
 
-See the corresponding source implementation for the detailed algorithm.
+Detailed step-by-step algorithm, type coercion and edge-case handling will be added when this function is prioritized.
 
 ## Type Coercion & Edge Cases
 - Numbers provided as text are coerced to numeric values when the function expects a number.
@@ -52,8 +48,6 @@ See the corresponding source implementation for the detailed algorithm.
 
 ## Examples
 TBD — add representative Excel examples during implementation.
-
-Skeleton: `=TAKE(..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

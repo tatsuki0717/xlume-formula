@@ -7,23 +7,23 @@
 - **Volatile:** No
 
 ## Description
-Returns the probability that a member of a standard normal population falls between the mean and `number` standard deviations from the mean.
+Returns 0.5 less than the standard normal cumulative distribution.
 
 ## Excel Syntax
 ```excel
-=GAUSS(z)
+=GAUSS(x)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | z | number \| range/array | Yes | The number of standard deviations from the mean, Z, of a standard normal variable. |
+| 1 | x | number \| range/array | Yes | Is the value for which you want the distribution. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the probability that a member of a standard normal population falls between the mean and `number` standard deviations from the mean.
+Returns 0.5 less than the standard normal cumulative distribution.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the probability that a member of a standard normal population falls between the mean and `number` standard deviations from the mean.
+> Returns 0.5 less than the standard normal cumulative distribution.
 
 
 ## Type Coercion & Edge Cases
@@ -54,7 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=GAUSS(2)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=GAUSS(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

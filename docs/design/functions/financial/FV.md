@@ -7,27 +7,27 @@
 - **Volatile:** No
 
 ## Description
-Returns the future value of an investment.
+Returns the future value of an investment based on periodic, constant payments and a constant interest rate.
 
 ## Excel Syntax
 ```excel
-=FV(rate, nper, pmt, [pv], [type])
+=FV(rate, nper, pmt, pv, type)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | rate | number \| range/array | Yes | The interest rate per period. |
-| 2 | nper | number \| range/array | Yes | The total number of payment periods. |
-| 3 | pmt | number \| range/array | Yes | The payment made each period; paid-out amounts are negative. |
-| 4 | pv | number \| range/array | No | The present value, i.e. the lump-sum amount the future payments are worth right now; defaults to 0. |
-| 5 | type | number \| range/array | No | When payments are due: 0 for the end of each period, 1 for the beginning; defaults to 0. |
+| 1 | rate | number \| range/array | Yes | Is the interest rate per period. For example, use 6%/4 for quarterly payments at 6% APR. |
+| 2 | nper | number \| range/array | Yes | Is the total number of payment periods in the investment. |
+| 3 | pmt | number \| range/array | Yes | Is the payment made each period; it cannot change over the life of the investment. |
+| 4 | pv | number \| range/array | Yes | Is the present value, or the lump-sum amount that a series of future payments is worth now. If omitted, Pv = 0. |
+| 5 | type | number \| range/array | Yes | Is a value representing the timing of payment: payment at the beginning of the period = 1; payment at the end of the period = 0 or omitted. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the future value of an investment.
+Returns the future value of an investment based on periodic, constant payments and a constant interest rate.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -36,7 +36,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the future value of an investment.
+> Returns the future value of an investment based on periodic, constant payments and a constant interest rate.
 
 
 ## Type Coercion & Edge Cases
@@ -58,8 +58,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=FV(0.05/12, 60, -100)`
-- `=FV(0.06/12, 24, -200, -500, 1)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=FV(..., ..., ..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

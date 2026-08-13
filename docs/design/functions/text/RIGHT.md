@@ -7,24 +7,24 @@
 - **Volatile:** No
 
 ## Description
-Extracts a given number of characters from the right side of a text string.
+Returns the specified number of characters from the end of a text string.
 
 ## Excel Syntax
 ```excel
-=RIGHT(text, [num_chars])
+=RIGHT(text, num_chars)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | text | string \| range/array | Yes | The text to extract characters from. |
-| 2 | num_chars | number \| range/array | No | The number of characters to extract, counting from the right. Defaults to 1. |
+| 1 | text | string \| range/array | Yes | Is the text string that contains the characters you want to extract. |
+| 2 | num_chars | number \| range/array | Yes | Specifies how many characters you want to extract, 1 if omitted. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Extracts a given number of characters from the right side of a text string.
+Returns the specified number of characters from the end of a text string.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -33,7 +33,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Extracts a given number of characters from the right side of a text string.
+> Returns the specified number of characters from the end of a text string.
 
 
 ## Type Coercion & Edge Cases
@@ -55,8 +55,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=RIGHT("Hello", 2)`
-- `=RIGHT(A1)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=RIGHT(..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

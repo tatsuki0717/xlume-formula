@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns the depreciation of an asset for one period, based on a straight-line method.
+Returns the straight-line depreciation of an asset for one period.
 
 ## Excel Syntax
 ```excel
@@ -17,15 +17,15 @@ Returns the depreciation of an asset for one period, based on a straight-line me
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | cost | number \| range/array | Yes | The initial cost of the asset. |
-| 2 | salvage | number \| range/array | Yes | The value of the asset at the end of its depreciation. |
-| 3 | life | number \| range/array | Yes | The number of periods over which the asset is depreciated. |
+| 1 | cost | number \| range/array | Yes | Is the initial cost of the asset. |
+| 2 | salvage | number \| range/array | Yes | Is the salvage value at the end of the life of the asset. |
+| 3 | life | number \| range/array | Yes | Is the number of periods over which the asset is being depreciated (sometimes called the useful life of the asset). |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the depreciation of an asset for one period, based on a straight-line method.
+Returns the straight-line depreciation of an asset for one period.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -34,7 +34,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the depreciation of an asset for one period, based on a straight-line method.
+> Returns the straight-line depreciation of an asset for one period.
 
 
 ## Type Coercion & Edge Cases
@@ -56,8 +56,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=SLN(10000, 1000, 6)`
-- `=SLN(5000, 500, 10)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=SLN(..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

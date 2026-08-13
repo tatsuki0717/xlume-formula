@@ -7,33 +7,28 @@
 - **Volatile:** No
 
 ## Description
-Returns the value if the cell does not contains an error value, or the alternative value if it does.
+value or fallback on error
 
 ## Excel Syntax
 ```excel
-=IFERROR(value, value_if_error)
+=IFERROR()
 ```
 
 ## Arguments
-| # | Name | Type | Required? | Description |
-|---|---|---|---|---|
-| 1 | value | any | Yes | The value or formula checked for an error. |
-| 2 | value_if_error | any | Yes | The value returned when value evaluates to any error; otherwise value itself is returned. |
+This function takes no arguments.
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the value if the cell does not contains an error value, or the alternative value if it does.
+value or fallback on error
 
 High-level algorithm:
-1. Validate argument count and coerce each argument according to its documented type.
-2. Propagate any input errors (`#VALUE!`, `#NUM!`, etc.) before computation.
-3. Execute the core calculation described below.
-4. Apply final coercion to the documented return type and return the result.
+1. Execute the core calculation.
+2. Return the result.
 
 Core calculation:
-> Returns the value if the cell does not contains an error value, or the alternative value if it does.
+> value or fallback on error
 
 
 ## Type Coercion & Edge Cases
@@ -55,8 +50,7 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=IFERROR(A1/B1, "error")`
-- `=IFERROR(VLOOKUP(A1, B1:C10, 2, FALSE()), "not found")`
+TBD — add representative Excel examples during implementation.
 
 ## Test Cases
 | Input | Expected | Purpose |

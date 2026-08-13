@@ -8,7 +8,7 @@
 - **Dynamic array:** No (scalar)
 
 ## Description
-Replaces part of a text string with a different text string using regular expressions.
+See upstream spreadsheet function documentation.
 
 ## Google Sheets Syntax
 ```excel

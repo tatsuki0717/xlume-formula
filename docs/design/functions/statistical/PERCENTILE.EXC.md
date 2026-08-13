@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns the k-th percentile of values in a range, exclusive of 0 and 1.
+Returns the k-th percentile of values in a range, where k is in the range 0..1, exclusive.
 
 ## Excel Syntax
 ```excel
@@ -17,14 +17,14 @@ Returns the k-th percentile of values in a range, exclusive of 0 and 1.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | array | number \| range/array | Yes | The range of values to evaluate. |
-| 2 | k | number \| range/array | Yes | The percentile to return, exclusive of 0 and 1, e.g. 0.25. |
+| 1 | array | number \| range/array | Yes | Is the array or range of data that defines relative standing. |
+| 2 | k | number \| range/array | Yes | Is the percentile value that is between 0 through 1, inclusive. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the k-th percentile of values in a range, exclusive of 0 and 1.
+Returns the k-th percentile of values in a range, where k is in the range 0..1, exclusive.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -33,7 +33,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the k-th percentile of values in a range, exclusive of 0 and 1.
+> Returns the k-th percentile of values in a range, where k is in the range 0..1, exclusive.
 
 
 ## Type Coercion & Edge Cases
@@ -55,7 +55,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=PERCENTILE.EXC(A1:A10, 0.25)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=PERCENTILE.EXC(..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

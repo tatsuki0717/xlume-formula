@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns the minimum value in a database field that matches the given criteria.
+Returns the smallest number in the field (column) of records in the database that match the conditions you specify.
 
 ## Excel Syntax
 ```excel
@@ -17,15 +17,15 @@ Returns the minimum value in a database field that matches the given criteria.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | database | range/array | Yes | The range of cells holding the database table, including a header row with field names in the first row. |
-| 2 | field | number \| string \| range/array | Yes | The field whose minimum value is returned, given as a matching header name or as a 1-based column index within database. |
-| 3 | criteria | string \| range/array | Yes | The range of condition cells, with a header row matching field names in database and one or more rows below it; conditions within the same row are combined with AND, and separate rows are combined with OR. |
+| 1 | database | range/array | Yes | Is the range of cells that makes up the list or database. A database is a list of related data. |
+| 2 | field | number \| string \| range/array | Yes | Is either the label of the column in double quotation marks or a number that represents the column's position in the list. |
+| 3 | criteria | string \| range/array | Yes | Is the range of cells that contains the conditions you specify. The range includes a column label and one cell below the label for a condition. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the minimum value in a database field that matches the given criteria.
+Returns the smallest number in the field (column) of records in the database that match the conditions you specify.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -34,7 +34,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the minimum value in a database field that matches the given criteria.
+> Returns the smallest number in the field (column) of records in the database that match the conditions you specify.
 
 
 ## Type Coercion & Edge Cases
@@ -56,8 +56,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=DMIN(A1:C10, "Sales", E1:E2)`
-- `=DMIN(A1:C10, 3, E1:F2)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=DMIN(..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns k-th largest value in a range.
+Returns the k-th largest value in a data set. For example, the fifth largest number.
 
 ## Excel Syntax
 ```excel
@@ -17,14 +17,14 @@ Returns k-th largest value in a range.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | array | number \| range/array | Yes | The range of values to evaluate. |
-| 2 | k | number \| range/array | Yes | The position, from the largest, of the value to return; 1 returns the largest value. |
+| 1 | array | number \| range/array | Yes | Is the array or range of data for which you want to determine the k-th largest value. |
+| 2 | k | number \| range/array | Yes | Is the position (from the largest) in the array or cell range of the value to return. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns k-th largest value in a range.
+Returns the k-th largest value in a data set. For example, the fifth largest number.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -33,7 +33,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns k-th largest value in a range.
+> Returns the k-th largest value in a data set. For example, the fifth largest number.
 
 
 ## Type Coercion & Edge Cases
@@ -55,8 +55,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=LARGE(A1:A10, 1)`
-- `=LARGE(A1:A10, 3)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=LARGE(..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

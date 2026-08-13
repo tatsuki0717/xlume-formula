@@ -8,7 +8,7 @@
 - **Dynamic array:** No (scalar)
 
 ## Description
-Returns a specified number, unchanged.
+See upstream spreadsheet function documentation.
 
 ## Google Sheets Syntax
 ```excel

@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns upper confidence bound for T distribution.
+Returns the confidence interval for a population mean, using a Student's T distribution.
 
 ## Excel Syntax
 ```excel
@@ -17,15 +17,15 @@ Returns upper confidence bound for T distribution.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | alpha | number \| range/array | Yes | The significance level used to compute the confidence level, between 0 and 1. |
-| 2 | standard_dev | number \| range/array | Yes | The sample standard deviation; must be greater than 0. |
-| 3 | size | number \| range/array | Yes | The sample size. |
+| 1 | alpha | number \| range/array | Yes | Is the significance level used to compute the confidence level, a number greater than 0 and less than 1. |
+| 2 | standard_dev | number \| range/array | Yes | Is the population standard deviation for the data range and is assumed to be known. standardDev must be greater than 0. |
+| 3 | size | number \| range/array | Yes | Is the sample size. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns upper confidence bound for T distribution.
+Returns the confidence interval for a population mean, using a Student's T distribution.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -34,7 +34,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns upper confidence bound for T distribution.
+> Returns the confidence interval for a population mean, using a Student's T distribution.
 
 
 ## Type Coercion & Edge Cases
@@ -56,7 +56,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=CONFIDENCE.T(0.05, 2.5, 10)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=CONFIDENCE.T(..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

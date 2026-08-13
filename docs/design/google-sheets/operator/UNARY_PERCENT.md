@@ -8,7 +8,7 @@
 - **Dynamic array:** No (scalar)
 
 ## Description
-Returns a value interpreted as a percentage; that is, `UNARY_PERCENT(100)` equals `1`.
+See upstream spreadsheet function documentation.
 
 ## Google Sheets Syntax
 ```excel

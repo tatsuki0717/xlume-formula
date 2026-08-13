@@ -8,7 +8,7 @@
 - **Dynamic array:** No (scalar)
 
 ## Description
-Converts a Unix epoch timestamp in seconds, milliseconds, or microseconds to a datetime in UTC.
+See upstream spreadsheet function documentation.
 
 ## Google Sheets Syntax
 ```excel
