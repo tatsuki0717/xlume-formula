@@ -38,6 +38,9 @@ export interface ExternalFunctionProvider {
   importFeed?(url: string, query?: string, headers?: boolean, numItems?: number): ExcelValue | undefined;
   /** Synchronously return cells from another spreadsheet for IMPORTRANGE. */
   importRange?(spreadsheetUrl: string, rangeString: string): ExcelValue | undefined;
+
+  /** Synchronously look up a value from a pivot table for GETPIVOTDATA. */
+  pivot?(dataField: string | undefined, pivotTable: string, filters: { field: string; item: ExcelValue }[]): ExcelValue | undefined;
 }
 
 export interface EvaluationContext {

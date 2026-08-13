@@ -100,4 +100,26 @@ describe("External/API worksheet functions", () => {
     const result = ev.evaluateText('PHONETIC("日本語")', ctx(provider));
     expect(result).toEqual(str("日本語（ふりがな）"));
   });
+
+  it("GETPIVOTDATA looks up values from a pivot provider", () => {
+    const provider: ExternalFunctionProvider = {
+      pivot: (dataField, pivotTable, filters) =>
+        str(`${dataField ?? "*"}@${pivotTable}#${filters.map((f) => `${f.field}=${f.item.kind}`).join(",")}`),
+    };
+    const result = ev.evaluateText('GETPIVOTDATA("Sum of Sales", "Pivot1", "Region", "North")', ctx(provider));
+    expect(result).toEqual(str("Sum of Sales@Pivot1#Region=string"));
+  });
+
+  it("GETPIVOTDATA supports omitting data_field", () => {
+    const provider: ExternalFunctionProvider = {
+      pivot: (dataField, pivotTable, filters) => str(`${dataField ?? "total"}:${pivotTable}:${filters.length}`),
+    };
+    const result = ev.evaluateText('GETPIVOTDATA("Pivot1", "Region", "North")', ctx(provider));
+    expect(result).toEqual(str("total:Pivot1:1"));
+  });
+
+  it("GETPIVOTDATA returns #N/A without a pivot provider", () => {
+    const result = ev.evaluateText('GETPIVOTDATA("Sales", "Pivot1")', ctx({}));
+    expect(result).toEqual(err(ExcelErrorCode.NA));
+  });
 });

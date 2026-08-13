@@ -799,6 +799,39 @@ export function registerExtraFunctions(add: (f: ExcelFunction) => void): void {
   add(fn("VARP", "none", (args) => populationVariance(toNumbers(flattenArgs(args)))));
   add(fn("VAR.P", "none", (args) => populationVariance(toNumbers(flattenArgs(args)))));
 
-  // Stub for unsupported but commonly referenced functions
-  add(fn("GETPIVOTDATA", "none", () => err(ExcelErrorCode.NA)));
+  // GETPIVOTDATA delegates to EvaluationContext.external.pivot.
+  add(fn("GETPIVOTDATA", "none", (args, ctx) => {
+    if (args.length < 2) return err(ExcelErrorCode.Value);
+    let dataField: string | undefined;
+    let pivotTableIdx: number;
+    if (args.length % 2 === 0) {
+      // GETPIVOTDATA(data_field, pivot_table, field1, item1, ...)
+      const df = excelCoerceString(args[0]!);
+      if (df.kind !== "string") return df;
+      dataField = df.value || undefined;
+      pivotTableIdx = 1;
+    } else {
+      // GETPIVOTDATA(pivot_table, field1, item1, ...)
+      pivotTableIdx = 0;
+    }
+    const pivot = excelCoerceString(args[pivotTableIdx]!);
+    if (pivot.kind !== "string") return pivot;
+    const filters: { field: string; item: ExcelValue }[] = [];
+    for (let i = pivotTableIdx + 1; i < args.length; i += 2) {
+      const fieldArg = args[i];
+      const itemArg = args[i + 1];
+      if (!fieldArg || itemArg === undefined) return err(ExcelErrorCode.Value);
+      const f = excelCoerceString(fieldArg);
+      if (f.kind !== "string") return f;
+      filters.push({ field: f.value, item: itemArg });
+    }
+    const provider = ctx.external?.pivot;
+    if (!provider) return err(ExcelErrorCode.NA);
+    try {
+      const result = provider(dataField, pivot.value, filters);
+      return result === undefined ? err(ExcelErrorCode.NA) : result;
+    } catch {
+      return err(ExcelErrorCode.Value);
+    }
+  }));
 }
