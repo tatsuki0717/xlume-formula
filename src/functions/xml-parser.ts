@@ -15,7 +15,8 @@ export interface XmlElement {
 export type XmlNode = XmlElement | XmlText;
 
 function isNameChar(c: string): boolean {
-  return /[A-Za-z0-9_.:\-]/.test(c);
+  // XML 1.0 NameChar production for BMP characters.
+  return /[A-Za-z0-9_.:\-\u00B7\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u037D\u037F-\u1FFF\u200C\u200D\u203F\u2040\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD]/.test(c);
 }
 
 function isSpace(c: string): boolean {
@@ -23,15 +24,17 @@ function isSpace(c: string): boolean {
 }
 
 function decodeEntities(s: string): string {
-  return s.replace(/&(#?)(x?)([^;]+);/g, (_full, _hash, x, code: string) => {
+  return s.replace(/&(#?)([^;]+);/g, (_full, hash: string, code: string) => {
     if (code.length === 0) return _full;
-    if (x === "x" || x === "X") {
-      const n = parseInt(code, 16);
-      return Number.isNaN(n) ? _full : String.fromCodePoint(n);
-    }
-    if (/^\d+$/.test(code)) {
-      const n = parseInt(code, 10);
-      return Number.isNaN(n) ? _full : String.fromCodePoint(n);
+    if (hash === "#") {
+      const hex = /^[xX]([0-9a-fA-F]+)$/.exec(code);
+      const n = hex
+        ? parseInt(hex[1]!, 16)
+        : /^\d+$/.test(code)
+          ? parseInt(code, 10)
+          : Number.NaN;
+      if (Number.isNaN(n) || n < 0 || n > 0x10ffff) return _full;
+      return String.fromCodePoint(n);
     }
     switch (code) {
       case "amp":

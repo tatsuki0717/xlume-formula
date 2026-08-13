@@ -67,4 +67,15 @@ describe("FILTERXML", () => {
     const cdata = "<r><![CDATA[<x>]]></r>";
     expect(ev.evaluateText(`FILTERXML("${cdata}", "/r")`, ctx())).toEqual(str("<x>"));
   });
+
+  it("handles non-ASCII tag names and strict entity decoding", () => {
+    const ja = "<ルート><子>1</子></ルート>";
+    const jaResult = ev.evaluateText(`FILTERXML("${ja}", "//*")`, ctx());
+    expect(jaResult.kind).toBe("array");
+    if (jaResult.kind !== "array") return;
+    expect(jaResult.values.length).toBe(2);
+
+    const entities = "<r>AT&amp;12;&#X41;&#x42;&#1114112;&x41;</r>";
+    expect(ev.evaluateText(`FILTERXML("${entities}", "/r")`, ctx())).toEqual(str("AT&12;AB&#1114112;&x41;"));
+  });
 });
