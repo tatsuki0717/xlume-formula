@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Converts a number into text according to a given format. By default it accepts the same formats as the [`dateFormats`](https://hyperformula.handsontable.com/docs/api/interfaces/configparams.html#dateformats) option, and can be further customized with the [`stringifyDateTime`](https://hyperformula.handsontable.com/docs/api/interfaces/configparams.html#stringifydatetime) and [`stringifyCurrency`](https://hyperformula.handsontable.com/docs/api/interfaces/configparams.html#stringifycurrency) options.
+Converts a number into text according to the supplied format code. The implementation should support the standard date, time, and number format codes used by Excel-compatible engines.
 
 ## Excel Syntax
 ```excel
@@ -24,7 +24,7 @@ Converts a number into text according to a given format. By default it accepts t
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Converts a number into text according to a given format. By default it accepts the same formats as the [`dateFormats`](https://hyperformula.handsontable.com/docs/api/interfaces/configparams.html#dateformats) option, and can be further customized with the [`stringifyDateTime`](https://hyperformula.handsontable.com/docs/api/interfaces/configparams.html#stringifydatetime) and [`stringifyCurrency`](https://hyperformula.handsontable.com/docs/api/interfaces/configparams.html#stringifycurrency) options.
+Converts a number into text according to the supplied format code. The implementation should support the standard date, time, and number format codes used by Excel-compatible engines.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -33,7 +33,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Converts a number into text according to a given format. By default it accepts the same formats as the [`dateFormats`](https://hyperformula.handsontable.com/docs/api/interfaces/configparams.html#dateformats) option, and can be further customized with the [`stringifyDateTime`](https://hyperformula.handsontable.com/docs/api/interfaces/configparams.html#stringifydatetime) and [`stringifyCurrency`](https://hyperformula.handsontable.com/docs/api/interfaces/configparams.html#stringifycurrency) options.
+> Converts a number into text according to the supplied format code. The implementation should support the standard date, time, and number format codes used by Excel-compatible engines.
 
 
 ## Type Coercion & Edge Cases

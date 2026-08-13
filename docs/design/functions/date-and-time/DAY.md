@@ -17,7 +17,7 @@ Returns the day of the given date value.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | serial_number | number \| range/array | Yes | A date value (serial number of days since nullDate) whose day-of-month is returned. |
+| 1 | serial_number | number \| range/array | Yes | A date value (serial day count from the workbook's date origin) whose day-of-month is returned. |
 
 ## Returns
 Scalar or array depending on arguments

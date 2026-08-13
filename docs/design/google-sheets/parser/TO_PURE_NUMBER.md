@@ -18,7 +18,7 @@ Converts a provided date/time, percentage, currency or other formatted numeric v
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | value | any | Yes | The argument or reference to a cell to be converted to a pure number. |
+| 1 | value | any | Yes |  |
 
 ## Returns
 number
@@ -68,60 +68,3 @@ Implement natively in the appropriate builtins module (e.g. `src/functions/built
 - [Google Sheets function list](https://support.google.com/docs/table/25273)
 - [Google Docs Editors Help - TO_PURE_NUMBER](https://support.google.com/docs/answer/3094243?hl=en)
 
-
-## Google Sheets Documentation Excerpts
-
-### Sample Usage
-TO_PURE_NUMBER(50%) 
- TO_PURE_NUMBER(A2)
-
-### Notes
-- 
- 
- TO_PURE_NUMBER is similar to applying Format -> Number -> Normal from the menu bar, except that the Normal format includes commas denoting thousands, millions, etc.
-- TO_PURE_NUMBER is similar to N , except that N returns 0 for non-numeric values except for TRUE which returns 1 , whereas TO_PURE_NUMBER returns the value passed without modification for all non-numeric types.
-
-### See Also
-TO_TEXT : Converts a provided numeric value to a text value.
- TO_PERCENT : Converts a provided number to a percentage.
- TO_DOLLARS : Converts a provided number to a dollar value.
- TO_DATE : Converts a provided number to a date.
- N : Returns the argument provided as a number.
-
-### Examples
-## Need more help?
- 
-### Try these next steps:
- 
- 
- Post to the help community Get answers from community members true 
-## Parser 
-- 1 of 7 
- 
- Google Sheets function list 
-- 2 of 7 
- 
- CONVERT 
-- 3 of 7 
- 
- TO_DATE 
-- 4 of 7 
- 
- TO_DOLLARS 
-- 5 of 7 
- 
- TO_PERCENT 
-- 6 of 7 
- 
- TO_PURE_NUMBER 
-- 7 of 7 
- 
- TO_TEXT 
- Visit the Learning Center 
-Using Google products, like Google Docs, at work or school? Try powerful tips, tutorials, and templates. Learn to work on Office files without installing Office, create dynamic project plans and team calendars, auto-organize your inbox, and more.
- ©2026 Google 
-- Privacy Policy 
-- Terms of Service 
- Language català‎ dansk‎ Deutsch‎ English (United Kingdom)‎ español‎ español (Latinoamérica)‎ français‎ Indonesia‎ italiano‎ magyar‎ Melayu‎ Nederlands‎ norsk‎ polski‎ português‎ português (Brasil)‎ română‎ suomi‎ svenska‎ Tiếng Việt‎ Türkçe‎ čeština‎ Ελληνικά‎ русский‎ українська‎ ‏ עברית ‏ العربية मराठी‎ हिन्दी‎ தமிழ்‎ తెలుగు‎ ไทย‎ 中文（简体）‎ 中文（繁體）‎ 日本語‎ 한국어‎ English‎ 
- 
- Enable Dark Mode Send feedback on... This help content & information General Help Center experience Search Clear search Close search Google apps Main menu 11241755691503624185 true Search Help Center false true true true true true 35 false false false false false

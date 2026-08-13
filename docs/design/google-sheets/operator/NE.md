@@ -18,8 +18,8 @@ Returns `TRUE` if two specified values are not equal and `FALSE` otherwise. Equi
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | value1 | any | Yes | The first value. |
-| 2 | value2 | any | Yes | The value to test against value1 for inequality. |
+| 1 | value1 | any | Yes |  |
+| 2 | value2 | any | Yes |  |
 
 ## Returns
 boolean
@@ -69,87 +69,3 @@ Implement natively in the appropriate builtins module (e.g. `src/functions/built
 - [Google Sheets function list](https://support.google.com/docs/table/25273)
 - [Google Docs Editors Help - NE](https://support.google.com/docs/answer/3093981?hl=en)
 
-
-## Google Sheets Documentation Excerpts
-
-### Sample Usage
-NE(A2,A3) 
- NE(2,3)
-
-### See Also
-LTE : Returns `TRUE` if the first argument is less than or equal to the second, and `FALSE` otherwise. Equivalent to the `<=` operator.
- LT : Returns `TRUE` if the first argument is strictly less than the second, and `FALSE` otherwise. Equivalent to the `<` operator.
- GTE : Returns `TRUE` if the first argument is greater than or equal to the second, and `FALSE` otherwise. Equivalent to the `>=` operator.
- GT : Returns `TRUE` if the first argument is strictly greater than the second, and `FALSE` otherwise. Equivalent to the `>` operator.
- EQ : Returns "TRUE" if two specified values are equal and "FALSE" otherwise. Equivalent to the "=" operator.
-
-### Examples
-## Need more help?
- 
-### Try these next steps:
- 
- 
- Post to the help community Get answers from community members true 
-## Operator 
-- 1 of 18 
- 
- Google Sheets function list 
-- 2 of 18 
- 
- ADD 
-- 3 of 18 
- 
- CONCAT 
-- 4 of 18 
- 
- DIVIDE 
-- 5 of 18 
- 
- EQ 
-- 6 of 18 
- 
- GT 
-- 7 of 18 
- 
- GTE 
-- 8 of 18 
- 
- LT 
-- 9 of 18 
- 
- LTE 
-- 10 of 18 
- 
- MINUS function 
-- 11 of 18 
- 
- MULTIPLY 
-- 12 of 18 
- 
- NE 
-- 13 of 18 
- 
- POW 
-- 14 of 18 
- 
- UMINUS 
-- 15 of 18 
- 
- UNARY_PERCENT 
-- 16 of 18 
- 
- UPLUS 
-- 17 of 18 
- 
- UNIQUE function 
-- 18 of 18 
- 
- ISBETWEEN 
- Visit the Learning Center 
-Using Google products, like Google Docs, at work or school? Try powerful tips, tutorials, and templates. Learn to work on Office files without installing Office, create dynamic project plans and team calendars, auto-organize your inbox, and more.
- ©2026 Google 
-- Privacy Policy 
-- Terms of Service 
- Language català‎ dansk‎ Deutsch‎ English (United Kingdom)‎ español‎ español (Latinoamérica)‎ français‎ Indonesia‎ italiano‎ magyar‎ Melayu‎ Nederlands‎ norsk‎ polski‎ português‎ português (Brasil)‎ română‎ suomi‎ svenska‎ Tiếng Việt‎ Türkçe‎ čeština‎ Ελληνικά‎ русский‎ українська‎ ‏ עברית ‏ العربية मराठी‎ हिन्दी‎ தமிழ்‎ తెలుగు‎ ไทย‎ 中文（简体）‎ 中文（繁體）‎ 日本語‎ 한국어‎ English‎ 
- 
- Enable Dark Mode Send feedback on... This help content & information General Help Center experience Search Clear search Close search Google apps Main menu 12707178606572754185 true Search Help Center false true true true true true 35 false false false false false

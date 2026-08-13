@@ -17,7 +17,7 @@ Returns the year as a number according to the internal calculation rules.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | serial_number | number \| range/array | Yes | A date value (serial number of days since nullDate) whose year is returned. |
+| 1 | serial_number | number \| range/array | Yes | A date value (serial day count from the workbook's date origin) whose year is returned. |
 
 ## Returns
 Scalar or array depending on arguments

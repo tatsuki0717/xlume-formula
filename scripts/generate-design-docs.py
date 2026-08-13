@@ -4,9 +4,9 @@ Generate per-function design Markdown documents for xlume-formula.
 
 Inputs:
   - FUNCTIONS-reference.md (canonical function list with category/priority tags)
-  - HyperFormula metadata TS files (descriptions, parameters, examples)
+  - HyperFormula metadata TS files (structural metadata only: names, types, signatures)
   - excel-functions-office-js.yml (official signatures)
-  - /tmp/formulajs source (summary + args + param docs)
+  - /tmp/formulajs source (structural metadata only: names, types, signatures)
   - scripts/manual_specs.py (signatures for functions missing from the above)
 
 Outputs:
@@ -513,8 +513,8 @@ def merge_param_lists(name, manual_params, hf_params, yaml_params, fjs_params):
             name_candidates.append(sources['hf'][i]['name'])
         p['name'] = choose_param_name(name_candidates)
 
-        # Description: manual > hf > yaml > fjs
-        for src in ('manual', 'hf', 'yaml', 'fjs'):
+        # Description: manual > yaml (avoid copying HyperFormula/formula.js prose)
+        for src in ('manual', 'yaml'):
             if i < len(sources[src]):
                 desc = sources[src][i].get('description', '')
                 if desc:
@@ -581,8 +581,8 @@ def merge_metadata(name, rec, hf, yaml_map, fjs_map, manual):
     yaml_entry = yaml_map.get(name)
     fjs_entry = fjs_map.get(name)
 
-    # Short description: manual > hf > yaml > fjs > reference line
-    for entry in (manual_entry, hf_entry, yaml_entry, fjs_entry):
+    # Short description: manual > yaml > reference line (avoid copying third-party prose)
+    for entry in (manual_entry, yaml_entry):
         if entry and entry.get('shortDescription'):
             spec['shortDescription'] = entry['shortDescription']
             break
@@ -600,8 +600,8 @@ def merge_metadata(name, rec, hf, yaml_map, fjs_map, manual):
             p['repeat'] = True
     spec['parameters'] = merged
 
-    # Examples: manual > hf > fjs > yaml
-    for entry in (manual_entry, hf_entry, fjs_entry, yaml_entry):
+    # Examples: manual > yaml (avoid copying third-party examples)
+    for entry in (manual_entry, yaml_entry):
         if entry and entry.get('examples'):
             spec['examples'] = entry['examples']
             break
@@ -1018,9 +1018,15 @@ def main():
     FUNC_DIR.mkdir(parents=True, exist_ok=True)
 
     records = parse_reference(REF_FILE)
-    hf = parse_hyperformula_categories(HF_DIR)
+    try:
+        hf = parse_hyperformula_categories(HF_DIR) if HF_DIR.exists() else {}
+    except FileNotFoundError:
+        hf = {}
     yaml_map = parse_office_js_yaml(YAML_FILE)
-    fjs_map = parse_formulajs(FJS_DIR)
+    try:
+        fjs_map = parse_formulajs(FJS_DIR) if FJS_DIR.exists() else {}
+    except FileNotFoundError:
+        fjs_map = {}
     manual = getattr(manual_specs, 'EXTRA_SPECS', {})
 
     specs = {}

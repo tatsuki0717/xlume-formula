@@ -18,7 +18,7 @@ Enables the display of values returned from an array formula into multiple rows 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | array_formula | formula/expression | Yes | A range, mathematical expression using one cell range or multiple ranges of the same size, or a function that returns a result greater than one cell. |
+| 1 | array_formula | formula/expression | Yes |  |
 
 ## Returns
 array
@@ -70,65 +70,3 @@ Implement natively in the appropriate builtins module (e.g. `src/functions/built
 - [Google Sheets function list](https://support.google.com/docs/table/25273)
 - [Google Docs Editors Help - ARRAYFORMULA](https://support.google.com/docs/answer/3093275?hl=en)
 
-
-## Google Sheets Documentation Excerpts
-
-### Sample Usage
-ARRAYFORMULA(SUM(IF(A1:A10>5, A1:A10, 0))) 
- ARRAYFORMULA(A1:C1+A2:C2)
-
-### Notes
-- 
- 
-Many array formulas will be automatically expanded into neighboring cells, obviating the explicit use of ARRAYFORMULA .
-- Pressing Ctrl+Shift+Enter while editing a formula will automatically add ARRAYFORMULA( to the beginning of the formula.
-- Note that array formulas cannot be exported.
-
-### See Also
-ARRAY_CONSTRAIN : Constrains an array result to a specified size.
- 
-## Need more help?
- 
-### Try these next steps:
- 
- 
- Post to the help community Get answers from community members true 
-## Google 
-- 1 of 10 
- 
- Google Sheets function list 
-- 2 of 10 
- 
- ARRAYFORMULA 
-- 3 of 10 
- 
- DETECTLANGUAGE 
-- 4 of 10 
- 
- GOOGLEFINANCE 
-- 5 of 10 
- 
- GOOGLETRANSLATE 
-- 6 of 10 
- 
- IMAGE 
-- 7 of 10 
- 
- QUERY function 
-- 8 of 10 
- 
- SPARKLINE 
-- 9 of 10 
- 
- Create & use named functions 
-- 10 of 10 
- 
- LAMBDA function 
- Visit the Learning Center 
-Using Google products, like Google Docs, at work or school? Try powerful tips, tutorials, and templates. Learn to work on Office files without installing Office, create dynamic project plans and team calendars, auto-organize your inbox, and more.
- ©2026 Google 
-- Privacy Policy 
-- Terms of Service 
- Language català‎ dansk‎ Deutsch‎ English (United Kingdom)‎ español‎ español (Latinoamérica)‎ français‎ Indonesia‎ italiano‎ magyar‎ Melayu‎ Nederlands‎ norsk‎ polski‎ português‎ português (Brasil)‎ română‎ suomi‎ svenska‎ Tiếng Việt‎ Türkçe‎ čeština‎ Ελληνικά‎ русский‎ українська‎ ‏ עברית ‏ العربية मराठी‎ हिन्दी‎ தமிழ்‎ తెలుగు‎ ไทย‎ 中文（简体）‎ 中文（繁體）‎ 日本語‎ 한국어‎ English‎ 
- 
- Enable Dark Mode Send feedback on... This help content & information General Help Center experience Search Clear search Close search Google apps Main menu 7457551664573915686 true Search Help Center false true true true true true 35 false false false false false

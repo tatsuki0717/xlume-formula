@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns the specified date as the number of full days since [`nullDate`](https://hyperformula.handsontable.com/docs/api/interfaces/configparams.html#nulldate).
+Returns the specified date as a serial day count from the workbook's date origin.
 
 ## Excel Syntax
 ```excel
@@ -17,7 +17,7 @@ Returns the specified date as the number of full days since [`nullDate`](https:/
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | year | number \| range/array | Yes | The year of the date; values below HyperFormula's epoch year (derived from nullDate) are added to that epoch year. |
+| 1 | year | number \| range/array | Yes | The year of the date; values below the workbook's epoch year are added to that epoch year. |
 | 2 | month | number \| range/array | Yes | The month of the date. Values outside 1-12 roll over into adjacent years. |
 | 3 | day | number \| range/array | Yes | The day of the month. Values outside the month's range roll over into adjacent months. |
 
@@ -25,7 +25,7 @@ Returns the specified date as the number of full days since [`nullDate`](https:/
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the specified date as the number of full days since [`nullDate`](https://hyperformula.handsontable.com/docs/api/interfaces/configparams.html#nulldate).
+Returns the specified date as a serial day count from the workbook's date origin.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -34,7 +34,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the specified date as the number of full days since [`nullDate`](https://hyperformula.handsontable.com/docs/api/interfaces/configparams.html#nulldate).
+> Returns the specified date as a serial day count from the workbook's date origin.
 
 
 ## Type Coercion & Edge Cases

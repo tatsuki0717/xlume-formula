@@ -7,7 +7,7 @@
 - **Volatile:** Yes
 
 ## Description
-Returns an integer representing the current date as the number of full days since [`nullDate`](https://hyperformula.handsontable.com/docs/api/interfaces/configparams.html#nulldate).
+Returns an integer representing the current date as a serial day count from the workbook's date origin.
 
 ## Excel Syntax
 ```excel
@@ -21,14 +21,14 @@ This function takes no arguments.
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns an integer representing the current date as the number of full days since [`nullDate`](https://hyperformula.handsontable.com/docs/api/interfaces/configparams.html#nulldate).
+Returns an integer representing the current date as a serial day count from the workbook's date origin.
 
 High-level algorithm:
 1. Execute the core calculation.
 2. Return the result.
 
 Core calculation:
-> Returns an integer representing the current date as the number of full days since [`nullDate`](https://hyperformula.handsontable.com/docs/api/interfaces/configparams.html#nulldate).
+> Returns an integer representing the current date as a serial day count from the workbook's date origin.
 
 
 ## Type Coercion & Edge Cases

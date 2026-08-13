@@ -18,7 +18,7 @@ Converts a provided number to a dollar value.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | value | any | Yes | The argument or reference to a cell to be converted to a dollar value. |
+| 1 | value | any | Yes |  |
 
 ## Returns
 number
@@ -68,64 +68,3 @@ Implement natively in the appropriate builtins module (e.g. `src/functions/built
 - [Google Sheets function list](https://support.google.com/docs/table/25273)
 - [Google Docs Editors Help - TO_DOLLARS](https://support.google.com/docs/answer/3094241?hl=en)
 
-
-## Google Sheets Documentation Excerpts
-
-### Sample Usage
-TO_DOLLARS(A2) 
- TO_DOLLARS(40826.43)
-
-### Notes
-- 
- 
-Because dates and percentages are backed by numbers, TO_DOLLARS will convert them successfully. However, these conversions are not typically meaningful.
-- TO_DOLLARS is equivalent to applying Format -> Number -> Currency from the menu bar.
-- TO_DOLLARS differs from the related function DOLLAR in that DOLLAR outputs text rather than applying a cell format to a number.
-- TO_DOLLARS does not convert from other currencies into US Dollars. Please use the GoogleFinance function to convert currencies at current exchange rates.
-
-### See Also
-TO_TEXT : Converts a provided numeric value to a text value.
- TO_PURE_NUMBER : Converts a provided date/time, percentage, currency or other formatted numeric value to a pure number without formatting.
- TO_PERCENT : Converts a provided number to a percentage.
- TO_DATE : Converts a provided number to a date.
- N : Returns the argument provided as a number.
- GOOGLEFINANCE : Fetches current or historical securities information from Google Finance.
- DOLLAR : Formats a number into the locale-specific currency format.
-
-### Examples
-## Need more help?
- 
-### Try these next steps:
- 
- 
- Post to the help community Get answers from community members true 
-## Parser 
-- 1 of 7 
- 
- Google Sheets function list 
-- 2 of 7 
- 
- CONVERT 
-- 3 of 7 
- 
- TO_DATE 
-- 4 of 7 
- 
- TO_DOLLARS 
-- 5 of 7 
- 
- TO_PERCENT 
-- 6 of 7 
- 
- TO_PURE_NUMBER 
-- 7 of 7 
- 
- TO_TEXT 
- Visit the Learning Center 
-Using Google products, like Google Docs, at work or school? Try powerful tips, tutorials, and templates. Learn to work on Office files without installing Office, create dynamic project plans and team calendars, auto-organize your inbox, and more.
- ©2026 Google 
-- Privacy Policy 
-- Terms of Service 
- Language català‎ dansk‎ Deutsch‎ English (United Kingdom)‎ español‎ español (Latinoamérica)‎ français‎ Indonesia‎ italiano‎ magyar‎ Melayu‎ Nederlands‎ norsk‎ polski‎ português‎ português (Brasil)‎ română‎ suomi‎ svenska‎ Tiếng Việt‎ Türkçe‎ čeština‎ Ελληνικά‎ русский‎ українська‎ ‏ עברית ‏ العربية मराठी‎ हिन्दी‎ தமிழ்‎ తెలుగు‎ ไทย‎ 中文（简体）‎ 中文（繁體）‎ 日本語‎ 한국어‎ English‎ 
- 
- Enable Dark Mode Send feedback on... This help content & information General Help Center experience Search Clear search Close search Google apps Main menu 2292041352066589279 true Search Help Center false true true true true true 35 false false false false false

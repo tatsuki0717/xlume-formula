@@ -18,9 +18,9 @@ Runs a Google Visualization API Query Language query across data.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | data | range/array | Yes | The range of cells to perform the query on. |
-| 2 | query | string | Yes | The query to perform, written in the Google Visualization API Query Language . |
-| 3 | headers | number | No | - The number of header rows at the top of data . If omitted or set to -1 , the value is guessed based on the content of data . |
+| 1 | data | range/array | Yes |  |
+| 2 | query | string | Yes |  |
+| 3 | headers | number | No |  |
 
 ## Returns
 array
@@ -70,73 +70,3 @@ Implement natively in the appropriate builtins module (e.g. `src/functions/built
 - [Google Sheets function list](https://support.google.com/docs/table/25273)
 - [Google Docs Editors Help - QUERY](https://support.google.com/docs/answer/3093343?hl=en)
 
-
-## Google Sheets Documentation Excerpts
-
-### Sample Usage
-QUERY(A2:E6,"select avg(A) pivot B") 
- QUERY(A2:E6,F2,FALSE)
-
-### Examples
-Make a copy 
- Note : Each example is in its own tab.
-### Sample data
- 
- 
-### Select & where
-Returns rows that match the specified condition using Select and Where clauses.
-- QUERY can accept either "Col" notation or "A, B" notation.
- 
- 
- 
-### Group by
-Aggregates Salary values across rows using Select and Group by clauses.
- 
- 
-### Pivot
-Transforms distinct values in columns into new columns.
- 
- 
-### Order by
-Aggregates Dept values across rows and sorts by the maximum value of Salary .
- 
- 
-### Headers
-Specifies the number of header rows in the input range, which enables transformation of multi-header rows range input to be transformed to a single row header input.
- 
-## Need more help?
- 
-### Try these next steps:
- 
- 
- Post to the help community Get answers from community members true 
-## Use functions & formulas 
-- 1 of 7 
- 
- Google Sheets function list 
-- 2 of 7 
- 
- Add formulas & functions 
-- 3 of 7 
- 
- See the sum & average 
-- 4 of 7 
- 
- IF function 
-- 5 of 7 
- 
- QUERY function 
-- 6 of 7 
- 
- COUNTIF 
-- 7 of 7 
- 
- VLOOKUP 
- Visit the Learning Center 
-Using Google products, like Google Docs, at work or school? Try powerful tips, tutorials, and templates. Learn to work on Office files without installing Office, create dynamic project plans and team calendars, auto-organize your inbox, and more.
- ©2026 Google 
-- Privacy Policy 
-- Terms of Service 
- Language català‎ dansk‎ Deutsch‎ English (United Kingdom)‎ español‎ español (Latinoamérica)‎ français‎ Indonesia‎ italiano‎ magyar‎ Melayu‎ Nederlands‎ norsk‎ polski‎ português‎ português (Brasil)‎ română‎ suomi‎ svenska‎ Tiếng Việt‎ Türkçe‎ čeština‎ Ελληνικά‎ русский‎ українська‎ ‏ עברית ‏ العربية मराठी‎ हिन्दी‎ தமிழ்‎ తెలుగు‎ ไทย‎ 中文（简体）‎ 中文（繁體）‎ 日本語‎ 한국어‎ English‎ 
- 
- Enable Dark Mode Send feedback on... This help content & information General Help Center experience Search Clear search Close search Google apps Main menu 5993473679738540488 true Search Help Center false true true true true true 35 false false false false false
