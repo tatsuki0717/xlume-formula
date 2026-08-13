@@ -73,4 +73,27 @@ describe("Financial worksheet functions", () => {
     expect(getNum(ev.evaluateText("=XNPV(0.1, {-10000, 2750, 4250, 3250, 2750}, {DATE(2008,1,1), DATE(2008,3,1), DATE(2008,10,30), DATE(2009,2,15), DATE(2009,4,1)})", ctx()))).toBeCloseTo(1994.51, 2);
     expect(getNum(ev.evaluateText("=XIRR({-10000, 2750, 4250, 3250, 2750}, {DATE(2008,1,1), DATE(2008,3,1), DATE(2008,10,30), DATE(2009,2,15), DATE(2009,4,1)})", ctx()))).toBeCloseTo(0.3734, 4);
   });
+
+  it("PRICE matches the Excel/Microsoft example", () => {
+    expect(getNum(ev.evaluateText("=PRICE(DATE(2008,2,15),DATE(2017,11,15),0.0575,0.065,100,2,0)", ctx()))).toBeCloseTo(94.63436, 4);
+  });
+
+  it("YIELD is the inverse of PRICE", () => {
+    const price = getNum(ev.evaluateText("=PRICE(DATE(2008,2,15),DATE(2017,11,15),0.0575,0.065,100,2,0)", ctx()));
+    const yld = getNum(ev.evaluateText(`=YIELD(DATE(2008,2,15),DATE(2017,11,15),0.0575,${price},100,2,0)`, ctx()));
+    expect(yld).toBeCloseTo(0.065, 6);
+  });
+
+  it("PRICE/YIELD reject invalid inputs", () => {
+    const priceExpr = "=PRICE(DATE(2017,11,15),DATE(2008,2,15),0.0575,0.065,100,2,0)";
+    const priceNegativeYield = "=PRICE(DATE(2008,2,15),DATE(2017,11,15),0.0575,-0.01,100,2,0)";
+    const priceBadFreq = "=PRICE(DATE(2008,2,15),DATE(2017,11,15),0.0575,0.065,100,3,0)";
+    const priceBadBasis = "=PRICE(DATE(2008,2,15),DATE(2017,11,15),0.0575,0.065,100,2,5)";
+    const yieldBadPr = "=YIELD(DATE(2008,2,15),DATE(2017,11,15),0.0575,-10,100,2,0)";
+    expect(ev.evaluateText(priceExpr, ctx()).kind).toBe("error");
+    expect(ev.evaluateText(priceNegativeYield, ctx()).kind).toBe("error");
+    expect(ev.evaluateText(priceBadFreq, ctx()).kind).toBe("error");
+    expect(ev.evaluateText(priceBadBasis, ctx()).kind).toBe("error");
+    expect(ev.evaluateText(yieldBadPr, ctx()).kind).toBe("error");
+  });
 });

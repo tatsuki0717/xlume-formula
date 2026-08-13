@@ -71,7 +71,6 @@
     "vitest": "^3.0.9"
   },
   "dependencies": {
-    "@floydspace/bond-calculator": "^0.2.0",
     "bahttext": "2.4.0",
     "bessel": "^1.0.2",
     "fast-xml-parser": "5.10.1",
