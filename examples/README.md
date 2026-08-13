@@ -10,7 +10,8 @@
 ## Usage
 
 ```ts
-import { XlumeFormulaEngine, NodeFetchProvider } from "xlume-formula";
+import { XlumeFormulaEngine } from "xlume-formula";
+import { NodeFetchProvider } from "xlume-formula/providers";
 
 const engine = new XlumeFormulaEngine(new NodeFetchProvider({ timeout: 15 }));
 

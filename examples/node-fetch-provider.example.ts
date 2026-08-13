@@ -1,4 +1,5 @@
-import { XlumeFormulaEngine, NodeFetchProvider } from "../src/index.js";
+import { XlumeFormulaEngine } from "../src/index.js";
+import { NodeFetchProvider } from "../src/providers/index.js";
 
 // A concrete ExternalFunctionProvider that uses curl to fetch data synchronously.
 // Requires curl to be available on the host system and outbound network access.
