@@ -4,7 +4,6 @@
  * with Excel day-count / coupon-date arithmetic.
  */
 import bondCalculator from "@floydspace/bond-calculator";
-import * as formulas from "@formulajs/formulajs";
 import {
   BLANK,
   bool,
@@ -22,6 +21,12 @@ import {
   requireNumber,
   yearDays,
 } from "./financial-utils.js";
+
+function yearFrac(start: Date, end: Date, basis: number): number {
+  const numerator = daysBetween(start, end, basis);
+  const denominator = yearDays(basis, end);
+  return numerator / denominator;
+}
 
 function fn(
   name: string,
@@ -106,12 +111,6 @@ function couponArgs(args: ExcelValue[]) {
 
 function formatDate(d: Date): string {
   return d.toISOString().slice(0, 10);
-}
-
-function yearFrac(start: Date, end: Date, basis: number): number {
-  const formulaLib = formulas as unknown as Record<string, any>;
-  const yf = formulaLib.YEARFRAC;
-  return typeof yf === "function" ? yf(start, end, basis) : 0;
 }
 
 function makeSchedule(args: ExcelValue[], hasRedemption: boolean, rateIdx: number, freqIdx: number, basisIdx: number) {

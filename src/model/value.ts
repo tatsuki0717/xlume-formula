@@ -45,13 +45,33 @@ export interface ArrayValue {
   values: ExcelValue[];
 }
 
+export interface LambdaValue {
+  kind: "lambda";
+  params: string[];
+  body: import("../formula/ast.js").FormulaNode;
+}
+
+/** Sentinel for an omitted LAMBDA argument (used by ISOMITTED). */
+export interface OmittedValue {
+  kind: "omitted";
+}
+
+export interface SparklineValue {
+  kind: "sparkline";
+  data: number[];
+  options: Record<string, unknown>;
+}
+
 export type ExcelValue =
   | BlankValue
   | NumberValue
   | StringValue
   | BooleanValue
   | ErrorValue
-  | ArrayValue;
+  | ArrayValue
+  | LambdaValue
+  | OmittedValue
+  | SparklineValue;
 
 export const BLANK: BlankValue = { kind: "blank" };
 
@@ -69,6 +89,18 @@ export function bool(value: boolean): BooleanValue {
 
 export function err(code: ExcelErrorCode): ErrorValue {
   return { kind: "error", code };
+}
+
+export function lambda(params: string[], body: import("../formula/ast.js").FormulaNode): LambdaValue {
+  return { kind: "lambda", params, body };
+}
+
+export function omitted(): OmittedValue {
+  return { kind: "omitted" };
+}
+
+export function sparkline(data: number[], options: Record<string, unknown>): SparklineValue {
+  return { kind: "sparkline", data, options };
 }
 
 export interface ExcelDateSerial {

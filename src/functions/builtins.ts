@@ -11,10 +11,19 @@ import { FunctionRegistry, type ExcelFunction } from "../formula/functions-types
 import { excelCoerceBoolean, excelCoerceNumber, flattenArgs } from "../formula/evaluator.js";
 import { excelCompare, excelConcat } from "../formula/coercion.js";
 import { registerExtraFunctions } from "./builtins-extra.js";
-import { formulaJsFallback } from "./formulajs-adapter.js";
 import { registerMissingFunctions } from "./builtins-missing.js";
 import { registerFinancialFunctions } from "./builtins-financial.js";
+import { registerFinancial2Functions } from "./builtins-financial2.js";
+import { registerStatisticalFunctions } from "./builtins-statistical.js";
+import { registerDistributionFunctions } from "./builtins-distributions.js";
+import { registerCompatibilityFunctions } from "./builtins-compatibility.js";
+import { registerDatabaseFunctions } from "./builtins-database.js";
+import { registerDate2Functions } from "./builtins-date2.js";
+import { registerEngineeringFunctions } from "./builtins-engineering.js";
 import { registerForecastFunctions } from "./builtins-forecast.js";
+import { registerFormulaReplacementFunctions } from "./builtins-formula-replacement.js";
+import { registerMath2Functions } from "./builtins-math2.js";
+import { registerGoogleSheetsFunctions } from "./builtins-google-sheets.js";
 
 function fn(
   name: string,
@@ -1081,9 +1090,17 @@ export function createBuiltinFunctions(): FunctionRegistry {
   registerExtraFunctions(add);
   registerFinancialFunctions(add);
   registerForecastFunctions(add);
+  registerGoogleSheetsFunctions(add);
+  registerStatisticalFunctions(add);
+  registerDistributionFunctions(add);
+  registerCompatibilityFunctions(add, reg);
   registerMissingFunctions(add, reg);
-
-  reg.setFallback((name) => formulaJsFallback(name));
+  registerDate2Functions(add);
+  registerDatabaseFunctions(add);
+  registerMath2Functions(add);
+  registerEngineeringFunctions(add);
+  registerFinancial2Functions(add);
+  registerFormulaReplacementFunctions(add);
 
   return reg;
 }

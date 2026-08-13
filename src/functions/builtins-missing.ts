@@ -495,6 +495,15 @@ export function registerMissingFunctions(add: (f: ExcelFunction) => void, reg: F
     }),
   );
 
+  add(
+    fn("ENCODEURL", "none", (args) => {
+      if (args.length === 0) return err(ExcelErrorCode.Value);
+      const text = excelCoerceString(args[0] ?? BLANK);
+      if (text.kind !== "string") return err(ExcelErrorCode.Value);
+      return str(encodeURIComponent(text.value));
+    }),
+  );
+
   // Dynamic array helpers
   add(
     fn("DROP", "none", (args) => {
@@ -683,12 +692,48 @@ export function registerMissingFunctions(add: (f: ExcelFunction) => void, reg: F
   }
 
   // Stubs for functions that require external data, locale handling, or LAMBDA support
+  add(
+    fn("ISREF", "none", (args) => {
+      if (args.length === 0) return err(ExcelErrorCode.Value);
+      const v = args[0] ?? BLANK;
+      return bool(v.kind === "error" && v.code === ExcelErrorCode.Ref);
+    }),
+  );
+
+  add(
+    fn("INFO", "volatile", (args) => {
+      if (args.length === 0) return err(ExcelErrorCode.Value);
+      const info = excelCoerceString(args[0] ?? BLANK);
+      if (info.kind !== "string") return err(ExcelErrorCode.Value);
+      const key = info.value.toLowerCase();
+      const proc = (globalThis as { process?: { cwd?: () => string; platform?: string; arch?: string } }).process;
+      switch (key) {
+        case "directory":
+          return str(proc?.cwd?.() ?? "");
+        case "numfile":
+          return num(1);
+        case "origin":
+          return str("$A:$A$1048576");
+        case "osversion":
+          return str(proc ? `${proc.platform ?? "unknown"} (${proc.arch ?? "unknown"})` : "unknown");
+        case "recalc":
+          return str("Automatic");
+        case "release":
+          return str("16.0");
+        case "system":
+          return str("pcdos");
+        default:
+          return err(ExcelErrorCode.NA);
+      }
+    }),
+  );
+
   const stubNames = [
     // External / locale / add-in
     "ASC", "BAHTTEXT", "CALL", "CELL", "CUBEKPIMEMBER", "CUBEMEMBER",
     "CUBEMEMBERPROPERTY", "CUBERANKEDMEMBER", "CUBESET", "CUBESETCOUNT",
-    "CUBEVALUE", "DBCS", "DETECTLANGUAGE", "ENCODEURL", "EUROCONVERT",
-    "FILTERXML", "FORMULATEXT", "IMAGE", "INFO", "ISFORMULA", "ISREF",
+    "CUBEVALUE", "DBCS", "DETECTLANGUAGE", "EUROCONVERT",
+    "FILTERXML", "FORMULATEXT", "IMAGE", "ISFORMULA",
     "LAMBDA", "LET", "MAKEARRAY", "MAP", "PHONETIC", "PIVOTBY", "REDUCE",
     "REGISTER.ID", "RTD", "SCAN", "STOCKHISTORY", "TRANSLATE", "WEBSERVICE",
     // LAMBDA helpers that need first-class function support

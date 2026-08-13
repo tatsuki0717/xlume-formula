@@ -45,7 +45,7 @@ console.log(result);
 
 - Array literals use commas for columns and semicolons for rows, e.g. `{1,2;3,4}`.
 - Dates are supplied as Excel serial numbers; use `DATE(yyyy,m,d)` to convert to serial form for financial functions.
-- `createBuiltinFunctions().get(name)` is case-insensitive and resolves both native implementations and `@formulajs/formulajs` fallbacks.
+- `createBuiltinFunctions().get(name)` is case-insensitive and resolves native implementations only.
 
 ## Catalog coverage check
 - Function design docs live in `docs/design/functions/**/*.md`.

@@ -155,7 +155,7 @@ export function lexFormula(input: string): FormulaToken[] {
       }
     }
 
-    const a1 = /^(\$?[A-Za-z]+\$?\d+(?::\$?[A-Za-z]+\$?\d+)?)/.exec(s.slice(i));
+    const a1 = /^(\$?[A-Za-z]+\$?\d+(?::\$?[A-Za-z]+\$?\d+)?)(?![A-Za-z])/.exec(s.slice(i));
     if (a1) {
       // Could be function if followed by (
       const after = s.slice(i + a1[0].length);

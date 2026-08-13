@@ -5,13 +5,49 @@
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
+    },
+    "./model/value": {
+      "types": "./dist/model/value.d.ts",
+      "import": "./dist/model/value.js"
+    },
+    "./model/address": {
+      "types": "./dist/model/address.d.ts",
+      "import": "./dist/model/address.js"
+    },
+    "./formula/evaluator": {
+      "types": "./dist/formula/evaluator.d.ts",
+      "import": "./dist/formula/evaluator.js"
+    },
+    "./formula/coercion": {
+      "types": "./dist/formula/coercion.d.ts",
+      "import": "./dist/formula/coercion.js"
+    },
+    "./formula/functions-types": {
+      "types": "./dist/formula/functions-types.d.ts",
+      "import": "./dist/formula/functions-types.js"
+    },
+    "./formula/graph": {
+      "types": "./dist/formula/graph.d.ts",
+      "import": "./dist/formula/graph.js"
+    },
+    "./formula/ast": {
+      "types": "./dist/formula/ast.d.ts",
+      "import": "./dist/formula/ast.js"
+    },
+    "./functions/builtins": {
+      "types": "./dist/functions/builtins.d.ts",
+      "import": "./dist/functions/builtins.js"
     }
   },
   "scripts": {
+    "prepare": "pnpm build",
     "build": "tsc -p tsconfig.json",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -31,6 +67,7 @@
     "@finprecise/cashflow": "^0.3.0",
     "@finprecise/depreciation": "^0.3.0",
     "@floydspace/bond-calculator": "^0.2.0",
-    "@formulajs/formulajs": "^4.6.1"
+    "bessel": "^1.0.2",
+    "jstat": "^1.9.6"
   }
 }
