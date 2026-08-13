@@ -169,10 +169,10 @@ def parse_function_block(block):
     if m:
         result['category'] = m.group(1)
     params = []
-    for pm in re.finditer(r"name\s*:\s*'((?:\\'|[^'])*)'", block):
+    for pm in re.finditer(r"\{name\s*:\s*'((?:\\'|[^'])*)'", block):
         params.append({'name': pm.group(1).replace("\\'", "'"), 'description': ''})
     if not params:
-        for pm in re.finditer(r'name\s*:\s*"((?:\\"|[^"])*)"', block):
+        for pm in re.finditer(r'\{name\s*:\s*"((?:\\"|[^"])*)"', block):
             params.append({'name': pm.group(1).replace('\\"', '"'), 'description': ''})
     result['parameters'] = params
     return result
