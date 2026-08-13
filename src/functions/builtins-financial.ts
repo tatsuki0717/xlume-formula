@@ -1,9 +1,7 @@
 /**
  * Financial bond / money-market functions.
- * PRICE/YIELD use @floydspace/bond-calculator; other functions are implemented
- * with Excel day-count / coupon-date arithmetic.
+ * PRICE/YIELD are implemented with Excel day-count / coupon-date arithmetic.
  */
-import bondCalculator from "@floydspace/bond-calculator";
 import {
   BLANK,
   bool,
@@ -35,14 +33,6 @@ function fn(
 ): ExcelFunction {
   return { name, volatility, evaluate };
 }
-
-const basisToConvention: Record<number, string> = {
-  0: "30U/360",
-  1: "ACTUAL/ACTUAL",
-  2: "ACTUAL/360",
-  3: "ACTUAL/365",
-  4: "30E/360",
-};
 
 interface BondInputs {
   settlement: Date;
@@ -109,10 +99,6 @@ function couponArgs(args: ExcelValue[]) {
   return validateBondArgs(args, false, -1, 2, 3, -1);
 }
 
-function formatDate(d: Date): string {
-  return d.toISOString().slice(0, 10);
-}
-
 function makeSchedule(args: ExcelValue[], hasRedemption: boolean, rateIdx: number, freqIdx: number, basisIdx: number) {
   const v = validateBondArgs(args, hasRedemption, rateIdx, hasRedemption ? 4 : freqIdx, hasRedemption ? 5 : basisIdx, hasRedemption ? 6 : -1);
   if (!v.ok) return { ok: false as const, error: v.error };
@@ -151,6 +137,57 @@ function macaulayDuration(inputs: BondInputs, schedule: ReturnType<typeof buildC
   return weighted / pv;
 }
 
+function bondPrice(inputs: BondInputs, yld: number): number {
+  const schedule = buildCouponSchedule(inputs.settlement, inputs.maturity, inputs.frequency, inputs.basis);
+  const E = daysBetween(schedule.previousCoupon, schedule.nextCoupon, inputs.basis);
+  const DSC = daysBetween(inputs.settlement, schedule.nextCoupon, inputs.basis);
+  const A = daysBetween(schedule.previousCoupon, inputs.settlement, inputs.basis);
+  if (E === 0) return Number.NaN;
+  const coupon = (inputs.rate * 100) / inputs.frequency;
+  const y = yld / inputs.frequency;
+  const n = schedule.coupons.length;
+  let pv: number;
+  if (n <= 1) {
+    const DSR = E - A;
+    pv = (inputs.redemption + coupon) / (1 + y * (DSR / E));
+  } else {
+    const w = DSC / E;
+    let sum = 0;
+    for (let k = 1; k <= n; k++) {
+      const cf = k === n ? inputs.redemption + coupon : coupon;
+      const exponent = k - 1 + w;
+      sum += cf / ((1 + y) ** exponent);
+    }
+    pv = sum;
+  }
+  return pv - coupon * (A / E);
+}
+
+function bondYield(inputs: BondInputs, price: number): number | null {
+  const f = (yld: number): number => bondPrice(inputs, yld) - price;
+  let lo = -0.999999 * inputs.frequency;
+  let hi = 1.0;
+  for (let i = 0; i < 100; i++) {
+    const v = f(hi);
+    if (Number.isNaN(v)) return null;
+    if (v < 0) break;
+    hi *= 2;
+    if (!Number.isFinite(hi)) return null;
+  }
+  const flo = f(lo);
+  const fhi = f(hi);
+  if (Number.isNaN(flo) || Number.isNaN(fhi) || !(flo > 0 && fhi < 0)) return null;
+  for (let i = 0; i < 200; i++) {
+    const mid = (lo + hi) / 2;
+    const v = f(mid);
+    if (Math.abs(v) < 1e-12) return mid;
+    if (Number.isNaN(v)) return null;
+    if (v > 0) lo = mid;
+    else hi = mid;
+  }
+  return (lo + hi) / 2;
+}
+
 export function registerFinancialFunctions(add: (f: ExcelFunction) => void): void {
   add(
     fn("PRICE", "none", (args) => {
@@ -160,19 +197,9 @@ export function registerFinancialFunctions(add: (f: ExcelFunction) => void): voi
       const yld = requireNumber(args[3] ?? BLANK, 0);
       if (!yld.ok) return yld.error;
       if (yld.value < 0) return err(ExcelErrorCode.Num);
-      try {
-        const bond = bondCalculator({
-          settlement: formatDate(inputs.settlement),
-          maturity: formatDate(inputs.maturity),
-          rate: inputs.rate,
-          redemption: inputs.redemption,
-          frequency: inputs.frequency,
-          convention: basisToConvention[inputs.basis] as any,
-        });
-        return num(bond.price(yld.value));
-      } catch {
-        return err(ExcelErrorCode.Num);
-      }
+      const price = bondPrice(inputs, yld.value);
+      if (Number.isNaN(price)) return err(ExcelErrorCode.Num);
+      return num(price);
     }),
   );
 
@@ -184,19 +211,9 @@ export function registerFinancialFunctions(add: (f: ExcelFunction) => void): voi
       const pr = requireNumber(args[3] ?? BLANK, 0);
       if (!pr.ok) return pr.error;
       if (pr.value <= 0) return err(ExcelErrorCode.Num);
-      try {
-        const bond = bondCalculator({
-          settlement: formatDate(inputs.settlement),
-          maturity: formatDate(inputs.maturity),
-          rate: inputs.rate,
-          redemption: inputs.redemption,
-          frequency: inputs.frequency,
-          convention: basisToConvention[inputs.basis] as any,
-        });
-        return num(bond.yield(pr.value));
-      } catch {
-        return err(ExcelErrorCode.Num);
-      }
+      const yld = bondYield(inputs, pr.value);
+      if (yld === null) return err(ExcelErrorCode.Num);
+      return num(yld);
     }),
   );
 
