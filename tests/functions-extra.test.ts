@@ -265,4 +265,36 @@ describe("Extra functions toward full compatibility", () => {
   it("BAHTTEXT returns Thai baht text", () => {
     expect(ev.evaluateText("BAHTTEXT(1234.56)", ctx())).toEqual(str("หนึ่งพันสองร้อยสามสิบสี่บาทห้าสิบหกสตางค์"));
   });
+
+  it("GROUPBY groups and aggregates with eta function", () => {
+    const result = ev.evaluateText('GROUPBY({1;2;1;2},{10;20;30;40},SUM)', ctx());
+    expect(result.kind).toBe("array");
+    if (result.kind !== "array") return;
+    expect(result.width).toBe(2);
+    expect(result.height).toBe(2);
+    expect(result.values[0]).toEqual(num(1));
+    expect(result.values[1]).toEqual(num(40));
+    expect(result.values[2]).toEqual(num(2));
+    expect(result.values[3]).toEqual(num(60));
+  });
+
+  it("GROUPBY groups and aggregates with a LAMBDA", () => {
+    const result = ev.evaluateText('GROUPBY({"a";"b";"a"},{1;2;3},LAMBDA(x, SUM(x)))', ctx());
+    expect(result.kind).toBe("array");
+    if (result.kind !== "array") return;
+    expect(result.values[0]).toEqual(str("a"));
+    expect(result.values[1]).toEqual(num(4));
+    expect(result.values[2]).toEqual(str("b"));
+    expect(result.values[3]).toEqual(num(2));
+  });
+
+  it("GROUPBY respects filter_array", () => {
+    const result = ev.evaluateText('GROUPBY({1;2;1;2},{10;20;30;40},SUM,0,0,1,{TRUE;TRUE;FALSE;TRUE})', ctx());
+    expect(result.kind).toBe("array");
+    if (result.kind !== "array") return;
+    expect(result.values[0]).toEqual(num(1));
+    expect(result.values[1]).toEqual(num(10));
+    expect(result.values[2]).toEqual(num(2));
+    expect(result.values[3]).toEqual(num(60));
+  });
 });

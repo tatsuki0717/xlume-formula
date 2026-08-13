@@ -40,6 +40,10 @@ function isExcelValue(x: unknown): x is ExcelValue {
   );
 }
 
+interface GroupByAggregator {
+  aggregate: (groupValues: ExcelValue[], allValues: ExcelValue[]) => ExcelValue;
+}
+
 export class FormulaEvaluator {
   constructor(private functions: FunctionRegistry) {}
 
@@ -153,6 +157,9 @@ export class FormulaEvaluator {
         }
         if (upper === "ARRAYFORMULA") {
           return this.evalArrayFormula(node.args, ctx);
+        }
+        if (upper === "GROUPBY") {
+          return this.evalGroupBy(node.args, ctx);
         }
         // Named lambda call (LET-bound or otherwise) takes precedence over function fallback
         const named = ctx.resolveName(node.name);
@@ -733,6 +740,257 @@ export class FormulaEvaluator {
     if (values.length === 1) return values[0] ?? BLANK;
     return { kind: "array", width: Math.abs(w), height: Math.abs(h), values };
   }
+
+  private evalGroupBy(args: FormulaNode[], ctx: EvaluationContext): ExcelValue {
+    if (args.length < 3) return err(ExcelErrorCode.Value);
+
+    const rowArrRaw = this.toArray(this.evaluate(args[0]!, ctx));
+    const valArrRaw = this.toArray(this.evaluate(args[1]!, ctx));
+    if (rowArrRaw.kind === "error") return rowArrRaw;
+    if (valArrRaw.kind === "error") return valArrRaw;
+    if (rowArrRaw.kind !== "array" || valArrRaw.kind !== "array") return err(ExcelErrorCode.Value);
+    const rowArr = rowArrRaw;
+    const valArr = valArrRaw;
+    if (rowArr.height !== valArr.height) return err(ExcelErrorCode.Value);
+    const H = rowArr.height;
+
+    const aggregator = this.groupByAggregator(args[2]!, ctx);
+    if (aggregator === null) return err(ExcelErrorCode.Value);
+
+    let startRow = 0;
+    let headerRow: ExcelValue[] | undefined;
+    let fieldHeaders = 0;
+    if (args.length >= 4) {
+      const h = excelCoerceNumber(this.evaluate(args[3]!, ctx));
+      if (h.kind !== "number") return h;
+      fieldHeaders = Math.trunc(h.value);
+    }
+    if (fieldHeaders === 1 || fieldHeaders === 3) {
+      if (H === 0) return err(ExcelErrorCode.Value);
+      startRow = 1;
+    }
+    if (fieldHeaders === 2 || fieldHeaders === 3) {
+      if (fieldHeaders === 3 && H > 0) {
+        const keys: ExcelValue[] = [];
+        for (let c = 0; c < rowArr.width; c++) keys.push(rowArr.values[c] ?? BLANK);
+        const vals: ExcelValue[] = [];
+        for (let c = 0; c < valArr.width; c++) vals.push(valArr.values[c] ?? BLANK);
+        headerRow = [...keys, ...vals];
+      } else {
+        const keys: ExcelValue[] = [];
+        for (let c = 0; c < rowArr.width; c++) keys.push(str(`Row ${c + 1}`));
+        const vals: ExcelValue[] = [];
+        for (let c = 0; c < valArr.width; c++) vals.push(str(`Value ${c + 1}`));
+        headerRow = [...keys, ...vals];
+      }
+    }
+
+    let totalDepth = 0;
+    if (args.length >= 5) {
+      const t = excelCoerceNumber(this.evaluate(args[4]!, ctx));
+      if (t.kind !== "number") return t;
+      totalDepth = Math.trunc(t.value);
+    }
+
+    let sortOrder: number | undefined;
+    if (args.length >= 6) {
+      const s = this.evaluate(args[5]!, ctx);
+      if (s.kind === "array") {
+        if (s.values.length === 0) return err(ExcelErrorCode.Value);
+        const first = excelCoerceNumber(s.values[0]!);
+        if (first.kind !== "number") return first;
+        sortOrder = Math.trunc(first.value);
+      } else {
+        const n = excelCoerceNumber(s);
+        if (n.kind !== "number") return n;
+        sortOrder = Math.trunc(n.value);
+      }
+    }
+
+    let filter: boolean[] | undefined;
+    if (args.length >= 7) {
+      const f = this.evaluate(args[6]!, ctx);
+      if (f.kind === "array") {
+        if (f.values.length !== H) return err(ExcelErrorCode.Value);
+        filter = f.values.map((v) => {
+          const b = excelCoerceBoolean(v);
+          return b.kind === "boolean" ? b.value : false;
+        });
+      } else {
+        const b = excelCoerceBoolean(f);
+        if (b.kind !== "boolean") return b;
+        filter = Array(H).fill(b.value);
+      }
+    }
+
+    const groups = new Map<string, { keys: ExcelValue[]; valueRows: ExcelValue[][] }>();
+    for (let r = startRow; r < H; r++) {
+      if (filter && !filter[r]) continue;
+      const keys: ExcelValue[] = [];
+      for (let c = 0; c < rowArr.width; c++) keys.push(rowArr.values[r * rowArr.width + c] ?? BLANK);
+      const vals: ExcelValue[] = [];
+      for (let c = 0; c < valArr.width; c++) vals.push(valArr.values[r * valArr.width + c] ?? BLANK);
+      const key = JSON.stringify(keys.map(valueToKey));
+      let g = groups.get(key);
+      if (!g) {
+        g = { keys, valueRows: [] };
+        groups.set(key, g);
+      }
+      g.valueRows.push(vals);
+    }
+
+    const allValues: ExcelValue[][] = [];
+    for (let c = 0; c < valArr.width; c++) {
+      const col: ExcelValue[] = [];
+      for (let r = startRow; r < H; r++) {
+        if (filter && !filter[r]) continue;
+        col.push(valArr.values[r * valArr.width + c] ?? BLANK);
+      }
+      allValues.push(col);
+    }
+
+    const outRows: ExcelValue[][] = [];
+    for (const g of groups.values()) {
+      const agg: ExcelValue[] = [];
+      for (let c = 0; c < valArr.width; c++) {
+        const groupCol: ExcelValue[] = [];
+        for (const row of g.valueRows) groupCol.push(row[c]!);
+        const result = aggregator.aggregate(groupCol, allValues[c]!);
+        if (result.kind === "error") return result;
+        agg.push(result);
+      }
+      outRows.push([...g.keys, ...agg]);
+    }
+
+    const sortCol = sortOrder === undefined ? 0 : Math.abs(sortOrder) - 1;
+    const sortDir = sortOrder === undefined || sortOrder >= 0 ? 1 : -1;
+    const outWidth = rowArr.width + valArr.width;
+    if (sortCol < 0 || sortCol >= outWidth) return err(ExcelErrorCode.Value);
+    outRows.sort((a, b) => sortDir * compareExcelValues(a[sortCol]!, b[sortCol]!));
+
+    const addTotal = Math.abs(totalDepth) >= 1;
+    if (addTotal) {
+      const totalKeys: ExcelValue[] = Array(rowArr.width).fill(BLANK);
+      totalKeys[0] = str("Total");
+      const totalAgg: ExcelValue[] = [];
+      for (let c = 0; c < valArr.width; c++) {
+        const allAgg: ExcelValue[] = [];
+        for (const row of outRows) allAgg.push(row[rowArr.width + c]!);
+        const result = aggregator.aggregate(allAgg, allValues[c]!);
+        if (result.kind === "error") return result;
+        totalAgg.push(result);
+      }
+      const totalRow = [...totalKeys, ...totalAgg];
+      if (totalDepth > 0) outRows.push(totalRow);
+      else outRows.unshift(totalRow);
+    }
+
+    if (headerRow) outRows.unshift(headerRow);
+
+    const height = outRows.length;
+    const flat: ExcelValue[] = [];
+    for (const row of outRows) {
+      if (row.length !== outWidth) return err(ExcelErrorCode.Value);
+      flat.push(...row);
+    }
+    return { kind: "array", width: outWidth, height, values: flat };
+  }
+
+  private toArray(value: ExcelValue): ExcelValue {
+    if (value.kind === "error") return value;
+    if (value.kind === "array") return value;
+    return { kind: "array", width: 1, height: 1, values: [value] };
+  }
+
+  private makeArray(values: ExcelValue[]): ArrayValue {
+    return { kind: "array", width: 1, height: values.length, values };
+  }
+
+  private groupByAggregator(fnArg: FormulaNode, ctx: EvaluationContext): GroupByAggregator | null {
+    const makeArr = (vals: ExcelValue[]) => this.makeArray(vals);
+    if (fnArg.kind === "function") {
+      const upper = fnArg.name.toUpperCase();
+      if (upper === "LAMBDA") {
+        const lambdaVal = this.evalLambda(fnArg.args, ctx);
+        if (lambdaVal.kind !== "lambda") return null;
+        return {
+          aggregate: (group, all) => {
+            if (lambdaVal.params.length === 0) return err(ExcelErrorCode.Value);
+            const callArgs: ExcelValue[] = [makeArr(group)];
+            if (lambdaVal.params.length >= 2) callArgs.push(makeArr(all));
+            return this.callLambdaValues(lambdaVal, callArgs, ctx);
+          },
+        };
+      }
+      const fn = this.functions.get(upper);
+      if (!fn) return null;
+      return {
+        aggregate: (group, all) => {
+          if (upper === "PERCENTOF") {
+            return fn.evaluate([makeArr(group), makeArr(all)], ctx);
+          }
+          return fn.evaluate([makeArr(group)], ctx);
+        },
+      };
+    }
+    if (fnArg.kind === "name") {
+      const resolved = ctx.resolveName(fnArg.name);
+      if (resolved && isExcelValue(resolved) && resolved.kind === "lambda") {
+        return {
+          aggregate: (group, all) => {
+            if (resolved.params.length === 0) return err(ExcelErrorCode.Value);
+            const callArgs: ExcelValue[] = [makeArr(group)];
+            if (resolved.params.length >= 2) callArgs.push(makeArr(all));
+            return this.callLambdaValues(resolved, callArgs, ctx);
+          },
+        };
+      }
+      const fn = this.functions.get(fnArg.name.toUpperCase());
+      if (fn) {
+        const upper = fnArg.name.toUpperCase();
+        return {
+          aggregate: (group, all) => {
+            if (upper === "PERCENTOF") {
+              return fn.evaluate([makeArr(group), makeArr(all)], ctx);
+            }
+            return fn.evaluate([makeArr(group)], ctx);
+          },
+        };
+      }
+      return null;
+    }
+    return null;
+  }
+}
+
+function compareExcelValues(a: ExcelValue, b: ExcelValue): number {
+  const order = (x: ExcelValue): number => {
+    if (x.kind === "error") return 5;
+    if (x.kind === "boolean") return 4;
+    if (x.kind === "string") return 3;
+    if (x.kind === "number") return 2;
+    return 1; // blank / omitted
+  };
+  if (a.kind === "error" || b.kind === "error") return 0;
+  const oa = order(a);
+  const ob = order(b);
+  if (oa !== ob) return oa - ob;
+  if (a.kind === "number" && b.kind === "number") return a.value - b.value || 0;
+  if (a.kind === "string" && b.kind === "string") return a.value.localeCompare(b.value, undefined, { sensitivity: "accent" });
+  if (a.kind === "boolean" && b.kind === "boolean") return Number(a.value) - Number(b.value);
+  return 0;
+}
+
+function valueToKey(v: ExcelValue): string {
+  if (v.kind === "error") return `err:${v.code}`;
+  if (v.kind === "blank" || v.kind === "omitted") return "blank";
+  if (v.kind === "number") return `n:${v.value}`;
+  if (v.kind === "string") return `s:${v.value}`;
+  if (v.kind === "boolean") return `b:${v.value}`;
+  if (v.kind === "array") return `a:${v.values.map(valueToKey).join(",")}`;
+  if (v.kind === "lambda") return "lambda";
+  if (v.kind === "sparkline") return "sparkline";
+  return "unknown";
 }
 
 export function flattenArgs(args: ExcelValue[]): ExcelValue[] {
