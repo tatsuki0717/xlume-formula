@@ -3,60 +3,59 @@
 ## Metadata
 - **Category:** Lookup & Reference
 - **Priority tags:** EXT
-- **Scope:** out-of-scope
+- **Scope:** in-scope
 - **Volatile:** No
 
 ## Description
-image from URL
+`IMAGE` returns an image value for a given URL by delegating to an `ExternalFunctionProvider.image(url)` callback supplied by the host application.
 
 ## Excel Syntax
 ```excel
-=IMAGE()
+=IMAGE(url, [alt_text], [sizing], [height], [width])
 ```
 
 ## Arguments
-This function takes no arguments.
+| Argument | Required | Description |
+|---|---|---|
+| `url` | Yes | URL of the image. |
+| `alt_text` | No | Alt text (currently ignored by the engine). |
+| `sizing` | No | Sizing option (currently ignored). |
+| `height` | No | Height in pixels (currently ignored). |
+| `width` | No | Width in pixels (currently ignored). |
 
 ## Returns
-Scalar or array depending on arguments
+The `ExcelValue` returned by the provider, typically a string or custom image object.
 
 ## Behavior / Algorithm
-This function requires external data or runtime infrastructure (network, OLAP, pivot cache, XLL, RTD, etc.) that is outside the scope of a pure worksheet calculation engine.
-
-Stub implementation: return `#N/A` or `#VALUE!` with a message that the function is not supported.
+1. Coerce the first argument to text.
+2. If `EvaluationContext.external.image` is defined, call `image(url)`.
+3. Return the provider's `ExcelValue` directly.
+4. If the provider is not defined, return `#N/A`.
 
 ## Type Coercion & Edge Cases
-- Numbers provided as text are coerced to numeric values when the function expects a number.
-- Logical `TRUE`/`FALSE` coerce to `1`/`0` in numeric contexts and to `"TRUE"`/`"FALSE"` in text contexts.
-- Blank cells are treated as `0` in numeric contexts and as `""` in text contexts, unless the function explicitly ignores blanks.
-- Errors in any argument propagate to the result, except where the function is explicitly designed to trap them (e.g., IFERROR, IFNA, AGGREGATE options).
-- Range/array arguments are evaluated element-wise or consumed as a whole depending on the function semantics.
+- Additional IMAGE options (`sizing`, `height`, `width`) are accepted but not used.
+- Non-text `url` values are coerced to text.
 
 ## Error Handling
 | Error | When |
 |---|---|
-| `#VALUE!` | Argument type or count is invalid, or an argument cannot be coerced. |
-| `#NUM!` | A numeric argument is outside the allowed domain. |
-| `#DIV/0!` | Division by zero or an empty denominator. |
-| `#N/A` | Lookup/match not found or optional fallback triggered. |
-| `#REF!` | Invalid cell/range reference or out-of-bounds index. |
-| `#NAME?` | Function name not recognized. |
-| `#SPILL!` | Dynamic-array result cannot fit in the target range. |
+| `#VALUE!` | Provider throws. |
+| `#N/A` | No `external.image` provider is configured. |
 
 ## Examples
-TBD — add representative Excel examples during implementation.
+```excel
+=IMAGE("https://example.com/logo.png")
+```
 
 ## Test Cases
 | Input | Expected | Purpose |
 |---|---|---|
-| Normal inputs | Correct numeric/text result | Golden path |
-| Boundary values (0, 1, negatives, very large/small) | Correct or `#NUM!` | Domain edges |
-| Blank/empty cells | Coerced `0` or `""` as appropriate | Blank handling |
-| Text that cannot be coerced | `#VALUE!` | Error propagation |
-| Too few/too many arguments | `#VALUE!` | Arity validation |
+| `=IMAGE("https://example.com/logo.png")` with provider returning a string | that string | Provider invoked |
+| `=IMAGE("https://example.com")` with no provider | `#N/A` | Missing provider |
 
 ## Implementation Notes
-Return `#N/A` or `#VALUE!` unsupported. Do not attempt external network/OLAP calls.
+- Implemented in `src/functions/builtins-missing.ts`.
+- The library does not fetch or render images itself. The host application controls networking, caching, and image representation.
 
 ## References
-- [Microsoft Excel function documentation](https://support.microsoft.com/en-us/office/excel-functions-by-category-5f91f4e9-7b42-46d2-9bd1-63f26a86c0eb)
+- [Microsoft Excel IMAGE function](https://support.microsoft.com/en-us/office/image-function)

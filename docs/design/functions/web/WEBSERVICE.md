@@ -3,60 +3,57 @@
 ## Metadata
 - **Category:** Web
 - **Priority tags:** EXT
-- **Scope:** out-of-scope
+- **Scope:** in-scope
 - **Volatile:** No
 
 ## Description
-HTTP GET
+`WEBSERVICE` returns the raw text content at the given URL by delegating to an `ExternalFunctionProvider.webService(url)` callback supplied by the host application.
 
 ## Excel Syntax
 ```excel
-=WEBSERVICE()
+=WEBSERVICE(url)
 ```
 
 ## Arguments
-This function takes no arguments.
+| Argument | Required | Description |
+|---|---|---|
+| `url` | Yes | A text value containing the URL to fetch. |
 
 ## Returns
-Scalar or array depending on arguments
+The text returned by the provider, or an error if no provider is configured or the fetch fails.
 
 ## Behavior / Algorithm
-This function requires external data or runtime infrastructure (network, OLAP, pivot cache, XLL, RTD, etc.) that is outside the scope of a pure worksheet calculation engine.
-
-Stub implementation: return `#N/A` or `#VALUE!` with a message that the function is not supported.
+1. Coerce the first argument to text.
+2. If `EvaluationContext.external.webService` is defined, call `webService(url)`.
+3. Return the provider result as a string.
+4. If the provider is not defined, return `#N/A`.
+5. If the provider throws, return `#VALUE!`.
 
 ## Type Coercion & Edge Cases
-- Numbers provided as text are coerced to numeric values when the function expects a number.
-- Logical `TRUE`/`FALSE` coerce to `1`/`0` in numeric contexts and to `"TRUE"`/`"FALSE"` in text contexts.
-- Blank cells are treated as `0` in numeric contexts and as `""` in text contexts, unless the function explicitly ignores blanks.
-- Errors in any argument propagate to the result, except where the function is explicitly designed to trap them (e.g., IFERROR, IFNA, AGGREGATE options).
-- Range/array arguments are evaluated element-wise or consumed as a whole depending on the function semantics.
+- Non-text `url` values are coerced to text before the request.
+- Blank `url` coerces to `""` and will typically fail or return an error.
 
 ## Error Handling
 | Error | When |
 |---|---|
-| `#VALUE!` | Argument type or count is invalid, or an argument cannot be coerced. |
-| `#NUM!` | A numeric argument is outside the allowed domain. |
-| `#DIV/0!` | Division by zero or an empty denominator. |
-| `#N/A` | Lookup/match not found or optional fallback triggered. |
-| `#REF!` | Invalid cell/range reference or out-of-bounds index. |
-| `#NAME?` | Function name not recognized. |
-| `#SPILL!` | Dynamic-array result cannot fit in the target range. |
+| `#VALUE!` | Missing `url` or provider throws. |
+| `#N/A` | No `external.webService` provider is configured. |
 
 ## Examples
-TBD — add representative Excel examples during implementation.
+```excel
+=WEBSERVICE("https://example.com/data")
+```
 
 ## Test Cases
 | Input | Expected | Purpose |
 |---|---|---|
-| Normal inputs | Correct numeric/text result | Golden path |
-| Boundary values (0, 1, negatives, very large/small) | Correct or `#NUM!` | Domain edges |
-| Blank/empty cells | Coerced `0` or `""` as appropriate | Blank handling |
-| Text that cannot be coerced | `#VALUE!` | Error propagation |
-| Too few/too many arguments | `#VALUE!` | Arity validation |
+| `=WEBSERVICE("https://example.com/data")` with provider returning `"ok"` | `"ok"` | Provider is invoked |
+| `=WEBSERVICE("https://example.com")` with no provider | `#N/A` | Missing provider |
 
 ## Implementation Notes
-Return `#N/A` or `#VALUE!` unsupported. Do not attempt external network/OLAP calls.
+- Implemented in `src/functions/builtins-missing.ts`.
+- Synchronous-only: the provider must return the result synchronously (e.g. from a cache or pre-fetched map). The library itself does not perform async network calls.
+- The host application is responsible for networking, caching, CORS, and security.
 
 ## References
-- [Microsoft Excel function documentation](https://support.microsoft.com/en-us/office/excel-functions-by-category-5f91f4e9-7b42-46d2-9bd1-63f26a86c0eb)
+- [Microsoft Excel WEBSERVICE function](https://support.microsoft.com/en-us/office/webservice-function)

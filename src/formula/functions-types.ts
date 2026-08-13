@@ -1,7 +1,18 @@
-import type { ExcelValue } from "../model/value.js";
+import type { ExcelValue, ArrayValue } from "../model/value.js";
 import type { FormulaNode } from "./ast.js";
 
 export type FormulaArgument = ExcelValue | FormulaNode;
+
+export interface ExternalFunctionProvider {
+  /** Synchronously return the text at `url`, or undefined if not available. */
+  webService?(url: string): string | undefined;
+  /** Synchronously return an image value for `url`, or undefined. */
+  image?(url: string): ExcelValue | undefined;
+  /** Synchronously translate `text` from `source` to `target`, or undefined. */
+  translate?(text: string, source: string, target: string): string | undefined;
+  /** Synchronously return stock history data, or undefined. */
+  stockHistory?(ticker: string, ...args: (string | number)[]): ArrayValue | undefined;
+}
 
 export interface EvaluationContext {
   /** Resolve sheet by numeric id or name (undefined / current => active sheet). */
@@ -19,6 +30,8 @@ export interface EvaluationContext {
   resolveTableColumn(table: string, column?: string): ExcelValue[];
   todaySerial(): number;
   random(): number;
+  /** Optional provider for external/API-dependent worksheet functions. */
+  external?: ExternalFunctionProvider;
   sheetId: number;
   sheetName?: string;
   row: number;

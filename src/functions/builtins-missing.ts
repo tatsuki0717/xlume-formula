@@ -839,6 +839,78 @@ export function registerMissingFunctions(add: (f: ExcelFunction) => void, reg: F
     return str(bahttext(n.value));
   }));
 
+  add(fn("WEBSERVICE", "none", (args, ctx) => {
+    if (args.length === 0) return err(ExcelErrorCode.Value);
+    const url = excelCoerceString(args[0]!);
+    if (url.kind !== "string") return url;
+    const provider = ctx.external?.webService;
+    if (!provider) return err(ExcelErrorCode.NA);
+    try {
+      const result = provider(url.value);
+      return result === undefined ? err(ExcelErrorCode.NA) : str(result);
+    } catch {
+      return err(ExcelErrorCode.Value);
+    }
+  }));
+
+  add(fn("IMAGE", "none", (args, ctx) => {
+    if (args.length === 0) return err(ExcelErrorCode.Value);
+    const url = excelCoerceString(args[0]!);
+    if (url.kind !== "string") return url;
+    const provider = ctx.external?.image;
+    if (!provider) return err(ExcelErrorCode.NA);
+    try {
+      const result = provider(url.value);
+      return result === undefined ? err(ExcelErrorCode.NA) : result;
+    } catch {
+      return err(ExcelErrorCode.Value);
+    }
+  }));
+
+  add(fn("TRANSLATE", "none", (args, ctx) => {
+    if (args.length === 0) return err(ExcelErrorCode.Value);
+    const text = excelCoerceString(args[0]!);
+    if (text.kind !== "string") return text;
+    const source = args[1] ? excelCoerceString(args[1]) : str("");
+    const target = args[2] ? excelCoerceString(args[2]) : str("");
+    if (source.kind !== "string") return source;
+    if (target.kind !== "string") return target;
+    const provider = ctx.external?.translate;
+    if (!provider) return err(ExcelErrorCode.NA);
+    try {
+      const result = provider(text.value, source.value, target.value);
+      return result === undefined ? err(ExcelErrorCode.NA) : str(result);
+    } catch {
+      return err(ExcelErrorCode.Value);
+    }
+  }));
+
+  add(fn("STOCKHISTORY", "none", (args, ctx) => {
+    if (args.length === 0) return err(ExcelErrorCode.Value);
+    const ticker = excelCoerceString(args[0]!);
+    if (ticker.kind !== "string") return ticker;
+    const rest: (string | number)[] = [];
+    for (let i = 1; i < args.length; i++) {
+      const v = args[i]!;
+      const n = excelCoerceNumber(v);
+      if (n.kind === "number") {
+        rest.push(n.value);
+      } else {
+        const s = excelCoerceString(v);
+        if (s.kind !== "string") return s;
+        rest.push(s.value);
+      }
+    }
+    const provider = ctx.external?.stockHistory;
+    if (!provider) return err(ExcelErrorCode.NA);
+    try {
+      const result = provider(ticker.value, ...rest);
+      return result === undefined ? err(ExcelErrorCode.NA) : result;
+    } catch {
+      return err(ExcelErrorCode.Value);
+    }
+  }));
+
   // Functions handled directly by the evaluator; these placeholders keep the
   // registry complete so that catalog coverage checks pass.
   const evaluatorFunctions = [
@@ -855,7 +927,7 @@ export function registerMissingFunctions(add: (f: ExcelFunction) => void, reg: F
     // External / API / add-in
     "CALL", "CUBEKPIMEMBER", "CUBEMEMBER", "CUBEMEMBERPROPERTY",
     "CUBERANKEDMEMBER", "CUBESET", "CUBESETCOUNT", "CUBEVALUE",
-    "IMAGE", "REGISTER.ID", "RTD", "STOCKHISTORY", "TRANSLATE", "WEBSERVICE",
+    "REGISTER.ID", "RTD",
     // Locale / dictionary-dependent
     "PHONETIC",
     // Dynamic-array grouping (deferred)

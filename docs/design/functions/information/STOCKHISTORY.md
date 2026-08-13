@@ -3,60 +3,62 @@
 ## Metadata
 - **Category:** Information
 - **Priority tags:** EXT
-- **Scope:** out-of-scope
+- **Scope:** in-scope
 - **Volatile:** No
 
 ## Description
-historical stock data
+`STOCKHISTORY` returns historical stock data by delegating to an `ExternalFunctionProvider.stockHistory(ticker, ...args)` callback supplied by the host application.
 
 ## Excel Syntax
 ```excel
-=STOCKHISTORY()
+=STOCKHISTORY(stock, start_date, [end_date], [interval], [headers], [property0], [property1], ...)
 ```
 
 ## Arguments
-This function takes no arguments.
+| Argument | Required | Description |
+|---|---|---|
+| `stock` | Yes | Stock ticker as text. |
+| `start_date` | No | Start of the date range (serial number or text). |
+| `end_date` | No | End of the date range. |
+| `interval` | No | `"daily"`, `"weekly"`, or `"monthly"`. |
+| `headers` | No | Whether to include headers. |
+| `propertyN` | No | Additional properties passed through to the provider. |
 
 ## Returns
-Scalar or array depending on arguments
+An array returned by the provider, or `#N/A` if no provider is configured.
 
 ## Behavior / Algorithm
-This function requires external data or runtime infrastructure (network, OLAP, pivot cache, XLL, RTD, etc.) that is outside the scope of a pure worksheet calculation engine.
-
-Stub implementation: return `#N/A` or `#VALUE!` with a message that the function is not supported.
+1. Coerce the first argument to text.
+2. Coerce subsequent arguments to numbers or strings where applicable.
+3. If `EvaluationContext.external.stockHistory` is defined, call `stockHistory(ticker, ...args)`.
+4. Return the provider's `ArrayValue`.
+5. If the provider is not defined, return `#N/A`.
 
 ## Type Coercion & Edge Cases
-- Numbers provided as text are coerced to numeric values when the function expects a number.
-- Logical `TRUE`/`FALSE` coerce to `1`/`0` in numeric contexts and to `"TRUE"`/`"FALSE"` in text contexts.
-- Blank cells are treated as `0` in numeric contexts and as `""` in text contexts, unless the function explicitly ignores blanks.
-- Errors in any argument propagate to the result, except where the function is explicitly designed to trap them (e.g., IFERROR, IFNA, AGGREGATE options).
-- Range/array arguments are evaluated element-wise or consumed as a whole depending on the function semantics.
+- Dates may be passed as serial numbers or text and are passed through to the provider.
+- `interval` may be passed as text.
 
 ## Error Handling
 | Error | When |
 |---|---|
-| `#VALUE!` | Argument type or count is invalid, or an argument cannot be coerced. |
-| `#NUM!` | A numeric argument is outside the allowed domain. |
-| `#DIV/0!` | Division by zero or an empty denominator. |
-| `#N/A` | Lookup/match not found or optional fallback triggered. |
-| `#REF!` | Invalid cell/range reference or out-of-bounds index. |
-| `#NAME?` | Function name not recognized. |
-| `#SPILL!` | Dynamic-array result cannot fit in the target range. |
+| `#VALUE!` | Provider throws. |
+| `#N/A` | No `external.stockHistory` provider is configured. |
 
 ## Examples
-TBD — add representative Excel examples during implementation.
+```excel
+=STOCKHISTORY("AAPL")
+=STOCKHISTORY("MSFT", 45000, 45030, "daily")
+```
 
 ## Test Cases
 | Input | Expected | Purpose |
 |---|---|---|
-| Normal inputs | Correct numeric/text result | Golden path |
-| Boundary values (0, 1, negatives, very large/small) | Correct or `#NUM!` | Domain edges |
-| Blank/empty cells | Coerced `0` or `""` as appropriate | Blank handling |
-| Text that cannot be coerced | `#VALUE!` | Error propagation |
-| Too few/too many arguments | `#VALUE!` | Arity validation |
+| `=STOCKHISTORY("AAPL")` with provider returning an array | that array | Provider invoked |
+| `=STOCKHISTORY("AAPL")` with no provider | `#N/A` | Missing provider |
 
 ## Implementation Notes
-Return `#N/A` or `#VALUE!` unsupported. Do not attempt external network/OLAP calls.
+- Implemented in `src/functions/builtins-missing.ts`.
+- Synchronous-only: the provider must return data synchronously (e.g. from a cache). The library does not perform async market-data fetching.
 
 ## References
-- [Microsoft Excel function documentation](https://support.microsoft.com/en-us/office/excel-functions-by-category-5f91f4e9-7b42-46d2-9bd1-63f26a86c0eb)
+- [Microsoft Excel STOCKHISTORY function](https://support.microsoft.com/en-us/office/stockhistory-function)

@@ -6,7 +6,7 @@
  */
 import { parseFormula, type FormulaNode } from "../formula/ast.js";
 import { FormulaEvaluator } from "../formula/evaluator.js";
-import type { EvaluationContext } from "../formula/functions-types.js";
+import type { EvaluationContext, ExternalFunctionProvider } from "../formula/functions-types.js";
 import { createBuiltinFunctions } from "../functions/builtins.js";
 import { BLANK, err, ExcelErrorCode, type ArrayValue, type ExcelValue } from "./value.js";
 
@@ -68,6 +68,8 @@ function valuesEqual(a: ExcelValue | undefined, b: ExcelValue | undefined): bool
 export class Workbook {
   private functions = createBuiltinFunctions();
   private evaluator = new FormulaEvaluator(this.functions);
+
+  constructor(private external?: ExternalFunctionProvider) {}
 
   private sheets = new Map<number, Sheet>();
   private cells = new Map<number, Map<string, Cell>>();
@@ -234,6 +236,7 @@ export class Workbook {
         const id = this.resolveSheet(s);
         return id === undefined ? undefined : this.getFormulaText(id, r, c);
       },
+      external: this.external,
       resolveName: (name) => this.names.get(name.toUpperCase()),
       resolveTableColumn: () => [],
       todaySerial: () => {
