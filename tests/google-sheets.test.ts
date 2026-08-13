@@ -234,4 +234,10 @@ describe("Google Sheets offline functions", () => {
     expect(ev.evaluateText('=DETECTLANGUAGE("これは日本語です。")', ctx())).toEqual(str("ja"));
     expect(ev.evaluateText('=DETECTLANGUAGE("")', ctx())).toEqual(str("und"));
   });
+
+  it("ARRAYFORMULA evaluates the inner expression as an array formula", () => {
+    expect(ev.evaluateText("=ARRAYFORMULA({1;2;3}*{4;5;6})", ctx())).toEqual(array([[4], [10], [18]]));
+    expect(ev.evaluateText('=ARRAYFORMULA(IF({1;2;3}>1, "yes", "no"))', ctx())).toEqual(array([["no"], ["yes"], ["yes"]]));
+    expect(ev.evaluateText("=ARRAYFORMULA(5)", ctx())).toEqual(num(5));
+  });
 });

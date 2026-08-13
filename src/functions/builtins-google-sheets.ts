@@ -842,6 +842,12 @@ export function registerGoogleSheetsFunctions(add: (f: ExcelFunction) => void): 
     return str(complexToString(div.re, div.im));
   }));
 
+  // Meta: ARRAYFORMULA is handled by the evaluator, but register it for discoverability.
+  add(fn("ARRAYFORMULA", "none", (args) => {
+    if (args.length !== 1) return err(ExcelErrorCode.Value);
+    return args[0] ?? BLANK;
+  }));
+
   // Meta: QUERY
   add(fn("QUERY", "none", (args) => {
     const data = args[0] ?? BLANK;
