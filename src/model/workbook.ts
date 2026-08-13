@@ -30,6 +30,11 @@ function cellKey(row: number, col: number): string {
   return `${row}:${col}`;
 }
 
+function isEmptyValue(value: ExcelValue | undefined): boolean {
+  if (value === undefined) return true;
+  return value.kind === "blank" || value.kind === "omitted";
+}
+
 function valuesEqual(a: ExcelValue | undefined, b: ExcelValue | undefined): boolean {
   if (a === undefined || b === undefined) return a === b;
   if (a.kind !== b.kind) return false;
@@ -177,7 +182,7 @@ export class Workbook {
 
     const key = cellKey(row, col);
     const cell = sheetCells.get(key);
-    if (cell && (cell.formula !== undefined || cell.value !== undefined)) {
+    if (cell && (cell.formula !== undefined || !isEmptyValue(cell.value))) {
       const v = cell.value ?? BLANK;
       if (v.kind === "array") return v.values[0] ?? BLANK;
       return v;
@@ -270,8 +275,8 @@ export class Workbook {
         if (r === row && c === col) continue;
         const key = this.globalKey(sheetId, r, c);
         const existing = sheet?.get(cellKey(r, c));
-        if (existing && (existing.formula !== undefined || existing.value !== undefined)) {
-          // Blocked by an existing formula or value.
+        if (existing && (existing.formula !== undefined || !isEmptyValue(existing.value))) {
+          // Blocked by an existing formula or non-empty value.
           this.clearSpill(sheetId, row, col);
           return err(ExcelErrorCode.Spill);
         }

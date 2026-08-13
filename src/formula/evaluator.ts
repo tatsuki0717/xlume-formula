@@ -297,8 +297,15 @@ export class FormulaEvaluator {
     }
     if (arg.kind === "function") {
       const upper = arg.name.toUpperCase();
-      // INDIRECT and OFFSET always return references when they succeed.
-      if (upper === "INDIRECT" || upper === "OFFSET") return bool(true);
+      // INDIRECT and OFFSET return references when they succeed (i.e., do not error).
+      if (upper === "INDIRECT" || upper === "OFFSET") {
+        try {
+          const result = this.evaluate(arg, ctx);
+          return bool(result.kind !== "error");
+        } catch {
+          return bool(false);
+        }
+      }
     }
     return bool(false);
   }

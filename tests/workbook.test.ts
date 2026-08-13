@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { Workbook } from "../src/model/workbook.js";
-import { BLANK, ExcelErrorCode, num, str } from "../src/model/value.js";
+import { BLANK, bool, ExcelErrorCode, num, str } from "../src/model/value.js";
 
 describe("Workbook", () => {
   it("stores and calculates a scalar formula", () => {
@@ -76,5 +76,24 @@ describe("Workbook", () => {
     wb.setFormula(sheet, 1, 0, "=FORMULATEXT(A1)");
     const v = wb.getValue(sheet, 1, 0);
     expect(v).toEqual(str("=1+2"));
+  });
+
+  it("recovers a spill after a blocker is set to BLANK", () => {
+    const wb = new Workbook();
+    const sheet = wb.addSheet();
+    wb.setValue(sheet, 0, 1, num(99));
+    wb.setFormula(sheet, 0, 0, "=SEQUENCE(1,2)");
+    expect(wb.getValue(sheet, 0, 0).kind).toBe("error");
+    wb.setValue(sheet, 0, 1, BLANK);
+    expect(wb.getValue(sheet, 0, 0)).toEqual(num(1));
+    expect(wb.getValue(sheet, 0, 1)).toEqual(num(2));
+  });
+
+  it("returns ISREF FALSE for an invalid INDIRECT", () => {
+    const wb = new Workbook();
+    const sheet = wb.addSheet();
+    wb.setFormula(sheet, 0, 0, '=ISREF(INDIRECT("ZZZ"))');
+    const v = wb.getValue(sheet, 0, 0);
+    expect(v).toEqual(bool(false));
   });
 });
