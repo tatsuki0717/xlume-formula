@@ -243,5 +243,11 @@ describe("Google Sheets offline functions", () => {
     expect(ev.evaluateText('=DETECTLANGUAGE("Ceci est une phrase en français.")', ctx())).toEqual(str("fr"));
     expect(ev.evaluateText('=DETECTLANGUAGE("これは日本語です。")', ctx())).toEqual(str("ja"));
     expect(ev.evaluateText('=DETECTLANGUAGE("")', ctx())).toEqual(str("und"));
+    expect(ev.evaluateText('=DETECTLANGUAGE("Das ist ein deutscher Satz.")', ctx())).toEqual(str("de"));
+    expect(ev.evaluateText('=DETECTLANGUAGE("Il gatto è sulla sedia.")', ctx())).toEqual(str("it"));
+    expect(ev.evaluateText('=DETECTLANGUAGE("O cachorro corre no parque.")', ctx())).toEqual(str("pt"));
+    expect(ev.evaluateText('=DETECTLANGUAGE("안녕하세요 세계")', ctx())).toEqual(str("ko"));
+    expect(ev.evaluateText('=DETECTLANGUAGE("你好世界")', ctx())).toEqual(str("zh"));
+    expect(ev.evaluateText('=DETECTLANGUAGE("Привет, как дела?")', ctx())).toEqual(str("ru"));
   });
 });

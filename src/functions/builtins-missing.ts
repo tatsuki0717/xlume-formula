@@ -17,7 +17,7 @@ import { flattenArgs } from "../formula/evaluator.js";
 import type { EvaluationContext, ExcelFunction, FunctionRegistry } from "../formula/functions-types.js";
 import { columnIndexToLetters } from "../model/address.js";
 import { toHan, toZen } from "./zenhan.js";
-import { bahttext } from "bahttext";
+import { bahttext } from "./bahttext.js";
 
 function fn(
   name: string,
@@ -836,7 +836,11 @@ export function registerMissingFunctions(add: (f: ExcelFunction) => void, reg: F
     if (args.length === 0) return BLANK;
     const n = excelCoerceNumber(args[0]!);
     if (n.kind !== "number") return n;
-    return str(bahttext(n.value));
+    try {
+      return str(bahttext(n.value));
+    } catch {
+      return err(ExcelErrorCode.Num);
+    }
   }));
 
   add(fn("WEBSERVICE", "none", (args, ctx) => {
