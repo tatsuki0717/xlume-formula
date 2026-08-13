@@ -3,7 +3,7 @@
 ## Metadata
 - **Category:** User-defined / Add-in
 - **Priority tags:** EXT
-- **Scope:** in-scope
+- **Scope:** out-of-scope
 - **Volatile:** No
 
 ## Description
@@ -25,9 +25,8 @@
 A value returned by the provider that can later be used with `CALL`, or `#N/A` if no provider is configured.
 
 ## Behavior / Algorithm
-1. Coerce `module_text`, `procedure`, and optional `type_text` to strings.
-2. If `EvaluationContext.external.registerID` is defined, call `registerID(module, procedure, typeText)`.
-3. Return the provider's `ExcelValue`.
+
+This function depends on external services, spreadsheet data, or an external runtime (network, OLAP, pivot cache, XLL, RTD, etc.). The core `xlume-formula` engine does not perform network calls or access external data sources; the registered implementation always returns `#N/A`.
 
 ## Type Coercion & Edge Cases
 - Arguments are coerced to strings.
@@ -45,7 +44,7 @@ A value returned by the provider that can later be used with `CALL`, or `#N/A` i
 ```
 
 ## Implementation Notes
-- Implemented in `src/functions/builtins-missing.ts`.
+- Not implemented in the core engine; registered as a stub that returns `#N/A`missing.ts`.
 - The library does not load native libraries. The host application must supply a provider that maps module/procedure to a callable object.
 
 ## References

@@ -3,7 +3,7 @@
 ## Metadata
 - **Category:** Lookup & Reference
 - **Priority tags:** EXT
-- **Scope:** in-scope
+- **Scope:** out-of-scope
 - **Volatile:** No
 
 ## Description
@@ -26,10 +26,8 @@ Extracts data stored in a PivotTable report.
 The aggregated value from the pivot table matching the requested data field and filters.
 
 ## Behavior / Algorithm
-1. Coerce `data_field` and `pivot_table` to strings.
-2. Collect the remaining `field, item` pairs into a filter list.
-3. If `EvaluationContext.external.pivot` is defined, call `pivot(dataField, pivotTable, filters)`.
-4. Return the provider result, or `#N/A` if no provider is configured.
+
+This function depends on external services, spreadsheet data, or an external runtime (network, OLAP, pivot cache, XLL, RTD, etc.). The core `xlume-formula` engine does not perform network calls or access external data sources; the registered implementation always returns `#N/A`.
 
 ## Type Coercion & Edge Cases
 - Reference arguments are resolved to their cell values before being passed to the provider.
@@ -53,7 +51,7 @@ The aggregated value from the pivot table matching the requested data field and 
 | `=GETPIVOTDATA("Sales", "Pivot1")` with no provider | `#N/A` | Missing provider |
 
 ## Implementation Notes
-Implemented in `src/functions/builtins-extra.ts`. The engine does not include a pivot cache; the host application must supply a provider via `EvaluationContext.external.pivot`.
+Not implemented in the core engine; registered as a stub that returns `#N/A`extra.ts`. The engine does not include a pivot cache; the host application must supply a provider via `EvaluationContext.external.pivot`.
 
 ## References
 - [Microsoft Excel GETPIVOTDATA function](https://support.microsoft.com/en-us/office/getpivotdata-function)

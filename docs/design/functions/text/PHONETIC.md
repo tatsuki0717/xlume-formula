@@ -3,7 +3,7 @@
 ## Metadata
 - **Category:** Text
 - **Priority tags:** EXT
-- **Scope:** in-scope
+- **Scope:** out-of-scope
 - **Volatile:** No
 
 ## Description
@@ -23,10 +23,8 @@
 The phonetic text returned by the provider, or `#N/A` if no provider is configured.
 
 ## Behavior / Algorithm
-1. Coerce the first argument (or the first cell of a range/array) to a string.
-2. If `EvaluationContext.external.phonetic` is defined, call `phonetic(text)`.
-3. Return the provider result as a string.
-4. If the provider is not defined, return `#N/A`.
+
+This function depends on external services, spreadsheet data, or an external runtime (network, OLAP, pivot cache, XLL, RTD, etc.). The core `xlume-formula` engine does not perform network calls or access external data sources; the registered implementation always returns `#N/A`.
 
 ## Type Coercion & Edge Cases
 - Arrays/ranges use the first element.
@@ -50,7 +48,7 @@ The phonetic text returned by the provider, or `#N/A` if no provider is configur
 | `=PHONETIC("日本語")` with no provider | `#N/A` | Missing provider |
 
 ## Implementation Notes
-- Implemented in `src/functions/builtins-missing.ts`.
+- Not implemented in the core engine; registered as a stub that returns `#N/A`missing.ts`.
 - The engine does not include a built-in Japanese reading dictionary; the host application must supply one.
 
 ## References

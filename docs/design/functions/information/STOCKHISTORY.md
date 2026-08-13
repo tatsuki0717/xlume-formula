@@ -3,7 +3,7 @@
 ## Metadata
 - **Category:** Information
 - **Priority tags:** EXT
-- **Scope:** in-scope
+- **Scope:** out-of-scope
 - **Volatile:** No
 
 ## Description
@@ -28,11 +28,8 @@
 An array returned by the provider, or `#N/A` if no provider is configured.
 
 ## Behavior / Algorithm
-1. Coerce the first argument to text.
-2. Coerce subsequent arguments to numbers or strings where applicable.
-3. If `EvaluationContext.external.stockHistory` is defined, call `stockHistory(ticker, ...args)`.
-4. Return the provider's `ArrayValue`.
-5. If the provider is not defined, return `#N/A`.
+
+This function depends on external services, spreadsheet data, or an external runtime (network, OLAP, pivot cache, XLL, RTD, etc.). The core `xlume-formula` engine does not perform network calls or access external data sources; the registered implementation always returns `#N/A`.
 
 ## Type Coercion & Edge Cases
 - Dates may be passed as serial numbers or text and are passed through to the provider.
@@ -57,7 +54,7 @@ An array returned by the provider, or `#N/A` if no provider is configured.
 | `=STOCKHISTORY("AAPL")` with no provider | `#N/A` | Missing provider |
 
 ## Implementation Notes
-- Implemented in `src/functions/builtins-missing.ts`.
+- Not implemented in the core engine; registered as a stub that returns `#N/A`missing.ts`.
 - Synchronous-only: the provider must return data synchronously (e.g. from a cache). The library does not perform async market-data fetching.
 
 ## References

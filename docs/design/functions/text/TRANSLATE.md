@@ -3,7 +3,7 @@
 ## Metadata
 - **Category:** Text
 - **Priority tags:** EXT
-- **Scope:** in-scope
+- **Scope:** out-of-scope
 - **Volatile:** No
 
 ## Description
@@ -25,10 +25,8 @@
 The translated string, or an error if no provider is configured.
 
 ## Behavior / Algorithm
-1. Coerce `text`, `source_language`, and `target_language` to strings.
-2. If `EvaluationContext.external.translate` is defined, call `translate(text, source, target)`.
-3. Return the provider result as a string.
-4. If the provider is not defined, return `#N/A`.
+
+This function depends on external services, spreadsheet data, or an external runtime (network, OLAP, pivot cache, XLL, RTD, etc.). The core `xlume-formula` engine does not perform network calls or access external data sources; the registered implementation always returns `#N/A`.
 
 ## Type Coercion & Edge Cases
 - Blank arguments coerced to `""`.
@@ -52,7 +50,7 @@ The translated string, or an error if no provider is configured.
 | `=TRANSLATE("hello")` with no provider | `#N/A` | Missing provider |
 
 ## Implementation Notes
-- Implemented in `src/functions/builtins-missing.ts`.
+- Not implemented in the core engine; registered as a stub that returns `#N/A`missing.ts`.
 - Synchronous-only: the provider must return the translation synchronously (e.g. from a cache). The library does not perform async translation API calls.
 
 ## References

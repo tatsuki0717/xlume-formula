@@ -3,7 +3,7 @@
 ## Metadata
 - **Category:** Web
 - **Priority tags:** EXT
-- **Scope:** in-scope
+- **Scope:** out-of-scope
 - **Volatile:** No
 
 ## Description
@@ -23,11 +23,8 @@
 The text returned by the provider, or an error if no provider is configured or the fetch fails.
 
 ## Behavior / Algorithm
-1. Coerce the first argument to text.
-2. If `EvaluationContext.external.webService` is defined, call `webService(url)`.
-3. Return the provider result as a string.
-4. If the provider is not defined, return `#N/A`.
-5. If the provider throws, return `#VALUE!`.
+
+This function depends on external services, spreadsheet data, or an external runtime (network, OLAP, pivot cache, XLL, RTD, etc.). The core `xlume-formula` engine does not perform network calls or access external data sources; the registered implementation always returns `#N/A`.
 
 ## Type Coercion & Edge Cases
 - Non-text `url` values are coerced to text before the request.
@@ -51,7 +48,7 @@ The text returned by the provider, or an error if no provider is configured or t
 | `=WEBSERVICE("https://example.com")` with no provider | `#N/A` | Missing provider |
 
 ## Implementation Notes
-- Implemented in `src/functions/builtins-missing.ts`.
+- Not implemented in the core engine; registered as a stub that returns `#N/A`missing.ts`.
 - Synchronous-only: the provider must return the result synchronously (e.g. from a cache or pre-fetched map). The library itself does not perform async network calls.
 - The host application is responsible for networking, caching, CORS, and security.
 

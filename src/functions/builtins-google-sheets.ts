@@ -257,127 +257,39 @@ function complexDivide(aRe: number, aIm: number, bRe: number, bIm: number): { re
 }
 
 function addGoogleSheetsNetworkFunctions(add: (f: ExcelFunction) => void): void {
-  add(fn("GOOGLETRANSLATE", "none", (args, ctx) => {
+  add(fn("GOOGLETRANSLATE", "none", (args) => {
     if (args.length === 0) return err(ExcelErrorCode.Value);
-    const text = excelCoerceString(args[0]!);
-    if (text.kind !== "string") return text;
-    const source = args[1] ? excelCoerceString(args[1]) : str("auto");
-    const target = args[2] ? excelCoerceString(args[2]) : str("");
-    if (source.kind !== "string") return source;
-    if (target.kind !== "string") return target;
-    const provider = ctx.external?.googleTranslate ?? ctx.external?.translate;
-    if (!provider) return err(ExcelErrorCode.NA);
-    try {
-      const result = provider(text.value, source.value, target.value);
-      return result === undefined ? err(ExcelErrorCode.NA) : str(result);
-    } catch {
-      return err(ExcelErrorCode.Value);
-    }
+    return err(ExcelErrorCode.NA);
   }));
 
-  add(fn("GOOGLEFINANCE", "none", (args, ctx) => {
+  add(fn("GOOGLEFINANCE", "none", (args) => {
     if (args.length === 0) return err(ExcelErrorCode.Value);
-    const ticker = excelCoerceString(args[0]!);
-    const attribute = args[1] ? excelCoerceString(args[1]) : str("price");
-    if (ticker.kind !== "string") return ticker;
-    if (attribute.kind !== "string") return attribute;
-    const provider = ctx.external?.googleFinance;
-    if (!provider) return err(ExcelErrorCode.NA);
-    try {
-      const result = provider(ticker.value, attribute.value || undefined);
-      return result === undefined ? err(ExcelErrorCode.NA) : result;
-    } catch {
-      return err(ExcelErrorCode.Value);
-    }
+    return err(ExcelErrorCode.NA);
   }));
 
-  add(fn("IMPORTDATA", "none", (args, ctx) => {
+  add(fn("IMPORTDATA", "none", (args) => {
     if (args.length === 0) return err(ExcelErrorCode.Value);
-    const url = excelCoerceString(args[0]!);
-    if (url.kind !== "string") return url;
-    const provider = ctx.external?.importData ?? ctx.external?.webService;
-    if (!provider) return err(ExcelErrorCode.NA);
-    try {
-      const result = provider(url.value);
-      return result === undefined ? err(ExcelErrorCode.NA) : str(result);
-    } catch {
-      return err(ExcelErrorCode.Value);
-    }
+    return err(ExcelErrorCode.NA);
   }));
 
-  add(fn("IMPORTXML", "none", (args, ctx) => {
+  add(fn("IMPORTXML", "none", (args) => {
     if (args.length < 2) return err(ExcelErrorCode.Value);
-    const url = excelCoerceString(args[0]!);
-    const xpath = excelCoerceString(args[1]!);
-    if (url.kind !== "string") return url;
-    if (xpath.kind !== "string") return xpath;
-    const provider = ctx.external?.importXml;
-    if (!provider) return err(ExcelErrorCode.NA);
-    try {
-      const result = provider(url.value, xpath.value);
-      return result === undefined ? err(ExcelErrorCode.NA) : result;
-    } catch {
-      return err(ExcelErrorCode.Value);
-    }
+    return err(ExcelErrorCode.NA);
   }));
 
-  add(fn("IMPORTHTML", "none", (args, ctx) => {
+  add(fn("IMPORTHTML", "none", (args) => {
     if (args.length < 3) return err(ExcelErrorCode.Value);
-    const url = excelCoerceString(args[0]!);
-    const query = excelCoerceString(args[1]!);
-    const index = excelCoerceNumber(args[2]!);
-    if (url.kind !== "string") return url;
-    if (query.kind !== "string") return query;
-    if (index.kind !== "number") return index;
-    const provider = ctx.external?.importHtml;
-    if (!provider) return err(ExcelErrorCode.NA);
-    try {
-      const result = provider(url.value, query.value, Math.trunc(index.value));
-      return result === undefined ? err(ExcelErrorCode.NA) : result;
-    } catch {
-      return err(ExcelErrorCode.Value);
-    }
+    return err(ExcelErrorCode.NA);
   }));
 
-  add(fn("IMPORTFEED", "none", (args, ctx) => {
+  add(fn("IMPORTFEED", "none", (args) => {
     if (args.length === 0) return err(ExcelErrorCode.Value);
-    const url = excelCoerceString(args[0]!);
-    const query = args[1] ? excelCoerceString(args[1]) : str("items title");
-    const headers = args[2] ? excelCoerceBoolean(args[2]) : bool(false);
-    const numItems = args[3] ? excelCoerceNumber(args[3]) : num(0);
-    if (url.kind !== "string") return url;
-    if (query.kind !== "string") return query;
-    if (headers.kind !== "boolean") return headers;
-    if (numItems.kind !== "number") return numItems;
-    const provider = ctx.external?.importFeed;
-    if (!provider) return err(ExcelErrorCode.NA);
-    try {
-      const result = provider(
-        url.value,
-        query.value || undefined,
-        headers.value,
-        numItems.value || undefined,
-      );
-      return result === undefined ? err(ExcelErrorCode.NA) : result;
-    } catch {
-      return err(ExcelErrorCode.Value);
-    }
+    return err(ExcelErrorCode.NA);
   }));
 
-  add(fn("IMPORTRANGE", "none", (args, ctx) => {
+  add(fn("IMPORTRANGE", "none", (args) => {
     if (args.length < 2) return err(ExcelErrorCode.Value);
-    const url = excelCoerceString(args[0]!);
-    const range = excelCoerceString(args[1]!);
-    if (url.kind !== "string") return url;
-    if (range.kind !== "string") return range;
-    const provider = ctx.external?.importRange;
-    if (!provider) return err(ExcelErrorCode.NA);
-    try {
-      const result = provider(url.value, range.value);
-      return result === undefined ? err(ExcelErrorCode.NA) : result;
-    } catch {
-      return err(ExcelErrorCode.Value);
-    }
+    return err(ExcelErrorCode.NA);
   }));
 }
 
@@ -922,6 +834,6 @@ export function registerGoogleSheetsFunctions(add: (f: ExcelFunction) => void): 
     return str(lang || "und");
   }));
 
-  // Google Sheets network functions delegated to EvaluationContext.external.
+  // Google Sheets network functions are not implemented in the core engine.
   addGoogleSheetsNetworkFunctions(add);
 }
