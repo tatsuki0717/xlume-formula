@@ -535,6 +535,7 @@ export class FormulaEvaluator {
         values.push(this.evalArrayExpr(expr, ctx, r, c));
       }
     }
+    if (shape.w === 1 && shape.h === 1) return values[0] ?? BLANK;
     return { kind: "array", width: shape.w, height: shape.h, values };
   }
 
