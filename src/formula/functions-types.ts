@@ -13,6 +13,18 @@ export interface EvaluationContext {
     endRow: number,
     endCol: number,
   ): ExcelValue[];
+  /**
+   * Host-provided GETPIVOTDATA resolver. The evaluator supplies the data
+   * field name, the pivot-table anchor cell and the field/item pairs.
+   * Return undefined when no pivot table contains the anchor cell.
+   */
+  getPivotData?(request: {
+    dataField: string;
+    sheet: number | string;
+    row: number;
+    column: number;
+    fields: Array<{ field: string; item: ExcelValue }>;
+  }): ExcelValue | undefined;
   /** Return the formula text of a cell, if any. Used by FORMULATEXT/ISFORMULA. */
   getFormulaText?(sheet: number | string | undefined, row: number, column: number): string | undefined;
   resolveName(name: string): FormulaNode | ExcelValue | undefined;

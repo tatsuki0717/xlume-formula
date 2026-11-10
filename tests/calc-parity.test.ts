@@ -1,6 +1,9 @@
 import { describe, expect, it } from "vitest";
 import { Workbook } from "../src/model/workbook.js";
-import { num } from "../src/model/value.js";
+import { num, str, ExcelErrorCode, type ExcelValue } from "../src/model/value.js";
+import { FormulaEvaluator } from "../src/formula/evaluator.js";
+
+import { FunctionRegistry, type EvaluationContext } from "../src/formula/functions-types.js";
 
 /**
  * Calculation-parity cases for the gap-tracker items C-005 (@ implicit
@@ -102,5 +105,61 @@ describe("C-007 iterative calculation", () => {
     // Fixed point: A = 0.5B + 1, B = 0.5A  =>  A = 4/3, B = 2/3
     expect(a.kind === "number" && Math.abs(a.value - 4 / 3)).toBeTruthy();
     expect(b.kind === "number" && Math.abs(b.value - 2 / 3)).toBeTruthy();
+  });
+});
+
+describe("GETPIVOTDATA host hook", () => {
+  function ctxWithHook(hook?: EvaluationContext["getPivotData"]): EvaluationContext {
+    return {
+      sheetId: 0,
+      row: 9,
+      column: 9,
+      getCell: () => num(0),
+      getRangeValues: () => [],
+      getFormulaText: () => undefined,
+      resolveName: () => undefined,
+      resolveTableColumn: () => [],
+      todaySerial: () => 45292,
+      random: () => 0.5,
+      ...(hook ? { getPivotData: hook } : {}),
+    };
+  }
+  function evalWith(ctx: EvaluationContext, text: string): ExcelValue {
+    const ev = new FormulaEvaluator(new FunctionRegistry());
+    return ev.evaluateText(text, ctx);
+  }
+
+  it("returns #N/A without a host resolver (standalone contract)", () => {
+    const v = evalWith(ctxWithHook(undefined), '=GETPIVOTDATA("Amount",A1)');
+    expect(v.kind).toBe("error");
+    if (v.kind === "error") expect(v.code).toBe(ExcelErrorCode.NA);
+  });
+
+  it("passes data field, anchor and pairs to the hook", () => {
+    let seen: Parameters<NonNullable<EvaluationContext["getPivotData"]>>[0] | undefined;
+    const v = evalWith(
+      ctxWithHook((req) => {
+        seen = req;
+        return num(42);
+      }),
+      '=GETPIVOTDATA("Amount",B3,"Region","East")',
+    );
+    expect(v).toEqual(num(42));
+    expect(seen?.dataField).toBe("Amount");
+    expect(seen?.row).toBe(2);
+    expect(seen?.column).toBe(1);
+    expect(seen?.fields).toEqual([{ field: "Region", item: str("East") }]);
+  });
+
+  it("maps a hook miss (undefined) to #REF! like Excel", () => {
+    const v = evalWith(ctxWithHook(() => undefined), '=GETPIVOTDATA("Amount",A1,"Region","Nowhere")');
+    expect(v.kind).toBe("error");
+    if (v.kind === "error") expect(v.code).toBe(ExcelErrorCode.Ref);
+  });
+
+  it("rejects an odd number of field/item arguments with #REF!", () => {
+    const v = evalWith(ctxWithHook(() => num(1)), '=GETPIVOTDATA("Amount",A1,"Region")');
+    expect(v.kind).toBe("error");
+    if (v.kind === "error") expect(v.code).toBe(ExcelErrorCode.Ref);
   });
 });

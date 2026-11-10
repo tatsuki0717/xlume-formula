@@ -122,6 +122,9 @@ export class FormulaEvaluator {
         if (upper === "FORMULATEXT") {
           return this.evalFormulaText(node.args, ctx);
         }
+        if (upper === "GETPIVOTDATA") {
+          return this.evalGetPivotData(node.args, ctx);
+        }
         if (upper === "CELL") {
           return this.evalCell(node.args, ctx);
         }
@@ -370,6 +373,39 @@ export class FormulaEvaluator {
       }
     }
     return bool(false);
+  }
+
+  private evalGetPivotData(args: FormulaNode[], ctx: EvaluationContext): ExcelValue {
+    // GETPIVOTDATA(data_field, pivot_table, field1, item1, ...) — the pivot
+    // table is identified by any cell inside it, so the second argument is
+    // resolved as a reference, not a value. Without a host resolver the
+    // function keeps its #N/A contract.
+    if (!ctx.getPivotData) return err(ExcelErrorCode.NA);
+    if (args.length < 2) return err(ExcelErrorCode.Ref);
+    const fieldVal = excelCoerceString(this.evaluate(args[0]!, ctx));
+    if (fieldVal.kind === "error") return fieldVal;
+    if (fieldVal.kind !== "string") return err(ExcelErrorCode.Value);
+    const ref = this.cellReferenceFromNode(args[1]!, ctx);
+    if (!ref || ref.row < 0 || ref.col < 0) return err(ExcelErrorCode.Ref);
+    const rest = args.slice(2);
+    if (rest.length % 2 !== 0) return err(ExcelErrorCode.Ref);
+    const fields: Array<{ field: string; item: ExcelValue }> = [];
+    for (let i = 0; i < rest.length; i += 2) {
+      const nameVal = excelCoerceString(this.evaluate(rest[i]!, ctx));
+      if (nameVal.kind === "error") return nameVal;
+      if (nameVal.kind !== "string") return err(ExcelErrorCode.Value);
+      const item = this.evaluate(rest[i + 1]!, ctx);
+      if (item.kind === "error") return item;
+      fields.push({ field: nameVal.value, item });
+    }
+    const result = ctx.getPivotData({
+      dataField: fieldVal.value,
+      sheet: ref.sheet,
+      row: ref.row,
+      column: ref.col,
+      fields,
+    });
+    return result ?? err(ExcelErrorCode.Ref);
   }
 
   private evalCell(args: FormulaNode[], ctx: EvaluationContext): ExcelValue {
