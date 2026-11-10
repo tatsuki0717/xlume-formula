@@ -11,6 +11,8 @@ export type FormulaToken =
   | { kind: "rparen" }
   | { kind: "lbrace" }
   | { kind: "rbrace" }
+  | { kind: "lbracket" }
+  | { kind: "rbracket" }
   | { kind: "comma" }
   | { kind: "semicolon" }
   | { kind: "colon" }
@@ -49,6 +51,16 @@ export function lexFormula(input: string): FormulaToken[] {
     }
     if (c === "}") {
       tokens.push({ kind: "rbrace" });
+      i++;
+      continue;
+    }
+    if (c === "[") {
+      tokens.push({ kind: "lbracket" });
+      i++;
+      continue;
+    }
+    if (c === "]") {
+      tokens.push({ kind: "rbracket" });
       i++;
       continue;
     }

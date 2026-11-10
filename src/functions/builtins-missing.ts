@@ -178,6 +178,21 @@ function normalizeRowsCols(rows: number, max: number): { start: number; end: num
   return { start: Math.max(0, max + rows), end: max - 1 };
 }
 
+function isOmittedArg(arg: ExcelValue | undefined): boolean {
+  return arg === undefined || arg.kind === "omitted";
+}
+
+/** TAKE semantics: keep the first n (or last |n| when negative) entries. */
+function normalizeTake(n: number, max: number): { start: number; end: number } {
+  return normalizeRowsCols(n, max);
+}
+
+/** DROP semantics: remove the first n (or last |n| when negative) entries and keep the rest. */
+function normalizeDrop(n: number, max: number): { start: number; end: number } {
+  if (n >= 0) return { start: Math.min(n, max), end: max - 1 };
+  return { start: 0, end: Math.max(0, max + n) - 1 };
+}
+
 export function registerMissingFunctions(add: (f: ExcelFunction) => void, reg: FunctionRegistry): void {
   // Byte-string aliases (ASCII only; full-width handling is locale-specific and deferred)
   for (const [alias, target] of [
@@ -516,8 +531,10 @@ export function registerMissingFunctions(add: (f: ExcelFunction) => void, reg: F
       const rows = toArray2D(arr);
       const height = rows.length;
       const width = height === 0 ? 0 : rows[0]!.length;
-      const rDrop = normalizeRowsCols(rowsArg.value, height);
-      const cDrop = normalizeRowsCols(colsArg.value, width);
+      // An omitted rows/columns argument drops nothing on that axis.
+      const rDrop = isOmittedArg(args[1]) ? normalizeDrop(0, height) : normalizeDrop(rowsArg.value, height);
+      const cDrop = isOmittedArg(args[2]) ? normalizeDrop(0, width) : normalizeDrop(colsArg.value, width);
+      if (rDrop.start > rDrop.end || cDrop.start > cDrop.end) return err(ExcelErrorCode.Calc);
       const out: ExcelValue[][] = [];
       for (let r = rDrop.start; r <= rDrop.end; r++) {
         const row: ExcelValue[] = [];
@@ -537,8 +554,13 @@ export function registerMissingFunctions(add: (f: ExcelFunction) => void, reg: F
       const rows = toArray2D(arr);
       const height = rows.length;
       const width = height === 0 ? 0 : rows[0]!.length;
-      const rTake = normalizeRowsCols(rowsArg.value, height);
-      const cTake = normalizeRowsCols(colsArg.value, width);
+      // An omitted rows/columns argument keeps the whole axis; an explicit 0 is #CALC! in Excel.
+      if ((!isOmittedArg(args[1]) && rowsArg.value === 0) || (!isOmittedArg(args[2]) && colsArg.value === 0)) {
+        return err(ExcelErrorCode.Calc);
+      }
+      const rTake = isOmittedArg(args[1]) ? normalizeTake(height, height) : normalizeTake(rowsArg.value, height);
+      const cTake = isOmittedArg(args[2]) ? normalizeTake(width, width) : normalizeTake(colsArg.value, width);
+      if (rTake.start > rTake.end || cTake.start > cTake.end) return err(ExcelErrorCode.Calc);
       const out: ExcelValue[][] = [];
       for (let r = rTake.start; r <= rTake.end; r++) {
         const row: ExcelValue[] = [];

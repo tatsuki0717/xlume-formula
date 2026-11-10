@@ -11,7 +11,8 @@ export type FormulaNode =
   | { kind: "range"; sheet?: string; range: CellRange }
   | { kind: "union"; items: FormulaNode[] }
   | { kind: "intersection"; left: FormulaNode; right: FormulaNode }
-  | { kind: "name"; name: string }
+  | { kind: "name"; name: string; optional?: boolean }
+  | { kind: "call"; callee: FormulaNode; args: FormulaNode[] }
   | { kind: "array"; rows: FormulaNode[][] }
   | { kind: "structured"; table: string; column?: string; spec?: string }
   | { kind: "external"; workbook: string; sheet?: string; ref: string }
@@ -131,7 +132,38 @@ class Parser {
       this.take();
       primary = { kind: "spill", expr: primary };
     }
+    // Postfix invocation: LAMBDA(...)(args) / (expr)(args) — invoke a lambda value directly.
+    while (this.peek()?.kind === "lparen") {
+      this.take();
+      const args = this.parseArgListAfterLParen();
+      primary = { kind: "call", callee: primary, args };
+    }
     return primary;
+  }
+
+  private parseArgListAfterLParen(): FormulaNode[] {
+    const args: FormulaNode[] = [];
+    if (this.peek()?.kind !== "rparen") {
+      if (this.peek()?.kind === "comma" || this.peek()?.kind === "semicolon") {
+        args.push({ kind: "missing" });
+      } else {
+        args.push(this.parseCompare());
+      }
+      while (this.peek()?.kind === "comma" || this.peek()?.kind === "semicolon") {
+        this.take();
+        if (this.peek()?.kind === "rparen") {
+          args.push({ kind: "missing" });
+          break;
+        }
+        if (this.peek()?.kind === "comma" || this.peek()?.kind === "semicolon") {
+          args.push({ kind: "missing" });
+          continue;
+        }
+        args.push(this.parseCompare());
+      }
+    }
+    this.expect("rparen");
+    return args;
   }
 
   private parsePrimary(): FormulaNode {
@@ -193,6 +225,18 @@ class Parser {
       const inner = this.parseUnion();
       this.expect("rparen");
       return inner;
+    }
+    if (t.kind === "lbracket") {
+      // Optional LAMBDA parameter: [name]
+      this.take();
+      const inner = this.peek();
+      if (inner?.kind === "identifier" || inner?.kind === "function" || inner?.kind === "ref") {
+        this.take();
+        this.expect("rbracket");
+        return { kind: "name", name: (inner as { value: string }).value, optional: true };
+      }
+      this.expect("rbracket");
+      return { kind: "missing" };
     }
     if (t.kind === "lbrace") {
       this.take();

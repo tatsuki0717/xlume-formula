@@ -48,6 +48,8 @@ export interface ArrayValue {
 export interface LambdaValue {
   kind: "lambda";
   params: string[];
+  /** Names of parameters declared optional with [name] in LAMBDA. */
+  optionalParams?: string[];
   body: import("../formula/ast.js").FormulaNode;
 }
 

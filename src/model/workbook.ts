@@ -287,6 +287,10 @@ export class Workbook {
       case "unary":
         this.collectDeps(node.expr, sheetId, row, col, deps, flags);
         break;
+      case "call":
+        this.collectDeps(node.callee, sheetId, row, col, deps, flags);
+        for (const arg of node.args) this.collectDeps(arg, sheetId, row, col, deps, flags);
+        break;
       case "array":
         for (const r of node.rows) for (const item of r) this.collectDeps(item, sheetId, row, col, deps, flags);
         break;

@@ -212,6 +212,12 @@ export class FormulaEvaluator {
         }
         return v;
       }
+      case "call": {
+        const callee = this.evaluate(node.callee, ctx);
+        if (callee.kind === "error") return callee;
+        if (callee.kind !== "lambda") return err(ExcelErrorCode.Value);
+        return this.callLambda(callee, node.args, ctx);
+      }
       case "missing":
         return BLANK;
       default:
@@ -356,16 +362,28 @@ export class FormulaEvaluator {
   private evalLambda(args: FormulaNode[], ctx: EvaluationContext): ExcelValue {
     if (args.length === 0) return err(ExcelErrorCode.Value);
     const params: string[] = [];
+    const optionalParams: string[] = [];
     for (let i = 0; i < args.length - 1; i++) {
       const p = args[i];
       if (!p || p.kind !== "name") return err(ExcelErrorCode.Value);
       params.push(p.name);
+      if (p.optional) optionalParams.push(p.name);
     }
-    return { kind: "lambda", params, body: args[args.length - 1]! };
+    return { kind: "lambda", params, optionalParams, body: args[args.length - 1]! };
   }
 
   private callLambdaValues(lambda: LambdaValue, argValues: ExcelValue[], ctx: EvaluationContext): ExcelValue {
-    if (argValues.length !== lambda.params.length) return err(ExcelErrorCode.Value);
+    if (argValues.length > lambda.params.length) return err(ExcelErrorCode.Value);
+    if (argValues.length < lambda.params.length) {
+      // Missing trailing arguments are only allowed for [optional] parameters.
+      const optional = new Set((lambda.optionalParams ?? []).map((p) => p.toUpperCase()));
+      const padded = [...argValues];
+      for (let i = argValues.length; i < lambda.params.length; i++) {
+        if (!optional.has(lambda.params[i]!.toUpperCase())) return err(ExcelErrorCode.Value);
+        padded.push(omitted());
+      }
+      argValues = padded;
+    }
     const locals = new Map<string, import("./functions-types.js").FormulaArgument>();
     for (let i = 0; i < lambda.params.length; i++) {
       locals.set(lambda.params[i]!.toUpperCase(), argValues[i]!);
