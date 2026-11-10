@@ -131,7 +131,11 @@ export function createBuiltinFunctions(): FunctionRegistry {
     const b = excelCoerceNumber(args[1] ?? num(0));
     if (a.kind !== "number" || b.kind !== "number") return a.kind === "error" ? a : b;
     const f = 10 ** b.value;
-    return num(Math.round(a.value * f) / f);
+    // Excel rounds half away from zero (Math.round rounds half toward +inf),
+    // and corrects binary representation error at the .5 boundary (1.005 -> 1.01).
+    const scaled = a.value * f;
+    const corrected = scaled + Math.sign(scaled) * Math.max(1, Math.abs(scaled)) * 1e-12;
+    return num((Math.sign(corrected) * Math.round(Math.abs(corrected))) / f);
   }));
   add(fn("INT", "none", (args) => {
     const n = excelCoerceNumber(args[0] ?? BLANK);
@@ -386,17 +390,81 @@ export function createBuiltinFunctions(): FunctionRegistry {
   );
 
   // Lookup
+  // Excel sort order for approximate matching: numbers < text (case-insensitive) < FALSE < TRUE.
+  const orderOf = (v: ExcelValue): number => (v.kind === "number" ? 0 : v.kind === "string" ? 1 : v.kind === "boolean" ? 2 : 3);
+  const compareForMatch = (a: ExcelValue, b: ExcelValue): number => {
+    const oa = orderOf(a);
+    const ob = orderOf(b);
+    if (oa !== ob) return oa - ob;
+    if (a.kind === "number" && b.kind === "number") return a.value - b.value;
+    if (a.kind === "string" && b.kind === "string") return a.value.toLowerCase() < b.value.toLowerCase() ? -1 : a.value.toLowerCase() > b.value.toLowerCase() ? 1 : 0;
+    if (a.kind === "boolean" && b.kind === "boolean") return (a.value ? 1 : 0) - (b.value ? 1 : 0);
+    return 0;
+  };
+  // Returns the 0-based position for MATCH over a flat value list.
+  const matchInList = (lookup: ExcelValue, values: ExcelValue[], matchType: number): number => {
+    if (matchType === 0) {
+      for (let i = 0; i < values.length; i++) {
+        const cmp = excelCompare(lookup, values[i]!, "=");
+        if (cmp.kind === "boolean" && cmp.value) return i;
+      }
+      return -1;
+    }
+    if (matchType === 1) {
+      // Largest value <= lookup (list is expected in ascending order).
+      let best = -1;
+      for (let i = 0; i < values.length; i++) {
+        if (compareForMatch(values[i]!, lookup) <= 0) best = i;
+        else break;
+      }
+      return best;
+    }
+    // matchType === -1: smallest value >= lookup (list in descending order).
+    let best = -1;
+    for (let i = 0; i < values.length; i++) {
+      if (compareForMatch(values[i]!, lookup) >= 0) best = i;
+      else break;
+    }
+    return best;
+  };
   add(
     fn("INDEX", "none", (args) => {
       const arr = args[0];
-      const row = excelCoerceNumber(args[1] ?? num(1));
-      const col = excelCoerceNumber(args[2] ?? num(1));
       if (!arr || arr.kind !== "array") return arr ?? err(ExcelErrorCode.Ref);
-      if (row.kind !== "number" || col.kind !== "number") return err(ExcelErrorCode.Value);
-      const r = Math.max(1, row.value) - 1;
-      const c = Math.max(1, col.value) - 1;
-      const i = r * arr.width + c;
-      return arr.values[i] ?? err(ExcelErrorCode.Ref);
+      const row = excelCoerceNumber(args[1] ?? num(1));
+      if (row.kind !== "number") return err(ExcelErrorCode.Value);
+      const hasCol = args[2] !== undefined && args[2].kind !== "omitted";
+      const col = hasCol ? excelCoerceNumber(args[2]!) : num(1);
+      if (col.kind !== "number") return err(ExcelErrorCode.Value);
+      const { width, height, values } = arr;
+      if (!hasCol) {
+        // Single-index form: a one-row array is indexed by column, a one-column
+        // array by row, and a 2-D array returns the whole row.
+        if (height === 1) {
+          const c = row.value - 1;
+          return c >= 0 && c < width ? values[c]! : err(ExcelErrorCode.Ref);
+        }
+        if (width === 1) {
+          const r = row.value - 1;
+          return r >= 0 && r < height ? values[r]! : err(ExcelErrorCode.Ref);
+        }
+        const r = row.value - 1;
+        if (r < 0 || r >= height) return err(ExcelErrorCode.Ref);
+        return { kind: "array", width, height: 1, values: values.slice(r * width, (r + 1) * width) };
+      }
+      // row_num = 0 returns the whole column; column_num = 0 returns the whole row.
+      if (row.value === 0 && col.value >= 1 && col.value <= width) {
+        const out: ExcelValue[] = [];
+        for (let r = 0; r < height; r++) out.push(values[r * width + (col.value - 1)]!);
+        return { kind: "array", width: 1, height, values: out };
+      }
+      if (col.value === 0 && row.value >= 1 && row.value <= height) {
+        return { kind: "array", width, height: 1, values: values.slice((row.value - 1) * width, row.value * width) };
+      }
+      const r = row.value - 1;
+      const c = col.value - 1;
+      if (r < 0 || r >= height || c < 0 || c >= width) return err(ExcelErrorCode.Ref);
+      return values[r * width + c]!;
     }),
   );
   add(
@@ -404,11 +472,11 @@ export function createBuiltinFunctions(): FunctionRegistry {
       const lookup = args[0] ?? BLANK;
       const arr = args[1];
       if (!arr || arr.kind !== "array") return err(ExcelErrorCode.NA);
-      for (let i = 0; i < arr.values.length; i++) {
-        const cmp = excelCompare(lookup, arr.values[i]!, "=");
-        if (cmp.kind === "boolean" && cmp.value) return num(i + 1);
-      }
-      return err(ExcelErrorCode.NA);
+      const typeArg = args[2] === undefined || args[2].kind === "omitted" ? num(1) : excelCoerceNumber(args[2]);
+      if (typeArg.kind !== "number") return err(ExcelErrorCode.Value);
+      const matchType = typeArg.value === 0 ? 0 : typeArg.value > 0 ? 1 : -1;
+      const pos = matchInList(lookup, arr.values, matchType);
+      return pos < 0 ? err(ExcelErrorCode.NA) : num(pos + 1);
     }),
   );
   add(
@@ -416,20 +484,17 @@ export function createBuiltinFunctions(): FunctionRegistry {
       const lookup = args[0] ?? BLANK;
       const table = args[1];
       const colIdx = excelCoerceNumber(args[2] ?? num(1));
-      const exact = args[3] === undefined ? true : excelCoerceBoolean(args[3]).kind === "boolean" && !(args[3].kind === "boolean" && args[3].value === false);
-      // approximate vs exact — simplified exact
-      void exact;
       if (!table || table.kind !== "array" || colIdx.kind !== "number") return err(ExcelErrorCode.Ref);
-      const width = table.width;
-      for (let r = 0; r < table.height; r++) {
-        const cell = table.values[r * width] ?? BLANK;
-        const cmp = excelCompare(lookup, cell, "=");
-        if (cmp.kind === "boolean" && cmp.value) {
-          const c = colIdx.value - 1;
-          return table.values[r * width + c] ?? err(ExcelErrorCode.Ref);
-        }
-      }
-      return err(ExcelErrorCode.NA);
+      if (colIdx.value < 1 || colIdx.value > table.width) return err(ExcelErrorCode.Ref);
+      const approx = args[3] !== undefined && args[3].kind !== "omitted"
+        ? excelCoerceBoolean(args[3])
+        : { kind: "boolean", value: true };
+      const firstCol: ExcelValue[] = [];
+      for (let r = 0; r < table.height; r++) firstCol.push(table.values[r * table.width] ?? BLANK);
+      const isApprox = approx.kind === "boolean" ? approx.value : true;
+      const pos = matchInList(lookup, firstCol, isApprox ? 1 : 0);
+      if (pos < 0) return err(ExcelErrorCode.NA);
+      return table.values[pos * table.width + (colIdx.value - 1)] ?? err(ExcelErrorCode.Ref);
     }),
   );
   add(
@@ -438,14 +503,16 @@ export function createBuiltinFunctions(): FunctionRegistry {
       const table = args[1];
       const rowIdx = excelCoerceNumber(args[2] ?? num(1));
       if (!table || table.kind !== "array" || rowIdx.kind !== "number") return err(ExcelErrorCode.Ref);
-      for (let c = 0; c < table.width; c++) {
-        const cell = table.values[c] ?? BLANK;
-        const cmp = excelCompare(lookup, cell, "=");
-        if (cmp.kind === "boolean" && cmp.value) {
-          return table.values[(rowIdx.value - 1) * table.width + c] ?? err(ExcelErrorCode.Ref);
-        }
-      }
-      return err(ExcelErrorCode.NA);
+      if (rowIdx.value < 1 || rowIdx.value > table.height) return err(ExcelErrorCode.Ref);
+      const approx = args[3] !== undefined && args[3].kind !== "omitted"
+        ? excelCoerceBoolean(args[3])
+        : { kind: "boolean", value: true };
+      const firstRow: ExcelValue[] = [];
+      for (let c = 0; c < table.width; c++) firstRow.push(table.values[c] ?? BLANK);
+      const isApprox = approx.kind === "boolean" ? approx.value : true;
+      const pos = matchInList(lookup, firstRow, isApprox ? 1 : 0);
+      if (pos < 0) return err(ExcelErrorCode.NA);
+      return table.values[(rowIdx.value - 1) * table.width + pos] ?? err(ExcelErrorCode.Ref);
     }),
   );
   add(
