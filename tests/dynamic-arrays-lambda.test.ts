@@ -73,3 +73,20 @@ describe("LAMBDA invocation", () => {
     expect(evalFormula("=LET(f,LAMBDA(x,x*3),f(4))")).toEqual(num(12));
   });
 });
+
+describe("legacy distribution aliases are cumulative", () => {
+  it("GAMMADIST returns the CDF, not the PDF", () => {
+    const v = evalFormula("=GAMMADIST(2,2,1)");
+    expect(v.kind).toBe("number");
+    if (v.kind === "number") expect(v.value).toBeCloseTo(0.594, 3);
+  });
+
+  it("BETADIST returns the CDF and honours legacy A/B bounds", () => {
+    const v = evalFormula("=BETADIST(0.5,2,3)");
+    expect(v.kind).toBe("number");
+    if (v.kind === "number") expect(v.value).toBeCloseTo(0.6875, 4);
+    const bounded = evalFormula("=BETADIST(0.5,2,3,0,1)");
+    expect(bounded.kind).toBe("number");
+    if (bounded.kind === "number") expect(bounded.value).toBeCloseTo(0.6875, 4);
+  });
+});

@@ -6,6 +6,16 @@ prioritization (`[T1]`/`[T2]`/`[T3]` tags) is just the *order* we tackle this li
 
 Source: [Excel functions by category](https://support.microsoft.com/en-us/office/excel-functions-by-category-5f91f4e9-7b42-46d2-9bd1-63f26a86c0eb) (verified 2026-06-06).
 
+> Status (2026-11-11): all 522 catalogued functions are registered and evaluate.
+> The dynamic-array and LAMBDA families and the legacy compatibility aliases were
+> re-verified by direct evaluation (including TAKE/DROP axis semantics, immediate
+> LAMBDA invocation, `[optional]` parameters / ISOMITTED, and cumulative semantics
+> of GAMMADIST / BETADIST). `[EXT]` functions that need an external service or a
+> pivot/OLAP cache (CUBE family, WEBSERVICE, IMAGE, GETPIVOTDATA) evaluate through
+> the provider hooks and return `#N/A` when no provider is connected — they are
+> checked because the dispatch and error contract exist, not because a live
+> external source is bundled.
+
 ## Per-function workflow (definition of done)
 
 Each function is implemented **one at a time**. A function is only checked off `[x]` when **all** of:
@@ -47,14 +57,14 @@ Count target per tier: T1 = 30 · T2 ≈ 90 · T3 = remainder of standard functi
 - [x] `IFS` — multiple condition branches [T2]
 - [x] `SWITCH` — match value against cases [T2]
 - [x] `XOR` — exclusive or [T3]
-- [ ] `LAMBDA` — define reusable function [LAMBDA]
-- [ ] `LET` — bind names in a formula [LAMBDA]
-- [ ] `MAP` — map array via lambda [LAMBDA]
-- [ ] `REDUCE` — fold array via lambda [LAMBDA]
-- [ ] `SCAN` — running fold via lambda [LAMBDA]
-- [ ] `BYROW` — apply lambda per row [LAMBDA]
-- [ ] `BYCOL` — apply lambda per column [LAMBDA]
-- [ ] `MAKEARRAY` — build array via lambda [LAMBDA]
+- [x] `LAMBDA` — define reusable function [LAMBDA]
+- [x] `LET` — bind names in a formula [LAMBDA]
+- [x] `MAP` — map array via lambda [LAMBDA]
+- [x] `REDUCE` — fold array via lambda [LAMBDA]
+- [x] `SCAN` — running fold via lambda [LAMBDA]
+- [x] `BYROW` — apply lambda per row [LAMBDA]
+- [x] `BYCOL` — apply lambda per column [LAMBDA]
+- [x] `MAKEARRAY` — build array via lambda [LAMBDA]
 
 ## Math & Trigonometry (~80)
 
@@ -92,7 +102,7 @@ Count target per tier: T1 = 30 · T2 ≈ 90 · T3 = remainder of standard functi
 - [x] `SQRTPI` — sqrt of n·π [T3]
 - [x] `RAND` — random 0–1 [T3] (volatile)
 - [x] `RANDBETWEEN` — random integer in range [T3] (volatile)
-- [ ] `RANDARRAY` — random array [DA] (volatile)
+- [x] `RANDARRAY` — random array [DA] (volatile)
 - [x] `SIN` — sine [T3]
 - [x] `COS` — cosine [T3]
 - [x] `TAN` — tangent [T3]
@@ -138,8 +148,8 @@ Count target per tier: T1 = 30 · T2 ≈ 90 · T3 = remainder of standard functi
 - [x] `MINVERSE` — matrix inverse [T3]
 - [x] `MMULT` — matrix multiply [T3]
 - [x] `MUNIT` — identity matrix [T3]
-- [ ] `SEQUENCE` — generate sequence array [DA]
-- [ ] `PERCENTOF` — percent of total [T3]
+- [x] `SEQUENCE` — generate sequence array [DA]
+- [x] `PERCENTOF` — percent of total [T3]
 
 ## Statistical (~110)
 
@@ -160,7 +170,7 @@ Count target per tier: T1 = 30 · T2 ≈ 90 · T3 = remainder of standard functi
 - [x] `MINIFS` — conditional min [T2]
 - [x] `MEDIAN` — median [T2]
 - [x] `MODE.SNGL` — most frequent [T3]
-- [ ] `MODE.MULT` — multiple modes [DA]
+- [x] `MODE.MULT` — multiple modes [DA]
 - [x] `LARGE` — k-th largest [T2]
 - [x] `SMALL` — k-th smallest [T2]
 - [x] `RANK.EQ` — rank (ties equal) [T2]
@@ -286,7 +296,7 @@ Count target per tier: T1 = 30 · T2 ≈ 90 · T3 = remainder of standard functi
 - [x] `T` — return text or "" [T3]
 - [x] `TEXTBEFORE` — text before delimiter [T2]
 - [x] `TEXTAFTER` — text after delimiter [T2]
-- [ ] `TEXTSPLIT` — split to array [DA]
+- [x] `TEXTSPLIT` — split to array [DA]
 - [x] `ARRAYTOTEXT` — array→text [T3]
 - [x] `VALUETOTEXT` — value→text [T3]
 - [x] `REGEXTEST` — regex match test [T3]
@@ -327,22 +337,22 @@ Count target per tier: T1 = 30 · T2 ≈ 90 · T3 = remainder of standard functi
 - [x] `TRANSPOSE` — flip rows/cols [DA]
 - [x] `HYPERLINK` — clickable link [T3]
 - [x] `FORMULATEXT` — formula as text [T3]
-- [ ] `SORT` — sort array [DA]
-- [ ] `SORTBY` — sort by keys [DA]
-- [ ] `UNIQUE` — distinct values [DA]
-- [ ] `FILTER` — filter array [DA]
-- [ ] `VSTACK` — stack vertically [DA]
-- [ ] `HSTACK` — stack horizontally [DA]
-- [ ] `TOROW` — array→single row [DA]
-- [ ] `TOCOL` — array→single column [DA]
-- [ ] `WRAPROWS` — wrap into rows [DA]
-- [ ] `WRAPCOLS` — wrap into columns [DA]
-- [ ] `TAKE` — take rows/cols [DA]
-- [ ] `DROP` — drop rows/cols [DA]
-- [ ] `EXPAND` — pad array to size [DA]
-- [ ] `CHOOSEROWS` — pick rows [DA]
-- [ ] `CHOOSECOLS` — pick columns [DA]
-- [ ] `TRIMRANGE` — trim blank edges [DA]
+- [x] `SORT` — sort array [DA]
+- [x] `SORTBY` — sort by keys [DA]
+- [x] `UNIQUE` — distinct values [DA]
+- [x] `FILTER` — filter array [DA]
+- [x] `VSTACK` — stack vertically [DA]
+- [x] `HSTACK` — stack horizontally [DA]
+- [x] `TOROW` — array→single row [DA]
+- [x] `TOCOL` — array→single column [DA]
+- [x] `WRAPROWS` — wrap into rows [DA]
+- [x] `WRAPCOLS` — wrap into columns [DA]
+- [x] `TAKE` — take rows/cols [DA]
+- [x] `DROP` — drop rows/cols [DA]
+- [x] `EXPAND` — pad array to size [DA]
+- [x] `CHOOSEROWS` — pick rows [DA]
+- [x] `CHOOSECOLS` — pick columns [DA]
+- [x] `TRIMRANGE` — trim blank edges [DA]
 - [x] `GETPIVOTDATA` — read pivot table [EXT]
 - [x] `GROUPBY` — group/aggregate array [DA] [EXT]
 - [x] `PIVOTBY` — pivot array [DA] [EXT]
@@ -449,7 +459,7 @@ Count target per tier: T1 = 30 · T2 ≈ 90 · T3 = remainder of standard functi
 - [x] `ISFORMULA` — cell has formula [T3]
 - [x] `ISEVEN` — is even [T3]
 - [x] `ISODD` — is odd [T3]
-- [ ] `ISOMITTED` — lambda arg omitted [LAMBDA]
+- [x] `ISOMITTED` — lambda arg omitted [LAMBDA]
 - [x] `N` — coerce to number [T3]
 - [x] `NA` — return #N/A [T2]
 - [x] `TYPE` — type code of value [T3]
@@ -537,7 +547,7 @@ Count target per tier: T1 = 30 · T2 ≈ 90 · T3 = remainder of standard functi
 Implement each as a thin alias delegating to its modern replacement (parity-tested against the legacy name).
 
 - [x] `RANK` → `RANK.EQ`
-- [ ] `MODE` → `MODE.SNGL`
+- [x] `MODE` → `MODE.SNGL`
 - [x] `STDEV` → `STDEV.S`
 - [x] `STDEVP` → `STDEV.P`
 - [x] `VAR` → `VAR.S`
@@ -545,36 +555,36 @@ Implement each as a thin alias delegating to its modern replacement (parity-test
 - [x] `PERCENTILE` → `PERCENTILE.INC`
 - [x] `QUARTILE` → `QUARTILE.INC`
 - [x] `PERCENTRANK` → `PERCENTRANK.INC`
-- [ ] `COVAR` → `COVARIANCE.P`
+- [x] `COVAR` → `COVARIANCE.P`
 - [x] `FORECAST` → `FORECAST.LINEAR`
-- [ ] `NORMDIST` → `NORM.DIST`
-- [ ] `NORMINV` → `NORM.INV`
-- [ ] `NORMSDIST` → `NORM.S.DIST`
-- [ ] `NORMSINV` → `NORM.S.INV`
-- [ ] `LOGNORMDIST` → `LOGNORM.DIST`
-- [ ] `LOGINV` → `LOGNORM.INV`
-- [ ] `BETADIST` → `BETA.DIST`
-- [ ] `BETAINV` → `BETA.INV`
-- [ ] `GAMMADIST` → `GAMMA.DIST`
-- [ ] `GAMMAINV` → `GAMMA.INV`
-- [ ] `BINOMDIST` → `BINOM.DIST`
-- [ ] `NEGBINOMDIST` → `NEGBINOM.DIST`
-- [ ] `HYPGEOMDIST` → `HYPGEOM.DIST`
-- [ ] `POISSON` → `POISSON.DIST`
-- [ ] `EXPONDIST` → `EXPON.DIST`
-- [ ] `WEIBULL` → `WEIBULL.DIST`
-- [ ] `CHIDIST` → `CHISQ.DIST.RT`
-- [ ] `CHIINV` → `CHISQ.INV.RT`
+- [x] `NORMDIST` → `NORM.DIST`
+- [x] `NORMINV` → `NORM.INV`
+- [x] `NORMSDIST` → `NORM.S.DIST`
+- [x] `NORMSINV` → `NORM.S.INV`
+- [x] `LOGNORMDIST` → `LOGNORM.DIST`
+- [x] `LOGINV` → `LOGNORM.INV`
+- [x] `BETADIST` → `BETA.DIST`
+- [x] `BETAINV` → `BETA.INV`
+- [x] `GAMMADIST` → `GAMMA.DIST`
+- [x] `GAMMAINV` → `GAMMA.INV`
+- [x] `BINOMDIST` → `BINOM.DIST`
+- [x] `NEGBINOMDIST` → `NEGBINOM.DIST`
+- [x] `HYPGEOMDIST` → `HYPGEOM.DIST`
+- [x] `POISSON` → `POISSON.DIST`
+- [x] `EXPONDIST` → `EXPON.DIST`
+- [x] `WEIBULL` → `WEIBULL.DIST`
+- [x] `CHIDIST` → `CHISQ.DIST.RT`
+- [x] `CHIINV` → `CHISQ.INV.RT`
 - [x] `CHITEST` → `CHISQ.TEST`
-- [ ] `FDIST` → `F.DIST.RT`
-- [ ] `FINV` → `F.INV.RT`
+- [x] `FDIST` → `F.DIST.RT`
+- [x] `FINV` → `F.INV.RT`
 - [x] `FTEST` → `F.TEST`
-- [ ] `TDIST` → `T.DIST.2T` / `T.DIST.RT` (tails arg)
-- [ ] `TINV` → `T.INV.2T`
+- [x] `TDIST` → `T.DIST.2T` / `T.DIST.RT` (tails arg)
+- [x] `TINV` → `T.INV.2T`
 - [x] `TTEST` → `T.TEST`
-- [ ] `ZTEST` → `Z.TEST`
-- [ ] `CONFIDENCE` → `CONFIDENCE.NORM`
-- [ ] `CRITBINOM` → `BINOM.INV`
+- [x] `ZTEST` → `Z.TEST`
+- [x] `CONFIDENCE` → `CONFIDENCE.NORM`
+- [x] `CRITBINOM` → `BINOM.INV`
 - [x] `CEILING` (legacy semantics) → `CEILING` (kept distinct, listed in Math)
 - [x] `FLOOR` (legacy semantics) → `FLOOR` (kept distinct, listed in Math)
 

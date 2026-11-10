@@ -21,9 +21,7 @@ export function registerCompatibilityFunctions(
     ["FDIST", "F.DIST.RT"],
     ["CHIDIST", "CHISQ.DIST.RT"],
     ["CHIINV", "CHISQ.INV.RT"],
-    ["GAMMADIST", "GAMMA.DIST"],
     ["GAMMAINV", "GAMMA.INV"],
-    ["BETADIST", "BETA.DIST"],
     ["BETAINV", "BETA.INV"],
     ["BINOMDIST", "BINOM.DIST"],
     ["CRITBINOM", "BINOM.INV"],
@@ -63,6 +61,23 @@ export function registerCompatibilityFunctions(
       },
     });
   };
+
+  // Legacy GAMMADIST / BETADIST are cumulative-only, while GAMMA.DIST /
+  // BETA.DIST take an explicit cumulative flag — a plain alias would
+  // silently return the PDF instead of the CDF.
+  wrap("GAMMADIST", (args) => {
+    if (args.length < 3) return null;
+    return [args[0]!, args[1]!, args[2]!, num(1)];
+  }, "GAMMA.DIST");
+
+  wrap("BETADIST", (args) => {
+    if (args.length < 3) return null;
+    const built: ExcelValue[] = [args[0]!, args[1]!, args[2]!, num(1)];
+    // Legacy optional lower/upper bounds A and B follow the flag in BETA.DIST.
+    if (args.length >= 4) built.push(args[3]!);
+    if (args.length >= 5) built.push(args[4]!);
+    return built;
+  }, "BETA.DIST");
 
   wrap("NORMSDIST", (args) => {
     if (args.length < 1) return null;
