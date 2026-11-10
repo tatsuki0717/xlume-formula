@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns second component of given time.
+Returns the second, a number from 0 to 59.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Returns second component of given time.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | serial_number | number \| range/array | Yes | A time value (fraction of a full day) whose second component is returned. |
+| 1 | serial_number | number \| range/array | Yes | Is a number in the date-time code used by Microsoft Excel or text in time format, such as 16:48:23 or 4:48:47 PM. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns second component of given time.
+Returns the second, a number from 0 to 59.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns second component of given time.
+> Returns the second, a number from 0 to 59.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=SECOND(TIME(14, 30, 45))`
-- `=SECOND(A1)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=SECOND(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

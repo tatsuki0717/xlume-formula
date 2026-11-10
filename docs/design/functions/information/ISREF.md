@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns TRUE if provided value is #REF! error.
+Checks whether a value is a reference, and returns TRUE or FALSE.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Returns TRUE if provided value is #REF! error.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | value | range/array \| number \| string \| boolean | Yes | The value or expression to test; returns TRUE only when it evaluates to a #REF! (or #CYCLE!) error, not merely because it looks like a reference. |
+| 1 | value | range/array \| number \| string \| boolean | Yes | Is the value you want to test. Value can refer to a cell, a formula, or a name that refers to a cell, formula, or value. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns TRUE if provided value is #REF! error.
+Checks whether a value is a reference, and returns TRUE or FALSE.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns TRUE if provided value is #REF! error.
+> Checks whether a value is a reference, and returns TRUE or FALSE.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=ISREF(A1)`
-- `=ISREF(OFFSET(A1, -1, 0))`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=ISREF(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

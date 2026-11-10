@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns probability of chi-square right-side distribution.
+Returns the right-tailed probability of the chi-squared distribution.
 
 ## Excel Syntax
 ```excel
@@ -17,14 +17,14 @@ Returns probability of chi-square right-side distribution.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | x | number \| range/array | Yes | The value at which to evaluate the distribution; must be non-negative. |
-| 2 | deg_freedom | number \| range/array | Yes | The number of degrees of freedom. |
+| 1 | x | number \| range/array | Yes | Is the value at which you want to evaluate the distribution, a nonnegative number. |
+| 2 | deg_freedom | number \| range/array | Yes | Is the number of degrees of freedom, a number between 1 and 10^10, excluding 10^10. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns probability of chi-square right-side distribution.
+Returns the right-tailed probability of the chi-squared distribution.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -33,7 +33,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns probability of chi-square right-side distribution.
+> Returns the right-tailed probability of the chi-squared distribution.
 
 
 ## Type Coercion & Edge Cases
@@ -55,7 +55,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=CHISQ.DIST.RT(2, 3)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=CHISQ.DIST.RT(..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns base-10 logarithm of a complex number.
+Returns the base-10 logarithm of a complex number.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Returns base-10 logarithm of a complex number.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | inumber | number \| string \| boolean \| range/array | Yes | The complex number, given as text such as "3+4i", whose base-10 logarithm is calculated. |
+| 1 | inumber | number \| string \| boolean \| range/array | Yes | Is a complex number for which you want the common logarithm. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns base-10 logarithm of a complex number.
+Returns the base-10 logarithm of a complex number.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns base-10 logarithm of a complex number.
+> Returns the base-10 logarithm of a complex number.
 
 
 ## Type Coercion & Edge Cases
@@ -54,7 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=IMLOG10("3+4i")`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=IMLOG10(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

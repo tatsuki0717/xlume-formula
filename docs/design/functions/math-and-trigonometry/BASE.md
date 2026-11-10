@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Converts a non-negative integer to a specified base into a text from the numbering system.
+Converts a number into a text representation with the given radix (base).
 
 ## Excel Syntax
 ```excel
@@ -17,15 +17,15 @@ Converts a non-negative integer to a specified base into a text from the numberi
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number | number \| range/array | Yes | The non-negative integer to convert. |
-| 2 | radix | number \| range/array | Yes | The base (from 2 to 36) to convert the number into. |
-| 3 | min_length | number \| range/array | Yes | The minimum length of the returned string; the result is left-padded with zeros when shorter. |
+| 1 | number | number \| range/array | Yes | Is the number that you want to convert. |
+| 2 | radix | number \| range/array | Yes | Is the base Radix that you want to convert the number into. |
+| 3 | min_length | number \| range/array | Yes | Is the minimum length of the returned string. If omitted leading zeros are not added. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Converts a non-negative integer to a specified base into a text from the numbering system.
+Converts a number into a text representation with the given radix (base).
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -34,7 +34,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Converts a non-negative integer to a specified base into a text from the numbering system.
+> Converts a number into a text representation with the given radix (base).
 
 
 ## Type Coercion & Edge Cases
@@ -56,8 +56,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=BASE(15, 2)`
-- `=BASE(100, 16, 4)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=BASE(..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

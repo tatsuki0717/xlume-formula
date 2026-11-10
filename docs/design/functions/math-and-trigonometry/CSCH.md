@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns the hyperbolic cosecant of the given value.
+Returns the hyperbolic cosecant of an angle.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Returns the hyperbolic cosecant of the given value.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number | number \| range/array | Yes | A non-zero number whose hyperbolic cosecant is returned. |
+| 1 | number | number \| range/array | Yes | Is the angle in radians for which you want the hyperbolic cosecant. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the hyperbolic cosecant of the given value.
+Returns the hyperbolic cosecant of an angle.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the hyperbolic cosecant of the given value.
+> Returns the hyperbolic cosecant of an angle.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=CSCH(1)`
-- `=CSCH(-2)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=CSCH(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

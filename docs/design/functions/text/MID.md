@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns a substring of a given length starting from start_position.
+Returns the characters from the middle of a text string, given a starting position and length.
 
 ## Excel Syntax
 ```excel
@@ -17,15 +17,15 @@ Returns a substring of a given length starting from start_position.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | text | string \| range/array | Yes | The text to extract a substring from. |
-| 2 | start_num | number \| range/array | Yes | The 1-based position of the first character to extract. |
-| 3 | num_chars | number \| range/array | Yes | The number of characters to extract, starting at start_position. |
+| 1 | text | string \| range/array | Yes | Is the text string from which you want to extract the characters. |
+| 2 | start_num | number \| range/array | Yes | Is the position of the first character you want to extract. The first character in Text is 1. |
+| 3 | num_chars | number \| range/array | Yes | Specifies how many characters to return from Text. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns a substring of a given length starting from start_position.
+Returns the characters from the middle of a text string, given a starting position and length.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -34,7 +34,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns a substring of a given length starting from start_position.
+> Returns the characters from the middle of a text string, given a starting position and length.
 
 
 ## Type Coercion & Edge Cases
@@ -56,8 +56,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=MID("Hello World", 7, 5)`
-- `=MID(A1, 1, 3)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=MID(..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

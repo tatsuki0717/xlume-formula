@@ -17,7 +17,7 @@ Returns the hyperbolic secant of a complex number.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | inumber | number \| string \| boolean \| range/array | Yes | The complex number, given as text such as "3+4i", whose hyperbolic secant is calculated. |
+| 1 | inumber | number \| string \| boolean \| range/array | Yes | Is a complex number for which you want the hyperbolic secant. |
 
 ## Returns
 Scalar or array depending on arguments
@@ -54,7 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=IMSECH("3+4i")`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=IMSECH(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns a numeric code for the first character in a text string.
+Returns a numeric code for the first character in a text string, in the character set used by your computer.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Returns a numeric code for the first character in a text string.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | text | string \| range/array | Yes | The text whose first character's numeric code is returned. |
+| 1 | text | string \| range/array | Yes | Is the text for which you want the code of the first character. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns a numeric code for the first character in a text string.
+Returns a numeric code for the first character in a text string, in the character set used by your computer.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns a numeric code for the first character in a text string.
+> Returns a numeric code for the first character in a text string, in the character set used by your computer.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=CODE("A")`
-- `=CODE(A1)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=CODE(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

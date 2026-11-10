@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns 3.14159265358979, the value of the mathematical constant PI to 14 decimal places.
+Returns the value of Pi, 3.14159265358979, accurate to 15 digits.
 
 ## Excel Syntax
 ```excel
@@ -21,14 +21,14 @@ This function takes no arguments.
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns 3.14159265358979, the value of the mathematical constant PI to 14 decimal places.
+Returns the value of Pi, 3.14159265358979, accurate to 15 digits.
 
 High-level algorithm:
 1. Execute the core calculation.
 2. Return the result.
 
 Core calculation:
-> Returns 3.14159265358979, the value of the mathematical constant PI to 14 decimal places.
+> Returns the value of Pi, 3.14159265358979, accurate to 15 digits.
 
 
 ## Type Coercion & Edge Cases
@@ -50,7 +50,7 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=PI()`
+TBD — add representative Excel examples during implementation.
 
 ## Test Cases
 | Input | Expected | Purpose |

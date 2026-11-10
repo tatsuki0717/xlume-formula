@@ -8,17 +8,15 @@
 - **Dynamic array:** Yes
 
 ## Description
-Transposes the rows and columns of an array.
+flip rows/cols
 
 ## Excel Syntax
 ```excel
-=TRANSPOSE(array)
+=TRANSPOSE()
 ```
 
 ## Arguments
-| # | Name | Type | Required? | Description |
-|---|---|---|---|---|
-| 1 | array | range/array | Yes | The range of cells whose rows and columns are swapped in the returned array. |
+This function takes no arguments.
 
 ## Returns
 Dynamic array
@@ -26,7 +24,7 @@ Dynamic array
 ## Behavior / Algorithm
 Implementation is deferred (Requires dynamic-array / spill support).
 
-High-level behavior: Transposes the rows and columns of an array.
+High-level behavior: flip rows/cols
 
 Detailed step-by-step algorithm, type coercion and edge-case handling will be added when this function is prioritized.
 
@@ -49,8 +47,7 @@ Detailed step-by-step algorithm, type coercion and edge-case handling will be ad
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=TRANSPOSE(A1:C2)`
-- `=TRANSPOSE(A1:A5)`
+TBD — add representative Excel examples during implementation.
 
 ## Test Cases
 | Input | Expected | Purpose |

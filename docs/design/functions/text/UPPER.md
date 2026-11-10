@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns text converted to uppercase.
+Converts a text string to all uppercase letters.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Returns text converted to uppercase.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | text | string \| range/array | Yes | The text to convert to uppercase. |
+| 1 | text | string \| range/array | Yes | Is the text you want converted to uppercase, a reference or a text string. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns text converted to uppercase.
+Converts a text string to all uppercase letters.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns text converted to uppercase.
+> Converts a text string to all uppercase letters.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=UPPER("hello")`
-- `=UPPER(A1)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=UPPER(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

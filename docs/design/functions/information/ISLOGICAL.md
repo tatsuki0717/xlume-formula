@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Tests for a logical value (TRUE or FALSE).
+Checks whether a value is a logical value (TRUE or FALSE), and returns TRUE or FALSE.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Tests for a logical value (TRUE or FALSE).
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | value | number \| string \| boolean \| range/array | Yes | The value to test; returns TRUE only when the value is the logical TRUE or FALSE. |
+| 1 | value | number \| string \| boolean \| range/array | Yes | Is the value you want to test. Value can refer to a cell, a formula, or a name that refers to a cell, formula, or value. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Tests for a logical value (TRUE or FALSE).
+Checks whether a value is a logical value (TRUE or FALSE), and returns TRUE or FALSE.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Tests for a logical value (TRUE or FALSE).
+> Checks whether a value is a logical value (TRUE or FALSE), and returns TRUE or FALSE.
 
 
 ## Type Coercion & Edge Cases
@@ -54,9 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=ISLOGICAL(TRUE())`
-- `=ISLOGICAL(1<2)`
-- `=ISLOGICAL(1)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=ISLOGICAL(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

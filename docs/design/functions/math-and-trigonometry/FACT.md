@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns a factorial of a number.
+Returns the factorial of a number, equal to 1*2*3*...* Number.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Returns a factorial of a number.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number | number \| range/array | Yes | A non-negative number whose factorial is returned; the value is truncated to an integer. |
+| 1 | number | number \| range/array | Yes | Is the nonnegative number you want the factorial of. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns a factorial of a number.
+Returns the factorial of a number, equal to 1*2*3*...* Number.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns a factorial of a number.
+> Returns the factorial of a number, equal to 1*2*3*...* Number.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=FACT(5)`
-- `=FACT(0)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=FACT(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

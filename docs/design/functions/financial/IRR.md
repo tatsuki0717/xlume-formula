@@ -11,14 +11,14 @@ Returns the internal rate of return for a series of cash flows.
 
 ## Excel Syntax
 ```excel
-=IRR(values, [guess])
+=IRR(values, guess)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | values | range/array | Yes | A range of cash flow values; must contain at least one negative and one positive value. |
-| 2 | guess | number \| range/array | No | An estimated rate used as the starting point for the iterative calculation; defaults to 0.1 (10%). |
+| 1 | values | range/array | Yes | Is an array or a reference to cells that contain numbers for which you want to calculate the internal rate of return. |
+| 2 | guess | number \| range/array | Yes | Is a number that you guess is close to the result of IRR; 0.1 (10 percent) if omitted. |
 
 ## Returns
 Scalar or array depending on arguments
@@ -55,8 +55,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=IRR(A1:A5)`
-- `=IRR(A1:A5, 0.2)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=IRR(..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

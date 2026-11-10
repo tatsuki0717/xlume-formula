@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Tests if the cell contents are text or numbers, and returns FALSE if the contents are text.
+Checks whether a value is not text (blank cells are not text), and returns TRUE or FALSE.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Tests if the cell contents are text or numbers, and returns FALSE if the content
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | value | number \| string \| boolean \| range/array | Yes | The value to test; returns FALSE only when the value is text, and TRUE for numbers, logical values, errors, and blank cells. |
+| 1 | value | number \| string \| boolean \| range/array | Yes | Is the value you want tested: a cell; a formula; or a name referring to a cell, formula, or value. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Tests if the cell contents are text or numbers, and returns FALSE if the contents are text.
+Checks whether a value is not text (blank cells are not text), and returns TRUE or FALSE.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Tests if the cell contents are text or numbers, and returns FALSE if the contents are text.
+> Checks whether a value is not text (blank cells are not text), and returns TRUE or FALSE.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=ISNONTEXT(A1)`
-- `=ISNONTEXT("abc")`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=ISNONTEXT(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

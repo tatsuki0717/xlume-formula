@@ -7,27 +7,27 @@
 - **Volatile:** No
 
 ## Description
-Returns the number of periods for an investment assuming periodic, constant payments and a constant interest rate.
+Returns the number of periods for an investment based on periodic, constant payments and a constant interest rate.
 
 ## Excel Syntax
 ```excel
-=NPER(rate, pmt, pv, [fv], [type])
+=NPER(rate, pmt, pv, fv, type)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | rate | number \| range/array | Yes | The interest rate per period. |
-| 2 | pmt | number \| range/array | Yes | The payment made each period; paid-out amounts are negative. |
-| 3 | pv | number \| range/array | Yes | The present value, i.e. the loan principal or initial investment. |
-| 4 | fv | number \| range/array | No | The future value, i.e. the desired cash balance after the last payment; defaults to 0. |
-| 5 | type | number \| range/array | No | When payments are due: 0 for the end of each period, 1 for the beginning; defaults to 0. |
+| 1 | rate | number \| range/array | Yes | Is the interest rate per period. For example, use 6%/4 for quarterly payments at 6% APR. |
+| 2 | pmt | number \| range/array | Yes | Is the payment made each period; it cannot change over the life of the investment. |
+| 3 | pv | number \| range/array | Yes | Is the present value, or the lump-sum amount that a series of future payments is worth now. |
+| 4 | fv | number \| range/array | Yes | Is the future value, or a cash balance you want to attain after the last payment is made. If omitted, zero is used. |
+| 5 | type | number \| range/array | Yes | Is a logical value: payment at the beginning of the period = 1; payment at the end of the period = 0 or omitted. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the number of periods for an investment assuming periodic, constant payments and a constant interest rate.
+Returns the number of periods for an investment based on periodic, constant payments and a constant interest rate.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -36,7 +36,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the number of periods for an investment assuming periodic, constant payments and a constant interest rate.
+> Returns the number of periods for an investment based on periodic, constant payments and a constant interest rate.
 
 
 ## Type Coercion & Edge Cases
@@ -58,8 +58,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=NPER(0.05/12, -100, 5000)`
-- `=NPER(0.04/12, -200, 8000, 0, 1)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=NPER(..., ..., ..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

@@ -7,24 +7,24 @@
 - **Volatile:** No
 
 ## Description
-Rounds a number down, toward zero, to a certain precision.
+Rounds a number down, toward zero.
 
 ## Excel Syntax
 ```excel
-=ROUNDDOWN(number, [num_digits])
+=ROUNDDOWN(number, num_digits)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number | number \| range/array | Yes | The value to round down toward zero. |
-| 2 | num_digits | number \| range/array | No | The number of decimal places to round to. Defaults to 0 when omitted; negative values round to the left of the decimal point. |
+| 1 | number | number \| range/array | Yes | Is any real number that you want rounded down. |
+| 2 | num_digits | number \| range/array | Yes | Is the number of digits to which you want to round. Negative rounds to the left of the decimal point; zero or omitted, to the nearest integer. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Rounds a number down, toward zero, to a certain precision.
+Rounds a number down, toward zero.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -33,7 +33,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Rounds a number down, toward zero, to a certain precision.
+> Rounds a number down, toward zero.
 
 
 ## Type Coercion & Edge Cases
@@ -55,8 +55,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=ROUNDDOWN(3.789, 2)`
-- `=ROUNDDOWN(-3.789, 1)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=ROUNDDOWN(..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

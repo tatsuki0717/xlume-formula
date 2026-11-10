@@ -8,19 +8,15 @@
 - **Dynamic array:** Yes
 
 ## Description
-Returns values along a linear trend.
+linear trend array
 
 ## Excel Syntax
 ```excel
-=TREND(known_ys, [known_xs], [new_xs])
+=TREND()
 ```
 
 ## Arguments
-| # | Name | Type | Required? | Description |
-|---|---|---|---|---|
-| 1 | known_ys | any | Yes | The set of y-values you already know in the relationship y = mx + b |
-| 2 | known_xs | any | No | An optional set of x-values that you may already know in the relationship y = mx + b |
-| 3 | new_xs | any | No | Optional. New x-values for which you want TREND to return corresponding y-values. |
+This function takes no arguments.
 
 ## Returns
 Dynamic array
@@ -28,7 +24,7 @@ Dynamic array
 ## Behavior / Algorithm
 Implementation is deferred (Requires dynamic-array / spill support).
 
-High-level behavior: Returns values along a linear trend.
+High-level behavior: linear trend array
 
 Detailed step-by-step algorithm, type coercion and edge-case handling will be added when this function is prioritized.
 
@@ -52,8 +48,6 @@ Detailed step-by-step algorithm, type coercion and edge-case handling will be ad
 
 ## Examples
 TBD — add representative Excel examples during implementation.
-
-Skeleton: `=TREND(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

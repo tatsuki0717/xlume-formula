@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns value of chi-square distribution.
+Returns the left-tailed probability of the chi-squared distribution.
 
 ## Excel Syntax
 ```excel
@@ -17,15 +17,15 @@ Returns value of chi-square distribution.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | x | number \| range/array | Yes | The value at which to evaluate the distribution; must be non-negative. |
-| 2 | deg_freedom | number \| range/array | Yes | The number of degrees of freedom. |
-| 3 | cumulative | boolean \| range/array | Yes | TRUE returns the cumulative distribution function; FALSE returns the probability density function. |
+| 1 | x | number \| range/array | Yes | Is the value at which you want to evaluate the distribution, a nonnegative number. |
+| 2 | deg_freedom | number \| range/array | Yes | Is the number of degrees of freedom, a number between 1 and 10^10, excluding 10^10. |
+| 3 | cumulative | boolean \| range/array | Yes | Is a logical value for the function to return: the cumulative distribution function = TRUE; the probability density function = FALSE. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns value of chi-square distribution.
+Returns the left-tailed probability of the chi-squared distribution.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -34,7 +34,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns value of chi-square distribution.
+> Returns the left-tailed probability of the chi-squared distribution.
 
 
 ## Type Coercion & Edge Cases
@@ -56,8 +56,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=CHISQ.DIST(2, 3, TRUE())`
-- `=CHISQ.DIST(2, 3, FALSE())`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=CHISQ.DIST(..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

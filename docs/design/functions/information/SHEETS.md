@@ -7,23 +7,23 @@
 - **Volatile:** No
 
 ## Description
-Returns number of sheet of a given reference or number of all sheets in workbook when no argument is provided.
+Returns the number of sheets in a reference.
 
 ## Excel Syntax
 ```excel
-=SHEETS([reference])
+=SHEETS(reference)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | reference | range/array | No | An optional cell or range reference; when omitted, returns the total number of sheets in the workbook, otherwise returns 1 for the sheet containing the reference. |
+| 1 | reference | range/array | Yes | Is a reference for which you want to know the number of sheets it contains. If omitted the number of sheets in the workbook containing the function is returned. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns number of sheet of a given reference or number of all sheets in workbook when no argument is provided.
+Returns the number of sheets in a reference.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns number of sheet of a given reference or number of all sheets in workbook when no argument is provided.
+> Returns the number of sheets in a reference.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=SHEETS()`
-- `=SHEETS(A1:B3)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=SHEETS(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

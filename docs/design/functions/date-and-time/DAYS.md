@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Calculates the difference between two date values.
+Returns the number of days between the two dates.
 
 ## Excel Syntax
 ```excel
@@ -17,14 +17,14 @@ Calculates the difference between two date values.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | end_date | string \| number \| range/array | Yes | The end (more recent) date value. |
-| 2 | start_date | string \| number \| range/array | Yes | The start (earlier) date value; the result is end_date minus start_date, in days. |
+| 1 | end_date | string \| number \| range/array | Yes | startDate and endDate are the two dates between which you want to know the number of days. |
+| 2 | start_date | string \| number \| range/array | Yes | startDate and endDate are the two dates between which you want to know the number of days. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Calculates the difference between two date values.
+Returns the number of days between the two dates.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -33,7 +33,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Calculates the difference between two date values.
+> Returns the number of days between the two dates.
 
 
 ## Type Coercion & Edge Cases
@@ -55,8 +55,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=DAYS(DATE(2020,3,31), DATE(2020,3,1))`
-- `=DAYS(A2, A1)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=DAYS(..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

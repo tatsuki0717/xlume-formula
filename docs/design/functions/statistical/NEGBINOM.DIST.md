@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns density of negative binomial distribution.
+Returns the negative binomial distribution, the probability that there will be Number\_f failures before the Number\_s-th success, with Probability\_s probability of a success.
 
 ## Excel Syntax
 ```excel
@@ -17,16 +17,16 @@ Returns density of negative binomial distribution.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number_f | number \| range/array | Yes | The number of failures. |
-| 2 | number_s | number \| range/array | Yes | The threshold number of successes. |
-| 3 | probability_s | number \| range/array | Yes | The probability of success on a single trial. |
-| 4 | cumulative | boolean \| range/array | Yes | TRUE returns the cumulative distribution function; FALSE returns the probability mass function. |
+| 1 | number_f | number \| range/array | Yes | Is the number of failures. |
+| 2 | number_s | number \| range/array | Yes | Is the threshold number of successes. |
+| 3 | probability_s | number \| range/array | Yes | Is the probability of a success; a number between 0 and 1. |
+| 4 | cumulative | boolean \| range/array | Yes | Is a logical value: for the cumulative distribution function, use TRUE; for the probability mass function, use FALSE. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns density of negative binomial distribution.
+Returns the negative binomial distribution, the probability that there will be Number\_f failures before the Number\_s-th success, with Probability\_s probability of a success.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -35,7 +35,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns density of negative binomial distribution.
+> Returns the negative binomial distribution, the probability that there will be Number\_f failures before the Number\_s-th success, with Probability\_s probability of a success.
 
 
 ## Type Coercion & Edge Cases
@@ -57,8 +57,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=NEGBINOM.DIST(3, 5, 0.5, FALSE())`
-- `=NEGBINOM.DIST(3, 5, 0.5, TRUE())`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=NEGBINOM.DIST(..., ..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

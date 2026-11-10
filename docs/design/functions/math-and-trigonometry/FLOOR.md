@@ -7,33 +7,28 @@
 - **Volatile:** No
 
 ## Description
-Rounds a number down to the nearest multiple of significance, toward negative infinity when significance is positive and toward positive infinity when it is negative.
+round down to multiple (legacy)
 
 ## Excel Syntax
 ```excel
-=FLOOR(number, significance)
+=FLOOR()
 ```
 
 ## Arguments
-| # | Name | Type | Required? | Description |
-|---|---|---|---|---|
-| 1 | number | any | Yes | The value to round down. |
-| 2 | significance | number | Yes | The multiple to round down to. A #DIV/0! error when it is 0, and a #NUM! error when number is positive and significance is negative. When number is 0 the result is 0, whatever the sign of significance. |
+This function takes no arguments.
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Rounds a number down to the nearest multiple of significance, toward negative infinity when significance is positive and toward positive infinity when it is negative.
+round down to multiple (legacy)
 
 High-level algorithm:
-1. Validate argument count and coerce each argument according to its documented type.
-2. Propagate any input errors (`#VALUE!`, `#NUM!`, etc.) before computation.
-3. Execute the core calculation described below.
-4. Apply final coercion to the documented return type and return the result.
+1. Execute the core calculation.
+2. Return the result.
 
 Core calculation:
-> Rounds a number down to the nearest multiple of significance, toward negative infinity when significance is positive and toward positive infinity when it is negative.
+> round down to multiple (legacy)
 
 
 ## Type Coercion & Edge Cases
@@ -55,8 +50,7 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=FLOOR(4.7, 1)`
-- `=FLOOR(22.5, 5)`
+TBD — add representative Excel examples during implementation.
 
 ## Test Cases
 | Input | Expected | Purpose |

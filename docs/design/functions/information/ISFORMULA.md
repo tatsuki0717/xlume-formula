@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Checks whether referenced cell is a formula.
+Checks whether a reference is to a cell containing a formula, and returns TRUE or FALSE.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Checks whether referenced cell is a formula.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | reference | range/array | Yes | A cell or range reference to check; passing a non-reference expression instead returns the #N/A error. |
+| 1 | reference | range/array | Yes | Is a reference to the cell you want to test. Reference can be a cell reference, a formula, or name that refers to a cell. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Checks whether referenced cell is a formula.
+Checks whether a reference is to a cell containing a formula, and returns TRUE or FALSE.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Checks whether referenced cell is a formula.
+> Checks whether a reference is to a cell containing a formula, and returns TRUE or FALSE.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=ISFORMULA(A1)`
-- `=ISFORMULA(B1:B3)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=ISFORMULA(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

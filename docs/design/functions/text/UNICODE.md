@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns the Unicode code point of a first character of a text.
+Returns the number (code point) corresponding to the first character of the text.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Returns the Unicode code point of a first character of a text.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | text | string \| range/array | Yes | The text whose first character's Unicode code point is returned. |
+| 1 | text | string \| range/array | Yes | Is the character that you want the Unicode value of. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the Unicode code point of a first character of a text.
+Returns the number (code point) corresponding to the first character of the text.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the Unicode code point of a first character of a text.
+> Returns the number (code point) corresponding to the first character of the text.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=UNICODE("A")`
-- `=UNICODE(A1)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=UNICODE(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

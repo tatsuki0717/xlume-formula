@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns TRUE if the value is an even integer, or FALSE otherwise. A value with a fractional part is neither even nor odd, so it returns FALSE.
+Returns TRUE if the number is even.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Returns TRUE if the value is an even integer, or FALSE otherwise. A value with a
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number | number \| string \| boolean \| range/array | Yes | The number to test; it is checked by its remainder without truncation, so a fractional value may return FALSE for both ISEVEN and ISODD. |
+| 1 | number | number \| string \| boolean \| range/array | Yes | Is the value to test. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns TRUE if the value is an even integer, or FALSE otherwise. A value with a fractional part is neither even nor odd, so it returns FALSE.
+Returns TRUE if the number is even.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns TRUE if the value is an even integer, or FALSE otherwise. A value with a fractional part is neither even nor odd, so it returns FALSE.
+> Returns TRUE if the number is even.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=ISEVEN(4)`
-- `=ISEVEN(A1)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=ISEVEN(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

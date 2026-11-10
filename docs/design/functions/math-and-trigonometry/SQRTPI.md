@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns sqrt of number times pi.
+Returns the square root of (number * Pi).
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Returns sqrt of number times pi.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number | number \| string \| boolean \| range/array | Yes | A non-negative number to multiply by PI before taking the square root. |
+| 1 | number | number \| string \| boolean \| range/array | Yes | Is the number by which p is multiplied. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns sqrt of number times pi.
+Returns the square root of (number * Pi).
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns sqrt of number times pi.
+> Returns the square root of (number * Pi).
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=SQRTPI(1)`
-- `=SQRTPI(2)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=SQRTPI(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

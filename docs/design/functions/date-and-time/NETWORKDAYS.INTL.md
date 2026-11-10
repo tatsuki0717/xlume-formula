@@ -7,26 +7,26 @@
 - **Volatile:** No
 
 ## Description
-Returns the number of working days between two given dates, with a configurable set of weekend days.
+Returns the number of whole workdays between two dates with custom weekend parameters.
 
 ## Excel Syntax
 ```excel
-=NETWORKDAYS.INTL(start_date, end_date, [weekend], [holidays])
+=NETWORKDAYS.INTL(start_date, end_date, weekend, [holidays])
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | start_date | number \| string \| boolean \| range/array | Yes | The start date of the range. |
-| 2 | end_date | number \| string \| boolean \| range/array | Yes | The end date of the range. |
-| 3 | weekend | number \| string \| range/array | No | A weekend code (1-7, 11-17; default 1 for Saturday/Sunday) or a 7-character string of 0s and 1s marking weekend days, starting from Monday. |
-| 4 | holidays | number \| string \| range/array \| boolean | No | An optional range of dates to exclude from the working-day count, in addition to the weekend days. |
+| 1 | start_date | number \| string \| boolean \| range/array | Yes | Is a serial date number that represents the start date. |
+| 2 | end_date | number \| string \| boolean \| range/array | Yes | Is a serial date number that represents the end date. |
+| 3 | weekend | number \| string \| range/array | Yes | Is a number or string specifying when weekends occur. |
+| 4 | holidays | number \| string \| range/array \| boolean | No | Is an optional set of one or more serial date numbers to exclude from the working calendar, such as state and federal holidays and floating holidays. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the number of working days between two given dates, with a configurable set of weekend days.
+Returns the number of whole workdays between two dates with custom weekend parameters.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -35,7 +35,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the number of working days between two given dates, with a configurable set of weekend days.
+> Returns the number of whole workdays between two dates with custom weekend parameters.
 
 
 ## Type Coercion & Edge Cases
@@ -57,8 +57,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=NETWORKDAYS.INTL(A1, A2, 2)`
-- `=NETWORKDAYS.INTL(DATE(2020,1,1), DATE(2020,1,31), "0000011", C1:C3)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=NETWORKDAYS.INTL(..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

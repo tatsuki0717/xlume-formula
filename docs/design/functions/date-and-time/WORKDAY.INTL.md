@@ -7,26 +7,26 @@
 - **Volatile:** No
 
 ## Description
-Returns the date a given number of working days after the start date, with a configurable set of weekend days.
+Returns the serial number of the date before or after a specified number of workdays with custom weekend parameters.
 
 ## Excel Syntax
 ```excel
-=WORKDAY.INTL(start_date, days, [weekend], [holidays])
+=WORKDAY.INTL(start_date, days, weekend, [holidays])
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | start_date | number \| string \| boolean \| range/array | Yes | The start date to count from. |
-| 2 | days | number \| string \| boolean \| range/array | Yes | The number of working days to add (positive) or subtract (negative). |
-| 3 | weekend | number \| string \| range/array | No | A weekend code (1-7, 11-17; default 1 for Saturday/Sunday) or a 7-character string of 0s and 1s marking weekend days, starting from Monday. |
-| 4 | holidays | number \| string \| range/array \| boolean | No | An optional range of dates to also skip, in addition to the weekend days. |
+| 1 | start_date | number \| string \| boolean \| range/array | Yes | Is a serial date number that represents the start date. |
+| 2 | days | number \| string \| boolean \| range/array | Yes | Is the number of nonweekend and non-holiday days before or after startDate. |
+| 3 | weekend | number \| string \| range/array | Yes | Is a number or string specifying when weekends occur. |
+| 4 | holidays | number \| string \| range/array \| boolean | No | Is an optional array of one or more serial date numbers to exclude from the working calendar, such as state and federal holidays and floating holidays. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the date a given number of working days after the start date, with a configurable set of weekend days.
+Returns the serial number of the date before or after a specified number of workdays with custom weekend parameters.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -35,7 +35,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the date a given number of working days after the start date, with a configurable set of weekend days.
+> Returns the serial number of the date before or after a specified number of workdays with custom weekend parameters.
 
 
 ## Type Coercion & Edge Cases
@@ -57,8 +57,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=WORKDAY.INTL(A1, 10, 2)`
-- `=WORKDAY.INTL(DATE(2020,1,1), 5, "0000011", C1:C3)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=WORKDAY.INTL(..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

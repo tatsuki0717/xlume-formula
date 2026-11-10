@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns the cumulative interest paid on a loan between a start period and an end period.
+Returns the cumulative interest paid between two periods.
 
 ## Excel Syntax
 ```excel
@@ -17,18 +17,18 @@ Returns the cumulative interest paid on a loan between a start period and an end
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | rate | number \| string \| boolean \| range/array | Yes | The interest rate per period. |
-| 2 | nper | number \| string \| boolean \| range/array | Yes | The total number of payment periods. |
-| 3 | pv | number \| string \| boolean \| range/array | Yes | The present value, i.e. the loan principal. |
-| 4 | start_period | number \| string \| boolean \| range/array | Yes | The first period to include in the calculation, numbered starting at 1. |
-| 5 | end_period | number \| string \| boolean \| range/array | Yes | The last period to include in the calculation; must not be smaller than start. |
-| 6 | type | number \| string \| boolean \| range/array | Yes | When payments are due: 0 for the end of each period, 1 for the beginning. |
+| 1 | rate | number \| string \| boolean \| range/array | Yes | Is the interest rate. |
+| 2 | nper | number \| string \| boolean \| range/array | Yes | Is the total number of payment periods. |
+| 3 | pv | number \| string \| boolean \| range/array | Yes | Is the present value. |
+| 4 | start_period | number \| string \| boolean \| range/array | Yes | Is the first period in the calculation. |
+| 5 | end_period | number \| string \| boolean \| range/array | Yes | Is the last period in the calculation. |
+| 6 | type | number \| string \| boolean \| range/array | Yes | Is the timing of the payment. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the cumulative interest paid on a loan between a start period and an end period.
+Returns the cumulative interest paid between two periods.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -37,7 +37,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the cumulative interest paid on a loan between a start period and an end period.
+> Returns the cumulative interest paid between two periods.
 
 
 ## Type Coercion & Edge Cases
@@ -59,8 +59,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=CUMIPMT(0.05/12, 60, 20000, 1, 12, 0)`
-- `=CUMIPMT(0.04/12, 360, 200000, 13, 24, 1)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=CUMIPMT(..., ..., ..., ..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

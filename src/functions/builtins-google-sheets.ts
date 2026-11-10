@@ -256,6 +256,43 @@ function complexDivide(aRe: number, aIm: number, bRe: number, bIm: number): { re
   return { re: (aRe * bRe + aIm * bIm) / denom, im: (aIm * bRe - aRe * bIm) / denom };
 }
 
+function addGoogleSheetsNetworkFunctions(add: (f: ExcelFunction) => void): void {
+  add(fn("GOOGLETRANSLATE", "none", (args) => {
+    if (args.length === 0) return err(ExcelErrorCode.Value);
+    return err(ExcelErrorCode.NA);
+  }));
+
+  add(fn("GOOGLEFINANCE", "none", (args) => {
+    if (args.length === 0) return err(ExcelErrorCode.Value);
+    return err(ExcelErrorCode.NA);
+  }));
+
+  add(fn("IMPORTDATA", "none", (args) => {
+    if (args.length === 0) return err(ExcelErrorCode.Value);
+    return err(ExcelErrorCode.NA);
+  }));
+
+  add(fn("IMPORTXML", "none", (args) => {
+    if (args.length < 2) return err(ExcelErrorCode.Value);
+    return err(ExcelErrorCode.NA);
+  }));
+
+  add(fn("IMPORTHTML", "none", (args) => {
+    if (args.length < 3) return err(ExcelErrorCode.Value);
+    return err(ExcelErrorCode.NA);
+  }));
+
+  add(fn("IMPORTFEED", "none", (args) => {
+    if (args.length === 0) return err(ExcelErrorCode.Value);
+    return err(ExcelErrorCode.NA);
+  }));
+
+  add(fn("IMPORTRANGE", "none", (args) => {
+    if (args.length < 2) return err(ExcelErrorCode.Value);
+    return err(ExcelErrorCode.NA);
+  }));
+}
+
 export function registerGoogleSheetsFunctions(add: (f: ExcelFunction) => void): void {
   // Operator functions
   add(fn("ADD", "none", (args) => binaryOp(args[0], args[1], (x, y) => num(x + y))));
@@ -717,6 +754,12 @@ export function registerGoogleSheetsFunctions(add: (f: ExcelFunction) => void): 
     return str(complexToString(div.re, div.im));
   }));
 
+  // Meta: ARRAYFORMULA is handled by the evaluator, but register it for discoverability.
+  add(fn("ARRAYFORMULA", "none", (args) => {
+    if (args.length !== 1) return err(ExcelErrorCode.Value);
+    return args[0] ?? BLANK;
+  }));
+
   // Meta: QUERY
   add(fn("QUERY", "none", (args) => {
     const data = args[0] ?? BLANK;
@@ -790,4 +833,7 @@ export function registerGoogleSheetsFunctions(add: (f: ExcelFunction) => void): 
     const lang = detect(text);
     return str(lang || "und");
   }));
+
+  // Google Sheets network functions are not implemented in the core engine.
+  addGoogleSheetsNetworkFunctions(add);
 }

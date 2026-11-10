@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns the inverse trigonometric cotangent of a number.
+Returns the arccotangent of a number, in radians in the range 0 to Pi.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Returns the inverse trigonometric cotangent of a number.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number | number \| range/array | Yes | A number whose arccotangent, in radians, is returned. |
+| 1 | number | number \| range/array | Yes | Is the cotangent of the angle you want. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the inverse trigonometric cotangent of a number.
+Returns the arccotangent of a number, in radians in the range 0 to Pi.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the inverse trigonometric cotangent of a number.
+> Returns the arccotangent of a number, in radians in the range 0 to Pi.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=ACOT(1)`
-- `=ACOT(0)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=ACOT(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

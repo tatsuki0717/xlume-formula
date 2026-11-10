@@ -7,23 +7,23 @@
 - **Volatile:** No
 
 ## Description
-Converts number from roman form.
+Converts a Roman numeral to Arabic.
 
 ## Excel Syntax
 ```excel
-=ARABIC(string)
+=ARABIC(text)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | string | string \| range/array | Yes | A Roman numeral text (e.g. "MCMXC") to convert to its Arabic number equivalent. |
+| 1 | text | string \| range/array | Yes | Is the Roman numeral you want to convert. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Converts number from roman form.
+Converts a Roman numeral to Arabic.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Converts number from roman form.
+> Converts a Roman numeral to Arabic.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=ARABIC("MCMXC")`
-- `=ARABIC("IV")`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=ARABIC(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

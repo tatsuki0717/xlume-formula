@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Counts how many numbers are in the list of arguments.
+Counts the number of cells in a range that contain numbers.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Counts how many numbers are in the list of arguments.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | value1 | number \| range/array (repeatable) | Yes | A number, cell reference, or range counted if it contains a number. Further numbers or ranges can be passed as additional arguments. |
+| 1 | values | number \| range/array (repeatable) | Yes | List of parameters, whose elements are 1 to 255 arguments that can contain or refer to a variety of different types of data, but only numbers are counted. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Counts how many numbers are in the list of arguments.
+Counts the number of cells in a range that contain numbers.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Counts how many numbers are in the list of arguments.
+> Counts the number of cells in a range that contain numbers.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=COUNT(1, 2, "text")`
-- `=COUNT(A1:A10)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=COUNT(1, 2, 3)`
 
 ## Test Cases
 | Input | Expected | Purpose |
@@ -65,17 +66,6 @@ Core calculation:
 | Blank/empty cells | Coerced `0` or `""` as appropriate | Blank handling |
 | Text that cannot be coerced | `#VALUE!` | Error propagation |
 | Too few/too many arguments | `#VALUE!` | Arity validation |
-
-## Verified Edge Cases
-- Only values whose native kind is number are counted. Logical values (`TRUE`/`FALSE`) in arrays or references are **not** counted, even though they coerce to `1`/`0` in other numeric functions.
-- Text values, blank cells, and errors are not counted. Errors do **not** propagate through `COUNT`.
-- This behavior also applies to `COUNT` when invoked via `SUBTOTAL(2, ...)` or `AGGREGATE(2, ...)`.
-
-### Additional test cases
-| Input | Expected | Purpose |
-|---|---|---|
-| `=COUNT({TRUE, 1})` | `1` | Logical values ignored |
-| `=COUNT(1, 1/0, 3)` | `2` | Errors ignored, not propagated |
 
 ## Implementation Notes
 Follow standard Excel semantics. Add inline KAT tests and, if the behavior depends on cell layout, a workbook fixture.

@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns the hyperbolic cotangent of the given value.
+Returns the hyperbolic cotangent of a number.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Returns the hyperbolic cotangent of the given value.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number | number \| range/array | Yes | A non-zero number whose hyperbolic cotangent is returned. |
+| 1 | number | number \| range/array | Yes | Is the angle in radians for which you want the hyperbolic cotangent. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the hyperbolic cotangent of the given value.
+Returns the hyperbolic cotangent of a number.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the hyperbolic cotangent of the given value.
+> Returns the hyperbolic cotangent of a number.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=COTH(2)`
-- `=COTH(-1)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=COTH(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

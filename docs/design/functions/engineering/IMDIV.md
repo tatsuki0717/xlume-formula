@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Divides two complex numbers.
+Returns the quotient of two complex numbers.
 
 ## Excel Syntax
 ```excel
@@ -17,14 +17,14 @@ Divides two complex numbers.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | inumber1 | number \| string \| boolean \| range/array | Yes | The complex number to divide (dividend), given as text such as "3+4i". |
-| 2 | inumber2 | number \| string \| boolean \| range/array | Yes | The complex number to divide by (divisor), given as text such as "1+2i". |
+| 1 | inumber1 | number \| string \| boolean \| range/array | Yes | Is the complex numerator or dividend. |
+| 2 | inumber2 | number \| string \| boolean \| range/array | Yes | Is the complex denominator or divisor. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Divides two complex numbers.
+Returns the quotient of two complex numbers.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -33,7 +33,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Divides two complex numbers.
+> Returns the quotient of two complex numbers.
 
 
 ## Type Coercion & Edge Cases
@@ -55,7 +55,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=IMDIV("3+4i", "1+2i")`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=IMDIV(..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

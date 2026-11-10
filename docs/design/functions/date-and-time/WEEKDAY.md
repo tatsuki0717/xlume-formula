@@ -7,24 +7,24 @@
 - **Volatile:** No
 
 ## Description
-Computes a number between 1-7 representing the day of week.
+Returns a number from 1 to 7 identifying the day of the week of a date.
 
 ## Excel Syntax
 ```excel
-=WEEKDAY(serial_number, [return_type])
+=WEEKDAY(serial_number, return_type)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | serial_number | number \| range/array | Yes | The date value whose day of the week is returned. |
-| 2 | return_type | number \| range/array | No | A code selecting the numbering scheme (default 1: Sunday=1; 2: Monday=1; 3: Monday=0; 11-17: week starting on each successive weekday, numbered 1-7). |
+| 1 | serial_number | number \| range/array | Yes | Is a number that represents a date. |
+| 2 | return_type | number \| range/array | Yes | Is a number: for Sunday=1 through Saturday=7, use 1; for Monday=1 through Sunday=7, use 2; for Monday=0 through Sunday=6, use 3. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Computes a number between 1-7 representing the day of week.
+Returns a number from 1 to 7 identifying the day of the week of a date.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -33,7 +33,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Computes a number between 1-7 representing the day of week.
+> Returns a number from 1 to 7 identifying the day of the week of a date.
 
 
 ## Type Coercion & Edge Cases
@@ -55,8 +55,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=WEEKDAY(DATE(2020, 1, 1))`
-- `=WEEKDAY(A1, 2)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=WEEKDAY(..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

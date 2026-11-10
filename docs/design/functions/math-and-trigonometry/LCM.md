@@ -7,23 +7,23 @@
 - **Volatile:** No
 
 ## Description
-Computes least common multiple of numbers.
+Returns the least common multiple.
 
 ## Excel Syntax
 ```excel
-=LCM(number1, [number2], ...)
+=LCM(value1, [value2], ...)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number1 | number \| string \| range/array \| boolean (repeatable) | Yes | A non-negative number, cell reference, or range; each value is truncated to an integer. Further numbers or ranges can be passed as additional arguments. |
+| 1 | values | number \| string \| range/array \| boolean (repeatable) | Yes | List of parameters, whose elements are 1 to 255 values for which you want the least common multiple. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Computes least common multiple of numbers.
+Returns the least common multiple.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Computes least common multiple of numbers.
+> Returns the least common multiple.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=LCM(4, 6)`
-- `=LCM(A1:A5)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=LCM(1, 2, 3)`
 
 ## Test Cases
 | Input | Expected | Purpose |

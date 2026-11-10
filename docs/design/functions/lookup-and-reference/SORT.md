@@ -8,20 +8,15 @@
 - **Dynamic array:** Yes
 
 ## Description
-Sorts the rows or columns of an array.
+sort array
 
 ## Excel Syntax
 ```excel
-=SORT(array, [sort_index], [sort_order], [by_col])
+=SORT()
 ```
 
 ## Arguments
-| # | Name | Type | Required? | Description |
-|---|---|---|---|---|
-| 1 | array | range/array | Yes | The range or array whose rows (or columns) are sorted. |
-| 2 | sort_index | range/array | No | The 1-based row or column index within array to sort by. Defaults to 1 (the first row or column). |
-| 3 | sort_order | any | No | 1 (default) sorts in ascending order; -1 sorts in descending order. |
-| 4 | by_col | boolean \| range/array | No | FALSE (default) sorts the rows of array; TRUE sorts its columns. |
+This function takes no arguments.
 
 ## Returns
 Dynamic array
@@ -29,7 +24,7 @@ Dynamic array
 ## Behavior / Algorithm
 Implementation is deferred (Requires dynamic-array / spill support).
 
-High-level behavior: Sorts the rows or columns of an array.
+High-level behavior: sort array
 
 Detailed step-by-step algorithm, type coercion and edge-case handling will be added when this function is prioritized.
 
@@ -52,8 +47,7 @@ Detailed step-by-step algorithm, type coercion and edge-case handling will be ad
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=SORT(A1:A10)`
-- `=SORT(A1:B10, 2, -1)`
+TBD — add representative Excel examples during implementation.
 
 ## Test Cases
 | Input | Expected | Purpose |

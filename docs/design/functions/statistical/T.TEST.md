@@ -7,35 +7,28 @@
 - **Volatile:** No
 
 ## Description
-Returns t-test value for a dataset.
+t test
 
 ## Excel Syntax
 ```excel
-=T.TEST(array1, array2, tails, type)
+=T.TEST()
 ```
 
 ## Arguments
-| # | Name | Type | Required? | Description |
-|---|---|---|---|---|
-| 1 | array1 | range/array | Yes | The first range or array of sample values. |
-| 2 | array2 | range/array | Yes | The second range or array of sample values. |
-| 3 | tails | number | Yes | The number of distribution tails to use: 1 for a one-tailed test, or 2 for a two-tailed test. |
-| 4 | type | any | Yes | The kind of t-test to perform: 1 for paired, 2 for two-sample equal variance, or 3 for two-sample unequal variance. |
+This function takes no arguments.
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns t-test value for a dataset.
+t test
 
 High-level algorithm:
-1. Validate argument count and coerce each argument according to its documented type.
-2. Propagate any input errors (`#VALUE!`, `#NUM!`, etc.) before computation.
-3. Execute the core calculation described below.
-4. Apply final coercion to the documented return type and return the result.
+1. Execute the core calculation.
+2. Return the result.
 
 Core calculation:
-> Returns t-test value for a dataset.
+> t test
 
 
 ## Type Coercion & Edge Cases
@@ -57,7 +50,7 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=T.TEST(A1:A10, B1:B10, 2, 1)`
+TBD — add representative Excel examples during implementation.
 
 ## Test Cases
 | Input | Expected | Purpose |

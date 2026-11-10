@@ -8,19 +8,15 @@
 - **Dynamic array:** Yes
 
 ## Description
-Returns the unique rows or columns of an array.
+distinct values
 
 ## Excel Syntax
 ```excel
-=UNIQUE(array, [by_col], [exactly_once])
+=UNIQUE()
 ```
 
 ## Arguments
-| # | Name | Type | Required? | Description |
-|---|---|---|---|---|
-| 1 | array | range/array | Yes | The range or array to return distinct entries from. |
-| 2 | by_col | boolean | No | FALSE (default) compares and returns rows; TRUE compares and returns columns. |
-| 3 | exactly_once | boolean \| range/array | No | FALSE (default) returns every distinct entry once; TRUE returns only the entries that appear exactly once in array. |
+This function takes no arguments.
 
 ## Returns
 Dynamic array
@@ -28,7 +24,7 @@ Dynamic array
 ## Behavior / Algorithm
 Implementation is deferred (Requires dynamic-array / spill support).
 
-High-level behavior: Returns the unique rows or columns of an array.
+High-level behavior: distinct values
 
 Detailed step-by-step algorithm, type coercion and edge-case handling will be added when this function is prioritized.
 
@@ -51,8 +47,7 @@ Detailed step-by-step algorithm, type coercion and edge-case handling will be ad
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=UNIQUE(A1:A10)`
-- `=UNIQUE(A1:B10)`
+TBD — add representative Excel examples during implementation.
 
 ## Test Cases
 | Input | Expected | Purpose |

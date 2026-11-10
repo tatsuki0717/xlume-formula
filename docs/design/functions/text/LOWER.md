@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns text converted to lowercase.
+Converts all letters in a text string to lowercase.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Returns text converted to lowercase.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | text | string \| range/array | Yes | The text to convert to lowercase. |
+| 1 | text | string \| range/array | Yes | Is the text you want to convert to lowercase. Characters in Text that are not letters are not changed. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns text converted to lowercase.
+Converts all letters in a text string to lowercase.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns text converted to lowercase.
+> Converts all letters in a text string to lowercase.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=LOWER("HELLO")`
-- `=LOWER(A1)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=LOWER(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

@@ -3,9 +3,10 @@
 Generate detailed per-function design Markdown documents for offline Google Sheets functions.
 
 Inputs:
-  - /tmp/google-sheets-merged.json (merged Google Docs + checksheet data)
+  - scripts/google-sheets-merged.json (structured function inventory: names,
+    categories, signatures; no third-party prose)
+  - scripts/google-sheets-answer-ids.json (Google support answer IDs for reference links)
   - scripts/manual_google_specs.py (curated algorithm/examples/tests)
-  - scripts/official-google-specs.json (official Google Sheets help content by function name)
 
 Outputs:
   - docs/design/google-sheets/<category-slug>/<FunctionName>.md
@@ -23,7 +24,6 @@ import manual_google_specs as manual
 REPO_ROOT = Path(__file__).resolve().parents[1]
 OUT_DIR = REPO_ROOT / "docs" / "design" / "google-sheets"
 JSON_FILE = REPO_ROOT / "scripts" / "google-sheets-merged.json"
-OFFICIAL_FILE = REPO_ROOT / "scripts" / "official-google-specs.json"
 
 ALWAYS_INCLUDE = {"REGEXEXTRACT", "REGEXREPLACE"}
 
@@ -32,8 +32,6 @@ ONLINE_NAMES = {
     "GOOGLEFINANCE", "GOOGLETRANSLATE", "IMAGE", "DETECTLANGUAGE",
     "IMPORTDATA", "IMPORTFEED", "IMPORTHTML", "IMPORTRANGE", "IMPORTXML", "AI",
 }
-
-official: dict[str, dict] = {}
 
 
 def slugify_category(cat: str) -> str:
@@ -101,60 +99,18 @@ def format_value(v):
     return str(v)
 
 
-def arg_descriptions(name: str, official_sections: dict) -> dict[str, str]:
-    """Parse official 'Syntax' section for per-argument descriptions."""
-    descs: dict[str, str] = {}
-    syntax = official_sections.get("Syntax", "")
-    for line in syntax.splitlines():
-        line = line.strip("- ").strip()
-        if not line:
-            continue
-        # match "arg_name - description" or "arg_name - [ OPTIONAL ] - description"
-        m = re.match(r"([A-Za-z_][A-Za-z0-9_\s]*)\s*[-–—]\s*(.*)", line, re.DOTALL)
-        if m:
-            arg_name = m.group(1).strip().replace(" ", "_")
-            body = m.group(2).strip()
-            # strip leading [ OPTIONAL ] marker
-            body = re.sub(r"^\[?\s*OPTIONAL\s*[-–—]?\s*\]?\s*", "", body, flags=re.I)
-            descs[arg_name.upper()] = body
-    return descs
-
-
-def official_extras(name: str, official_sections: dict) -> str:
-    """Append official Sample Usage, Notes, See Also and Examples sections."""
-    parts = []
-    for sec in ["Sample Usage", "Notes", "See Also", "Examples"]:
-        text = official_sections.get(sec, "").strip()
-        if not text:
-            continue
-        # collapse leading dash noise
-        text = re.sub(r"\n\s*-\s*", "\n- ", text)
-        text = re.sub(r"\n{2,}", "\n\n", text).strip()
-        if text:
-            parts.append(f"### {sec}\n{text}")
-    return "\n\n".join(parts)
-
-
-def generate_doc(func: dict, spec: dict, official_sections: dict, answer_id: str | None) -> str:
+def generate_doc(func: dict, spec: dict, answer_id: str | None = None) -> str:
     name = func["name"].upper()
     category = func["category"]
     syntax = func.get("params", "") or f"{name}()"
     # Some source lists only the parameter list, not the full NAME(...) form.
     if not syntax.strip().startswith(name):
         syntax = f"{name}{syntax}"
-    table_desc = (func.get("description") or "").replace("Learn more", "").strip()
-    official_title = official_sections.get("title", "")
-    # Prefer a richer description: official title + table description
-    if official_title and table_desc and official_title.lower() not in table_desc.lower():
-        description = f"{official_title} {table_desc}"
-    elif official_title:
-        description = official_title
-    else:
-        description = table_desc or "See Google Sheets documentation."
-    description = re.sub(r"\s+", " ", description).strip()
+    # Avoid embedding scraped third-party prose; keep only a generic pointer.
+    description = "See upstream spreadsheet function documentation."
 
     args = parse_args(syntax)
-    arg_desc_map = arg_descriptions(name, official_sections)
+    arg_desc_map: dict[str, str] = {}
     returns = spec.get("returns", infer_returns(func))
     dynamic = spec.get("dynamic_array", infer_dynamic_array(func))
     volatility = spec.get("volatile", "No")
@@ -193,9 +149,7 @@ Detailed algorithm:
 
     examples_lines = "\n".join(f"- `{ex}`" for ex in examples)
 
-    extras = official_extras(name, official_sections)
-    if extras:
-        extras = "\n\n## Google Sheets Documentation Excerpts\n\n" + extras
+    extras = ""
 
     ref_url = f"https://support.google.com/docs/answer/{answer_id}?hl=en" if answer_id else f"https://support.google.com/docs/answer/search?q={name.lower()}"
 
@@ -285,12 +239,9 @@ def infer_dynamic_array(func: dict) -> str:
 
 
 def main():
-    global official
     if not JSON_FILE.exists():
         print(f"Missing {JSON_FILE}; run the survey script first.")
         return
-    if OFFICIAL_FILE.exists():
-        official = json.loads(OFFICIAL_FILE.read_text(encoding="utf-8"))
 
     data = json.loads(JSON_FILE.read_text(encoding="utf-8"))
     selected = []
@@ -318,10 +269,8 @@ def main():
         for func in funcs:
             name = func["name"].upper()
             spec = manual.SPECS.get(name, {})
-            official_data = official.get(name, {})
-            official_sections = official_data.get("sections", {})
             aid = answer_ids.get(name, {}).get("answer_id")
-            (cat_dir / f"{name}.md").write_text(generate_doc(func, spec, official_sections, aid), encoding="utf-8")
+            (cat_dir / f"{name}.md").write_text(generate_doc(func, spec, aid), encoding="utf-8")
 
     # index
     index = "# Google Sheets Functions Design\n\nDetailed per-function design documents for offline-implementable Google Sheets functions.\n\n## Categories\n\n"
@@ -329,8 +278,11 @@ def main():
         index += f"\n### {cat}\n\n"
         for func in funcs:
             name = func["name"].upper()
-            desc = (func.get("description") or "").split(".")[0]
-            index += f"- [{name}](./{slug}/{name}.md): {desc}.\n"
+            desc = (func.get("description") or "").split(".")[0].strip()
+            if desc:
+                index += f"- [{name}](./{slug}/{name}.md): {desc}.\n"
+            else:
+                index += f"- [{name}](./{slug}/{name}.md)\n"
     (OUT_DIR / "index.md").write_text(index, encoding="utf-8")
 
     readme = f"""# docs/design/google-sheets

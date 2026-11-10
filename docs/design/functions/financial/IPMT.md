@@ -7,28 +7,28 @@
 - **Volatile:** No
 
 ## Description
-Returns the interest portion of a given loan payment in a given payment period.
+Returns the interest payment for a given period for an investment, based on periodic, constant payments and a constant interest rate.
 
 ## Excel Syntax
 ```excel
-=IPMT(rate, per, nper, pv, [fv], [type])
+=IPMT(rate, per, nper, pv, fv, type)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | rate | number \| range/array | Yes | The interest rate per period. |
-| 2 | per | number \| range/array | Yes | The period, between 1 and nper, for which the interest portion is calculated. |
-| 3 | nper | number \| range/array | Yes | The total number of payment periods. |
-| 4 | pv | number \| range/array | Yes | The present value, i.e. the loan principal. |
-| 5 | fv | number \| range/array | No | The future value, i.e. the desired cash balance after the last payment; defaults to 0. |
-| 6 | type | number \| range/array | No | When payments are due: 0 for the end of each period, 1 for the beginning; defaults to 0. |
+| 1 | rate | number \| range/array | Yes | Is the interest rate per period. For example, use 6%/4 for quarterly payments at 6% APR. |
+| 2 | per | number \| range/array | Yes | Is the period for which you want to find the interest and must be in the range 1 to Nper. |
+| 3 | nper | number \| range/array | Yes | Is the total number of payment periods in an investment. |
+| 4 | pv | number \| range/array | Yes | Is the present value, or the lump-sum amount that a series of future payments is worth now. |
+| 5 | fv | number \| range/array | Yes | Is the future value, or a cash balance you want to attain after the last payment is made. If omitted, Fv = 0. |
+| 6 | type | number \| range/array | Yes | Is a logical value representing the timing of payment: at the end of the period = 0 or omitted, at the beginning of the period = 1. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the interest portion of a given loan payment in a given payment period.
+Returns the interest payment for a given period for an investment, based on periodic, constant payments and a constant interest rate.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -37,7 +37,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the interest portion of a given loan payment in a given payment period.
+> Returns the interest payment for a given period for an investment, based on periodic, constant payments and a constant interest rate.
 
 
 ## Type Coercion & Edge Cases
@@ -59,8 +59,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=IPMT(0.05/12, 1, 60, 20000)`
-- `=IPMT(0.04/12, 12, 360, 200000, 0, 1)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=IPMT(..., ..., ..., ..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

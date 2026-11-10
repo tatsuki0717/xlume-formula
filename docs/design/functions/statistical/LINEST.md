@@ -8,18 +8,15 @@
 - **Dynamic array:** Yes
 
 ## Description
-Returns the parameters of a linear trend.
+linear regression stats array
 
 ## Excel Syntax
 ```excel
-=LINEST(known_y, [known_x])
+=LINEST()
 ```
 
 ## Arguments
-| # | Name | Type | Required? | Description |
-|---|---|---|---|---|
-| 1 | known_y | any | Yes | The set of y-values that you already know in the relationship y = mx + b. |
-| 2 | known_x | any | No | Optional. A set of x-values that you may already know in the relationship y = mx + b. |
+This function takes no arguments.
 
 ## Returns
 Dynamic array
@@ -27,7 +24,7 @@ Dynamic array
 ## Behavior / Algorithm
 Implementation is deferred (Requires dynamic-array / spill support).
 
-High-level behavior: Returns the parameters of a linear trend.
+High-level behavior: linear regression stats array
 
 Detailed step-by-step algorithm, type coercion and edge-case handling will be added when this function is prioritized.
 
@@ -51,8 +48,6 @@ Detailed step-by-step algorithm, type coercion and edge-case handling will be ad
 
 ## Examples
 TBD — add representative Excel examples during implementation.
-
-Skeleton: `=LINEST(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

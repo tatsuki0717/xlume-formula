@@ -7,24 +7,24 @@
 - **Volatile:** No
 
 ## Description
-Converts number to roman form.
+Converts an Arabic numeral to Roman, as text.
 
 ## Excel Syntax
 ```excel
-=ROMAN(number, [form])
+=ROMAN(number, form)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number | number \| range/array | Yes | A number between 1 and 3999 to convert to a Roman numeral; truncated to an integer. |
-| 2 | form | boolean \| number \| range/array | No | Controls how concise the result is, from 0 (classic) to 4 (most abbreviated). Defaults to 0 when omitted. |
+| 1 | number | number \| range/array | Yes | Is the Arabic numeral you want to convert. |
+| 2 | form | boolean \| number \| range/array | Yes | Is the number specifying the type of Roman numeral you want. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Converts number to roman form.
+Converts an Arabic numeral to Roman, as text.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -33,7 +33,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Converts number to roman form.
+> Converts an Arabic numeral to Roman, as text.
 
 
 ## Type Coercion & Edge Cases
@@ -55,8 +55,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=ROMAN(1990)`
-- `=ROMAN(1990, 4)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=ROMAN(..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

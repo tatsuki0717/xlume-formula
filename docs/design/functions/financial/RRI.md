@@ -17,9 +17,9 @@ Returns an equivalent interest rate for the growth of an investment.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | nper | number \| range/array | Yes | The number of periods over which the investment grows. |
-| 2 | pv | number \| range/array | Yes | The present value of the investment. |
-| 3 | fv | number \| range/array | Yes | The future value of the investment. |
+| 1 | nper | number \| range/array | Yes | Is the number of periods for the investment. |
+| 2 | pv | number \| range/array | Yes | Is the present value of the investment. |
+| 3 | fv | number \| range/array | Yes | Is the future value of the investment. |
 
 ## Returns
 Scalar or array depending on arguments
@@ -56,8 +56,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=RRI(10, 1000, 2000)`
-- `=RRI(5, 5000, 6000)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=RRI(..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

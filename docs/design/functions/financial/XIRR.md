@@ -7,25 +7,25 @@
 - **Volatile:** No
 
 ## Description
-Returns the internal rate of return for a schedule of cash flows that is not necessarily periodic.
+Returns the internal rate of return for a schedule of cash flows.
 
 ## Excel Syntax
 ```excel
-=XIRR(values, dates, [guess])
+=XIRR(values, dates, guess)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | values | number \| string \| range/array \| boolean | Yes | A range of cash flow values; must contain at least one negative and one positive value. |
-| 2 | dates | number \| string \| range/array \| boolean | Yes | A range of payment dates, one per value in values and the same length; the first date is the reference point and every other date must fall on or after it. |
-| 3 | guess | number \| string \| boolean \| range/array | No | An estimated rate used as the starting point for the iterative calculation; defaults to 0.1 (10%). |
+| 1 | values | number \| string \| range/array \| boolean | Yes | Is a series of cash flows that correspond to a schedule of payments in dates. |
+| 2 | dates | number \| string \| range/array \| boolean | Yes | Is a schedule of payment dates that corresponds to the cash flow payments. |
+| 3 | guess | number \| string \| boolean \| range/array | Yes | Is a number that you guess is close to the result of XIRR. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the internal rate of return for a schedule of cash flows that is not necessarily periodic.
+Returns the internal rate of return for a schedule of cash flows.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -34,7 +34,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the internal rate of return for a schedule of cash flows that is not necessarily periodic.
+> Returns the internal rate of return for a schedule of cash flows.
 
 
 ## Type Coercion & Edge Cases
@@ -56,8 +56,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=XIRR(A1:A4, B1:B4)`
-- `=XIRR(A1:A5, B1:B5, 0.1)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=XIRR(..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

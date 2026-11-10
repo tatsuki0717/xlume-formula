@@ -7,7 +7,7 @@
 - **Volatile:** Yes
 
 ## Description
-Returns a random number between 0 and 1.
+Returns a random number greater than or equal to 0 and less than 1, evenly distributed (changes on recalculation).
 
 ## Excel Syntax
 ```excel
@@ -21,14 +21,14 @@ This function takes no arguments.
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns a random number between 0 and 1.
+Returns a random number greater than or equal to 0 and less than 1, evenly distributed (changes on recalculation).
 
 High-level algorithm:
 1. Execute the core calculation.
 2. Return the result.
 
 Core calculation:
-> Returns a random number between 0 and 1.
+> Returns a random number greater than or equal to 0 and less than 1, evenly distributed (changes on recalculation).
 
 
 ## Type Coercion & Edge Cases
@@ -50,7 +50,7 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=RAND()`
+TBD — add representative Excel examples during implementation.
 
 ## Test Cases
 | Input | Expected | Purpose |

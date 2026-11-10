@@ -96,4 +96,39 @@ describe("Workbook", () => {
     const v = wb.getValue(sheet, 0, 0);
     expect(v).toEqual(bool(false));
   });
+
+  it("recalculates chained dependents using the dependency graph", () => {
+    const wb = new Workbook();
+    const sheet = wb.addSheet();
+    wb.setValue(sheet, 0, 0, num(1)); // A1
+    wb.setFormula(sheet, 1, 0, "=A1+1"); // A2
+    wb.setFormula(sheet, 2, 0, "=A2+1"); // A3
+    expect(wb.getValue(sheet, 1, 0)).toEqual(num(2));
+    expect(wb.getValue(sheet, 2, 0)).toEqual(num(3));
+    wb.setValue(sheet, 0, 0, num(10));
+    expect(wb.getValue(sheet, 1, 0)).toEqual(num(11));
+    expect(wb.getValue(sheet, 2, 0)).toEqual(num(12));
+  });
+
+  it("recalculates dependents that reference a range", () => {
+    const wb = new Workbook();
+    const sheet = wb.addSheet();
+    wb.setValue(sheet, 0, 0, num(1));
+    wb.setValue(sheet, 1, 0, num(2));
+    wb.setFormula(sheet, 2, 0, "=SUM(A1:A2)");
+    expect(wb.getValue(sheet, 2, 0)).toEqual(num(3));
+    wb.setValue(sheet, 1, 0, num(5));
+    expect(wb.getValue(sheet, 2, 0)).toEqual(num(6));
+  });
+
+  it("only recalculates dependents, not unrelated formulas", () => {
+    const wb = new Workbook();
+    const sheet = wb.addSheet();
+    wb.setValue(sheet, 0, 0, num(1)); // A1
+    wb.setFormula(sheet, 1, 0, "=A1+1"); // A2
+    wb.setFormula(sheet, 0, 1, "=10"); // B1
+    wb.setValue(sheet, 0, 0, num(5));
+    expect(wb.getValue(sheet, 1, 0)).toEqual(num(6));
+    expect(wb.getValue(sheet, 0, 1)).toEqual(num(10));
+  });
 });

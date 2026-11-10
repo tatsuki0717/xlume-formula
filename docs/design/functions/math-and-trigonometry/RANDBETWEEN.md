@@ -7,7 +7,7 @@
 - **Volatile:** Yes
 
 ## Description
-Returns a random integer between two numbers.
+Returns a random number between the numbers you specify.
 
 ## Excel Syntax
 ```excel
@@ -17,14 +17,14 @@ Returns a random integer between two numbers.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | bottom | number \| string \| boolean \| range/array | Yes | The lower bound, rounded up to an integer. |
-| 2 | top | number \| string \| boolean \| range/array | Yes | The upper bound, rounded up to an integer; a #NUM! error when it is below lower_bound. |
+| 1 | bottom | number \| string \| boolean \| range/array | Yes | Is the smallest integer RANDBETWEEN will return. |
+| 2 | top | number \| string \| boolean \| range/array | Yes | Is the largest integer RANDBETWEEN will return. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns a random integer between two numbers.
+Returns a random number between the numbers you specify.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -33,7 +33,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns a random integer between two numbers.
+> Returns a random number between the numbers you specify.
 
 
 ## Type Coercion & Edge Cases
@@ -55,8 +55,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=RANDBETWEEN(1, 10)`
-- `=RANDBETWEEN(-5, 5)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=RANDBETWEEN(..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

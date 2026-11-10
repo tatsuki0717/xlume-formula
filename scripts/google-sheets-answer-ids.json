@@ -1,3607 +1,1547 @@
 {
   "DATE": {
-    "category": "Date",
-    "name": "DATE",
-    "syntax": "DATE(year, month, day)",
-    "description": "Converts a provided year, month, and day into a date. Learn more",
     "answer_id": "3092969"
   },
   "DATEDIF": {
-    "category": "Date",
-    "name": "DATEDIF",
-    "syntax": "DATEDIF(start_date, end_date, unit)",
-    "description": "Calculates the number of days, months, or years between two dates. Learn more",
     "answer_id": "6055612"
   },
   "DATEVALUE": {
-    "category": "Date",
-    "name": "DATEVALUE",
-    "syntax": "DATEVALUE(date_string)",
-    "description": "Converts a provided date string in a known format to a date value. Learn more",
     "answer_id": "3093039"
   },
   "DAY": {
-    "category": "Date",
-    "name": "DAY",
-    "syntax": "DAY(date)",
-    "description": "Returns the day of the month that a specific date falls on, in numeric format. Learn more",
     "answer_id": "3093040"
   },
   "DAYS": {
-    "category": "Date",
-    "name": "DAYS",
-    "syntax": "DAYS(end_date, start_date)",
-    "description": "Returns the number of days between two dates. Learn more.",
     "answer_id": "9061296"
   },
   "DAYS360": {
-    "category": "Date",
-    "name": "DAYS360",
-    "syntax": "DAYS360(start_date, end_date, [method])",
-    "description": "Returns the difference between two days based on the 360 day year used in some financial interest calculations. Learn more",
     "answer_id": "3093042"
   },
   "EDATE": {
-    "category": "Date",
-    "name": "EDATE",
-    "syntax": "EDATE(start_date, months)",
-    "description": "Returns a date a specified number of months before or after another date. Learn more",
     "answer_id": "3092974"
   },
   "EOMONTH": {
-    "category": "Date",
-    "name": "EOMONTH",
-    "syntax": "EOMONTH(start_date, months)",
-    "description": "Returns a date representing the last day of a month which falls a specified number of months before or after another date. Learn more",
     "answer_id": "3093044"
   },
   "EPOCHTODATE": {
-    "category": "Date",
-    "name": "EPOCHTODATE",
-    "syntax": "EPOCHTODATE(timestamp, [unit])",
-    "description": "Converts a Unix epoch timestamp in seconds, milliseconds, or microseconds to a datetime in UTC. Learn more",
     "answer_id": "13193461"
   },
   "HOUR": {
-    "category": "Date",
-    "name": "HOUR",
-    "syntax": "HOUR(time)",
-    "description": "Returns the hour component of a specific time, in numeric format. Learn more",
     "answer_id": "3093045"
   },
   "ISOWEEKNUM": {
-    "category": "Date",
-    "name": "ISOWEEKNUM",
-    "syntax": "ISOWEEKNUM(date)",
-    "description": "Returns the number of the ISO week of the year where the provided date falls. Learn more",
     "answer_id": "7368793"
   },
   "MINUTE": {
-    "category": "Date",
-    "name": "MINUTE",
-    "syntax": "MINUTE(time)",
-    "description": "Returns the minute component of a specific time, in numeric format. Learn more",
     "answer_id": "3093048"
   },
   "MONTH": {
-    "category": "Date",
-    "name": "MONTH",
-    "syntax": "MONTH(date)",
-    "description": "Returns the month of the year a specific date falls in, in numeric format. Learn more",
     "answer_id": "3093052"
   },
   "NETWORKDAYS": {
-    "category": "Date",
-    "name": "NETWORKDAYS",
-    "syntax": "NETWORKDAYS(start_date, end_date, [holidays])",
-    "description": "Returns the number of net working days between two provided days. Learn more",
     "answer_id": "3092979"
   },
   "NETWORKDAYS.INTL": {
-    "category": "Date",
-    "name": "NETWORKDAYS.INTL",
-    "syntax": "NETWORKDAYS.INTL(start_date, end_date, [weekend], [holidays])",
-    "description": "Returns the number of net working days between two provided days excluding specified weekend days and holidays. Learn more",
     "answer_id": "3295902"
   },
   "NOW": {
-    "category": "Date",
-    "name": "NOW",
-    "syntax": "NOW()",
-    "description": "Returns the current date and time as a date value. Learn more",
     "answer_id": "3092981"
   },
   "SECOND": {
-    "category": "Date",
-    "name": "SECOND",
-    "syntax": "SECOND(time)",
-    "description": "Returns the second component of a specific time, in numeric format. Learn more",
     "answer_id": "3093054"
   },
   "TIME": {
-    "category": "Date",
-    "name": "TIME",
-    "syntax": "TIME(hour, minute, second)",
-    "description": "Converts a provided hour, minute, and second into a time. Learn more",
     "answer_id": "3093056"
   },
   "TIMEVALUE": {
-    "category": "Date",
-    "name": "TIMEVALUE",
-    "syntax": "TIMEVALUE(time_string)",
-    "description": "Returns the fraction of a 24-hour day the time represents. Learn more",
     "answer_id": "3267350"
   },
   "TODAY": {
-    "category": "Date",
-    "name": "TODAY",
-    "syntax": "TODAY()",
-    "description": "Returns the current date as a date value. Learn more",
     "answer_id": "3092984"
   },
   "WEEKDAY": {
-    "category": "Date",
-    "name": "WEEKDAY",
-    "syntax": "WEEKDAY(date, [type])",
-    "description": "Returns a number representing the day of the week of the date provided. Learn more",
     "answer_id": "3092985"
   },
   "WEEKNUM": {
-    "category": "Date",
-    "name": "WEEKNUM",
-    "syntax": "WEEKNUM(date, [type])",
-    "description": "Returns a number representing the week of the year where the provided date falls. Learn more",
     "answer_id": "3294949"
   },
   "WORKDAY": {
-    "category": "Date",
-    "name": "WORKDAY",
-    "syntax": "WORKDAY(start_date, num_days, [holidays])",
-    "description": "Calculates the end date after a specified number of working days. Learn more",
     "answer_id": "3093059"
   },
   "WORKDAY.INTL": {
-    "category": "Date",
-    "name": "WORKDAY.INTL",
-    "syntax": "WORKDAY.INTL(start_date, num_days, [weekend], [holidays])",
-    "description": "Calculates the date after a specified number of workdays excluding specified weekend days and holidays. Learn more",
     "answer_id": "3294972"
   },
   "YEAR": {
-    "category": "Date",
-    "name": "YEAR",
-    "syntax": "YEAR(date)",
-    "description": "Returns the year specified by a given date. Learn more",
     "answer_id": "3093061"
   },
   "YEARFRAC": {
-    "category": "Date",
-    "name": "YEARFRAC",
-    "syntax": "YEARFRAC(start_date, end_date, [day_count_convention])",
-    "description": "Returns the number of years, including fractional years, between two dates using a specified day count convention. Learn more",
     "answer_id": "3092989"
   },
   "BIN2DEC": {
-    "category": "Engineering",
-    "name": "BIN2DEC",
-    "syntax": "BIN2DEC(signed_binary_number)",
-    "description": "Converts a signed binary number to decimal format. Learn more",
     "answer_id": "3092991"
   },
   "BIN2HEX": {
-    "category": "Engineering",
-    "name": "BIN2HEX",
-    "syntax": "BIN2HEX(signed_binary_number, [significant_digits])",
-    "description": "Converts a signed binary number to signed hexadecimal format. Learn more",
     "answer_id": "3093133"
   },
   "BIN2OCT": {
-    "category": "Engineering",
-    "name": "BIN2OCT",
-    "syntax": "BIN2OCT(signed_binary_number, [significant_digits])",
-    "description": "Converts a signed binary number to signed octal format. Learn more",
     "answer_id": "3092993"
   },
   "BITAND": {
-    "category": "Engineering",
-    "name": "BITAND",
-    "syntax": "BITAND(value1, value2)",
-    "description": "Bitwise boolean AND of two numbers. Learn more.",
     "answer_id": "9061440"
   },
   "BITLSHIFT": {
-    "category": "Engineering",
-    "name": "BITLSHIFT",
-    "syntax": "BITLSHIFT(value, shift_amount)",
-    "description": "Shifts the bits of the input a certain number of places to the left. Learn more.",
     "answer_id": "9061443"
   },
   "BITOR": {
-    "category": "Engineering",
-    "name": "BITOR",
-    "syntax": "BITOR(value1, value2)",
-    "description": "Bitwise boolean OR of 2 numbers. Learn more.",
     "answer_id": "9083934"
   },
   "BITRSHIFT": {
-    "category": "Engineering",
-    "name": "BITRSHIFT",
-    "syntax": "BITRSHIFT(value, shift_amount)",
-    "description": "Shifts the bits of the input a certain number of places to the right. Learn more.",
     "answer_id": "9084100"
   },
   "BITXOR": {
-    "category": "Engineering",
-    "name": "BITXOR",
-    "syntax": "BITXOR(value1, value2)",
-    "description": "Bitwise XOR (exclusive OR) of 2 numbers. Learn more.",
     "answer_id": "9083935"
   },
   "COMPLEX": {
-    "category": "Engineering",
-    "name": "COMPLEX",
-    "syntax": "COMPLEX(real_part, imaginary_part, [suffix])",
-    "description": "Creates a complex number given real and imaginary coefficients. Learn more",
     "answer_id": "7407888"
   },
   "DEC2BIN": {
-    "category": "Engineering",
-    "name": "DEC2BIN",
-    "syntax": "DEC2BIN(decimal_number, [significant_digits])",
-    "description": "Converts a decimal number to signed binary format. Learn more",
     "answer_id": "3092997"
   },
   "DEC2HEX": {
-    "category": "Engineering",
-    "name": "DEC2HEX",
-    "syntax": "DEC2HEX(decimal_number, [significant_digits])",
-    "description": "Converts a decimal number to signed hexadecimal format. Learn more",
     "answer_id": "3093137"
   },
   "DEC2OCT": {
-    "category": "Engineering",
-    "name": "DEC2OCT",
-    "syntax": "DEC2OCT(decimal_number, [significant_digits])",
-    "description": "Converts a decimal number to signed octal format. Learn more",
     "answer_id": "3093138"
   },
   "DELTA": {
-    "category": "Engineering",
-    "name": "DELTA",
-    "syntax": "DELTA(number1, [number2])",
-    "description": "Compare two numeric values, returning 1 if they're equal. Learn more",
     "answer_id": "3401147"
   },
   "ERF": {
-    "category": "Engineering",
-    "name": "ERF",
-    "syntax": "ERF(lower_bound, [upper_bound])",
-    "description": "The ERF function returns the integral of the Gauss error function over an interval of values. Learn more.",
     "answer_id": "9116267"
   },
   "ERF.PRECISE": {
-    "category": "Engineering",
-    "name": "ERF.PRECISE",
-    "syntax": "ERF.PRECISE(lower_bound, [upper_bound])",
-    "description": "See ERF",
     "answer_id": "9116267"
   },
   "GESTEP": {
-    "category": "Engineering",
-    "name": "GESTEP",
-    "syntax": "GESTEP(value, [step])",
-    "description": "Returns 1 if the rate is strictly greater than or equal to the provided step value or 0 otherwise. If no step value is provided then the default value of 0 will be used. Learn more.",
     "answer_id": "9061379"
   },
   "HEX2BIN": {
-    "category": "Engineering",
-    "name": "HEX2BIN",
-    "syntax": "HEX2BIN(signed_hexadecimal_number, [significant_digits])",
-    "description": "Converts a signed hexadecimal number to signed binary format. Learn more",
     "answer_id": "3093139"
   },
   "HEX2DEC": {
-    "category": "Engineering",
-    "name": "HEX2DEC",
-    "syntax": "HEX2DEC(signed_hexadecimal_number)",
-    "description": "Converts a signed hexadecimal number to decimal format. Learn more",
     "answer_id": "3093192"
   },
   "HEX2OCT": {
-    "category": "Engineering",
-    "name": "HEX2OCT",
-    "syntax": "HEX2OCT(signed_hexadecimal_number, significant_digits)",
-    "description": "Converts a signed hexadecimal number to signed octal format. Learn more",
     "answer_id": "3093142"
   },
   "IMABS": {
-    "category": "Engineering",
-    "name": "IMABS",
-    "syntax": "IMABS(number)",
-    "description": "Returns absolute value of a complex number. Learn more",
     "answer_id": "7411899"
   },
   "IMAGINARY": {
-    "category": "Engineering",
-    "name": "IMAGINARY",
-    "syntax": "IMAGINARY(complex_number)",
-    "description": "Returns the imaginary coefficient of a complex number. Learn more",
     "answer_id": "7408639"
   },
   "IMARGUMENT": {
-    "category": "Engineering",
-    "name": "IMARGUMENT",
-    "syntax": "IMARGUMENT(number)",
-    "description": "The IMARGUMENT function returns the angle (also known as the argument or \\theta) of the given complex number in radians. Learn more.",
     "answer_id": "9116360"
   },
   "IMCONJUGATE": {
-    "category": "Engineering",
-    "name": "IMCONJUGATE",
-    "syntax": "IMCONJUGATE(number)",
-    "description": "Returns the complex conjugate of a number. Learn more",
     "answer_id": "7410791"
   },
   "IMCOS": {
-    "category": "Engineering",
-    "name": "IMCOS",
-    "syntax": "IMCOS(number)",
-    "description": "The IMCOS function returns the cosine of the given complex number. Learn more.",
     "answer_id": "9116546"
   },
   "IMCOSH": {
-    "category": "Engineering",
-    "name": "IMCOSH",
-    "syntax": "IMCOSH(number)",
-    "description": "Returns the hyperbolic cosine of the given complex number. For example, a given complex number \"x+yi\" returns \"cosh(x+yi).\" Learn more.",
     "answer_id": "9366233"
   },
   "IMCOT": {
-    "category": "Engineering",
-    "name": "IMCOT",
-    "syntax": "IMCOT(number)",
-    "description": "Returns the cotangent of the given complex number. For example, a given complex number \"x+yi\" returns \"cot(x+yi).\" Learn more.",
     "answer_id": "9366254"
   },
   "IMCOTH": {
-    "category": "Engineering",
-    "name": "IMCOTH",
-    "syntax": "IMCOTH(number)",
-    "description": "Returns the hyperbolic cotangent of the given complex number. For example, a given complex number \"x+yi\" returns \"coth(x+yi).\" Learn more.",
     "answer_id": "9366256"
   },
   "IMCSC": {
-    "category": "Engineering",
-    "name": "IMCSC",
-    "syntax": "IMCSC(number)",
-    "description": "Returns the cosecant of the given complex number. Learn more.",
     "answer_id": "9199155"
   },
   "IMCSCH": {
-    "category": "Engineering",
-    "name": "IMCSCH",
-    "syntax": "IMCSCH(number)",
-    "description": "Returns the hyperbolic cosecant of the given complex number. For example, a given complex number \"x+yi\" returns \"csch(x+yi).\" Learn more.",
     "answer_id": "9366258"
   },
   "IMDIV": {
-    "category": "Engineering",
-    "name": "IMDIV",
-    "syntax": "IMDIV(dividend, divisor)",
-    "description": "Returns one complex number divided by another. Learn more",
     "answer_id": "7411898"
   },
   "IMEXP": {
-    "category": "Engineering",
-    "name": "IMEXP",
-    "syntax": "IMEXP(exponent)",
-    "description": "Returns Euler's number, e (~2.718) raised to a complex power. Learn more.",
     "answer_id": "9198277"
   },
   "IMLOG": {
-    "category": "Engineering",
-    "name": "IMLOG",
-    "syntax": "IMLOG(value, base)",
-    "description": "Returns the logarithm of a complex number for a specified base. Learn more.",
     "answer_id": "9366486"
   },
   "IMLOG10": {
-    "category": "Engineering",
-    "name": "IMLOG10",
-    "syntax": "IMLOG10(value)",
-    "description": "Returns the logarithm of a complex number with base 10. Learn more.",
     "answer_id": "9366497"
   },
   "IMLOG2": {
-    "category": "Engineering",
-    "name": "IMLOG2",
-    "syntax": "IMLOG2(value)",
-    "description": "Returns the logarithm of a complex number with base 2. Learn more.",
     "answer_id": "9366426"
   },
   "IMPRODUCT": {
-    "category": "Engineering",
-    "name": "IMPRODUCT",
-    "syntax": "IMPRODUCT(factor1, [factor2, ...])",
-    "description": "Returns the result of multiplying a series of complex numbers together. Learn more",
     "answer_id": "7409679"
   },
   "IMREAL": {
-    "category": "Engineering",
-    "name": "IMREAL",
-    "syntax": "IMREAL(complex_number)",
-    "description": "Returns the real coefficient of a complex number. Learn more",
     "answer_id": "7408138"
   },
   "IMSEC": {
-    "category": "Engineering",
-    "name": "IMSEC",
-    "syntax": "IMSEC(number)",
-    "description": "Returns the secant of the given complex number. For example, a given complex number \"x+yi\" returns \"sec(x+yi).\" Learn more.",
     "answer_id": "9366728"
   },
   "IMSECH": {
-    "category": "Engineering",
-    "name": "IMSECH",
-    "syntax": "IMSECH(number)",
-    "description": "Returns the hyperbolic secant of the given complex number. For example, a given complex number \"x+yi\" returns \"sech(x+yi).\" Learn more.",
     "answer_id": "9366440"
   },
   "IMSIN": {
-    "category": "Engineering",
-    "name": "IMSIN",
-    "syntax": "IMSIN (number)",
-    "description": "Returns the sine of the given complex number. Learn more.",
     "answer_id": "9198962"
   },
   "IMSINH": {
-    "category": "Engineering",
-    "name": "IMSINH",
-    "syntax": "IMSINH(number)",
-    "description": "Returns the hyperbolic sine of the given complex number. For example, a given complex number \"x+yi\" returns \"sinh(x+yi).\" Learn more.",
     "answer_id": "9366445"
   },
   "IMSUB": {
-    "category": "Engineering",
-    "name": "IMSUB",
-    "syntax": "IMSUB(first_number, second_number)",
-    "description": "Returns the difference between two complex numbers. Learn more",
     "answer_id": "7408393"
   },
   "IMSUM": {
-    "category": "Engineering",
-    "name": "IMSUM",
-    "syntax": "IMSUM(value1, [value2, ...])",
-    "description": "Returns the sum of a series of complex numbers. Learn more",
     "answer_id": "7408295"
   },
   "IMTAN": {
-    "category": "Engineering",
-    "name": "IMTAN",
-    "syntax": "IMTAN(number)",
-    "description": "Returns the tangent of the given complex number. Learn more.",
     "answer_id": "9203334"
   },
   "IMTANH": {
-    "category": "Engineering",
-    "name": "IMTANH",
-    "syntax": "IMTANH(number)",
-    "description": "Returns the hyperbolic tangent of the given complex number. For example, a given complex number \"x+yi\" returns \"tanh(x+yi).\" Learn more.",
     "answer_id": "9366655"
   },
   "OCT2BIN": {
-    "category": "Engineering",
-    "name": "OCT2BIN",
-    "syntax": "OCT2BIN(signed_octal_number, [significant_digits])",
-    "description": "Converts a signed octal number to signed binary format. Learn more",
     "answer_id": "3093144"
   },
   "OCT2DEC": {
-    "category": "Engineering",
-    "name": "OCT2DEC",
-    "syntax": "OCT2DEC(signed_octal_number)",
-    "description": "Converts a signed octal number to decimal format. Learn more",
     "answer_id": "3093146"
   },
   "OCT2HEX": {
-    "category": "Engineering",
-    "name": "OCT2HEX",
-    "syntax": "OCT2HEX(signed_octal_number, [significant_digits])",
-    "description": "Converts a signed octal number to signed hexadecimal format. Learn more",
     "answer_id": "3093147"
   },
   "FILTER": {
-    "category": "Filter",
-    "name": "FILTER",
-    "syntax": "FILTER(range, condition1, [condition2])",
-    "description": "Returns a filtered version of the source range, returning only rows or columns which meet the specified conditions. Learn more",
     "answer_id": "3093197"
   },
   "SORT": {
-    "category": "Filter",
-    "name": "SORT",
-    "syntax": "SORT(range, sort_column, is_ascending, [sort_column2], [is_ascending2])",
-    "description": "Sorts the rows of a given array or range by the values in one or more columns. Learn more",
     "answer_id": "3093150"
   },
   "SORTN": {
-    "category": "Filter",
-    "name": "SORTN",
-    "syntax": "SORTN(range, [n], [display_ties_mode], [sort_column1, is_ascending1], ...)",
-    "description": "Returns the first n items in a data set after performing a sort. Learn more",
     "answer_id": "7354624"
   },
   "UNIQUE": {
-    "category": "Operator",
-    "name": "UNIQUE",
-    "syntax": "UNIQUE(range, by_column, exactly_once)",
-    "description": "Returns unique rows in the provided source range, discarding duplicates. Rows are returned in the order in which they first appear in the source range. Learn more",
     "answer_id": "10522653"
   },
   "ACCRINT": {
-    "category": "Financial",
-    "name": "ACCRINT",
-    "syntax": "ACCRINT(issue, first_payment, settlement, rate, redemption, frequency, [day_count_convention])",
-    "description": "Calculates the accrued interest of a security that has periodic payments. Learn more",
     "answer_id": "3093200"
   },
   "ACCRINTM": {
-    "category": "Financial",
-    "name": "ACCRINTM",
-    "syntax": "ACCRINTM(issue, maturity, rate, [redemption], [day_count_convention])",
-    "description": "Calculates the accrued interest of a security that pays interest at maturity. Learn more",
     "answer_id": "3093202"
   },
   "AMORLINC": {
-    "category": "Financial",
-    "name": "AMORLINC",
-    "syntax": "AMORLINC(cost, purchase_date, first_period_end, salvage, period, rate, [basis])",
-    "description": "Returns the depreciation for an accounting period, or the prorated depreciation if the asset was purchased in the middle of a period. Learn more.",
     "answer_id": "9083932"
   },
   "COUPDAYBS": {
-    "category": "Financial",
-    "name": "COUPDAYBS",
-    "syntax": "COUPDAYBS(settlement, maturity, frequency, [day_count_convention])",
-    "description": "Calculates the number of days from the first coupon, or interest payment, until settlement. Learn more",
     "answer_id": "3093154"
   },
   "COUPDAYS": {
-    "category": "Financial",
-    "name": "COUPDAYS",
-    "syntax": "COUPDAYS(settlement, maturity, frequency, [day_count_convention])",
-    "description": "Calculates the number of days in the coupon, or interest payment, period that contains the specified settlement date. Learn more",
     "answer_id": "3093204"
   },
   "COUPDAYSNC": {
-    "category": "Financial",
-    "name": "COUPDAYSNC",
-    "syntax": "COUPDAYSNC(settlement, maturity, frequency, [day_count_convention])",
-    "description": "Calculates the number of days from the settlement date until the next coupon, or interest payment. Learn more",
     "answer_id": "3093156"
   },
   "COUPNCD": {
-    "category": "Financial",
-    "name": "COUPNCD",
-    "syntax": "COUPNCD(settlement, maturity, frequency, [day_count_convention])",
-    "description": "Calculates next coupon, or interest payment, date after the settlement date. Learn more",
     "answer_id": "3093157"
   },
   "COUPNUM": {
-    "category": "Financial",
-    "name": "COUPNUM",
-    "syntax": "COUPNUM(settlement, maturity, frequency, [day_count_convention])",
-    "description": "Calculates the number of coupons, or interest payments, between the settlement date and the maturity date of the investment. Learn more",
     "answer_id": "3093208"
   },
   "COUPPCD": {
-    "category": "Financial",
-    "name": "COUPPCD",
-    "syntax": "COUPPCD(settlement, maturity, frequency, [day_count_convention])",
-    "description": "Calculates last coupon, or interest payment, date before the settlement date. Learn more",
     "answer_id": "3093210"
   },
   "CUMIPMT": {
-    "category": "Financial",
-    "name": "CUMIPMT",
-    "syntax": "CUMIPMT(rate, number_of_periods, present_value, first_period, last_period, end_or_beginning)",
-    "description": "Calculates the cumulative interest over a range of payment periods for an investment based on constant-amount periodic payments and a constant interest rate. Learn more",
     "answer_id": "3093211"
   },
   "CUMPRINC": {
-    "category": "Financial",
-    "name": "CUMPRINC",
-    "syntax": "CUMPRINC(rate, number_of_periods, present_value, first_period, last_period, end_or_beginning)",
-    "description": "Calculates the cumulative principal paid over a range of payment periods for an investment based on constant-amount periodic payments and a constant interest rate. Learn more",
     "answer_id": "3093159"
   },
   "DB": {
-    "category": "Financial",
-    "name": "DB",
-    "syntax": "DB(cost, salvage, life, period, [month])",
-    "description": "Calculates the depreciation of an asset for a specified period using the arithmetic declining balance method. Learn more",
     "answer_id": "3093162"
   },
   "DDB": {
-    "category": "Financial",
-    "name": "DDB",
-    "syntax": "DDB(cost, salvage, life, period, [factor])",
-    "description": "Calculates the depreciation of an asset for a specified period using the double-declining balance method. Learn more",
     "answer_id": "3093163"
   },
   "DISC": {
-    "category": "Financial",
-    "name": "DISC",
-    "syntax": "DISC(settlement, maturity, price, redemption, [day_count_convention])",
-    "description": "Calculates the discount rate of a security based on price. Learn more",
     "answer_id": "3093216"
   },
   "DOLLARDE": {
-    "category": "Financial",
-    "name": "DOLLARDE",
-    "syntax": "DOLLARDE(fractional_price, unit)",
-    "description": "Converts a price quotation given as a decimal fraction into a decimal value. Learn more",
     "answer_id": "3093167"
   },
   "DOLLARFR": {
-    "category": "Financial",
-    "name": "DOLLARFR",
-    "syntax": "DOLLARFR(decimal_price, unit)",
-    "description": "Converts a price quotation given as a decimal value into a decimal fraction. Learn more",
     "answer_id": "3093217"
   },
   "DURATION": {
-    "category": "Financial",
-    "name": "DURATION",
-    "syntax": "DURATION(settlement, maturity, rate, yield, frequency, [day_count_convention]) .",
-    "description": "Calculates the number of compounding periods required for an investment of a specified present value appreciating at a given rate to reach a target value. Learn more",
     "answer_id": "3093169"
   },
   "EFFECT": {
-    "category": "Financial",
-    "name": "EFFECT",
-    "syntax": "EFFECT(nominal_rate, periods_per_year)",
-    "description": "Calculates the annual effective interest rate given the nominal rate and number of compounding periods per year. Learn more",
     "answer_id": "3093223"
   },
   "FV": {
-    "category": "Financial",
-    "name": "FV",
-    "syntax": "FV(rate, number_of_periods, payment_amount, [present_value], [end_or_beginning])",
-    "description": "Calculates the future value of an annuity investment based on constant-amount periodic payments and a constant interest rate. Learn more",
     "answer_id": "3093224"
   },
   "FVSCHEDULE": {
-    "category": "Financial",
-    "name": "FVSCHEDULE",
-    "syntax": "FVSCHEDULE(principal, rate_schedule)",
-    "description": "Calculates the future value of some principal based on a specified series of potentially varying interest rates. Learn more",
     "answer_id": "3093226"
   },
   "INTRATE": {
-    "category": "Financial",
-    "name": "INTRATE",
-    "syntax": "INTRATE(buy_date, sell_date, buy_price, sell_price, [day_count_convention])",
-    "description": "Calculates the effective interest rate generated when an investment is purchased at one price and sold at another with no interest or dividends generated by the investment itself. Learn more",
     "answer_id": "3093174"
   },
   "IPMT": {
-    "category": "Financial",
-    "name": "IPMT",
-    "syntax": "IPMT(rate, period, number_of_periods, present_value, [future_value], [end_or_beginning])",
-    "description": "Calculates the payment on interest for an investment based on constant-amount periodic payments and a constant interest rate. Learn more",
     "answer_id": "3093175"
   },
   "IRR": {
-    "category": "Financial",
-    "name": "IRR",
-    "syntax": "IRR(cashflow_amounts, [rate_guess])",
-    "description": "Calculates the internal rate of return on an investment based on a series of periodic cash flows. Learn more",
     "answer_id": "3093231"
   },
   "ISPMT": {
-    "category": "Financial",
-    "name": "ISPMT",
-    "syntax": "ISPMT(rate, period, number_of_periods, present_value)",
-    "description": "The ISPMT function calculates the interest paid during a particular period of an investment. Learn more.",
     "answer_id": "9116481"
   },
   "MDURATION": {
-    "category": "Financial",
-    "name": "MDURATION",
-    "syntax": "MDURATION(settlement, maturity, rate, yield, frequency, [day_count_convention])",
-    "description": "Calculates the modified Macaulay duration of a security paying periodic interest, such as a US Treasury Bond, based on expected yield. Learn more",
     "answer_id": "3093178"
   },
   "MIRR": {
-    "category": "Financial",
-    "name": "MIRR",
-    "syntax": "MIRR(cashflow_amounts, financing_rate, reinvestment_return_rate)",
-    "description": "Calculates the modified internal rate of return on an investment based on a series of periodic cash flows and the difference between the interest rate paid on financing versus the return received on reinvested income. Learn more",
     "answer_id": "3093180"
   },
   "NOMINAL": {
-    "category": "Financial",
-    "name": "NOMINAL",
-    "syntax": "NOMINAL(effective_rate, periods_per_year)",
-    "description": "Calculates the annual nominal interest rate given the effective rate and number of compounding periods per year. Learn more",
     "answer_id": "3093234"
   },
   "NPER": {
-    "category": "Financial",
-    "name": "NPER",
-    "syntax": "NPER(rate, payment_amount, present_value, [future_value], [end_or_beginning])",
-    "description": "Calculates the number of payment periods for an investment based on constant-amount periodic payments and a constant interest rate. Learn more",
     "answer_id": "3093183"
   },
   "NPV": {
-    "category": "Financial",
-    "name": "NPV",
-    "syntax": "NPV(discount, cashflow1, [cashflow2, ...])",
-    "description": "Calculates the net present value of an investment based on a series of periodic cash flows and a discount rate. Learn more",
     "answer_id": "3093184"
   },
   "PDURATION": {
-    "category": "Financial",
-    "name": "PDURATION",
-    "syntax": "PDURATION(rate, present_value, future_value)",
-    "description": "Returns the number of periods for an investment to reach a specific value at a given rate. Learn more.",
     "answer_id": "9368165"
   },
   "PMT": {
-    "category": "Financial",
-    "name": "PMT",
-    "syntax": "PMT(rate, number_of_periods, present_value, [future_value], [end_or_beginning])",
-    "description": "Calculates the periodic payment for an annuity investment based on constant-amount periodic payments and a constant interest rate. Learn more",
     "answer_id": "3093185"
   },
   "PPMT": {
-    "category": "Financial",
-    "name": "PPMT",
-    "syntax": "PPMT(rate, period, number_of_periods, present_value, [future_value], [end_or_beginning])",
-    "description": "Calculates the payment on the principal of an investment based on constant-amount periodic payments and a constant interest rate. Learn more",
     "answer_id": "3093187"
   },
   "PRICE": {
-    "category": "Financial",
-    "name": "PRICE",
-    "syntax": "PRICE(settlement, maturity, rate, yield, redemption, frequency, [day_count_convention])",
-    "description": "Calculates the price of a security paying periodic interest, such as a US Treasury Bond, based on expected yield. Learn more",
     "answer_id": "3093188"
   },
   "PRICEDISC": {
-    "category": "Financial",
-    "name": "PRICEDISC",
-    "syntax": "PRICEDISC(settlement, maturity, discount, redemption, [day_count_convention])",
-    "description": "Calculates the price of a discount (non-interest-bearing) security, based on expected yield. Learn more",
     "answer_id": "3093240"
   },
   "PRICEMAT": {
-    "category": "Financial",
-    "name": "PRICEMAT",
-    "syntax": "PRICEMAT(settlement, maturity, issue, rate, yield, [day_count_convention])",
-    "description": "Calculates the price of a security paying interest at maturity, based on expected yield. Learn more",
     "answer_id": "3093191"
   },
   "PV": {
-    "category": "Financial",
-    "name": "PV",
-    "syntax": "PV(rate, number_of_periods, payment_amount, [future_value], [end_or_beginning])",
-    "description": "Calculates the present value of an annuity investment based on constant-amount periodic payments and a constant interest rate. Learn more",
     "answer_id": "3093243"
   },
   "RATE": {
-    "category": "Financial",
-    "name": "RATE",
-    "syntax": "RATE(number_of_periods, payment_per_period, present_value, [future_value], [end_or_beginning], [rate_guess])",
-    "description": "Calculates the interest rate of an annuity investment based on constant-amount periodic payments and the assumption of a constant interest rate. Learn more",
     "answer_id": "3093257"
   },
   "RECEIVED": {
-    "category": "Financial",
-    "name": "RECEIVED",
-    "syntax": "RECEIVED(settlement, maturity, investment, discount, [day_count_convention])",
-    "description": "Calculates the amount received at maturity for an investment in fixed-income securities purchased on a given date. Learn more",
     "answer_id": "3093244"
   },
   "RRI": {
-    "category": "Financial",
-    "name": "RRI",
-    "syntax": "RRI(number_of_periods, present_value, future_value)",
-    "description": "Returns the interest rate needed for an investment to reach a specific value within a given number of periods. Learn more.",
     "answer_id": "9368238"
   },
   "SLN": {
-    "category": "Financial",
-    "name": "SLN",
-    "syntax": "SLN(cost, salvage, life)",
-    "description": "Calculates the depreciation of an asset for one period using the straight-line method. Learn more",
     "answer_id": "3093245"
   },
   "SYD": {
-    "category": "Financial",
-    "name": "SYD",
-    "syntax": "SYD(cost, salvage, life, period)",
-    "description": "Calculates the depreciation of an asset for a specified period using the sum of years digits method. Learn more",
     "answer_id": "3093261"
   },
   "TBILLEQ": {
-    "category": "Financial",
-    "name": "TBILLEQ",
-    "syntax": "TBILLEQ(settlement, maturity, discount)",
-    "description": "Calculates the equivalent annualized rate of return of a US Treasury Bill based on discount rate. Learn more",
     "answer_id": "3093249"
   },
   "TBILLPRICE": {
-    "category": "Financial",
-    "name": "TBILLPRICE",
-    "syntax": "TBILLPRICE(settlement, maturity, discount)",
-    "description": "Calculates the price of a US Treasury Bill based on discount rate. Learn more",
     "answer_id": "3093251"
   },
   "TBILLYIELD": {
-    "category": "Financial",
-    "name": "TBILLYIELD",
-    "syntax": "TBILLYIELD(settlement, maturity, price)",
-    "description": "Calculates the yield of a US Treasury Bill based on price. Learn more",
     "answer_id": "3093264"
   },
   "VDB": {
-    "category": "Financial",
-    "name": "VDB",
-    "syntax": "VDB(cost, salvage, life, start_period, end_period, [factor], [no_switch])",
-    "description": "Returns the depreciation of an asset for a particular period (or partial period). Learn more.",
     "answer_id": "9199424"
   },
   "XIRR": {
-    "category": "Financial",
-    "name": "XIRR",
-    "syntax": "XIRR(cashflow_amounts, cashflow_dates, [rate_guess])",
-    "description": "Calculates the internal rate of return of an investment based on a specified series of potentially irregularly spaced cash flows. Learn more",
     "answer_id": "3093266"
   },
   "XNPV": {
-    "category": "Financial",
-    "name": "XNPV",
-    "syntax": "XNPV(discount, cashflow_amounts, cashflow_dates)",
-    "description": "Calculates the net present value of an investment based on a specified series of potentially irregularly spaced cash flows and a discount rate. Learn more",
     "answer_id": "3093268"
   },
   "YIELD": {
-    "category": "Financial",
-    "name": "YIELD",
-    "syntax": "YIELD(settlement, maturity, rate, price, redemption, frequency, [day_count_convention])",
-    "description": "Calculates the annual yield of a security paying periodic interest, such as a US Treasury Bond, based on price. Learn more",
     "answer_id": "3093255"
   },
   "YIELDDISC": {
-    "category": "Financial",
-    "name": "YIELDDISC",
-    "syntax": "YIELDDISC(settlement, maturity, price, redemption, [day_count_convention])",
-    "description": "Calculates the annual yield of a discount (non-interest-bearing) security, based on price. Learn more",
     "answer_id": "3093270"
   },
   "YIELDMAT": {
-    "category": "Financial",
-    "name": "YIELDMAT",
-    "syntax": "YIELDMAT(settlement, maturity, issue, rate, price, [day_count_convention])",
-    "description": "Calculates the annual yield of a security paying interest at maturity, based on price. Learn more",
     "answer_id": "9000132"
   },
   "ARRAYFORMULA": {
-    "category": "Google",
-    "name": "ARRAYFORMULA",
-    "syntax": "ARRAYFORMULA(array_formula)",
-    "description": "Enables the display of values returned from an array formula into multiple rows and/or columns and the use of non-array functions with arrays. Learn more",
     "answer_id": "3093275"
   },
   "DETECTLANGUAGE": {
-    "category": "Google",
-    "name": "DETECTLANGUAGE",
-    "syntax": "DETECTLANGUAGE(text_or_range)",
-    "description": "Identifies the language used in text within the specified range. Learn more",
     "answer_id": "3093278"
   },
   "GOOGLEFINANCE": {
-    "category": "Google",
-    "name": "GOOGLEFINANCE",
-    "syntax": "GOOGLEFINANCE(ticker, [attribute], [start_date], [end_date|num_days], [interval])",
-    "description": "Fetches current or historical securities information from Google Finance. Learn more",
     "answer_id": "3093281"
   },
   "GOOGLETRANSLATE": {
-    "category": "Google",
-    "name": "GOOGLETRANSLATE",
-    "syntax": "GOOGLETRANSLATE(text, [source_language], [target_language])",
-    "description": "Translates text from one language into another Learn more",
     "answer_id": "3093331"
   },
   "IMAGE": {
-    "category": "Google",
-    "name": "IMAGE",
-    "syntax": "IMAGE(url, [mode], [height], [width])",
-    "description": "Inserts an image into a cell. Learn more",
     "answer_id": "3093333"
   },
   "QUERY": {
-    "category": "Google",
-    "name": "QUERY",
-    "syntax": "QUERY(data, query, [headers])",
-    "description": "Runs a Google Visualization API Query Language query across data. Learn more",
     "answer_id": "3093343"
   },
   "SPARKLINE": {
-    "category": "Google",
-    "name": "SPARKLINE",
-    "syntax": "SPARKLINE(data, [options])",
-    "description": "Creates a miniature chart contained within a single cell. Learn more",
     "answer_id": "3093289"
   },
   "ERROR.TYPE": {
-    "category": "Info",
-    "name": "ERROR.TYPE",
-    "syntax": "ERROR.TYPE(reference)",
-    "description": "Returns a number corresponding to the error value in a different cell. Learn more",
     "answer_id": "3238305"
   },
   "ISBLANK": {
-    "category": "Info",
-    "name": "ISBLANK",
-    "syntax": "ISBLANK(value)",
-    "description": "Checks whether the referenced cell is empty. Learn more",
     "answer_id": "3093290"
   },
   "ISDATE": {
-    "category": "Info",
-    "name": "ISDATE",
-    "syntax": "ISDATE(value)",
-    "description": "Returns whether a value is a date. Learn more.",
     "answer_id": "9061381"
   },
   "ISEMAIL": {
-    "category": "Info",
-    "name": "ISEMAIL",
-    "syntax": "ISEMAIL(value)",
-    "description": "Checks whether a value is a valid email address. Learn more",
     "answer_id": "3256503"
   },
   "ISERR": {
-    "category": "Info",
-    "name": "ISERR",
-    "syntax": "ISERR(value)",
-    "description": "Checks whether a value is an error other than `#N/A`. Learn more",
     "answer_id": "3093348"
   },
   "ISERROR": {
-    "category": "Info",
-    "name": "ISERROR",
-    "syntax": "ISERROR(value)",
-    "description": "Checks whether a value is an error. Learn more",
     "answer_id": "3093349"
   },
   "ISFORMULA": {
-    "category": "Info",
-    "name": "ISFORMULA",
-    "syntax": "ISFORMULA(cell)",
-    "description": "Checks whether a formula is in the referenced cell. Learn more",
     "answer_id": "6270316"
   },
   "ISLOGICAL": {
-    "category": "Info",
-    "name": "ISLOGICAL",
-    "syntax": "ISLOGICAL(value)",
-    "description": "Checks whether a value is `TRUE` or `FALSE`. Learn more",
     "answer_id": "3093351"
   },
   "ISNA": {
-    "category": "Info",
-    "name": "ISNA",
-    "syntax": "ISNA(value)",
-    "description": "Checks whether a value is the error `#N/A`. Learn more",
     "answer_id": "3093293"
   },
   "ISNONTEXT": {
-    "category": "Info",
-    "name": "ISNONTEXT",
-    "syntax": "ISNONTEXT(value)",
-    "description": "Checks whether a value is non-textual. Learn more",
     "answer_id": "3093295"
   },
   "ISNUMBER": {
-    "category": "Info",
-    "name": "ISNUMBER",
-    "syntax": "ISNUMBER(value)",
-    "description": "Checks whether a value is a number. Learn more",
     "answer_id": "3093296"
   },
   "ISREF": {
-    "category": "Info",
-    "name": "ISREF",
-    "syntax": "ISREF(value)",
-    "description": "Checks whether a value is a valid cell reference. Learn more",
     "answer_id": "3093354"
   },
   "ISTEXT": {
-    "category": "Info",
-    "name": "ISTEXT",
-    "syntax": "ISTEXT(value)",
-    "description": "Checks whether a value is text. Learn more",
     "answer_id": "3093297"
   },
   "N": {
-    "category": "Info",
-    "name": "N",
-    "syntax": "N(value)",
-    "description": "Returns the argument provided as a number. Learn more",
     "answer_id": "3093357"
   },
   "NA": {
-    "category": "Info",
-    "name": "NA",
-    "syntax": "NA()",
-    "description": "Returns the \"value not available\" error, `#N/A`. Learn more",
     "answer_id": "3093359"
   },
   "SHEETS": {
-    "category": "Info",
-    "name": "SHEETS",
-    "syntax": "SHEETS(reference)",
-    "description": "Returns the total number of sheets in the referenced spreadsheet. Learn more about the SHEETS function.",
     "answer_id": "16865347"
   },
   "TYPE": {
-    "category": "Info",
-    "name": "TYPE",
-    "syntax": "TYPE(value)",
-    "description": "Returns a number associated with the type of data passed into the function. Learn more",
     "answer_id": "3267375"
   },
   "CELL": {
-    "category": "Info",
-    "name": "CELL",
-    "syntax": "CELL(info_type, reference)",
-    "description": "Returns the requested information about the specified cell. Learn more",
     "answer_id": "3267071"
   },
   "AND": {
-    "category": "Logical",
-    "name": "AND",
-    "syntax": "AND(logical_expression1, [logical_expression2, ...])",
-    "description": "Returns true if all of the provided arguments are logically true, and false if any of the provided arguments are logically false. Learn more",
     "answer_id": "3093301"
   },
   "FALSE": {
-    "category": "Logical",
-    "name": "FALSE",
-    "syntax": "FALSE()",
-    "description": "Returns the logical value `FALSE`. Learn more",
     "answer_id": "3093302"
   },
   "IF": {
-    "category": "Logical",
-    "name": "IF",
-    "syntax": "IF(logical_expression, value_if_true, value_if_false)",
-    "description": "Returns one value if a logical expression is `TRUE` and another if it is `FALSE`. Learn more",
     "answer_id": "3093364"
   },
   "IFERROR": {
-    "category": "Logical",
-    "name": "IFERROR",
-    "syntax": "IFERROR(value, [value_if_error])",
-    "description": "Returns the first argument if it is not an error value, otherwise returns the second argument if present, or a blank if the second argument is absent. Learn more",
     "answer_id": "3093304"
   },
   "IFNA": {
-    "category": "Logical",
-    "name": "IFNA",
-    "syntax": "IFNA(value, value_if_na)",
-    "description": "Evaluates a value. If the value is an #N/A error, returns the specified value. Learn more.",
     "answer_id": "9365944"
   },
   "IFS": {
-    "category": "Logical",
-    "name": "IFS",
-    "syntax": "IFS(condition1, value1, [condition2, value2], \u2026)",
-    "description": "Evaluates multiple conditions and returns a value that corresponds to the first true condition. Learn more.",
     "answer_id": "7014145"
   },
   "LAMBDA": {
-    "category": "Logical",
-    "name": "LAMBDA",
-    "syntax": "LAMBDA(name, formula_expression)",
-    "description": "Creates and returns a custom function with a set of names and a formula_expression that uses them. To calculate the formula_expression, you can call the returned function with as many values as the name declares. Learn more",
     "answer_id": "12508718"
   },
   "LET": {
-    "category": "Logical",
-    "name": "LET",
-    "syntax": "LET(name1, value_expression1, [name2, \u2026], [value_expression2, \u2026], formula_expression )",
-    "description": "Assigns name with the value_expression results and returns the result of the formula_expression. The formula_expression can use the names defined in the scope of the LET function. The value_expressions are evaluated only once in the LET function even if the following value_expressions or the formula_expression use them multiple times. Learn more",
     "answer_id": "13190535"
   },
   "NOT": {
-    "category": "Logical",
-    "name": "NOT",
-    "syntax": "NOT(logical_expression)",
-    "description": "Returns the opposite of a logical value - `NOT(TRUE)` returns `FALSE`; `NOT(FALSE)` returns `TRUE`. Learn more",
     "answer_id": "3093305"
   },
   "OR": {
-    "category": "Logical",
-    "name": "OR",
-    "syntax": "OR(logical_expression1, [logical_expression2, ...])",
-    "description": "Returns true if any of the provided arguments are logically true, and false if all of the provided arguments are logically false. Learn more",
     "answer_id": "3093306"
   },
   "SWITCH": {
-    "category": "Logical",
-    "name": "SWITCH",
-    "syntax": "SWITCH(expression, case1, value1, [default or case2, value2], \u2026)",
-    "description": "Tests an expression against a list of cases and returns the corresponding value of the first matching case, with an optional default value if nothing else is met. Learn more",
     "answer_id": "7013690"
   },
   "TRUE": {
-    "category": "Logical",
-    "name": "TRUE",
-    "syntax": "TRUE()",
-    "description": "Returns the logical value `TRUE`. Learn more",
     "answer_id": "3093307"
   },
   "XOR": {
-    "category": "Logical",
-    "name": "XOR",
-    "syntax": "XOR(logical_expression1, [logical_expression2, ...])",
-    "description": "The XOR function performs an exclusive or of 2 numbers that returns a 1 if the numbers are different, and a 0 otherwise. Learn more.",
     "answer_id": "9116491"
   },
   "ADDRESS": {
-    "category": "Lookup",
-    "name": "ADDRESS",
-    "syntax": "ADDRESS(row, column, [absolute_relative_mode], [use_a1_notation], [sheet])",
-    "description": "Returns a cell reference as a string. Learn more",
     "answer_id": "3093308"
   },
   "CHOOSE": {
-    "category": "Lookup",
-    "name": "CHOOSE",
-    "syntax": "CHOOSE(index, choice1, [choice2, ...])",
-    "description": "Returns an element from a list of choices based on index. Learn more",
     "answer_id": "3093371"
   },
   "COLUMN": {
-    "category": "Lookup",
-    "name": "COLUMN",
-    "syntax": "COLUMN([cell_reference])",
-    "description": "Returns the column number of a specified cell, with `A=1`. Learn more",
     "answer_id": "3093373"
   },
   "COLUMNS": {
-    "category": "Lookup",
-    "name": "COLUMNS",
-    "syntax": "COLUMNS(range)",
-    "description": "Returns the number of columns in a specified array or range. Learn more",
     "answer_id": "3093374"
   },
   "FORMULATEXT": {
-    "category": "Lookup",
-    "name": "FORMULATEXT",
-    "syntax": "FORMULATEXT(cell)",
-    "description": "Returns the formula as a string. Learn more.",
     "answer_id": "9365792"
   },
   "GETPIVOTDATA": {
-    "category": "Lookup",
-    "name": "GETPIVOTDATA",
-    "syntax": "GETPIVOTDATA(value_name, any_pivot_table_cell, [original_column, ...], [pivot_item, ...]",
-    "description": "Extracts an aggregated value from a pivot table that corresponds to the specified row and column headings. Learn more",
     "answer_id": "6167538"
   },
   "HLOOKUP": {
-    "category": "Lookup",
-    "name": "HLOOKUP",
-    "syntax": "HLOOKUP(search_key, range, index, [is_sorted])",
-    "description": "Horizontal lookup. Searches across the first row of a range for a key and returns the value of a specified cell in the column found. Learn more",
     "answer_id": "3093375"
   },
   "INDEX": {
-    "category": "Lookup",
-    "name": "INDEX",
-    "syntax": "INDEX(reference, [row], [column])",
-    "description": "Returns the content of a cell, specified by row and column offset. Learn more",
     "answer_id": "3098242"
   },
   "INDIRECT": {
-    "category": "Lookup",
-    "name": "INDIRECT",
-    "syntax": "INDIRECT(cell_reference_as_string, [is_A1_notation])",
-    "description": "Returns a cell reference specified by a string. Learn more",
     "answer_id": "3093377"
   },
   "LOOKUP": {
-    "category": "Lookup",
-    "name": "LOOKUP",
-    "syntax": "LOOKUP(search_key, search_range|search_result_array, [result_range])",
-    "description": "Looks through a row or column for a key and returns the value of the cell in a result range located in the same position as the search row or column. Learn more",
     "answer_id": "3256570"
   },
   "MATCH": {
-    "category": "Lookup",
-    "name": "MATCH",
-    "syntax": "MATCH(search_key, range, [search_type])",
-    "description": "Returns the relative position of an item in a range that matches a specified value. Learn more",
     "answer_id": "3093378"
   },
   "OFFSET": {
-    "category": "Lookup",
-    "name": "OFFSET",
-    "syntax": "OFFSET(cell_reference, offset_rows, offset_columns, [height], [width])",
-    "description": "Returns a range reference shifted a specified number of rows and columns from a starting cell reference. Learn more",
     "answer_id": "3093379"
   },
   "ROW": {
-    "category": "Lookup",
-    "name": "ROW",
-    "syntax": "ROW([cell_reference])",
-    "description": "Returns the row number of a specified cell. Learn more",
     "answer_id": "3093316"
   },
   "ROWS": {
-    "category": "Lookup",
-    "name": "ROWS",
-    "syntax": "ROWS(range)",
-    "description": "Returns the number of rows in a specified array or range. Learn more",
     "answer_id": "3093382"
   },
   "SHEET": {
-    "category": "Lookup",
-    "name": "SHEET",
-    "syntax": "SHEET(value)",
-    "description": "Returns the sheet number of the specified sheet or other reference. Learn more about the SHEET function.",
     "answer_id": "16865249"
   },
   "VLOOKUP": {
-    "category": "Lookup",
-    "name": "VLOOKUP",
-    "syntax": "VLOOKUP(search_key, range, index, [is_sorted])",
-    "description": "Vertical lookup. Searches down the first column of a range for a key and returns the value of a specified cell in the row found. Learn more",
     "answer_id": "3093318"
   },
   "XLOOKUP": {
-    "category": "Lookup",
-    "name": "XLOOKUP",
-    "syntax": "XLOOKUP(search_key, lookup_range, result_range, missing_value, [match_mode], [search_mode])",
-    "description": "Returns the values in the result range based on the position where a match was found in the lookup range. If no match is found, it returns the closest match. Learn more",
     "answer_id": "12405947"
   },
   "ABS": {
-    "category": "Math",
-    "name": "ABS",
-    "syntax": "ABS(value)",
-    "description": "Returns the absolute value of a number. Learn more",
     "answer_id": "3093459"
   },
   "ACOS": {
-    "category": "Math",
-    "name": "ACOS",
-    "syntax": "ACOS(value)",
-    "description": "Returns the inverse cosine of a value, in radians. Learn more",
     "answer_id": "3093461"
   },
   "ACOSH": {
-    "category": "Math",
-    "name": "ACOSH",
-    "syntax": "ACOSH(value)",
-    "description": "Returns the inverse hyperbolic cosine of a number. Learn more",
     "answer_id": "3093391"
   },
   "ACOT": {
-    "category": "Math",
-    "name": "ACOT",
-    "syntax": "ACOT(value)",
-    "description": "Returns the inverse cotangent of a value, in radians. Learn more.",
     "answer_id": "9084227"
   },
   "ACOTH": {
-    "category": "Math",
-    "name": "ACOTH",
-    "syntax": "ACOTH(value)",
-    "description": "Returns the inverse hyperbolic cotangent of a value, in radians. Must not be between -1 and 1, inclusive. Learn more.",
     "answer_id": "9084097"
   },
   "ASIN": {
-    "category": "Math",
-    "name": "ASIN",
-    "syntax": "ASIN(value)",
-    "description": "Returns the inverse sine of a value, in radians. Learn more",
     "answer_id": "3093464"
   },
   "ASINH": {
-    "category": "Math",
-    "name": "ASINH",
-    "syntax": "ASINH(value)",
-    "description": "Returns the inverse hyperbolic sine of a number. Learn more",
     "answer_id": "3093393"
   },
   "ATAN": {
-    "category": "Math",
-    "name": "ATAN",
-    "syntax": "ATAN(value)",
-    "description": "Returns the inverse tangent of a value, in radians. Learn more",
     "answer_id": "3093395"
   },
   "ATAN2": {
-    "category": "Math",
-    "name": "ATAN2",
-    "syntax": "ATAN2(x, y)",
-    "description": "Returns the angle between the x-axis and a line segment from the origin (0,0) to specified coordinate pair (`x`,`y`), in radians. Learn more",
     "answer_id": "3093468"
   },
   "ATANH": {
-    "category": "Math",
-    "name": "ATANH",
-    "syntax": "ATANH(value)",
-    "description": "Returns the inverse hyperbolic tangent of a number. Learn more",
     "answer_id": "3093397"
   },
   "BASE": {
-    "category": "Math",
-    "name": "BASE",
-    "syntax": "BASE(value, base, [min_length])",
-    "description": "Converts a number into a text representation in another base, for example, base 2 for binary. Learn more.",
     "answer_id": "9084167"
   },
   "CEILING": {
-    "category": "Math",
-    "name": "CEILING",
-    "syntax": "CEILING(value, [factor])",
-    "description": "Rounds a number up to the nearest integer multiple of specified significance. Learn more",
     "answer_id": "3093471"
   },
   "CEILING.MATH": {
-    "category": "Math",
-    "name": "CEILING.MATH",
-    "syntax": "CEILING.MATH(number, [significance], [mode])",
-    "description": "Rounds a number up to the nearest integer multiple of specified significance, with negative numbers rounding toward or away from 0 depending on the mode. Learn more.",
     "answer_id": "9061515"
   },
   "CEILING.PRECISE": {
-    "category": "Math",
-    "name": "CEILING.PRECISE",
-    "syntax": "CEILING.PRECISE(number, [significance])",
-    "description": "Rounds a number up to the nearest integer multiple of specified significance. If the number is positive or negative, it is rounded up. Learn more.",
     "answer_id": "9061294"
   },
   "COMBIN": {
-    "category": "Math",
-    "name": "COMBIN",
-    "syntax": "COMBIN(n, k)",
-    "description": "Returns the number of ways to choose some number of objects from a pool of a given size of objects. Learn more",
     "answer_id": "3093400"
   },
   "COMBINA": {
-    "category": "Math",
-    "name": "COMBINA",
-    "syntax": "COMBINA(n, k)",
-    "description": "Returns the number of ways to choose some number of objects from a pool of a given size of objects, including ways that choose the same object multiple times. Learn more.",
     "answer_id": "9084101"
   },
   "COS": {
-    "category": "Math",
-    "name": "COS",
-    "syntax": "COS(angle)",
-    "description": "Returns the cosine of an angle provided in radians. Learn more",
     "answer_id": "3093476"
   },
   "COSH": {
-    "category": "Math",
-    "name": "COSH",
-    "syntax": "COSH(value)",
-    "description": "Returns the hyperbolic cosine of any real number. Learn more",
     "answer_id": "3093477"
   },
   "COT": {
-    "category": "Math",
-    "name": "COT",
-    "syntax": "COT(angle)",
-    "description": "Cotangent of an angle provided in radians. Learn more.",
     "answer_id": "9084169"
   },
   "COTH": {
-    "category": "Math",
-    "name": "COTH",
-    "syntax": "COTH(value)",
-    "description": "Returns the hyperbolic cotangent of any real number. Learn more.",
     "answer_id": "9084102"
   },
   "COUNTBLANK": {
-    "category": "Math",
-    "name": "COUNTBLANK",
-    "syntax": "COUNTBLANK(range)",
-    "description": "Returns the number of empty cells in a given range. Learn more",
     "answer_id": "3093403"
   },
   "COUNTIF": {
-    "category": "Math",
-    "name": "COUNTIF",
-    "syntax": "COUNTIF(range, criterion)",
-    "description": "Returns a conditional count across a range. Learn more",
     "answer_id": "3093480"
   },
   "COUNTIFS": {
-    "category": "Math",
-    "name": "COUNTIFS",
-    "syntax": "COUNTIFS(criteria_range1, criterion1, [criteria_range2, criterion2, ...])",
-    "description": "Returns the count of a range depending on multiple criteria. Learn more",
     "answer_id": "3256550"
   },
   "COUNTUNIQUE": {
-    "category": "Math",
-    "name": "COUNTUNIQUE",
-    "syntax": "COUNTUNIQUE(value1, [value2, ...])",
-    "description": "Counts the number of unique values in a list of specified values and ranges. Learn more",
     "answer_id": "3093405"
   },
   "CSC": {
-    "category": "Math",
-    "name": "CSC",
-    "syntax": "CSC(angle)",
-    "description": "Returns the cosecant of an angle provided in radians. Learn more.",
     "answer_id": "9084103"
   },
   "CSCH": {
-    "category": "Math",
-    "name": "CSCH",
-    "syntax": "CSCH(value)",
-    "description": "The CSCH function returns the hyperbolic cosecant of any real number. Learn more.",
     "answer_id": "9116336"
   },
   "DECIMAL": {
-    "category": "Math",
-    "name": "DECIMAL",
-    "syntax": "DECIMAL(value, base)",
-    "description": "The DECIMAL function converts the text representation of a number in another base, to base 10 (decimal). Learn more.",
     "answer_id": "9116090"
   },
   "DEGREES": {
-    "category": "Math",
-    "name": "DEGREES",
-    "syntax": "DEGREES(angle)",
-    "description": "Converts an angle value in radians to degrees. Learn more",
     "answer_id": "3093481"
   },
   "ERFC": {
-    "category": "Math",
-    "name": "ERFC",
-    "syntax": "ERFC(z)",
-    "description": "Returns the complementary Gauss error function of a value. Learn more",
     "answer_id": "3093407"
   },
   "ERFC.PRECISE": {
-    "category": "Math",
-    "name": "ERFC.PRECISE",
-    "syntax": "ERFC.PRECISE(z)",
-    "description": "See ERFC",
     "answer_id": "3093407"
   },
   "EVEN": {
-    "category": "Math",
-    "name": "EVEN",
-    "syntax": "EVEN(value)",
-    "description": "Rounds a number up to the nearest even integer. Learn more",
     "answer_id": "3093409"
   },
   "EXP": {
-    "category": "Math",
-    "name": "EXP",
-    "syntax": "EXP(exponent)",
-    "description": "Returns Euler's number, e (~2.718) raised to a power. Learn more",
     "answer_id": "3093411"
   },
   "FACT": {
-    "category": "Math",
-    "name": "FACT",
-    "syntax": "FACT(value)",
-    "description": "Returns the factorial of a number. Learn more",
     "answer_id": "3093412"
   },
   "FACTDOUBLE": {
-    "category": "Math",
-    "name": "FACTDOUBLE",
-    "syntax": "FACTDOUBLE(value)",
-    "description": "Returns the \"double factorial\" of a number. Learn more",
     "answer_id": "3093414"
   },
   "FLOOR": {
-    "category": "Math",
-    "name": "FLOOR",
-    "syntax": "FLOOR(value, [factor])",
-    "description": "Rounds a number down to the nearest integer multiple of specified significance. Learn more",
     "answer_id": "3093487"
   },
   "FLOOR.MATH": {
-    "category": "Math",
-    "name": "FLOOR.MATH",
-    "syntax": "FLOOR.MATH(number, [significance], [mode])",
-    "description": "Rounds a number down to the nearest integer multiple of specified significance, with negative numbers rounding toward or away from 0 depending on the mode. Learn more.",
     "answer_id": "9061444"
   },
   "FLOOR.PRECISE": {
-    "category": "Math",
-    "name": "FLOOR.PRECISE",
-    "syntax": "FLOOR.PRECISE(number, [significance])",
-    "description": "The FLOOR.PRECISE function rounds a number down to the nearest integer or multiple of specified significance. Learn more.",
     "answer_id": "9116270"
   },
   "GAMMALN": {
-    "category": "Math",
-    "name": "GAMMALN",
-    "syntax": "GAMMALN(value)",
-    "description": "Returns the the logarithm of a specified Gamma function, base e (Euler's number). Learn more",
     "answer_id": "3093416"
   },
   "GAMMALN.PRECISE": {
-    "category": "Math",
-    "name": "GAMMALN.PRECISE",
-    "syntax": "GAMMALN.PRECISE(value)",
-    "description": "See GAMMALN",
     "answer_id": "3093416"
   },
   "GCD": {
-    "category": "Math",
-    "name": "GCD",
-    "syntax": "GCD(value1, value2)",
-    "description": "Returns the greatest common divisor of one or more integers. Learn more",
     "answer_id": "3093489"
   },
   "IMLN": {
-    "category": "Math",
-    "name": "IMLN",
-    "syntax": "IMLN(complex_value)",
-    "description": "Returns the logarithm of a complex number, base e (Euler's number). Learn more",
     "answer_id": "9000651"
   },
   "IMPOWER": {
-    "category": "Math",
-    "name": "IMPOWER",
-    "syntax": "IMPOWER(complex_base, exponent)",
-    "description": "Returns a complex number raised to a power. Learn more",
     "answer_id": "9003065"
   },
   "IMSQRT": {
-    "category": "Math",
-    "name": "IMSQRT",
-    "syntax": "IMSQRT(complex_number)",
-    "description": "Computes the square root of a complex number. Learn more",
     "answer_id": "9003168"
   },
   "INT": {
-    "category": "Math",
-    "name": "INT",
-    "syntax": "INT(value)",
-    "description": "Rounds a number down to the nearest integer that is less than or equal to it. Learn more",
     "answer_id": "3093490"
   },
   "ISEVEN": {
-    "category": "Math",
-    "name": "ISEVEN",
-    "syntax": "ISEVEN(value)",
-    "description": "Checks whether the provided value is even. Learn more",
     "answer_id": "3093419"
   },
   "ISO.CEILING": {
-    "category": "Math",
-    "name": "ISO.CEILING",
-    "syntax": "ISO.CEILING(number, [significance])",
-    "description": "See CEILING.PRECISE",
     "answer_id": "9061294"
   },
   "ISODD": {
-    "category": "Math",
-    "name": "ISODD",
-    "syntax": "ISODD(value)",
-    "description": "Checks whether the provided value is odd. Learn more",
     "answer_id": "3093491"
   },
   "LCM": {
-    "category": "Math",
-    "name": "LCM",
-    "syntax": "LCM(value1, value2)",
-    "description": "Returns the least common multiple of one or more integers. Learn more",
     "answer_id": "3093421"
   },
   "LN": {
-    "category": "Math",
-    "name": "LN",
-    "syntax": "LN(value)",
-    "description": "Returns the the logarithm of a number, base e (Euler's number). Learn more",
     "answer_id": "3093422"
   },
   "LOG": {
-    "category": "Math",
-    "name": "LOG",
-    "syntax": "LOG(value, base)",
-    "description": "Returns the the logarithm of a number given a base. Learn more",
     "answer_id": "3093495"
   },
   "LOG10": {
-    "category": "Math",
-    "name": "LOG10",
-    "syntax": "LOG10(value)",
-    "description": "Returns the the logarithm of a number, base 10. Learn more",
     "answer_id": "3093423"
   },
   "MOD": {
-    "category": "Math",
-    "name": "MOD",
-    "syntax": "MOD(dividend, divisor)",
-    "description": "Returns the result of the modulo operator, the remainder after a division operation. Learn more",
     "answer_id": "3093497"
   },
   "MROUND": {
-    "category": "Math",
-    "name": "MROUND",
-    "syntax": "MROUND(value, factor)",
-    "description": "Rounds one number to the nearest integer multiple of another. Learn more",
     "answer_id": "3093426"
   },
   "MULTINOMIAL": {
-    "category": "Math",
-    "name": "MULTINOMIAL",
-    "syntax": "MULTINOMIAL(value1, value2)",
-    "description": "Returns the factorial of the sum of values divided by the product of the values' factorials. Learn more",
     "answer_id": "3093429"
   },
   "MUNIT": {
-    "category": "Math",
-    "name": "MUNIT",
-    "syntax": "MUNIT(dimension)",
-    "description": "Returns a unit matrix of size dimension x dimension. Learn more.",
     "answer_id": "9368156"
   },
   "ODD": {
-    "category": "Math",
-    "name": "ODD",
-    "syntax": "ODD(value)",
-    "description": "Rounds a number up to the nearest odd integer. Learn more",
     "answer_id": "3093499"
   },
   "PI": {
-    "category": "Math",
-    "name": "PI",
-    "syntax": "PI()",
-    "description": "Returns the value of Pi to 14 decimal places. Learn more",
     "answer_id": "3093432"
   },
   "POWER": {
-    "category": "Math",
-    "name": "POWER",
-    "syntax": "POWER(base, exponent)",
-    "description": "Returns a number raised to a power. Learn more",
     "answer_id": "3093433"
   },
   "PRODUCT": {
-    "category": "Math",
-    "name": "PRODUCT",
-    "syntax": "PRODUCT(factor1, [factor2, ...])",
-    "description": "Returns the result of multiplying a series of numbers together. Learn more",
     "answer_id": "3093502"
   },
   "QUOTIENT": {
-    "category": "Math",
-    "name": "QUOTIENT",
-    "syntax": "QUOTIENT(dividend, divisor)",
-    "description": "Returns one number divided by another. Learn more",
     "answer_id": "3093436"
   },
   "RADIANS": {
-    "category": "Math",
-    "name": "RADIANS",
-    "syntax": "RADIANS(angle)",
-    "description": "Converts an angle value in degrees to radians. Learn more",
     "answer_id": "3093437"
   },
   "RAND": {
-    "category": "Math",
-    "name": "RAND",
-    "syntax": "RAND()",
-    "description": "Returns a random number between 0 inclusive and 1 exclusive. Learn more",
     "answer_id": "3093438"
   },
   "RANDARRAY": {
-    "category": "Math",
-    "name": "RANDARRAY",
-    "syntax": "RANDARRAY(rows, columns)",
-    "description": "Generates an array of random numbers between 0 and 1. Learn more.",
     "answer_id": "9211904"
   },
   "RANDBETWEEN": {
-    "category": "Math",
-    "name": "RANDBETWEEN",
-    "syntax": "RANDBETWEEN(low, high)",
-    "description": "Returns a uniformly random integer between two values, inclusive. Learn more",
     "answer_id": "3093507"
   },
   "ROUND": {
-    "category": "Math",
-    "name": "ROUND",
-    "syntax": "ROUND(value, [places])",
-    "description": "Rounds a number to a certain number of decimal places according to standard rules. Learn more",
     "answer_id": "3093440"
   },
   "ROUNDDOWN": {
-    "category": "Math",
-    "name": "ROUNDDOWN",
-    "syntax": "ROUNDDOWN(value, [places])",
-    "description": "Rounds a number to a certain number of decimal places, always rounding down to the next valid increment. Learn more",
     "answer_id": "3093442"
   },
   "ROUNDUP": {
-    "category": "Math",
-    "name": "ROUNDUP",
-    "syntax": "ROUNDUP(value, [places])",
-    "description": "Rounds a number to a certain number of decimal places, always rounding up to the next valid increment. Learn more",
     "answer_id": "3093443"
   },
   "SEC": {
-    "category": "Math",
-    "name": "SEC",
-    "syntax": "SEC(angle)",
-    "description": "The SEC function returns the secant of an angle, measured in radians. Learn more.",
     "answer_id": "9116395"
   },
   "SECH": {
-    "category": "Math",
-    "name": "SECH",
-    "syntax": "SECH(value)",
-    "description": "The SECH function returns the hyperbolic secant of an angle. Learn more",
     "answer_id": "9116560"
   },
   "SEQUENCE": {
-    "category": "Math",
-    "name": "SEQUENCE",
-    "syntax": "SEQUENCE(rows, columns, start, step)",
-    "description": "Returns an array of sequential numbers, such as 1, 2, 3, 4. Learn more.",
     "answer_id": "9368244"
   },
   "SERIESSUM": {
-    "category": "Math",
-    "name": "SERIESSUM",
-    "syntax": "SERIESSUM(x, n, m, a)",
-    "description": "Given parameters x, n, m, and a, returns the power series sum a1xn + a2x(n+m) + ... + aix(n+(i-1)m), where i is the number of entries in range `a`. Learn more",
     "answer_id": "3093444"
   },
   "SIGN": {
-    "category": "Math",
-    "name": "SIGN",
-    "syntax": "SIGN(value)",
-    "description": "Given an input number, returns `-1` if it is negative, `1` if positive, and `0` if it is zero. Learn more",
     "answer_id": "3093513"
   },
   "SIN": {
-    "category": "Math",
-    "name": "SIN",
-    "syntax": "SIN(angle)",
-    "description": "Returns the sine of an angle provided in radians. Learn more",
     "answer_id": "3093447"
   },
   "SINH": {
-    "category": "Math",
-    "name": "SINH",
-    "syntax": "SINH(value)",
-    "description": "Returns the hyperbolic sine of any real number. Learn more",
     "answer_id": "3093517"
   },
   "SQRT": {
-    "category": "Math",
-    "name": "SQRT",
-    "syntax": "SQRT(value)",
-    "description": "Returns the positive square root of a positive number. Learn more",
     "answer_id": "3093577"
   },
   "SQRTPI": {
-    "category": "Math",
-    "name": "SQRTPI",
-    "syntax": "SQRTPI(value)",
-    "description": "Returns the positive square root of the product of Pi and the given positive number. Learn more",
     "answer_id": "3093579"
   },
   "SUBTOTAL": {
-    "category": "Math",
-    "name": "SUBTOTAL",
-    "syntax": "SUBTOTAL(function_code, range1, [range2, ...])",
-    "description": "Returns a subtotal for a vertical range of cells using a specified aggregation function. Learn more",
     "answer_id": "3093649"
   },
   "SUM": {
-    "category": "Math",
-    "name": "SUM",
-    "syntax": "SUM(value1, [value2, ...])",
-    "description": "Returns the sum of a series of numbers and/or cells. Learn more",
     "answer_id": "3093669"
   },
   "SUMIF": {
-    "category": "Math",
-    "name": "SUMIF",
-    "syntax": "SUMIF(range, criterion, [sum_range])",
-    "description": "Returns a conditional sum across a range. Learn more",
     "answer_id": "3093583"
   },
   "SUMIFS": {
-    "category": "Math",
-    "name": "SUMIFS",
-    "syntax": "SUMIFS(sum_range, criteria_range1, criterion1, [criteria_range2, criterion2, ...])",
-    "description": "Returns the sum of a range depending on multiple criteria. Learn more",
     "answer_id": "3238496"
   },
   "SUMSQ": {
-    "category": "Math",
-    "name": "SUMSQ",
-    "syntax": "SUMSQ(value1, [value2, ...])",
-    "description": "Returns the sum of the squares of a series of numbers and/or cells. Learn more",
     "answer_id": "3093714"
   },
   "TAN": {
-    "category": "Math",
-    "name": "TAN",
-    "syntax": "TAN(angle)",
-    "description": "Returns the tangent of an angle provided in radians. Learn more",
     "answer_id": "3093586"
   },
   "TANH": {
-    "category": "Math",
-    "name": "TANH",
-    "syntax": "TANH(value)",
-    "description": "Returns the hyperbolic tangent of any real number. Learn more",
     "answer_id": "3093755"
   },
   "TRUNC": {
-    "category": "Math",
-    "name": "TRUNC",
-    "syntax": "TRUNC(value, [places])",
-    "description": "Truncates a number to a certain number of significant digits by omitting less significant digits. Learn more",
     "answer_id": "3093588"
   },
   "ADD": {
-    "category": "Operator",
-    "name": "ADD",
-    "syntax": "ADD(value1, value2)",
-    "description": "Returns the sum of two numbers. Equivalent to the `+` operator. Learn more",
     "answer_id": "3093590"
   },
   "CONCAT": {
-    "category": "Operator",
-    "name": "CONCAT",
-    "syntax": "CONCAT(value1, value2)",
-    "description": "Returns the concatenation of two values. Equivalent to the `&amp;` operator. Learn more",
     "answer_id": "3093592"
   },
   "DIVIDE": {
-    "category": "Operator",
-    "name": "DIVIDE",
-    "syntax": "DIVIDE(dividend, divisor)",
-    "description": "Returns one number divided by another. Equivalent to the `/` operator. Learn more",
     "answer_id": "3093973"
   },
   "EQ": {
-    "category": "Operator",
-    "name": "EQ",
-    "syntax": "EQ(value1, value2)",
-    "description": "Returns `TRUE` if two specified values are equal and `FALSE` otherwise. Equivalent to the `=` operator. Learn more",
     "answer_id": "3093593"
   },
   "GT": {
-    "category": "Operator",
-    "name": "GT",
-    "syntax": "GT(value1, value2)",
-    "description": "Returns `TRUE` if the first argument is strictly greater than the second, and `FALSE` otherwise. Equivalent to the `&gt;` operator. Learn more",
     "answer_id": "3098240"
   },
   "GTE": {
-    "category": "Operator",
-    "name": "GTE",
-    "syntax": "GTE(value1, value2)",
-    "description": "Returns `TRUE` if the first argument is greater than or equal to the second, and `FALSE` otherwise. Equivalent to the `&gt;=` operator. Learn more",
     "answer_id": "3093975"
   },
   "ISBETWEEN": {
-    "category": "Operator",
-    "name": "ISBETWEEN",
-    "syntax": "ISBETWEEN(value_to_compare, lower_value, upper_value, lower_value_is_inclusive, upper_value_is_inclusive)",
-    "description": "Checks whether a provided number is between two other numbers either inclusively or exclusively. Learn more",
     "answer_id": "10538337"
   },
   "LT": {
-    "category": "Operator",
-    "name": "LT",
-    "syntax": "LT(value1, value2)",
-    "description": "Returns `TRUE` if the first argument is strictly less than the second, and `FALSE` otherwise. Equivalent to the `&lt;` operator. Learn more",
     "answer_id": "3093596"
   },
   "LTE": {
-    "category": "Operator",
-    "name": "LTE",
-    "syntax": "LTE(value1, value2)",
-    "description": "Returns `TRUE` if the first argument is less than or equal to the second, and `FALSE` otherwise. Equivalent to the `&lt;=` operator. Learn more",
     "answer_id": "3093976"
   },
   "MINUS": {
-    "category": "Operator",
-    "name": "MINUS",
-    "syntax": "MINUS(value1, value2)",
-    "description": "Returns the difference of two numbers. Equivalent to the `-` operator. Learn more",
     "answer_id": "3093977"
   },
   "MULTIPLY": {
-    "category": "Operator",
-    "name": "MULTIPLY",
-    "syntax": "MULTIPLY(factor1, factor2)",
-    "description": "Returns the product of two numbers. Equivalent to the `*` operator. Learn more",
     "answer_id": "3093978"
   },
   "NE": {
-    "category": "Operator",
-    "name": "NE",
-    "syntax": "NE(value1, value2)",
-    "description": "Returns `TRUE` if two specified values are not equal and `FALSE` otherwise. Equivalent to the `&lt;&gt;` operator. Learn more",
     "answer_id": "3093981"
   },
   "POW": {
-    "category": "Operator",
-    "name": "POW",
-    "syntax": "POW(base, exponent)",
-    "description": "Returns a number raised to a power. Learn more",
     "answer_id": "3093603"
   },
   "UMINUS": {
-    "category": "Operator",
-    "name": "UMINUS",
-    "syntax": "UMINUS(value)",
-    "description": "Returns a number with the sign reversed. Learn more",
     "answer_id": "3093606"
   },
   "UNARY_PERCENT": {
-    "category": "Operator",
-    "name": "UNARY_PERCENT",
-    "syntax": "UNARY_PERCENT(percentage)",
-    "description": "Returns a value interpreted as a percentage; that is, `UNARY_PERCENT(100)` equals `1`. Learn more",
     "answer_id": "3093982"
   },
   "UPLUS": {
-    "category": "Operator",
-    "name": "UPLUS",
-    "syntax": "UPLUS(value)",
-    "description": "Returns a specified number, unchanged. Learn more",
     "answer_id": "3093608"
   },
   "AVEDEV": {
-    "category": "Statistical",
-    "name": "AVEDEV",
-    "syntax": "AVEDEV(value1, [value2, ...])",
-    "description": "Calculates the average of the magnitudes of deviations of data from a dataset's mean. Learn more",
     "answer_id": "3093613"
   },
   "AVERAGE": {
-    "category": "Statistical",
-    "name": "AVERAGE",
-    "syntax": "AVERAGE(value1, [value2, ...])",
-    "description": "Returns the numerical average value in a dataset, ignoring text. Learn more",
     "answer_id": "3093615"
   },
   "AVERAGE.WEIGHTED": {
-    "category": "Statistical",
-    "name": "AVERAGE.WEIGHTED",
-    "syntax": "AVERAGE.WEIGHTED(values, weights, [additional values], [additional weights])",
-    "description": "Finds the weighted average of a set of values, given the values and the corresponding weights. Learn more.",
     "answer_id": "9084098"
   },
   "AVERAGEA": {
-    "category": "Statistical",
-    "name": "AVERAGEA",
-    "syntax": "AVERAGEA(value1, [value2, ...])",
-    "description": "Returns the numerical average value in a dataset. Learn more",
     "answer_id": "3093617"
   },
   "AVERAGEIF": {
-    "category": "Statistical",
-    "name": "AVERAGEIF",
-    "syntax": "AVERAGEIF(criteria_range, criterion, [average_range])",
-    "description": "Returns the average of a range depending on criteria. Learn more",
     "answer_id": "3256529"
   },
   "AVERAGEIFS": {
-    "category": "Statistical",
-    "name": "AVERAGEIFS",
-    "syntax": "AVERAGEIFS(average_range, criteria_range1, criterion1, [criteria_range2, criterion2, ...])",
-    "description": "Returns the average of a range depending on multiple criteria. Learn more",
     "answer_id": "3256534"
   },
   "BETA.DIST": {
-    "category": "Statistical",
-    "name": "BETA.DIST",
-    "syntax": "BETA.DIST(value, alpha, beta, cumulative, lower_bound, upper_bound)",
-    "description": "Returns the probability of a given value as defined by the beta distribution function. Learn more.",
     "answer_id": "9084228"
   },
   "BETA.INV": {
-    "category": "Statistical",
-    "name": "BETA.INV",
-    "syntax": "BETA.INV(probability, alpha, beta, lower_bound, upper_bound)",
-    "description": "Returns the value of the inverse beta distribution function for a given probability. Learn more.",
     "answer_id": "9061377"
   },
   "BETADIST": {
-    "category": "Statistical",
-    "name": "BETADIST",
-    "syntax": "BETADIST(value, alpha, beta, lower_bound, upper_bound)",
-    "description": "See BETA.DIST.",
     "answer_id": "9084099"
   },
   "BETAINV": {
-    "category": "Statistical",
-    "name": "BETAINV",
-    "syntax": "BETAINV(probability, alpha, beta, lower_bound, upper_bound)",
-    "description": "See BETA.INV",
     "answer_id": "9061377"
   },
   "BINOM.DIST": {
-    "category": "Statistical",
-    "name": "BINOM.DIST",
-    "syntax": "BINOM.DIST(num_successes, num_trials, prob_success, cumulative)",
-    "description": "See BINOMDIST",
     "answer_id": "3093987"
   },
   "BINOM.INV": {
-    "category": "Statistical",
-    "name": "BINOM.INV",
-    "syntax": "BINOM.INV(num_trials, prob_success, target_prob)",
-    "description": "See CRITBINOM",
     "answer_id": "3093623"
   },
   "BINOMDIST": {
-    "category": "Statistical",
-    "name": "BINOMDIST",
-    "syntax": "BINOMDIST(num_successes, num_trials, prob_success, cumulative)",
-    "description": "Calculates the probability of drawing a certain number of successes (or a maximum number of successes) in a certain number of tries given a population of a certain size containing a certain number of successes, with replacement of draws. Learn more",
     "answer_id": "3093987"
   },
   "CHIDIST": {
-    "category": "Statistical",
-    "name": "CHIDIST",
-    "syntax": "CHIDIST(x, degrees_freedom)",
-    "description": "Calculates the right-tailed chi-squared distribution, often used in hypothesis testing. Learn more",
     "answer_id": "7003346"
   },
   "CHIINV": {
-    "category": "Statistical",
-    "name": "CHIINV",
-    "syntax": "CHIINV(probability, degrees_freedom)",
-    "description": "Calculates the inverse of the right-tailed chi-squared distribution. Learn more",
     "answer_id": "7003198"
   },
   "CHISQ.DIST": {
-    "category": "Statistical",
-    "name": "CHISQ.DIST",
-    "syntax": "CHISQ.DIST(x, degrees_freedom, cumulative)",
-    "description": "Calculates the left-tailed chi-squared distribution, often used in hypothesis testing. Learn more",
     "answer_id": "7003347"
   },
   "CHISQ.DIST.RT": {
-    "category": "Statistical",
-    "name": "CHISQ.DIST.RT",
-    "syntax": "CHISQ.DIST.RT(x, degrees_freedom)",
-    "description": "Calculates the right-tailed chi-squared distribution, which is commonly used in hypothesis testing. Learn more",
     "answer_id": "7003199"
   },
   "CHISQ.INV": {
-    "category": "Statistical",
-    "name": "CHISQ.INV",
-    "syntax": "CHISQ.INV(probability, degrees_freedom)",
-    "description": "Calculates the inverse of the left-tailed chi-squared distribution. Learn more",
     "answer_id": "7004181"
   },
   "CHISQ.INV.RT": {
-    "category": "Statistical",
-    "name": "CHISQ.INV.RT",
-    "syntax": "CHISQ.INV.RT(probability, degrees_freedom)",
-    "description": "Calculates the inverse of the right-tailed chi-squared distribution. Learn more",
     "answer_id": "7003348"
   },
   "CHISQ.TEST": {
-    "category": "Statistical",
-    "name": "CHISQ.TEST",
-    "syntax": "CHISQ.TEST(observed_range, expected_range)",
-    "description": "See CHITEST",
     "answer_id": "7004263"
   },
   "CHITEST": {
-    "category": "Statistical",
-    "name": "CHITEST",
-    "syntax": "CHITEST(observed_range, expected_range)",
-    "description": "Returns the probability associated with a Pearson\u2019s chi-squared test on the two ranges of data. Determines the likelihood that the observed categorical data is drawn from an expected distribution. Learn more",
     "answer_id": "7004263"
   },
   "CONFIDENCE": {
-    "category": "Statistical",
-    "name": "CONFIDENCE",
-    "syntax": "CONFIDENCE(alpha, standard_deviation, pop_size)",
-    "description": "See CONFIDENCE.NORM",
     "answer_id": "3093988"
   },
   "CONFIDENCE.NORM": {
-    "category": "Statistical",
-    "name": "CONFIDENCE.NORM",
-    "syntax": "CONFIDENCE.NORM(alpha, standard_deviation, pop_size)",
-    "description": "Calculates the width of half the confidence interval for a normal distribution. Learn more.",
     "answer_id": "3093988"
   },
   "CONFIDENCE.T": {
-    "category": "Statistical",
-    "name": "CONFIDENCE.T",
-    "syntax": "CONFIDENCE.T(alpha, standard_deviation, size)",
-    "description": "Calculates the width of half the confidence interval for a Student\u2019s t-distribution. Learn more.",
     "answer_id": "9365672"
   },
   "CORREL": {
-    "category": "Statistical",
-    "name": "CORREL",
-    "syntax": "CORREL(data_y, data_x)",
-    "description": "Calculates r, the Pearson product-moment correlation coefficient of a dataset. Learn more",
     "answer_id": "3093990"
   },
   "COUNT": {
-    "category": "Statistical",
-    "name": "COUNT",
-    "syntax": "COUNT(value1, [value2, ...])",
-    "description": "Returns a count of the number of numeric values in a dataset. Learn more",
     "answer_id": "3093620"
   },
   "COUNTA": {
-    "category": "Statistical",
-    "name": "COUNTA",
-    "syntax": "COUNTA(value1, [value2, ...])",
-    "description": "Returns a count of the number of values in a dataset. Learn more",
     "answer_id": "3093991"
   },
   "COVAR": {
-    "category": "Statistical",
-    "name": "COVAR",
-    "syntax": "COVAR(data_y, data_x)",
-    "description": "Calculates the covariance of a dataset. Learn more",
     "answer_id": "3093993"
   },
   "COVARIANCE.P": {
-    "category": "Statistical",
-    "name": "COVARIANCE.P",
-    "syntax": "COVARIANCE.P(data_y, data_x)",
-    "description": "See COVAR",
     "answer_id": "3093993"
   },
   "COVARIANCE.S": {
-    "category": "Statistical",
-    "name": "COVARIANCE.S",
-    "syntax": "COVARIANCE.S(data_y, data_x)",
-    "description": "Calculates the covariance of a dataset, where the dataset is a sample of the total population. Learn more.",
     "answer_id": "9365675"
   },
   "CRITBINOM": {
-    "category": "Statistical",
-    "name": "CRITBINOM",
-    "syntax": "CRITBINOM(num_trials, prob_success, target_prob)",
-    "description": "Calculates the smallest value for which the cumulative binomial distribution is greater than or equal to a specified criteria. Learn more",
     "answer_id": "3093623"
   },
   "DEVSQ": {
-    "category": "Statistical",
-    "name": "DEVSQ",
-    "syntax": "DEVSQ(value1, value2)",
-    "description": "Calculates the sum of squares of deviations based on a sample. Learn more",
     "answer_id": "3093625"
   },
   "EXPON.DIST": {
-    "category": "Statistical",
-    "name": "EXPON.DIST",
-    "syntax": "EXPON.DIST(x, LAMBDA, cumulative)",
-    "description": "Returns the value of the exponential distribution function with a specified LAMBDA at a specified value. Learn more.",
     "answer_id": "3093995"
   },
   "EXPONDIST": {
-    "category": "Statistical",
-    "name": "EXPONDIST",
-    "syntax": "EXPONDIST(x, LAMBDA, cumulative)",
-    "description": "See EXPON.DIST",
     "answer_id": "3093995"
   },
   "F.DIST": {
-    "category": "Statistical",
-    "name": "F.DIST",
-    "syntax": "F.DIST(x, degrees_freedom1, degrees_freedom2, cumulative)",
-    "description": "Calculates the left-tailed F probability distribution (degree of diversity) for two data sets with given input x. Alternately called Fisher-Snedecor distribution or Snedecor's F distribution. Learn more",
     "answer_id": "6055706"
   },
   "F.DIST.RT": {
-    "category": "Statistical",
-    "name": "F.DIST.RT",
-    "syntax": "F.DIST.RT(x, degrees_freedom1, degrees_freedom2)",
-    "description": "Calculates the right-tailed F probability distribution (degree of diversity) for two data sets with given input x. Alternately called Fisher-Snedecor distribution or Snedecor's F distribution. Learn more",
     "answer_id": "6055799"
   },
   "F.INV": {
-    "category": "Statistical",
-    "name": "F.INV",
-    "syntax": "F.INV(probability, degrees_freedom1, degrees_freedom2)",
-    "description": "Calculates the inverse of the left-tailed F probability distribution. Also called the Fisher-Snedecor distribution or Snedecor\u2019s F distribution. Learn more",
     "answer_id": "7004265"
   },
   "F.INV.RT": {
-    "category": "Statistical",
-    "name": "F.INV.RT",
-    "syntax": "F.INV.RT(probability, degrees_freedom1, degrees_freedom2)",
-    "description": "Calculates the inverse of the right-tailed F probability distribution. Also called the Fisher-Snedecor distribution or Snedecor\u2019s F distribution. Learn more",
     "answer_id": "7003960"
   },
   "F.TEST": {
-    "category": "Statistical",
-    "name": "F.TEST",
-    "syntax": "F.TEST(range1, range2)",
-    "description": "See FTEST.",
     "answer_id": "7004183"
   },
   "FDIST": {
-    "category": "Statistical",
-    "name": "FDIST",
-    "syntax": "FDIST(x, degrees_freedom1, degrees_freedom2)",
-    "description": "See F.DIST.RT.",
     "answer_id": "6055799"
   },
   "FINV": {
-    "category": "Statistical",
-    "name": "FINV",
-    "syntax": "FINV(probability, degrees_freedom1, degrees_freedom2)",
-    "description": "See F.INV.RT",
     "answer_id": "7003960"
   },
   "FISHER": {
-    "category": "Statistical",
-    "name": "FISHER",
-    "syntax": "FISHER(value)",
-    "description": "Returns the Fisher transformation of a specified value. Learn more",
     "answer_id": "3093626"
   },
   "FISHERINV": {
-    "category": "Statistical",
-    "name": "FISHERINV",
-    "syntax": "FISHERINV(value)",
-    "description": "Returns the inverse Fisher transformation of a specified value. Learn more",
     "answer_id": "3093998"
   },
   "FORECAST": {
-    "category": "Statistical",
-    "name": "FORECAST",
-    "syntax": "FORECAST(x, data_y, data_x)",
-    "description": "Calculates the expected y-value for a specified x based on a linear regression of a dataset. Learn more",
     "answer_id": "3094000"
   },
   "FORECAST.LINEAR": {
-    "category": "Statistical",
-    "name": "FORECAST.LINEAR",
-    "syntax": "FORECAST.LINEAR(x, data_y, data_x)",
-    "description": "See FORECAST",
     "answer_id": "3094000"
   },
   "FTEST": {
-    "category": "Statistical",
-    "name": "FTEST",
-    "syntax": "FTEST(range1, range2)",
-    "description": "Returns the probability associated with an F-test for equality of variances. Determines whether two samples are likely to have come from populations with the same variance. Learn more",
     "answer_id": "7004183"
   },
   "GAMMA": {
-    "category": "Statistical",
-    "name": "GAMMA",
-    "syntax": "GAMMA(number)",
-    "description": "Returns the Gamma function evaluated at the specified value. Learn more.",
     "answer_id": "9365856"
   },
   "GAMMA.DIST": {
-    "category": "Statistical",
-    "name": "GAMMA.DIST",
-    "syntax": "GAMMA.DIST(x, alpha, beta, cumulative)",
-    "description": "Calculates the gamma distribution, a two-parameter continuous probability distribution. Learn more",
     "answer_id": "7013990"
   },
   "GAMMA.INV": {
-    "category": "Statistical",
-    "name": "GAMMA.INV",
-    "syntax": "GAMMA.INV(probability, alpha, beta)",
-    "description": "The GAMMA.INV function returns the value of the inverse gamma cumulative distribution function for the specified probability and alpha and beta parameters. Learn more.",
     "answer_id": "9116467"
   },
   "GAMMADIST": {
-    "category": "Statistical",
-    "name": "GAMMADIST",
-    "syntax": "GAMMADIST(x, alpha, beta, cumulative)",
-    "description": "See GAMMA.DIST",
     "answer_id": "7013989"
   },
   "GAMMAINV": {
-    "category": "Statistical",
-    "name": "GAMMAINV",
-    "syntax": "GAMMAINV(probability, alpha, beta)",
-    "description": "See GAMMA.INV.",
     "answer_id": "9116467"
   },
   "GAUSS": {
-    "category": "Statistical",
-    "name": "GAUSS",
-    "syntax": "GAUSS(z)",
-    "description": "The GAUSS function returns the probability that a random variable, drawn from a normal distribution, will be between the mean and z standard deviations above (or below) the mean. Learn more.",
     "answer_id": "9116278"
   },
   "GEOMEAN": {
-    "category": "Statistical",
-    "name": "GEOMEAN",
-    "syntax": "GEOMEAN(value1, value2)",
-    "description": "Calculates the geometric mean of a dataset. Learn more",
     "answer_id": "3094001"
   },
   "HARMEAN": {
-    "category": "Statistical",
-    "name": "HARMEAN",
-    "syntax": "HARMEAN(value1, value2)",
-    "description": "Calculates the harmonic mean of a dataset. Learn more",
     "answer_id": "3094003"
   },
   "HYPGEOM.DIST": {
-    "category": "Statistical",
-    "name": "HYPGEOM.DIST",
-    "syntax": "HYPGEOM.DIST(num_successes, num_draws, successes_in_pop, pop_size)",
-    "description": "See HYPGEOMDIST",
     "answer_id": "3094004"
   },
   "HYPGEOMDIST": {
-    "category": "Statistical",
-    "name": "HYPGEOMDIST",
-    "syntax": "HYPGEOMDIST(num_successes, num_draws, successes_in_pop, pop_size)",
-    "description": "Calculates the probability of drawing a certain number of successes in a certain number of tries given a population of a certain size containing a certain number of successes, without replacement of draws. Learn more",
     "answer_id": "3094004"
   },
   "INTERCEPT": {
-    "category": "Statistical",
-    "name": "INTERCEPT",
-    "syntax": "INTERCEPT(data_y, data_x)",
-    "description": "Calculates the y-value at which the line resulting from linear regression of a dataset will intersect the y-axis (x=0). Learn more",
     "answer_id": "3093632"
   },
   "KURT": {
-    "category": "Statistical",
-    "name": "KURT",
-    "syntax": "KURT(value1, value2)",
-    "description": "Calculates the kurtosis of a dataset, which describes the shape, and in particular the \"peakedness\" of that dataset. Learn more",
     "answer_id": "3093634"
   },
   "LARGE": {
-    "category": "Statistical",
-    "name": "LARGE",
-    "syntax": "LARGE(data, n)",
-    "description": "Returns the nth largest element from a data set, where n is user-defined. Learn more",
     "answer_id": "3094008"
   },
   "LOGINV": {
-    "category": "Statistical",
-    "name": "LOGINV",
-    "syntax": "LOGINV(x, mean, standard_deviation)",
-    "description": "Returns the value of the inverse log-normal cumulative distribution with given mean and standard deviation at a specified value. Learn more",
     "answer_id": "3094010"
   },
   "LOGNORM.DIST": {
-    "category": "Statistical",
-    "name": "LOGNORM.DIST",
-    "syntax": "LOGNORM.DIST(x, mean, standard_deviation)",
-    "description": "See LOGNORMDIST",
     "answer_id": "3094011"
   },
   "LOGNORM.INV": {
-    "category": "Statistical",
-    "name": "LOGNORM.INV",
-    "syntax": "LOGNORM.INV(x, mean, standard_deviation)",
-    "description": "See LOGINV",
     "answer_id": "3094010"
   },
   "LOGNORMDIST": {
-    "category": "Statistical",
-    "name": "LOGNORMDIST",
-    "syntax": "LOGNORMDIST(x, mean, standard_deviation)",
-    "description": "Returns the value of the log-normal cumulative distribution with given mean and standard deviation at a specified value. Learn more",
     "answer_id": "3094011"
   },
   "MARGINOFERROR": {
-    "category": "Statistical",
-    "name": "MARGINOFERROR",
-    "syntax": "MARGINOFERROR(range, confidence)",
-    "description": "Calculates the amount of random sampling error given a range of values and a confidence level. Learn more",
     "answer_id": "12487850"
   },
   "MAX": {
-    "category": "Statistical",
-    "name": "MAX",
-    "syntax": "MAX(value1, [value2, ...])",
-    "description": "Returns the maximum value in a numeric dataset. Learn more",
     "answer_id": "3094013"
   },
   "MAXA": {
-    "category": "Statistical",
-    "name": "MAXA",
-    "syntax": "MAXA(value1, value2)",
-    "description": "Returns the maximum numeric value in a dataset. Learn more",
     "answer_id": "3094016"
   },
   "MAXIFS": {
-    "category": "Statistical",
-    "name": "MAXIFS",
-    "syntax": "MAXIFS(range, criteria_range1, criterion1, [criteria_range2, criterion2], \u2026)",
-    "description": "Returns the maximum value in a range of cells, filtered by a set of criteria. Learn more.",
     "answer_id": "7013817"
   },
   "MEDIAN": {
-    "category": "Statistical",
-    "name": "MEDIAN",
-    "syntax": "MEDIAN(value1, [value2, ...])",
-    "description": "Returns the median value in a numeric dataset. Learn more",
     "answer_id": "3094025"
   },
   "MIN": {
-    "category": "Statistical",
-    "name": "MIN",
-    "syntax": "MIN(value1, [value2, ...])",
-    "description": "Returns the minimum value in a numeric dataset. Learn more",
     "answer_id": "3094017"
   },
   "MINA": {
-    "category": "Statistical",
-    "name": "MINA",
-    "syntax": "MINA(value1, value2)",
-    "description": "Returns the minimum numeric value in a dataset. Learn more",
     "answer_id": "3094018"
   },
   "MINIFS": {
-    "category": "Statistical",
-    "name": "MINIFS",
-    "syntax": "MINIFS(range, criteria_range1, criterion1, [criteria_range2, criterion2], \u2026)",
-    "description": "Returns the minimum value in a range of cells, filtered by a set of criteria. Learn more.",
     "answer_id": "7014063"
   },
   "MODE": {
-    "category": "Statistical",
-    "name": "MODE",
-    "syntax": "MODE(value1, [value2, ...])",
-    "description": "Returns the most commonly occurring value in a dataset. Learn more",
     "answer_id": "3094029"
   },
   "MODE.MULT": {
-    "category": "Statistical",
-    "name": "MODE.MULT",
-    "syntax": "MODE.MULT(value1, value2)",
-    "description": "Returns the most commonly occurring values in a dataset. Learn more.",
     "answer_id": "9368267"
   },
   "MODE.SNGL": {
-    "category": "Statistical",
-    "name": "MODE.SNGL",
-    "syntax": "MODE.SNGL(value1, [value2, ...])",
-    "description": "See MODE",
     "answer_id": "3094029"
   },
   "NEGBINOM.DIST": {
-    "category": "Statistical",
-    "name": "NEGBINOM.DIST",
-    "syntax": "NEGBINOM.DIST(num_failures, num_successes, prob_success)",
-    "description": "See NEGBINOMDIST",
     "answer_id": "3094031"
   },
   "NEGBINOMDIST": {
-    "category": "Statistical",
-    "name": "NEGBINOMDIST",
-    "syntax": "NEGBINOMDIST(num_failures, num_successes, prob_success)",
-    "description": "Calculates the probability of drawing a certain number of failures before a certain number of successes given a probability of success in independent trials. Learn more",
     "answer_id": "3094031"
   },
   "NORM.DIST": {
-    "category": "Statistical",
-    "name": "NORM.DIST",
-    "syntax": "NORM.DIST(x, mean, standard_deviation, cumulative)",
-    "description": "See NORMDIST",
     "answer_id": "3094021"
   },
   "NORM.INV": {
-    "category": "Statistical",
-    "name": "NORM.INV",
-    "syntax": "NORM.INV(x, mean, standard_deviation)",
-    "description": "See NORMINV",
     "answer_id": "3094022"
   },
   "NORM.S.DIST": {
-    "category": "Statistical",
-    "name": "NORM.S.DIST",
-    "syntax": "NORM.S.DIST(x)",
-    "description": "See NORMSDIST",
     "answer_id": "3094089"
   },
   "NORM.S.INV": {
-    "category": "Statistical",
-    "name": "NORM.S.INV",
-    "syntax": "NORM.S.INV(x)",
-    "description": "See NORMSINV",
     "answer_id": "3094091"
   },
   "NORMDIST": {
-    "category": "Statistical",
-    "name": "NORMDIST",
-    "syntax": "NORMDIST(x, mean, standard_deviation, cumulative)",
-    "description": "Returns the value of the normal distribution function (or normal cumulative distribution function) for a specified value, mean, and standard deviation. Learn more",
     "answer_id": "3094021"
   },
   "NORMINV": {
-    "category": "Statistical",
-    "name": "NORMINV",
-    "syntax": "NORMINV(x, mean, standard_deviation)",
-    "description": "Returns the value of the inverse normal distribution function for a specified value, mean, and standard deviation. Learn more",
     "answer_id": "3094022"
   },
   "NORMSDIST": {
-    "category": "Statistical",
-    "name": "NORMSDIST",
-    "syntax": "NORMSDIST(x)",
-    "description": "Returns the value of the standard normal cumulative distribution function for a specified value. Learn more",
     "answer_id": "3094089"
   },
   "NORMSINV": {
-    "category": "Statistical",
-    "name": "NORMSINV",
-    "syntax": "NORMSINV(x)",
-    "description": "Returns the value of the inverse standard normal distribution function for a specified value. Learn more",
     "answer_id": "3094091"
   },
   "PEARSON": {
-    "category": "Statistical",
-    "name": "PEARSON",
-    "syntax": "PEARSON(data_y, data_x)",
-    "description": "Calculates r, the Pearson product-moment correlation coefficient of a dataset. Learn more",
     "answer_id": "3094092"
   },
   "PERCENTILE": {
-    "category": "Statistical",
-    "name": "PERCENTILE",
-    "syntax": "PERCENTILE(data, percentile)",
-    "description": "Returns the value at a given percentile of a dataset. Learn more",
     "answer_id": "3094093"
   },
   "PERCENTILE.EXC": {
-    "category": "Statistical",
-    "name": "PERCENTILE.EXC",
-    "syntax": "PERCENTILE.EXC(data, percentile)",
-    "description": "Returns the value at a given percentile of a dataset, exclusive of 0 and 1. Learn more.",
     "answer_id": "9368167"
   },
   "PERCENTILE.INC": {
-    "category": "Statistical",
-    "name": "PERCENTILE.INC",
-    "syntax": "PERCENTILE.INC(data, percentile)",
-    "description": "See PERCENTILE",
     "answer_id": "3094093"
   },
   "PERCENTRANK": {
-    "category": "Statistical",
-    "name": "PERCENTRANK",
-    "syntax": "PERCENTRANK(data, value, [significant_digits])",
-    "description": "Returns the percentage rank (percentile) of a specified value in a dataset. Learn more",
     "answer_id": "3094095"
   },
   "PERCENTRANK.EXC": {
-    "category": "Statistical",
-    "name": "PERCENTRANK.EXC",
-    "syntax": "PERCENTRANK.EXC(data, value, [significant_digits])",
-    "description": "Returns the percentage rank (percentile) from 0 to 1 exclusive of a specified value in a dataset. Learn more",
     "answer_id": "3267357"
   },
   "PERCENTRANK.INC": {
-    "category": "Statistical",
-    "name": "PERCENTRANK.INC",
-    "syntax": "PERCENTRANK.INC(data, value, [significant_digits])",
-    "description": "Returns the percentage rank (percentile) from 0 to 1 inclusive of a specified value in a dataset. Learn more",
     "answer_id": "3267360"
   },
   "PERMUTATIONA": {
-    "category": "Statistical",
-    "name": "PERMUTATIONA",
-    "syntax": "PERMUTATIONA(number, number_chosen)",
-    "description": "Returns the number of permutations for selecting a group of objects (with replacement) from a total number of objects. Learn more.",
     "answer_id": "9368324"
   },
   "PERMUT": {
-    "category": "Statistical",
-    "name": "PERMUT",
-    "syntax": "PERMUT(n, k)",
-    "description": "Returns the number of ways to choose some number of objects from a pool of a given size of objects, considering order. Learn more",
     "answer_id": "3094036"
   },
   "PHI": {
-    "category": "Statistical",
-    "name": "PHI",
-    "syntax": "PHI(x)",
-    "description": "The PHI function returns the value of the normal distribution with mean 0 and standard deviation 1. Learn more.",
     "answer_id": "9116365"
   },
   "POISSON": {
-    "category": "Statistical",
-    "name": "POISSON",
-    "syntax": "POISSON(x, mean, cumulative)",
-    "description": "See POISSON.DIST",
     "answer_id": "3094097"
   },
   "POISSON.DIST": {
-    "category": "Statistical",
-    "name": "POISSON.DIST",
-    "syntax": "POISSON.DIST(x, mean, [cumulative])",
-    "description": "Returns the value of the Poisson distribution function (or Poisson cumulative distribution function) for a specified value and mean. Learn more.",
     "answer_id": "3094097"
   },
   "PROB": {
-    "category": "Statistical",
-    "name": "PROB",
-    "syntax": "PROB(data, probabilities, low_limit, [high_limit])",
-    "description": "Given a set of values and corresponding probabilities, calculates the probability that a value chosen at random falls between two limits. Learn more",
     "answer_id": "3094039"
   },
   "QUARTILE": {
-    "category": "Statistical",
-    "name": "QUARTILE",
-    "syntax": "QUARTILE(data, quartile_number)",
-    "description": "Returns a value nearest to a specified quartile of a dataset. Learn more",
     "answer_id": "3094041"
   },
   "QUARTILE.EXC": {
-    "category": "Statistical",
-    "name": "QUARTILE.EXC",
-    "syntax": "QUARTILE.EXC(data, quartile_number)",
-    "description": "Returns value nearest to a given quartile of a dataset, exclusive of 0 and 4. Learn more.",
     "answer_id": "9368240"
   },
   "QUARTILE.INC": {
-    "category": "Statistical",
-    "name": "QUARTILE.INC",
-    "syntax": "QUARTILE.INC(data, quartile_number)",
-    "description": "See QUARTILE",
     "answer_id": "3094041"
   },
   "RANK": {
-    "category": "Statistical",
-    "name": "RANK",
-    "syntax": "RANK(value, data, [is_ascending])",
-    "description": "Returns the rank of a specified value in a dataset. Learn more",
     "answer_id": "3094098"
   },
   "RANK.AVG": {
-    "category": "Statistical",
-    "name": "RANK.AVG",
-    "syntax": "RANK.AVG(value, data, [is_ascending])",
-    "description": "Returns the rank of a specified value in a dataset. If there is more than one entry of the same value in the dataset, the average rank of the entries will be returned. Learn more",
     "answer_id": "3267309"
   },
   "RANK.EQ": {
-    "category": "Statistical",
-    "name": "RANK.EQ",
-    "syntax": "RANK.EQ(value, data, [is_ascending])",
-    "description": "Returns the rank of a specified value in a dataset. If there is more than one entry of the same value in the dataset, the top rank of the entries will be returned. Learn more",
     "answer_id": "3267310"
   },
   "RSQ": {
-    "category": "Statistical",
-    "name": "RSQ",
-    "syntax": "RSQ(data_y, data_x)",
-    "description": "Calculates the square of r, the Pearson product-moment correlation coefficient of a dataset. Learn more",
     "answer_id": "3094099"
   },
   "SKEW": {
-    "category": "Statistical",
-    "name": "SKEW",
-    "syntax": "SKEW(value1, value2)",
-    "description": "Calculates the skewness of a dataset, which describes the symmetry of that dataset about the mean. Learn more",
     "answer_id": "3094101"
   },
   "SKEW.P": {
-    "category": "Statistical",
-    "name": "SKEW.P",
-    "syntax": "SKEW.P(value1, value2)",
-    "description": "Calculates the skewness of a dataset that represents the entire population. Learn more.",
     "answer_id": "9368569"
   },
   "SLOPE": {
-    "category": "Statistical",
-    "name": "SLOPE",
-    "syntax": "SLOPE(data_y, data_x)",
-    "description": "Calculates the slope of the line resulting from linear regression of a dataset. Learn more",
     "answer_id": "3094048"
   },
   "SMALL": {
-    "category": "Statistical",
-    "name": "SMALL",
-    "syntax": "SMALL(data, n)",
-    "description": "Returns the nth smallest element from a data set, where n is user-defined. Learn more",
     "answer_id": "3094050"
   },
   "STANDARDIZE": {
-    "category": "Statistical",
-    "name": "STANDARDIZE",
-    "syntax": "STANDARDIZE(value, mean, standard_deviation)",
-    "description": "Calculates the normalized equivalent of a random variable given mean and standard deviation of the distribution. Learn more",
     "answer_id": "3094102"
   },
   "STDEV": {
-    "category": "Statistical",
-    "name": "STDEV",
-    "syntax": "STDEV(value1, [value2, ...])",
-    "description": "Calculates the standard deviation based on a sample. Learn more",
     "answer_id": "3094054"
   },
   "STDEV.P": {
-    "category": "Statistical",
-    "name": "STDEV.P",
-    "syntax": "STDEV.P(value1, [value2, ...])",
-    "description": "See STDEVP",
     "answer_id": "3094105"
   },
   "STDEV.S": {
-    "category": "Statistical",
-    "name": "STDEV.S",
-    "syntax": "STDEV.S(value1, [value2, ...])",
-    "description": "See STDEV",
     "answer_id": "3094054"
   },
   "STDEVA": {
-    "category": "Statistical",
-    "name": "STDEVA",
-    "syntax": "STDEVA(value1, value2)",
-    "description": "Calculates the standard deviation based on a sample, setting text to the value `0`. Learn more",
     "answer_id": "3094055"
   },
   "STDEVP": {
-    "category": "Statistical",
-    "name": "STDEVP",
-    "syntax": "STDEVP(value1, value2)",
-    "description": "Calculates the standard deviation based on an entire population. Learn more",
     "answer_id": "3094105"
   },
   "STDEVPA": {
-    "category": "Statistical",
-    "name": "STDEVPA",
-    "syntax": "STDEVPA(value1, value2)",
-    "description": "Calculates the standard deviation based on an entire population, setting text to the value `0`. Learn more",
     "answer_id": "3094058"
   },
   "STEYX": {
-    "category": "Statistical",
-    "name": "STEYX",
-    "syntax": "STEYX(data_y, data_x)",
-    "description": "Calculates the standard error of the predicted y-value for each x in the regression of a dataset. Learn more",
     "answer_id": "3094108"
   },
   "T.DIST": {
-    "category": "Statistical",
-    "name": "T.DIST",
-    "syntax": "T.DIST(x, degrees_freedom, cumulative)",
-    "description": "Returns the right tailed Student distribution for a value x. Learn more.",
     "answer_id": "9369014"
   },
   "T.DIST.2T": {
-    "category": "Statistical",
-    "name": "T.DIST.2T",
-    "syntax": "T.DIST.2T(x, degrees_freedom)",
-    "description": "Returns the two tailed Student distribution for a value x. Learn more.",
     "answer_id": "9368252"
   },
   "T.DIST.RT": {
-    "category": "Statistical",
-    "name": "T.DIST.RT",
-    "syntax": "T.DIST.RT(x, degrees_freedom)",
-    "description": "Returns the right tailed Student distribution for a value x. Learn more.",
     "answer_id": "9369017"
   },
   "T.INV": {
-    "category": "Statistical",
-    "name": "T.INV",
-    "syntax": "T.INV(probability, degrees_freedom)",
-    "description": "Calculates the negative inverse of the one-tailed TDIST function. Learn more",
     "answer_id": "6055809"
   },
   "T.INV.2T": {
-    "category": "Statistical",
-    "name": "T.INV.2T",
-    "syntax": "T.INV.2T(probability, degrees_freedom)",
-    "description": "Calculates the inverse of the two-tailed TDIST function. Learn more",
     "answer_id": "6055811"
   },
   "T.TEST": {
-    "category": "Statistical",
-    "name": "T.TEST",
-    "syntax": "T.TEST(range1, range2, tails, type)",
-    "description": "Returns the probability associated with Student's t-test. Determines whether two samples are likely to have come from the same two underlying populations that have the same mean. Learn more.",
     "answer_id": "6055837"
   },
   "TDIST": {
-    "category": "Statistical",
-    "name": "TDIST",
-    "syntax": "TDIST(x, degrees_freedom, tails)",
-    "description": "Calculates the probability for Student's t-distribution with a given input (x). Learn more",
     "answer_id": "3295914"
   },
   "TINV": {
-    "category": "Statistical",
-    "name": "TINV",
-    "syntax": "TINV(probability, degrees_freedom)",
-    "description": "See T.INV.2T",
     "answer_id": "6055811"
   },
   "TRIMMEAN": {
-    "category": "Statistical",
-    "name": "TRIMMEAN",
-    "syntax": "TRIMMEAN(data, exclude_proportion)",
-    "description": "Calculates the mean of a dataset excluding some proportion of data from the high and low ends of the dataset. Learn more",
     "answer_id": "3094061"
   },
   "TTEST": {
-    "category": "Statistical",
-    "name": "TTEST",
-    "syntax": "TTEST(range1, range2, tails, type)",
-    "description": "See T.TEST.",
     "answer_id": "6055837"
   },
   "VAR": {
-    "category": "Statistical",
-    "name": "VAR",
-    "syntax": "VAR(value1, [value2, ...])",
-    "description": "Calculates the variance based on a sample. Learn more",
     "answer_id": "3094063"
   },
   "VAR.P": {
-    "category": "Statistical",
-    "name": "VAR.P",
-    "syntax": "VAR.P(value1, [value2, ...])",
-    "description": "See VARP",
     "answer_id": "3094113"
   },
   "VAR.S": {
-    "category": "Statistical",
-    "name": "VAR.S",
-    "syntax": "VAR.S(value1, [value2, ...])",
-    "description": "See VAR",
     "answer_id": "3094063"
   },
   "VARA": {
-    "category": "Statistical",
-    "name": "VARA",
-    "syntax": "VARA(value1, value2)",
-    "description": "Calculates an estimate of variance based on a sample, setting text to the value `0`. Learn more",
     "answer_id": "3094064"
   },
   "VARP": {
-    "category": "Statistical",
-    "name": "VARP",
-    "syntax": "VARP(value1, value2)",
-    "description": "Calculates the variance based on an entire population. Learn more",
     "answer_id": "3094113"
   },
   "VARPA": {
-    "category": "Statistical",
-    "name": "VARPA",
-    "syntax": "VARPA(value1, value2,...)",
-    "description": "Calculates the variance based on an entire population, setting text to the value `0`. Learn more",
     "answer_id": "3094065"
   },
   "WEIBULL": {
-    "category": "Statistical",
-    "name": "WEIBULL",
-    "syntax": "WEIBULL(x, shape, scale, cumulative)",
-    "description": "Returns the value of the Weibull distribution function (or Weibull cumulative distribution function) for a specified shape and scale. Learn more",
     "answer_id": "3094116"
   },
   "WEIBULL.DIST": {
-    "category": "Statistical",
-    "name": "WEIBULL.DIST",
-    "syntax": "WEIBULL.DIST(x, shape, scale, cumulative)",
-    "description": "See WEIBULL",
     "answer_id": "3094116"
   },
   "Z.TEST": {
-    "category": "Statistical",
-    "name": "Z.TEST",
-    "syntax": "Z.TEST(data, value, [standard_deviation])",
-    "description": "Returns the one-tailed P-value of a Z-test with standard distribution. Learn more.",
     "answer_id": "3094067"
   },
   "ZTEST": {
-    "category": "Statistical",
-    "name": "ZTEST",
-    "syntax": "ZTEST(data, value, [standard_deviation])",
-    "description": "See Z.TEST.",
     "answer_id": "3094067"
   },
   "ARABIC": {
-    "category": "Text",
-    "name": "ARABIC",
-    "syntax": "ARABIC(roman_numeral)",
-    "description": "Computes the value of a Roman numeral. Learn more",
     "answer_id": "3238301"
   },
   "ASC": {
-    "category": "Text",
-    "name": "ASC",
-    "syntax": "ASC(text)",
-    "description": "Converts full-width ASCII and katakana characters to their half-width counterparts. All standard-width characters will remain unchanged. Learn more.",
     "answer_id": "9061514"
   },
   "CHAR": {
-    "category": "Text",
-    "name": "CHAR",
-    "syntax": "CHAR(table_number)",
-    "description": "Convert a number into a character according to the current Unicode table. Learn more",
     "answer_id": "3094120"
   },
   "CLEAN": {
-    "category": "Text",
-    "name": "CLEAN",
-    "syntax": "CLEAN(text)",
-    "description": "Returns the text with the non-printable ASCII characters removed. Learn more",
     "answer_id": "3267340"
   },
   "CODE": {
-    "category": "Text",
-    "name": "CODE",
-    "syntax": "CODE(string)",
-    "description": "Returns the numeric Unicode map value of the first character in the string provided. Learn more",
     "answer_id": "3094122"
   },
   "CONCATENATE": {
-    "category": "Text",
-    "name": "CONCATENATE",
-    "syntax": "CONCATENATE(string1, [string2, ...])",
-    "description": "Appends strings to one another. Learn more",
     "answer_id": "3094123"
   },
   "DOLLAR": {
-    "category": "Text",
-    "name": "DOLLAR",
-    "syntax": "DOLLAR(number, [number_of_places])",
-    "description": "Formats a number into the locale-specific currency format. Learn more",
     "answer_id": "3094071"
   },
   "EXACT": {
-    "category": "Text",
-    "name": "EXACT",
-    "syntax": "EXACT(string1, string2)",
-    "description": "Tests whether two strings are identical. Learn more",
     "answer_id": "3094073"
   },
   "FIND": {
-    "category": "Text",
-    "name": "FIND",
-    "syntax": "FIND(search_for, text_to_search, [starting_at])",
-    "description": "Returns the position at which a string is first found within text. Learn more",
     "answer_id": "3094126"
   },
   "FINDB": {
-    "category": "Text",
-    "name": "FINDB",
-    "syntax": "FINDB(search_for, text_to_search, [starting_at])",
-    "description": "Returns the position at which a string is first found within text counting each double-character as 2. Learn more",
     "answer_id": "3296009"
   },
   "FIXED": {
-    "category": "Text",
-    "name": "FIXED",
-    "syntax": "FIXED(number, [number_of_places], [suppress_separator])",
-    "description": "Formats a number with a fixed number of decimal places. Learn more",
     "answer_id": "3094075"
   },
   "JOIN": {
-    "category": "Text",
-    "name": "JOIN",
-    "syntax": "JOIN(delimiter, value_or_array1, [value_or_array2, ...])",
-    "description": "Concatenates the elements of one or more one-dimensional arrays using a specified delimiter. Learn more",
     "answer_id": "3094077"
   },
   "LEFT": {
-    "category": "Text",
-    "name": "LEFT",
-    "syntax": "LEFT(string, [number_of_characters])",
-    "description": "Returns a substring from the beginning of a specified string. Learn more",
     "answer_id": "3094079"
   },
   "LEFTB": {
-    "category": "Text",
-    "name": "LEFTB",
-    "syntax": "LEFTB(string, num_of_bytes)",
-    "description": "Returns the left portion of a string up to a certain number of bytes. Learn more.",
     "answer_id": "9367470"
   },
   "LEN": {
-    "category": "Text",
-    "name": "LEN",
-    "syntax": "LEN(text)",
-    "description": "Returns the length of a string. Learn more",
     "answer_id": "3094081"
   },
   "LENB": {
-    "category": "Text",
-    "name": "LENB",
-    "syntax": "LENB(string)",
-    "description": "Returns the length of a string in bytes.\" Learn more.",
     "answer_id": "9367584"
   },
   "LOWER": {
-    "category": "Text",
-    "name": "LOWER",
-    "syntax": "LOWER(text)",
-    "description": "Converts a specified string to lowercase. Learn more",
     "answer_id": "3094083"
   },
   "MID": {
-    "category": "Text",
-    "name": "MID",
-    "syntax": "MID(string, starting_at, extract_length)",
-    "description": "Returns a segment of a string. Learn more",
     "answer_id": "3094129"
   },
   "MIDB": {
-    "category": "Text",
-    "name": "MIDB",
-    "syntax": "MIDB(string)",
-    "description": "Returns a section of a string starting at a given character and up to a specified number of bytes. Learn more.",
     "answer_id": "9367691"
   },
   "PROPER": {
-    "category": "Text",
-    "name": "PROPER",
-    "syntax": "PROPER(text_to_capitalize)",
-    "description": "Capitalizes each word in a specified string. Learn more",
     "answer_id": "3094133"
   },
   "REGEXEXTRACT": {
-    "category": "Text",
-    "name": "REGEXEXTRACT",
-    "syntax": "REGEXEXTRACT(text, regular_expression)",
-    "description": "Extracts matching substrings according to a regular expression. Learn more",
     "answer_id": "3098244"
   },
   "REGEXMATCH": {
-    "category": "Text",
-    "name": "REGEXMATCH",
-    "syntax": "REGEXMATCH(text, regular_expression)",
-    "description": "Whether a piece of text matches a regular expression. Learn more",
     "answer_id": "3098292"
   },
   "REGEXREPLACE": {
-    "category": "Text",
-    "name": "REGEXREPLACE",
-    "syntax": "REGEXREPLACE(text, regular_expression, replacement)",
-    "description": "Replaces part of a text string with a different text string using regular expressions. Learn more",
     "answer_id": "3098245"
   },
   "REPLACE": {
-    "category": "Text",
-    "name": "REPLACE",
-    "syntax": "REPLACE(text, position, length, new_text)",
-    "description": "Replaces part of a text string with a different text string. Learn more",
     "answer_id": "3098247"
   },
   "REPLACEB": {
-    "category": "Text",
-    "name": "REPLACEB",
-    "syntax": "REPLACEB(text, position, num_bytes, new_text)",
-    "description": "Replaces part of a text string, based on a number of bytes, with a different text string. Learn more.",
     "answer_id": "9367752"
   },
   "REPT": {
-    "category": "Text",
-    "name": "REPT",
-    "syntax": "REPT(text_to_repeat, number_of_repetitions)",
-    "description": "Returns specified text repeated a number of times. Learn more",
     "answer_id": "3094134"
   },
   "RIGHT": {
-    "category": "Text",
-    "name": "RIGHT",
-    "syntax": "RIGHT(string, [number_of_characters])",
-    "description": "Returns a substring from the end of a specified string. Learn more",
     "answer_id": "3094087"
   },
   "RIGHTB": {
-    "category": "Text",
-    "name": "RIGHTB",
-    "syntax": "RIGHTB(string, num_of_bytes)",
-    "description": "Returns the right portion of a string up to a certain number of bytes. Learn more.",
     "answer_id": "9367697"
   },
   "ROMAN": {
-    "category": "Text",
-    "name": "ROMAN",
-    "syntax": "ROMAN(number, [rule_relaxation])",
-    "description": "Formats a number in Roman numerals. Learn more",
     "answer_id": "3094153"
   },
   "SEARCH": {
-    "category": "Text",
-    "name": "SEARCH",
-    "syntax": "SEARCH(search_for, text_to_search, [starting_at])",
-    "description": "Returns the position at which a string is first found within text. Learn more",
     "answer_id": "3094154"
   },
   "SEARCHB": {
-    "category": "Text",
-    "name": "SEARCHB",
-    "syntax": "SEARCHB(search_for, text_to_search, [starting_at])",
-    "description": "Returns the position at which a string is first found within text counting each double-character as 2. Learn more",
     "answer_id": "3295923"
   },
   "SPLIT": {
-    "category": "Text",
-    "name": "SPLIT",
-    "syntax": "SPLIT(text, delimiter, [split_by_each], [remove_empty_text])",
-    "description": "Divides text around a specified character or string, and puts each fragment into a separate cell in the row. Learn more",
     "answer_id": "3094136"
   },
   "SUBSTITUTE": {
-    "category": "Text",
-    "name": "SUBSTITUTE",
-    "syntax": "SUBSTITUTE(text_to_search, search_for, replace_with, [occurrence_number])",
-    "description": "Replaces existing text with new text in a string. Learn more",
     "answer_id": "3094215"
   },
   "T": {
-    "category": "Text",
-    "name": "T",
-    "syntax": "T(value)",
-    "description": "Returns string arguments as text. Learn more",
     "answer_id": "3094138"
   },
   "TEXT": {
-    "category": "Text",
-    "name": "TEXT",
-    "syntax": "TEXT(number, format)",
-    "description": "Converts a number into text according to a specified format. Learn more",
     "answer_id": "3094139"
   },
   "TEXTJOIN": {
-    "category": "Text",
-    "name": "TEXTJOIN",
-    "syntax": "TEXTJOIN(delimiter, ignore_empty, text1, [text2], \u2026)",
-    "description": "Combines the text from multiple strings and/or arrays, with a specifiable delimiter separating the different texts. Learn more.",
     "answer_id": "7013992"
   },
   "TRIM": {
-    "category": "Text",
-    "name": "TRIM",
-    "syntax": "TRIM(text)",
-    "description": "Removes leading and trailing spaces in a specified string. Learn more",
     "answer_id": "3094140"
   },
   "UNICHAR": {
-    "category": "Text",
-    "name": "UNICHAR",
-    "syntax": "UNICHAR(number)",
-    "description": "Returns the Unicode character for a number. Learn more.",
     "answer_id": "9369024"
   },
   "UNICODE": {
-    "category": "Text",
-    "name": "UNICODE",
-    "syntax": "UNICODE(text)",
-    "description": "Returns the decimal Unicode value of the first character of the text. Learn more.",
     "answer_id": "9149523"
   },
   "UPPER": {
-    "category": "Text",
-    "name": "UPPER",
-    "syntax": "UPPER(text)",
-    "description": "Converts a specified string to uppercase. Learn more",
     "answer_id": "3094219"
   },
   "VALUE": {
-    "category": "Text",
-    "name": "VALUE",
-    "syntax": "VALUE(text)",
-    "description": "Converts a string in any of the date, time or number formats that Google Sheets understands into a number. Learn more",
     "answer_id": "3094220"
   },
   "DAVERAGE": {
-    "category": "Database",
-    "name": "DAVERAGE",
-    "syntax": "DAVERAGE(database, field, criteria)",
-    "description": "Returns the average of a set of values selected from a database table-like array or range using a SQL-like query. Learn more",
     "answer_id": "3094144"
   },
   "DCOUNT": {
-    "category": "Database",
-    "name": "DCOUNT",
-    "syntax": "DCOUNT(database, field, criteria)",
-    "description": "Counts numeric values selected from a database table-like array or range using a SQL-like query. Learn more",
     "answer_id": "3094222"
   },
   "DCOUNTA": {
-    "category": "Database",
-    "name": "DCOUNTA",
-    "syntax": "DCOUNTA(database, field, criteria)",
-    "description": "Counts values, including text, selected from a database table-like array or range using a SQL-like query. Learn more",
     "answer_id": "3094147"
   },
   "DGET": {
-    "category": "Database",
-    "name": "DGET",
-    "syntax": "DGET(database, field, criteria)",
-    "description": "Returns a single value from a database table-like array or range using a SQL-like query. Learn more",
     "answer_id": "3094148"
   },
   "DMAX": {
-    "category": "Database",
-    "name": "DMAX",
-    "syntax": "DMAX(database, field, criteria)",
-    "description": "Returns the maximum value selected from a database table-like array or range using a SQL-like query. Learn more",
     "answer_id": "3094227"
   },
   "DMIN": {
-    "category": "Database",
-    "name": "DMIN",
-    "syntax": "DMIN(database, field, criteria)",
-    "description": "Returns the minimum value selected from a database table-like array or range using a SQL-like query. Learn more",
     "answer_id": "3094149"
   },
   "DPRODUCT": {
-    "category": "Database",
-    "name": "DPRODUCT",
-    "syntax": "DPRODUCT(database, field, criteria)",
-    "description": "Returns the product of values selected from a database table-like array or range using a SQL-like query. Learn more",
     "answer_id": "3094230"
   },
   "DSTDEV": {
-    "category": "Database",
-    "name": "DSTDEV",
-    "syntax": "DSTDEV(database, field, criteria)",
-    "description": "Returns the standard deviation of a population sample selected from a database table-like array or range using a SQL-like query. Learn more",
     "answer_id": "3094151"
   },
   "DSTDEVP": {
-    "category": "Database",
-    "name": "DSTDEVP",
-    "syntax": "DSTDEVP(database, field, criteria)",
-    "description": "Returns the standard deviation of an entire population selected from a database table-like array or range using a SQL-like query. Learn more",
     "answer_id": "3094280"
   },
   "DSUM": {
-    "category": "Database",
-    "name": "DSUM",
-    "syntax": "DSUM(database, field, criteria)",
-    "description": "Returns the sum of values selected from a database table-like array or range using a SQL-like query. Learn more",
     "answer_id": "3094281"
   },
   "DVAR": {
-    "category": "Database",
-    "name": "DVAR",
-    "syntax": "DVAR(database, field, criteria)",
-    "description": "Returns the variance of a population sample selected from a database table-like array or range using a SQL-like query. Learn more",
     "answer_id": "3094236"
   },
   "DVARP": {
-    "category": "Database",
-    "name": "DVARP",
-    "syntax": "DVARP(database, field, criteria)",
-    "description": "Returns the variance of an entire population selected from a database table-like array or range using a SQL-like query. Learn more",
     "answer_id": "3094238"
   },
   "CONVERT": {
-    "category": "Parser",
-    "name": "CONVERT",
-    "syntax": "CONVERT(value, start_unit, end_unit)",
-    "description": "Converts a numeric value to a different unit of measure. Learn more",
     "answer_id": "6055540"
   },
   "TO_DATE": {
-    "category": "Parser",
-    "name": "TO_DATE",
-    "syntax": "TO_DATE(value)",
-    "description": "Converts a provided number to a date. Learn more",
     "answer_id": "3094239"
   },
   "TO_DOLLARS": {
-    "category": "Parser",
-    "name": "TO_DOLLARS",
-    "syntax": "TO_DOLLARS(value)",
-    "description": "Converts a provided number to a dollar value. Learn more",
     "answer_id": "3094241"
   },
   "TO_PERCENT": {
-    "category": "Parser",
-    "name": "TO_PERCENT",
-    "syntax": "TO_PERCENT(value)",
-    "description": "Converts a provided number to a percentage. Learn more",
     "answer_id": "3094284"
   },
   "TO_PURE_NUMBER": {
-    "category": "Parser",
-    "name": "TO_PURE_NUMBER",
-    "syntax": "TO_PURE_NUMBER(value)",
-    "description": "Converts a provided date/time, percentage, currency or other formatted numeric value to a pure number without formatting. Learn more",
     "answer_id": "3094243"
   },
   "TO_TEXT": {
-    "category": "Parser",
-    "name": "TO_TEXT",
-    "syntax": "TO_TEXT(value)",
-    "description": "Converts a provided numeric value to a text value. Learn more",
     "answer_id": "3094285"
   },
   "ARRAY_CONSTRAIN": {
-    "category": "Array",
-    "name": "ARRAY_CONSTRAIN",
-    "syntax": "ARRAY_CONSTRAIN(input_range, num_rows, num_cols)",
-    "description": "Constrains an array result to a specified size. Learn more",
     "answer_id": "3267036"
   },
   "BYCOL": {
-    "category": "Array",
-    "name": "BYCOL",
-    "syntax": "BYCOL(array_or_range, LAMBDA)",
-    "description": "Groups an array by columns by application of a LAMBDA function to each column. Learn more",
     "answer_id": "12571032"
   },
   "BYROW": {
-    "category": "Array",
-    "name": "BYROW",
-    "syntax": "BYROW(array_or_range, LAMBDA)",
-    "description": "Groups an array by rows by application of a LAMBDA function to each row. Learn more",
     "answer_id": "12570930"
   },
   "CHOOSECOLS": {
-    "category": "Array",
-    "name": "CHOOSECOLS",
-    "syntax": "CHOOSECOLS(array, col_num1, [col_num2])",
-    "description": "Creates a new array from the selected columns in the existing range. Learn more",
     "answer_id": "13197914"
   },
   "CHOOSEROWS": {
-    "category": "Array",
-    "name": "CHOOSEROWS",
-    "syntax": "CHOOSEROWS(array, row_num1, [row_num2])",
-    "description": "Creates a new array from the selected rows in the existing range. Learn more",
     "answer_id": "13196659"
   },
   "FLATTEN": {
-    "category": "Array",
-    "name": "FLATTEN",
-    "syntax": "FLATTEN(range1,[range2,...])",
-    "description": "Flattens all the values from one or more ranges into a single column. Learn more",
     "answer_id": "10307761"
   },
   "FREQUENCY": {
-    "category": "Array",
-    "name": "FREQUENCY",
-    "syntax": "FREQUENCY(data, classes)",
-    "description": "Calculates the frequency distribution of a one-column array into specified classes. Learn more",
     "answer_id": "3094286"
   },
   "GROWTH": {
-    "category": "Array",
-    "name": "GROWTH",
-    "syntax": "GROWTH(known_data_y, [known_data_x], [new_data_x], [b])",
-    "description": "Given partial data about an exponential growth trend, fits an ideal exponential growth trend and/or predicts further values. Learn more",
     "answer_id": "3094287"
   },
   "HSTACK": {
-    "category": "Array",
-    "name": "HSTACK",
-    "syntax": "HSTACK(range1; [range2, \u2026])",
-    "description": "Appends ranges horizontally and in sequence to return a larger array. Learn more",
     "answer_id": "13190756"
   },
   "LINEST": {
-    "category": "Array",
-    "name": "LINEST",
-    "syntax": "LINEST(known_data_y, [known_data_x], [calculate_b], [verbose])",
-    "description": "Given partial data about a linear trend, calculates various parameters about the ideal linear trend using the least-squares method. Learn more",
     "answer_id": "3094249"
   },
   "LOGEST": {
-    "category": "Array",
-    "name": "LOGEST",
-    "syntax": "LOGEST(known_data_y, [known_data_x], [b], [verbose])",
-    "description": "Given partial data about an exponential growth curve, calculates various parameters about the best fit ideal exponential growth curve. Learn more",
     "answer_id": "3094251"
   },
   "MAKEARRAY": {
-    "category": "Array",
-    "name": "MAKEARRAY",
-    "syntax": "MAKEARRAY(rows, columns, LAMBDA)",
-    "description": "Returns an array of specified dimensions with values calculated by application of a LAMBDA function. Learn more",
     "answer_id": "12569202"
   },
   "MAP": {
-    "category": "Array",
-    "name": "MAP",
-    "syntax": "MAP(array1, [array2, ...], LAMBDA)",
-    "description": "Maps each value in the given arrays to a new value by application of a LAMBDA function to each value. Learn more",
     "answer_id": "12568985"
   },
   "MDETERM": {
-    "category": "Array",
-    "name": "MDETERM",
-    "syntax": "MDETERM(square_matrix)",
-    "description": "Returns the matrix determinant of a square matrix specified as an array or range. Learn more",
     "answer_id": "3094290"
   },
   "MINVERSE": {
-    "category": "Array",
-    "name": "MINVERSE",
-    "syntax": "MINVERSE(square_matrix)",
-    "description": "Returns the multiplicative inverse of a square matrix specified as an array or range. Learn more",
     "answer_id": "3094253"
   },
   "MMULT": {
-    "category": "Array",
-    "name": "MMULT",
-    "syntax": "MMULT(matrix1, matrix2)",
-    "description": "Calculates the matrix product of two matrices specified as arrays or ranges. Learn more",
     "answer_id": "3094292"
   },
   "REDUCE": {
-    "category": "Array",
-    "name": "REDUCE",
-    "syntax": "REDUCE(initial_value, array_or_range, LAMBDA)",
-    "description": "Reduces an array to an accumulated result by application of a LAMBDA function to each value. Learn more",
     "answer_id": "12568597"
   },
   "SCAN": {
-    "category": "Array",
-    "name": "SCAN",
-    "syntax": "SCAN(initial_value, array_or_range, LAMBDA)",
-    "description": "Scans an array and produces intermediate values by application of a LAMBDA function to each value. Returns an array of the intermediate values obtained at each step. Learn more",
     "answer_id": "12569094"
   },
   "SUMPRODUCT": {
-    "category": "Array",
-    "name": "SUMPRODUCT",
-    "syntax": "SUMPRODUCT(array1, [array2, ...])",
-    "description": "Calculates the sum of the products of corresponding entries in two equal-sized arrays or ranges. Learn more",
     "answer_id": "3094294"
   },
   "SUMX2MY2": {
-    "category": "Array",
-    "name": "SUMX2MY2",
-    "syntax": "SUMX2MY2(array_x, array_y)",
-    "description": "Calculates the sum of the differences of the squares of values in two arrays. Learn more",
     "answer_id": "3094257"
   },
   "SUMX2PY2": {
-    "category": "Array",
-    "name": "SUMX2PY2",
-    "syntax": "SUMX2PY2(array_x, array_y)",
-    "description": "Calculates the sum of the sums of the squares of values in two arrays. Learn more",
     "answer_id": "3094260"
   },
   "SUMXMY2": {
-    "category": "Array",
-    "name": "SUMXMY2",
-    "syntax": "SUMXMY2(array_x, array_y)",
-    "description": "Calculates the sum of the squares of differences of values in two arrays. Learn more",
     "answer_id": "3094298"
   },
   "TOCOL": {
-    "category": "Array",
-    "name": "TOCOL",
-    "syntax": "TOCOL(array_or_range, [ignore], [scan_by_column])",
-    "description": "Transforms an array or range of cells into a single column. Learn more",
     "answer_id": "13187258"
   },
   "TOROW": {
-    "category": "Array",
-    "name": "TOROW",
-    "syntax": "TOROW(array_or_range, [ignore], [scan_by_column])",
-    "description": "Transforms an array or range of cells into a single row. Learn more",
     "answer_id": "13187459"
   },
   "TRANSPOSE": {
-    "category": "Array",
-    "name": "TRANSPOSE",
-    "syntax": "TRANSPOSE(array_or_range)",
-    "description": "Transposes the rows and columns of an array or range of cells. Learn more",
     "answer_id": "3094262"
   },
   "TREND": {
-    "category": "Array",
-    "name": "TREND",
-    "syntax": "TREND(known_data_y, [known_data_x], [new_data_x], [b])",
-    "description": "Given partial data about a linear trend, fits an ideal linear trend using the least squares method and/or predicts further values. Learn more",
     "answer_id": "3094263"
   },
   "VSTACK": {
-    "category": "Array",
-    "name": "VSTACK",
-    "syntax": "VSTACK(range1; [range2, \u2026])",
-    "description": "Appends ranges vertically and in sequence to return a larger array. Learn more",
     "answer_id": "13191461"
   },
   "WRAPCOLS": {
-    "category": "Array",
-    "name": "WRAPCOLS",
-    "syntax": "WRAPCOLS(range, wrap_count, [pad_with])",
-    "description": "Wraps the provided row or column of cells by columns after a specified number of elements to form a new array. Learn more",
     "answer_id": "13184284"
   },
   "WRAPROWS": {
-    "category": "Array",
-    "name": "WRAPROWS",
-    "syntax": "WRAPROWS(range, wrap_count, [pad_with])",
-    "description": "Wraps the provided row or column of cells by rows after a specified number of elements to form a new array. Learn more",
     "answer_id": "13184285"
   },
   "ENCODEURL": {
-    "category": "Web",
-    "name": "ENCODEURL",
-    "syntax": "ENCODEURL(text)",
-    "description": "Encodes a string of text for the purpose of using in a URL query. Learn more.",
     "answer_id": "9199778"
   },
   "HYPERLINK": {
-    "category": "Web",
-    "name": "HYPERLINK",
-    "syntax": "HYPERLINK(url, [link_label])",
-    "description": "Creates a hyperlink inside a cell. Learn more",
     "answer_id": "3093313"
   },
   "IMPORTDATA": {
-    "category": "Web",
-    "name": "IMPORTDATA",
-    "syntax": "IMPORTDATA(url)",
-    "description": "Imports data at a given url in .csv (comma-separated value) or .tsv (tab-separated value) format. Learn more",
     "answer_id": "3093335"
   },
   "IMPORTFEED": {
-    "category": "Web",
-    "name": "IMPORTFEED",
-    "syntax": "IMPORTFEED(url, [query], [headers], [num_items])",
-    "description": "Imports a RSS or ATOM feed. Learn more",
     "answer_id": "3093337"
   },
   "IMPORTHTML": {
-    "category": "Web",
-    "name": "IMPORTHTML",
-    "syntax": "IMPORTHTML(url, query, index)",
-    "description": "Imports data from a table or list within an HTML page. Learn more",
     "answer_id": "3093339"
   },
   "IMPORTRANGE": {
-    "category": "Web",
-    "name": "IMPORTRANGE",
-    "syntax": "IMPORTRANGE(spreadsheet_url, range_string)",
-    "description": "Imports a range of cells from a specified spreadsheet. Learn more",
     "answer_id": "3093340"
   },
   "IMPORTXML": {
-    "category": "Web",
-    "name": "IMPORTXML",
-    "syntax": "IMPORTXML(url, xpath_query)",
-    "description": "Imports data from any of various structured data types including XML, HTML, CSV, TSV, and RSS and ATOM XML feeds. Learn more",
     "answer_id": "3093342"
   },
   "ISURL": {
-    "category": "Web",
-    "name": "ISURL",
-    "syntax": "ISURL(value)",
-    "description": "Checks whether a value is a valid URL. Learn more",
     "answer_id": "3256501"
   },
   "AI": {
-    "category": "AI",
-    "name": "AI",
-    "syntax": "AI() or Gemini()",
-    "description": "Generates text, summarizes information, categorizes information, and accesses real-time information. Learn moreThis function is a Google Workspace with Gemini feature",
     "answer_id": "15877199"
   }
 }

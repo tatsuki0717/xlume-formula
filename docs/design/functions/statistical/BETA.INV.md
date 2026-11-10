@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns the inverse of the beta distribution value.
+Returns the inverse of the cumulative beta probability density function (BETA.DIST).
 
 ## Excel Syntax
 ```excel
@@ -17,17 +17,17 @@ Returns the inverse of the beta distribution value.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | probability | number \| range/array | Yes | The probability associated with the beta distribution, between 0 and 1. |
-| 2 | alpha | number \| range/array | Yes | The alpha shape parameter of the distribution; must be greater than 0. |
-| 3 | beta | number \| range/array | Yes | The beta shape parameter of the distribution; must be greater than 0. |
-| 4 | a | number \| range/array | No | The lower bound of the interval of the result; defaults to 0 when omitted. |
-| 5 | b | number \| range/array | No | The upper bound of the interval of the result; defaults to 1 when omitted. |
+| 1 | probability | number \| range/array | Yes | Is a probability associated with the beta distribution. |
+| 2 | alpha | number \| range/array | Yes | Is a parameter to the distribution and must be greater than 0. |
+| 3 | beta | number \| range/array | Yes | Is a parameter to the distribution and must be greater than 0. |
+| 4 | a | number \| range/array | No | Is an optional lower bound to the interval of x. If omitted, A = 0. |
+| 5 | b | number \| range/array | No | Is an optional upper bound to the interval of x. If omitted, B = 1. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the inverse of the beta distribution value.
+Returns the inverse of the cumulative beta probability density function (BETA.DIST).
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -36,7 +36,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the inverse of the beta distribution value.
+> Returns the inverse of the cumulative beta probability density function (BETA.DIST).
 
 
 ## Type Coercion & Edge Cases
@@ -58,8 +58,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=BETA.INV(0.5, 2, 3)`
-- `=BETA.INV(0.25, 2, 3, 0, 4)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=BETA.INV(..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

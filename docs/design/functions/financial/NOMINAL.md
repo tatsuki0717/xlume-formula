@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns the nominal interest rate.
+Returns the annual nominal interest rate.
 
 ## Excel Syntax
 ```excel
@@ -17,14 +17,14 @@ Returns the nominal interest rate.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | effect_rate | number \| string \| boolean \| range/array | Yes | The effective annual interest rate. |
-| 2 | npery | number \| string \| boolean \| range/array | Yes | The number of compounding periods per year. |
+| 1 | effect_rate | number \| string \| boolean \| range/array | Yes | Is the effective interest rate. |
+| 2 | npery | number \| string \| boolean \| range/array | Yes | Is the number of compounding periods per year. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the nominal interest rate.
+Returns the annual nominal interest rate.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -33,7 +33,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the nominal interest rate.
+> Returns the annual nominal interest rate.
 
 
 ## Type Coercion & Edge Cases
@@ -55,8 +55,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=NOMINAL(0.1, 4)`
-- `=NOMINAL(0.08, 12)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=NOMINAL(..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

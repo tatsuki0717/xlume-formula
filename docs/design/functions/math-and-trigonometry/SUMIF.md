@@ -7,25 +7,25 @@
 - **Volatile:** No
 
 ## Description
-Sums up the values of cells that belong to the specified range and meet the specified condition.
+Adds the cells specified by a given condition or criteria.
 
 ## Excel Syntax
 ```excel
-=SUMIF(range, criteria, [sum_range])
+=SUMIF(range, criteria, sum_range)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | range | range/array | Yes | The range of cells tested against the criterion. |
-| 2 | criteria | number \| string \| boolean \| range/array | Yes | The condition that selects which cells are summed, e.g. ">5", "apples", or a cell reference. |
-| 3 | sum_range | range/array | No | The range of cells to sum. When omitted, the cells in range are summed instead. |
+| 1 | range | range/array | Yes | Is the range of cells you want evaluated. |
+| 2 | criteria | number \| string \| boolean \| range/array | Yes | Is the condition or criteria in the form of a number, expression, or text that defines which cells will be added. |
+| 3 | sum_range | range/array | Yes | Are the actual cells to sum. If omitted, the cells in range are used. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Sums up the values of cells that belong to the specified range and meet the specified condition.
+Adds the cells specified by a given condition or criteria.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -34,7 +34,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Sums up the values of cells that belong to the specified range and meet the specified condition.
+> Adds the cells specified by a given condition or criteria.
 
 
 ## Type Coercion & Edge Cases
@@ -56,8 +56,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=SUMIF(A1:A10, ">5")`
-- `=SUMIF(B1:B10, "apples", C1:C10)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=SUMIF(..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

@@ -7,23 +7,23 @@
 - **Volatile:** No
 
 ## Description
-Returns skewness of a population.
+Returns the skewness of a distribution based on a population: a characterization of the degree of asymmetry of a distribution around its mean.
 
 ## Excel Syntax
 ```excel
-=SKEW.P(number1, [number2], ...)
+=SKEW.P(values)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number1 | number \| range/array (repeatable) | Yes | A number, cell reference, or range included in the population skewness calculation. Further numbers or ranges can be passed as additional arguments. |
+| 1 | values | number \| range/array | Yes | List of parameters, whose elements are 1 to 254 numbers or names, arrays, or references that contain numbers for which you want the population skewness. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns skewness of a population.
+Returns the skewness of a distribution based on a population: a characterization of the degree of asymmetry of a distribution around its mean.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns skewness of a population.
+> Returns the skewness of a distribution based on a population: a characterization of the degree of asymmetry of a distribution around its mean.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=SKEW.P(1, 2, 3, 10)`
-- `=SKEW.P(A1:A10)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=SKEW.P(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

@@ -7,25 +7,25 @@
 - **Volatile:** No
 
 ## Description
-Returns the location of one text string inside another.
+Returns the starting position of one text string within another text string. FIND is case-sensitive.
 
 ## Excel Syntax
 ```excel
-=FIND(find_text, within_text, [start_num])
+=FIND(find_text, within_text, start_num)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | find_text | string \| range/array | Yes | The text to search for. The search is case-sensitive. |
-| 2 | within_text | string \| range/array | Yes | The text to search within. |
-| 3 | start_num | number \| range/array | No | The 1-based character position in text at which to start searching. Defaults to 1. |
+| 1 | find_text | string \| range/array | Yes | Is the text you want to find. Use double quotes (empty text) to match the first character in withinText; wildcard characters not allowed. |
+| 2 | within_text | string \| range/array | Yes | Is the text containing the text you want to find. |
+| 3 | start_num | number \| range/array | Yes | Specifies the character at which to start the search. The first character in withinText is character number 1. If omitted, startNum = 1. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the location of one text string inside another.
+Returns the starting position of one text string within another text string. FIND is case-sensitive.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -34,7 +34,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the location of one text string inside another.
+> Returns the starting position of one text string within another text string. FIND is case-sensitive.
 
 
 ## Type Coercion & Edge Cases
@@ -56,8 +56,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=FIND("o", "Hello World")`
-- `=FIND("o", "Hello World", 6)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=FIND(..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

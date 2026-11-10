@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns a complex number raised to a given power.
+Returns a complex number raised to an integer power.
 
 ## Excel Syntax
 ```excel
@@ -17,14 +17,14 @@ Returns a complex number raised to a given power.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | inumber | number \| string \| boolean \| range/array | Yes | The complex number, given as text such as "3+4i", to raise to a power. |
-| 2 | number | number \| string \| boolean \| range/array | Yes | The exponent to raise the complex number to. |
+| 1 | inumber | number \| string \| boolean \| range/array | Yes | Is a complex number you want to raise to a power. |
+| 2 | number | number \| string \| boolean \| range/array | Yes | Is the power to which you want to raise the complex number. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns a complex number raised to a given power.
+Returns a complex number raised to an integer power.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -33,7 +33,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns a complex number raised to a given power.
+> Returns a complex number raised to an integer power.
 
 
 ## Type Coercion & Edge Cases
@@ -55,7 +55,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=IMPOWER("3+4i", 2)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=IMPOWER(..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

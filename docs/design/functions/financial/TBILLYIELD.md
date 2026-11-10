@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns the yield for a Treasury bill.
+Returns the yield for a treasury bill.
 
 ## Excel Syntax
 ```excel
@@ -17,15 +17,15 @@ Returns the yield for a Treasury bill.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | settlement | number \| string \| boolean \| range/array | Yes | The settlement (purchase) date of the Treasury bill, as a date serial number. |
-| 2 | maturity | number \| string \| boolean \| range/array | Yes | The maturity date of the Treasury bill, as a date serial number; must be within one year of settlement. |
-| 3 | pr | number \| string \| boolean \| range/array | Yes | The price per $100 face value of the Treasury bill. |
+| 1 | settlement | number \| string \| boolean \| range/array | Yes | Is the Treasury bill's settlement date, expressed as a serial date number. |
+| 2 | maturity | number \| string \| boolean \| range/array | Yes | Is the Treasury bill's maturity date, expressed as a serial date number. |
+| 3 | pr | number \| string \| boolean \| range/array | Yes | Is the Treasury Bill's price per $100 face value. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the yield for a Treasury bill.
+Returns the yield for a treasury bill.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -34,7 +34,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the yield for a Treasury bill.
+> Returns the yield for a treasury bill.
 
 
 ## Type Coercion & Edge Cases
@@ -56,8 +56,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=TBILLYIELD(DATE(2023,1,1), DATE(2023,6,1), 98)`
-- `=TBILLYIELD(A1, B1, 99.5)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=TBILLYIELD(..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

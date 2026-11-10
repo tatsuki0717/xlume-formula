@@ -3,57 +3,60 @@
 ## Metadata
 - **Category:** Text
 - **Priority tags:** EXT
-- **Scope:** in-scope
+- **Scope:** out-of-scope
 - **Volatile:** No
 
 ## Description
-`TRANSLATE` returns the translated text by delegating to an `ExternalFunctionProvider.translate(text, source, target)` callback supplied by the host application.
+machine translate
 
 ## Excel Syntax
 ```excel
-=TRANSLATE(text, [source_language], [target_language])
+=TRANSLATE()
 ```
 
 ## Arguments
-| Argument | Required | Description |
-|---|---|---|
-| `text` | Yes | Text to translate. |
-| `source_language` | No | Source language code (e.g. `"en"`). Defaults to `""` (auto). |
-| `target_language` | No | Target language code (e.g. `"ja"`). Defaults to `""`. |
+This function takes no arguments.
 
 ## Returns
-The translated string, or an error if no provider is configured.
+Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-1. Coerce `text`, `source_language`, and `target_language` to strings.
-2. If `EvaluationContext.external.translate` is defined, call `translate(text, source, target)`.
-3. Return the provider result as a string.
-4. If the provider is not defined, return `#N/A`.
+This function requires external data or runtime infrastructure (network, OLAP, pivot cache, XLL, RTD, etc.) that is outside the scope of a pure worksheet calculation engine.
+
+Stub implementation: return `#N/A` or `#VALUE!` with a message that the function is not supported.
 
 ## Type Coercion & Edge Cases
-- Blank arguments coerced to `""`.
-- The engine does not validate language codes; they are passed through to the provider.
+- Numbers provided as text are coerced to numeric values when the function expects a number.
+- Logical `TRUE`/`FALSE` coerce to `1`/`0` in numeric contexts and to `"TRUE"`/`"FALSE"` in text contexts.
+- Blank cells are treated as `0` in numeric contexts and as `""` in text contexts, unless the function explicitly ignores blanks.
+- Errors in any argument propagate to the result, except where the function is explicitly designed to trap them (e.g., IFERROR, IFNA, AGGREGATE options).
+- Range/array arguments are evaluated element-wise or consumed as a whole depending on the function semantics.
 
 ## Error Handling
 | Error | When |
 |---|---|
-| `#VALUE!` | Provider throws. |
-| `#N/A` | No `external.translate` provider is configured. |
+| `#VALUE!` | Argument type or count is invalid, or an argument cannot be coerced. |
+| `#NUM!` | A numeric argument is outside the allowed domain. |
+| `#DIV/0!` | Division by zero or an empty denominator. |
+| `#N/A` | Lookup/match not found or optional fallback triggered. |
+| `#REF!` | Invalid cell/range reference or out-of-bounds index. |
+| `#NAME?` | Function name not recognized. |
+| `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-```excel
-=TRANSLATE("hello", "en", "ja")
-```
+TBD — add representative Excel examples during implementation.
 
 ## Test Cases
 | Input | Expected | Purpose |
 |---|---|---|
-| `=TRANSLATE("hello","en","ja")` with provider returning `"こんにちは"` | `"こんにちは"` | Provider invoked |
-| `=TRANSLATE("hello")` with no provider | `#N/A` | Missing provider |
+| Normal inputs | Correct numeric/text result | Golden path |
+| Boundary values (0, 1, negatives, very large/small) | Correct or `#NUM!` | Domain edges |
+| Blank/empty cells | Coerced `0` or `""` as appropriate | Blank handling |
+| Text that cannot be coerced | `#VALUE!` | Error propagation |
+| Too few/too many arguments | `#VALUE!` | Arity validation |
 
 ## Implementation Notes
-- Implemented in `src/functions/builtins-missing.ts`.
-- Synchronous-only: the provider must return the translation synchronously (e.g. from a cache). The library does not perform async translation API calls.
+Return `#N/A` or `#VALUE!` unsupported. Do not attempt external network/OLAP calls.
 
 ## References
-- [Microsoft Excel TRANSLATE function](https://support.microsoft.com/en-us/office/translate-function)
+- [Microsoft Excel function documentation](https://support.microsoft.com/en-us/office/excel-functions-by-category-5f91f4e9-7b42-46d2-9bd1-63f26a86c0eb)

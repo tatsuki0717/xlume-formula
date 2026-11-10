@@ -7,34 +7,28 @@
 - **Volatile:** No
 
 ## Description
-Calculates distance between two dates.<br>Supported units: "D" (days), "M" (months), "Y" (years), "MD" (days ignoring months and years), "YM" (months ignoring years), or "YD" (days ignoring years).
+date difference
 
 ## Excel Syntax
 ```excel
-=DATEDIF(start_date, end_date, unit)
+=DATEDIF()
 ```
 
 ## Arguments
-| # | Name | Type | Required? | Description |
-|---|---|---|---|---|
-| 1 | start_date | any | Yes | The earlier (start) date of the period; must not be later than end_date. |
-| 2 | end_date | any | Yes | The later (end) date of the period. |
-| 3 | unit | any | Yes | A code selecting the unit of the result: "D", "M", "Y", "MD", "YM", or "YD". |
+This function takes no arguments.
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Calculates distance between two dates.<br>Supported units: "D" (days), "M" (months), "Y" (years), "MD" (days ignoring months and years), "YM" (months ignoring years), or "YD" (days ignoring years).
+date difference
 
 High-level algorithm:
-1. Validate argument count and coerce each argument according to its documented type.
-2. Propagate any input errors (`#VALUE!`, `#NUM!`, etc.) before computation.
-3. Execute the core calculation described below.
-4. Apply final coercion to the documented return type and return the result.
+1. Execute the core calculation.
+2. Return the result.
 
 Core calculation:
-> Calculates distance between two dates.<br>Supported units: "D" (days), "M" (months), "Y" (years), "MD" (days ignoring months and years), "YM" (months ignoring years), or "YD" (days ignoring years).
+> date difference
 
 
 ## Type Coercion & Edge Cases
@@ -56,8 +50,7 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=DATEDIF(DATE(2020,1,1), DATE(2020,6,15), "M")`
-- `=DATEDIF(A1, A2, "D")`
+TBD — add representative Excel examples during implementation.
 
 ## Test Cases
 | Input | Expected | Purpose |

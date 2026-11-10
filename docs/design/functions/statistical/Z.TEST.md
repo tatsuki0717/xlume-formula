@@ -7,25 +7,25 @@
 - **Volatile:** No
 
 ## Description
-Returns z-test value for a dataset.
+Returns the one-tailed P-value of a z-test.
 
 ## Excel Syntax
 ```excel
-=Z.TEST(array, x, [sigma])
+=Z.TEST(array, x, sigma)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | array | number \| range/array | Yes | The range or array of sample values to test against. |
-| 2 | x | number \| range/array | Yes | The value to test. |
-| 3 | sigma | number \| range/array | No | The known population standard deviation; when omitted, the sample standard deviation of array is used instead. |
+| 1 | array | number \| range/array | Yes | Is the array or range of data against which to test X. |
+| 2 | x | number \| range/array | Yes | Is the value to test. |
+| 3 | sigma | number \| range/array | Yes | Is the population (known) standard deviation. If omitted, the sample standard deviation is used. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns z-test value for a dataset.
+Returns the one-tailed P-value of a z-test.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -34,7 +34,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns z-test value for a dataset.
+> Returns the one-tailed P-value of a z-test.
 
 
 ## Type Coercion & Edge Cases
@@ -56,8 +56,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=Z.TEST(A1:A10, 5)`
-- `=Z.TEST(A1:A10, 5, 2)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=Z.TEST(..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

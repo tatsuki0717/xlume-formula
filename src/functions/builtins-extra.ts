@@ -799,6 +799,9 @@ export function registerExtraFunctions(add: (f: ExcelFunction) => void): void {
   add(fn("VARP", "none", (args) => populationVariance(toNumbers(flattenArgs(args)))));
   add(fn("VAR.P", "none", (args) => populationVariance(toNumbers(flattenArgs(args)))));
 
-  // Stub for unsupported but commonly referenced functions
-  add(fn("GETPIVOTDATA", "none", () => err(ExcelErrorCode.NA)));
+  // GETPIVOTDATA requires an external pivot table source; not implemented in the core engine.
+  add(fn("GETPIVOTDATA", "none", (args) => {
+    if (args.length < 2) return err(ExcelErrorCode.Value);
+    return err(ExcelErrorCode.NA);
+  }));
 }

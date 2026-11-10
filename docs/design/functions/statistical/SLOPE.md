@@ -7,33 +7,28 @@
 - **Volatile:** No
 
 ## Description
-Returns the slope of a linear regression line.
+regression slope
 
 ## Excel Syntax
 ```excel
-=SLOPE(known_y, known_x)
+=SLOPE()
 ```
 
 ## Arguments
-| # | Name | Type | Required? | Description |
-|---|---|---|---|---|
-| 1 | known_y | range/array | Yes | The range of dependent (y) values. |
-| 2 | known_x | range/array | Yes | The range of independent (x) values, matching the size of array1. |
+This function takes no arguments.
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the slope of a linear regression line.
+regression slope
 
 High-level algorithm:
-1. Validate argument count and coerce each argument according to its documented type.
-2. Propagate any input errors (`#VALUE!`, `#NUM!`, etc.) before computation.
-3. Execute the core calculation described below.
-4. Apply final coercion to the documented return type and return the result.
+1. Execute the core calculation.
+2. Return the result.
 
 Core calculation:
-> Returns the slope of a linear regression line.
+> regression slope
 
 
 ## Type Coercion & Edge Cases
@@ -55,7 +50,7 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=SLOPE(A1:A10, B1:B10)`
+TBD — add representative Excel examples during implementation.
 
 ## Test Cases
 | Input | Expected | Purpose |

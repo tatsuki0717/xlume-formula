@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Converts a value to a number.
+Converts non-number value to a number, dates to serial numbers, TRUE to 1, anything else to 0 (zero).
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Converts a value to a number.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | value | number \| string \| boolean \| range/array | Yes | The value to convert: numbers and dates return themselves, TRUE/FALSE return 1/0, and text or empty values return 0. |
+| 1 | value | number \| string \| boolean \| range/array | Yes | Is the value you want converted. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Converts a value to a number.
+Converts non-number value to a number, dates to serial numbers, TRUE to 1, anything else to 0 (zero).
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Converts a value to a number.
+> Converts non-number value to a number, dates to serial numbers, TRUE to 1, anything else to 0 (zero).
 
 
 ## Type Coercion & Edge Cases
@@ -54,9 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=N(TRUE())`
-- `=N("5")`
-- `=N(A1)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=N(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

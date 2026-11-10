@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Capitalizes words given text string.
+Converts a text string to proper case; the first letter in each word to uppercase, and all other letters to lowercase.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Capitalizes words given text string.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | text | string \| range/array | Yes | The text whose words are capitalized, with the first letter of each word converted to uppercase and the rest to lowercase. |
+| 1 | text | string \| range/array | Yes | Is text enclosed in quotation marks, a formula that returns text, or a reference to a cell containing text to partially capitalize. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Capitalizes words given text string.
+Converts a text string to proper case; the first letter in each word to uppercase, and all other letters to lowercase.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Capitalizes words given text string.
+> Converts a text string to proper case; the first letter in each word to uppercase, and all other letters to lowercase.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=PROPER("hello world")`
-- `=PROPER(A1)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=PROPER(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

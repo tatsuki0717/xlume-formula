@@ -7,33 +7,28 @@
 - **Volatile:** No
 
 ## Description
-Returns standard error for predicted of the predicted y value for each x value.
+std error of regression
 
 ## Excel Syntax
 ```excel
-=STEYX(known_y, known_x)
+=STEYX()
 ```
 
 ## Arguments
-| # | Name | Type | Required? | Description |
-|---|---|---|---|---|
-| 1 | known_y | range/array | Yes | The range of dependent (y) values. |
-| 2 | known_x | range/array | Yes | The range of independent (x) values, matching the size of array1. |
+This function takes no arguments.
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns standard error for predicted of the predicted y value for each x value.
+std error of regression
 
 High-level algorithm:
-1. Validate argument count and coerce each argument according to its documented type.
-2. Propagate any input errors (`#VALUE!`, `#NUM!`, etc.) before computation.
-3. Execute the core calculation described below.
-4. Apply final coercion to the documented return type and return the result.
+1. Execute the core calculation.
+2. Return the result.
 
 Core calculation:
-> Returns standard error for predicted of the predicted y value for each x value.
+> std error of regression
 
 
 ## Type Coercion & Edge Cases
@@ -55,7 +50,7 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=STEYX(A1:A10, B1:B10)`
+TBD — add representative Excel examples during implementation.
 
 ## Test Cases
 | Input | Expected | Purpose |

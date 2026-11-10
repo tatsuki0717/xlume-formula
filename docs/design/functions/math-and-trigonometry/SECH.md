@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns the hyperbolic secant of the given value.
+Returns the hyperbolic secant of an angle.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Returns the hyperbolic secant of the given value.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number | number \| range/array | Yes | A number whose hyperbolic secant is returned. |
+| 1 | number | number \| range/array | Yes | Is the angle in radians for which you want the hyperbolic secant. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the hyperbolic secant of the given value.
+Returns the hyperbolic secant of an angle.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the hyperbolic secant of the given value.
+> Returns the hyperbolic secant of an angle.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=SECH(0)`
-- `=SECH(1)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=SECH(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

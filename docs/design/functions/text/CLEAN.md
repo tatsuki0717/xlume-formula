@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns text that has been "cleaned" of line breaks and other non-printable characters.
+Removes all nonprintable characters from text.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Returns text that has been "cleaned" of line breaks and other non-printable char
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | text | string \| range/array | Yes | The text to strip of non-printable characters. |
+| 1 | text | string \| range/array | Yes | Is any worksheet information from which you want to remove nonprintable characters. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns text that has been "cleaned" of line breaks and other non-printable characters.
+Removes all nonprintable characters from text.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns text that has been "cleaned" of line breaks and other non-printable characters.
+> Removes all nonprintable characters from text.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=CLEAN(A1)`
-- `=CLEAN("Hello"&CHAR(10)&"World")`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=CLEAN(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

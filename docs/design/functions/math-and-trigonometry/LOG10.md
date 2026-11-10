@@ -17,7 +17,7 @@ Returns the base-10 logarithm of a number.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number | number \| range/array | Yes | A positive number whose base-10 logarithm is returned. |
+| 1 | number | number \| range/array | Yes | Is the positive real number for which you want the base-10 logarithm. |
 
 ## Returns
 Scalar or array depending on arguments
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=LOG10(100)`
-- `=LOG10(1000)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=LOG10(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

@@ -7,34 +7,28 @@
 - **Volatile:** No
 
 ## Description
-Joins text from multiple strings and/or ranges with a delimiter. Supports array/range delimiters that cycle through gaps. When ignore_empty is TRUE, empty strings are skipped. Returns #VALUE! if result exceeds 32,767 characters.
+join with delimiter
 
 ## Excel Syntax
 ```excel
-=TEXTJOIN(delimiter, ignore_empty, text1, [text2], ...)
+=TEXTJOIN()
 ```
 
 ## Arguments
-| # | Name | Type | Required? | Description |
-|---|---|---|---|---|
-| 1 | delimiter | string \| range/array | Yes | The text (or range/array of texts, cycled through the gaps) inserted between joined values. |
-| 2 | ignore_empty | boolean | Yes | When TRUE, empty strings among the joined values are skipped instead of producing an extra delimiter. |
-| 3 | text1 | string \| range/array (repeatable) | Yes | A text value, cell reference, or range to join. Further text values or ranges can be passed as additional arguments and are appended in order. |
+This function takes no arguments.
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Joins text from multiple strings and/or ranges with a delimiter. Supports array/range delimiters that cycle through gaps. When ignore_empty is TRUE, empty strings are skipped. Returns #VALUE! if result exceeds 32,767 characters.
+join with delimiter
 
 High-level algorithm:
-1. Validate argument count and coerce each argument according to its documented type.
-2. Propagate any input errors (`#VALUE!`, `#NUM!`, etc.) before computation.
-3. Execute the core calculation described below.
-4. Apply final coercion to the documented return type and return the result.
+1. Execute the core calculation.
+2. Return the result.
 
 Core calculation:
-> Joins text from multiple strings and/or ranges with a delimiter. Supports array/range delimiters that cycle through gaps. When ignore_empty is TRUE, empty strings are skipped. Returns #VALUE! if result exceeds 32,767 characters.
+> join with delimiter
 
 
 ## Type Coercion & Edge Cases
@@ -56,8 +50,7 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=TEXTJOIN(", ", TRUE(), A1:A3)`
-- `=TEXTJOIN("-", FALSE(), "a", "b", "c")`
+TBD — add representative Excel examples during implementation.
 
 ## Test Cases
 | Input | Expected | Purpose |

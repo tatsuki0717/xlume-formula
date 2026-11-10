@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns the integer part of a number by discarding its fractional part.
+Rounds a number down to the nearest integer.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Returns the integer part of a number by discarding its fractional part.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number | number \| range/array | Yes | The number to convert to an integer by dropping its fractional part (rounding toward zero, so INT(-8.9) is -8). |
+| 1 | number | number \| range/array | Yes | Is the real number you want to round down to an integer. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the integer part of a number by discarding its fractional part.
+Rounds a number down to the nearest integer.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the integer part of a number by discarding its fractional part.
+> Rounds a number down to the nearest integer.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=INT(8.9)`
-- `=INT(-8.9)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=INT(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

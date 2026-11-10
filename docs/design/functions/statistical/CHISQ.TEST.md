@@ -7,33 +7,28 @@
 - **Volatile:** No
 
 ## Description
-Returns chisquared-test value for a dataset.
+chi-squared test
 
 ## Excel Syntax
 ```excel
-=CHISQ.TEST(array1, array2)
+=CHISQ.TEST()
 ```
 
 ## Arguments
-| # | Name | Type | Required? | Description |
-|---|---|---|---|---|
-| 1 | array1 | range/array | Yes | The range of observed values. |
-| 2 | array2 | range/array | Yes | The range of expected values, matching the size of array1. |
+This function takes no arguments.
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns chisquared-test value for a dataset.
+chi-squared test
 
 High-level algorithm:
-1. Validate argument count and coerce each argument according to its documented type.
-2. Propagate any input errors (`#VALUE!`, `#NUM!`, etc.) before computation.
-3. Execute the core calculation described below.
-4. Apply final coercion to the documented return type and return the result.
+1. Execute the core calculation.
+2. Return the result.
 
 Core calculation:
-> Returns chisquared-test value for a dataset.
+> chi-squared test
 
 
 ## Type Coercion & Edge Cases
@@ -55,7 +50,7 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=CHISQ.TEST(A1:B3, D1:E3)`
+TBD — add representative Excel examples during implementation.
 
 ## Test Cases
 | Input | Expected | Purpose |

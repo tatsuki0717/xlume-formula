@@ -4,9 +4,9 @@ Generate per-function design Markdown documents for xlume-formula.
 
 Inputs:
   - FUNCTIONS-reference.md (canonical function list with category/priority tags)
-  - HyperFormula metadata TS files (descriptions, parameters, examples)
+  - HyperFormula metadata TS files (structural metadata only: names, types, signatures)
   - excel-functions-office-js.yml (official signatures)
-  - /tmp/formulajs source (summary + args + param docs)
+  - /tmp/formulajs source (structural metadata only: names, types, signatures)
   - scripts/manual_specs.py (signatures for functions missing from the above)
 
 Outputs:
@@ -160,44 +160,21 @@ def extract_balanced(text, start, open_ch='{', close_ch='}'):
 
 
 def parse_function_block(block):
-    """Extract fields from a single HyperFormula function object literal."""
+    """Extract structural fields (category and parameter names) from a single
+    HyperFormula function object literal. Prose fields (shortDescription,
+    examples, documentationUrl, parameter descriptions) are intentionally not
+    captured so generated docs do not copy third-party text."""
     result = {}
     m = re.search(r"category\s*:\s*'([^']*)'", block)
     if m:
         result['category'] = m.group(1)
-    m = re.search(r"shortDescription\s*:\s*'((?:\\'|[^'])*)'", block)
-    if m:
-        result['shortDescription'] = m.group(1).replace("\\'", "'")
-
     params = []
-    pattern = r"\{name\s*:\s*'((?:\\'|[^'])*)'\s*,\s*description\s*:\s*'((?:\\'|[^'])*)'\}"
-    for pm in re.finditer(pattern, block):
-        params.append({
-            'name': pm.group(1).replace("\\'", "'"),
-            'description': pm.group(2).replace("\\'", "'"),
-        })
+    for pm in re.finditer(r"\{name\s*:\s*'((?:\\'|[^'])*)'", block):
+        params.append({'name': pm.group(1).replace("\\'", "'"), 'description': ''})
     if not params:
-        for pm in re.finditer(r'\{name\s*:\s*"((?:\\"|[^"])*)"\s*,\s*description\s*:\s*"((?:\\"|[^"])*)"\}', block):
-            params.append({
-                'name': pm.group(1).replace('\\"', '"'),
-                'description': pm.group(2).replace('\\"', '"'),
-            })
+        for pm in re.finditer(r'\{name\s*:\s*"((?:\\"|[^"])*)"', block):
+            params.append({'name': pm.group(1).replace('\\"', '"'), 'description': ''})
     result['parameters'] = params
-
-    examples = []
-    m = re.search(r"examples\s*:\s*\[([^\[\]]*)\]", block, re.DOTALL)
-    if m:
-        arr = m.group(1)
-        for em in re.finditer(r"'((?:\\'|[^'])*)'", arr):
-            examples.append(em.group(1).replace("\\'", "'"))
-        if not examples:
-            for em in re.finditer(r'"((?:\\"|[^"])*)"', arr):
-                examples.append(em.group(1).replace('\\"', '"'))
-    result['examples'] = examples
-
-    m = re.search(r"documentationUrl\s*:\s*'([^']*)'", block)
-    if m:
-        result['documentationUrl'] = m.group(1)
     return result
 
 
@@ -265,6 +242,9 @@ def parse_office_js_yaml(path):
 # ---------------------------------------------------------------------------
 
 def parse_formulajs(src_dir):
+    """Parse formula.js source for structural names/signatures only.
+    JSDoc prose (summary and parameter descriptions) is intentionally not
+    captured to avoid copying third-party text into generated docs."""
     funcs = {}
     for fname in os.listdir(src_dir):
         if not fname.endswith('.js'):
@@ -288,14 +268,8 @@ def parse_formulajs(src_dir):
             if not jsdocs:
                 continue
             jsdoc = jsdocs[-1]
-            summary = ''
-            for line in jsdoc.split('\n'):
-                line = line.strip().lstrip('*').strip()
-                if line and not line.startswith('@'):
-                    summary = line
-                    break
             params = []
-            for pm in re.finditer(r'^[^\S\n\r]*\*[^\S\n\r]*@param[^\S\n\r]*\{([^}]*)\}[^\S\n\r]+(\S+)[^\S\n\r]*(.*)$', jsdoc, re.MULTILINE):
+            for pm in re.finditer(r'^[^\S\n\r]*\*[^\S\n\r]*@param[^\S\n\r]*\{([^}]*)\}[^\S\n\r]+(\S+)', jsdoc, re.MULTILINE):
                 pname = pm.group(2).strip()
                 optional = False
                 if pname.startswith('[') and pname.endswith(']'):
@@ -304,12 +278,12 @@ def parse_formulajs(src_dir):
                 params.append({
                     'type': pm.group(1).strip(),
                     'name': pname,
-                    'description': pm.group(3).strip(),
+                    'description': '',
                     'optional': optional,
                 })
             funcs[name] = {
                 'category': cat,
-                'shortDescription': summary,
+                'shortDescription': '',
                 'parameters': params,
                 'examples': [],
             }
@@ -513,8 +487,8 @@ def merge_param_lists(name, manual_params, hf_params, yaml_params, fjs_params):
             name_candidates.append(sources['hf'][i]['name'])
         p['name'] = choose_param_name(name_candidates)
 
-        # Description: manual > hf > yaml > fjs
-        for src in ('manual', 'hf', 'yaml', 'fjs'):
+        # Description: manual > yaml (avoid copying HyperFormula/formula.js prose)
+        for src in ('manual', 'yaml'):
             if i < len(sources[src]):
                 desc = sources[src][i].get('description', '')
                 if desc:
@@ -581,8 +555,8 @@ def merge_metadata(name, rec, hf, yaml_map, fjs_map, manual):
     yaml_entry = yaml_map.get(name)
     fjs_entry = fjs_map.get(name)
 
-    # Short description: manual > hf > yaml > fjs > reference line
-    for entry in (manual_entry, hf_entry, yaml_entry, fjs_entry):
+    # Short description: manual > yaml > reference line (avoid copying third-party prose)
+    for entry in (manual_entry, yaml_entry):
         if entry and entry.get('shortDescription'):
             spec['shortDescription'] = entry['shortDescription']
             break
@@ -600,8 +574,8 @@ def merge_metadata(name, rec, hf, yaml_map, fjs_map, manual):
             p['repeat'] = True
     spec['parameters'] = merged
 
-    # Examples: manual > hf > fjs > yaml
-    for entry in (manual_entry, hf_entry, fjs_entry, yaml_entry):
+    # Examples: manual > yaml (avoid copying third-party examples)
+    for entry in (manual_entry, yaml_entry):
         if entry and entry.get('examples'):
             spec['examples'] = entry['examples']
             break
@@ -949,10 +923,9 @@ Each file records:
 ## Sources
 
 - `FUNCTIONS-reference.md` — canonical function list and priority tags.
-- HyperFormula source metadata — descriptions, parameters, examples.
-- `excel-functions-office-js.yml` — Office.js signatures.
-- `formulajs` source — fallback summaries and argument names.
-- `scripts/manual_specs.py` — manually authored signatures for functions not covered above.
+- `excel-functions-office-js.yml` — Office.js descriptions, signatures, and parameter metadata (MIT).
+- `scripts/manual_specs.py` — manually authored signatures and algorithms for functions not covered above.
+- HyperFormula / formula.js source metadata is used only for structural names/signatures when available locally; descriptions and examples are intentionally not copied from those sources.
 '''
 
 
@@ -1018,9 +991,15 @@ def main():
     FUNC_DIR.mkdir(parents=True, exist_ok=True)
 
     records = parse_reference(REF_FILE)
-    hf = parse_hyperformula_categories(HF_DIR)
+    try:
+        hf = parse_hyperformula_categories(HF_DIR) if HF_DIR.exists() else {}
+    except FileNotFoundError:
+        hf = {}
     yaml_map = parse_office_js_yaml(YAML_FILE)
-    fjs_map = parse_formulajs(FJS_DIR)
+    try:
+        fjs_map = parse_formulajs(FJS_DIR) if FJS_DIR.exists() else {}
+    except FileNotFoundError:
+        fjs_map = {}
     manual = getattr(manual_specs, 'EXTRA_SPECS', {})
 
     specs = {}

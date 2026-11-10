@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns variance of a population.
+Calculates variance based on the entire population (ignores logical values and text in the population).
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Returns variance of a population.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | value1 | number \| range/array (repeatable) | Yes | A number, cell reference, or range included in the population variance calculation. Further values or ranges can be passed as additional arguments. |
+| 1 | values | number \| range/array (repeatable) | Yes | List of parameters, whose elements are 1 to 255 numeric arguments corresponding to a population. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns variance of a population.
+Calculates variance based on the entire population (ignores logical values and text in the population).
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns variance of a population.
+> Calculates variance based on the entire population (ignores logical values and text in the population).
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=VAR.P(1, 2, 3)`
-- `=VAR.P(A1:A10)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=VAR.P(1, 2, 3)`
 
 ## Test Cases
 | Input | Expected | Purpose |

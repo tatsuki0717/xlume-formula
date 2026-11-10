@@ -7,27 +7,27 @@
 - **Volatile:** No
 
 ## Description
-Returns the depreciation of an asset for a period using the fixed-declining balance method.
+Returns the depreciation of an asset for a specified period using the fixed-declining balance method.
 
 ## Excel Syntax
 ```excel
-=DB(cost, salvage, life, period, [month])
+=DB(cost, salvage, life, period, month)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | cost | number \| range/array | Yes | The initial cost of the asset. |
-| 2 | salvage | number \| range/array | Yes | The value of the asset at the end of its depreciation. |
-| 3 | life | number \| range/array | Yes | The number of periods over which the asset is depreciated. |
-| 4 | period | number \| range/array | Yes | The period, in the same units as life, for which depreciation is calculated. |
-| 5 | month | number \| range/array | No | The number of months in the first year; defaults to 12 (a full year). |
+| 1 | cost | number \| range/array | Yes | Is the initial cost of the asset. |
+| 2 | salvage | number \| range/array | Yes | Is the salvage value at the end of the life of the asset. |
+| 3 | life | number \| range/array | Yes | Is the number of periods over which the asset is being depreciated (sometimes called the useful life of the asset). |
+| 4 | period | number \| range/array | Yes | Is the period for which you want to calculate the depreciation. Period must use the same units as Life. |
+| 5 | month | number \| range/array | Yes | Is the number of months in the first year. If month is omitted, it is assumed to be 12. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the depreciation of an asset for a period using the fixed-declining balance method.
+Returns the depreciation of an asset for a specified period using the fixed-declining balance method.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -36,7 +36,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the depreciation of an asset for a period using the fixed-declining balance method.
+> Returns the depreciation of an asset for a specified period using the fixed-declining balance method.
 
 
 ## Type Coercion & Edge Cases
@@ -58,8 +58,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=DB(10000, 1000, 6, 2)`
-- `=DB(10000, 1000, 6, 1, 7)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=DB(..., ..., ..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

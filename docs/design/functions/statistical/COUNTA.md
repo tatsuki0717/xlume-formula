@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Counts how many values are in the list of arguments.
+Counts the number of cells in a range that are not empty.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Counts how many values are in the list of arguments.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | value1 | number \| range/array (repeatable) | Yes | A value, cell reference, or range counted if it is not empty. Further values or ranges can be passed as additional arguments. |
+| 1 | values | number \| range/array (repeatable) | Yes | List of parameters, whose elements are 1 to 255 arguments representing the values and cells you want to count. Values can be any type of information. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Counts how many values are in the list of arguments.
+Counts the number of cells in a range that are not empty.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Counts how many values are in the list of arguments.
+> Counts the number of cells in a range that are not empty.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=COUNTA(A1:A10)`
-- `=COUNTA(1, "text", TRUE())`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=COUNTA(1, 2, 3)`
 
 ## Test Cases
 | Input | Expected | Purpose |

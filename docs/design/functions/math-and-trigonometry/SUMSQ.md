@@ -7,23 +7,23 @@
 - **Volatile:** No
 
 ## Description
-Returns the sum of the squares of the arguments.
+Returns the sum of the squares of the arguments. The arguments can be numbers, arrays, names, or references to cells that contain numbers.
 
 ## Excel Syntax
 ```excel
-=SUMSQ(number1, [number2], ...)
+=SUMSQ(value1, [value2], ...)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number1 | number \| range/array (repeatable) | Yes | A number, cell reference, or range whose values are squared and summed. Further numbers or ranges can be passed as additional arguments. |
+| 1 | values | number \| range/array (repeatable) | Yes | List of parameters, whose elements are 1 to 255 numbers, arrays, names, or references to arrays for which you want the sum of the squares. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the sum of the squares of the arguments.
+Returns the sum of the squares of the arguments. The arguments can be numbers, arrays, names, or references to cells that contain numbers.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the sum of the squares of the arguments.
+> Returns the sum of the squares of the arguments. The arguments can be numbers, arrays, names, or references to cells that contain numbers.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=SUMSQ(3, 4)`
-- `=SUMSQ(A1:A10)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=SUMSQ(1, 2, 3)`
 
 ## Test Cases
 | Input | Expected | Purpose |

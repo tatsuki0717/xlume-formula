@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns length of a given text.
+Returns the number of characters in a text string.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Returns length of a given text.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | text | string \| range/array | Yes | The text whose number of characters is counted. |
+| 1 | text | string \| range/array | Yes | Is the text whose length you want to find. Spaces count as characters. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns length of a given text.
+Returns the number of characters in a text string.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns length of a given text.
+> Returns the number of characters in a text string.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=LEN("Hello")`
-- `=LEN(A1)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=LEN(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

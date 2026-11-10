@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns number of periods to reach specific value.
+Returns the number of periods required by an investment to reach a specified value.
 
 ## Excel Syntax
 ```excel
@@ -17,15 +17,15 @@ Returns number of periods to reach specific value.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | rate | number \| range/array | Yes | The fixed interest rate per period. |
-| 2 | pv | number \| range/array | Yes | The present value of the investment. |
-| 3 | fv | number \| range/array | Yes | The desired future value of the investment. |
+| 1 | rate | number \| range/array | Yes | Is the interest rate per period. |
+| 2 | pv | number \| range/array | Yes | Is the present value of the investment. |
+| 3 | fv | number \| range/array | Yes | Is the desired future value of the investment. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns number of periods to reach specific value.
+Returns the number of periods required by an investment to reach a specified value.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -34,7 +34,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns number of periods to reach specific value.
+> Returns the number of periods required by an investment to reach a specified value.
 
 
 ## Type Coercion & Edge Cases
@@ -56,8 +56,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=PDURATION(0.05, 1000, 2000)`
-- `=PDURATION(0.08, 500, 1500)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=PDURATION(..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

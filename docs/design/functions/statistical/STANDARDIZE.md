@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns normalized value wrt expected value and standard deviation.
+Returns a normalized value from a distribution characterized by a mean and standard deviation.
 
 ## Excel Syntax
 ```excel
@@ -17,15 +17,15 @@ Returns normalized value wrt expected value and standard deviation.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | x | number \| range/array | Yes | The value to normalize. |
-| 2 | mean | number \| range/array | Yes | The arithmetic mean of the distribution. |
-| 3 | standard_dev | number \| range/array | Yes | The standard deviation of the distribution; must be greater than 0. |
+| 1 | x | number \| range/array | Yes | Is the value you want to normalize. |
+| 2 | mean | number \| range/array | Yes | Is the arithmetic mean of the distribution. |
+| 3 | standard_dev | number \| range/array | Yes | Is the standard deviation of the distribution, a positive number. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns normalized value wrt expected value and standard deviation.
+Returns a normalized value from a distribution characterized by a mean and standard deviation.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -34,7 +34,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns normalized value wrt expected value and standard deviation.
+> Returns a normalized value from a distribution characterized by a mean and standard deviation.
 
 
 ## Type Coercion & Edge Cases
@@ -56,7 +56,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=STANDARDIZE(5, 3, 2)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=STANDARDIZE(..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

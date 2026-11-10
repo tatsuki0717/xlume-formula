@@ -7,28 +7,28 @@
 - **Volatile:** No
 
 ## Description
-Returns the interest rate per period of an annuity.
+Returns the interest rate per period of a loan or an investment. For example, use 6%/4 for quarterly payments at 6% APR.
 
 ## Excel Syntax
 ```excel
-=RATE(nper, pmt, pv, [fv], [type], [guess])
+=RATE(nper, pmt, pv, fv, type, guess)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | nper | number \| range/array | Yes | The total number of payment periods. |
-| 2 | pmt | number \| range/array | Yes | The payment made each period; paid-out amounts are negative. |
-| 3 | pv | number \| range/array | Yes | The present value, i.e. the loan principal or initial investment. |
-| 4 | fv | number \| range/array | No | The future value, i.e. the desired cash balance after the last payment; defaults to 0. |
-| 5 | type | number \| range/array | No | When payments are due: 0 for the end of each period, 1 for the beginning; defaults to 0. |
-| 6 | guess | number \| range/array | No | An estimated rate used as the starting point for the iterative calculation; defaults to 0.1 (10%). |
+| 1 | nper | number \| range/array | Yes | Is the total number of payment periods for the loan or investment. |
+| 2 | pmt | number \| range/array | Yes | Is the payment made each period and cannot change over the life of the loan or investment. |
+| 3 | pv | number \| range/array | Yes | Is the present value: the total amount that a series of future payments is worth now. |
+| 4 | fv | number \| range/array | Yes | Is the future value, or a cash balance you want to attain after the last payment is made. If omitted, uses Fv = 0. |
+| 5 | type | number \| range/array | Yes | Is a logical value: payment at the beginning of the period = 1; payment at the end of the period = 0 or omitted. |
+| 6 | guess | number \| range/array | Yes | Is your guess for what the rate will be; if omitted, Guess = 0.1 (10 percent). |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the interest rate per period of an annuity.
+Returns the interest rate per period of a loan or an investment. For example, use 6%/4 for quarterly payments at 6% APR.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -37,7 +37,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the interest rate per period of an annuity.
+> Returns the interest rate per period of a loan or an investment. For example, use 6%/4 for quarterly payments at 6% APR.
 
 
 ## Type Coercion & Edge Cases
@@ -59,8 +59,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=RATE(60, -100, 5000)`
-- `=RATE(360, -1000, 200000, 0, 0, 0.05)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=RATE(..., ..., ..., ..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |
@@ -70,17 +71,6 @@ Core calculation:
 | Blank/empty cells | Coerced `0` or `""` as appropriate | Blank handling |
 | Text that cannot be coerced | `#VALUE!` | Error propagation |
 | Too few/too many arguments | `#VALUE!` | Arity validation |
-
-## Verified Edge Cases
-- Exact zero-interest scenarios: if `pv + pmt * nper + fv = 0` then `r = 0` satisfies the equation and Excel returns `0` without requiring iteration.
-- A naive Newton-Raphson implementation may return `#NUM!` for these cases because the derivative term becomes degenerate; detect the balanced cash-flow case and short-circuit to `0`.
-- When `nper = 0` Excel returns `-fv / pv` (or the ratio of future to present value).
-
-### Additional test cases
-| Input | Expected | Purpose |
-|---|---|---|
-| `=RATE(10, -1000, 10000, 0, 0, 0.1)` | `0` | Exact zero-interest repayment |
-| `=RATE(0, 0, 10000, -10000)` | `0` | Zero periods with offsetting PV/FV |
 
 ## Implementation Notes
 Follow standard Excel semantics. Add inline KAT tests and, if the behavior depends on cell layout, a workbook fixture.

@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns k-th smallest value in a range.
+Returns the k-th smallest value in a data set. For example, the fifth smallest number.
 
 ## Excel Syntax
 ```excel
@@ -17,14 +17,14 @@ Returns k-th smallest value in a range.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | array | number \| range/array | Yes | The range of values to evaluate. |
-| 2 | k | number \| range/array | Yes | The position, from the smallest, of the value to return; 1 returns the smallest value. |
+| 1 | array | number \| range/array | Yes | Is an array or range of numerical data for which you want to determine the k-th smallest value. |
+| 2 | k | number \| range/array | Yes | Is the position (from the smallest) in the array or range of the value to return. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns k-th smallest value in a range.
+Returns the k-th smallest value in a data set. For example, the fifth smallest number.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -33,7 +33,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns k-th smallest value in a range.
+> Returns the k-th smallest value in a data set. For example, the fifth smallest number.
 
 
 ## Type Coercion & Edge Cases
@@ -55,8 +55,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=SMALL(A1:A10, 1)`
-- `=SMALL(A1:A10, 3)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=SMALL(..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

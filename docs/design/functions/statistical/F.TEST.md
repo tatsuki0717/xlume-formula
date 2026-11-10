@@ -7,33 +7,28 @@
 - **Volatile:** No
 
 ## Description
-Returns f-test value for a dataset.
+F test
 
 ## Excel Syntax
 ```excel
-=F.TEST(array1, array2)
+=F.TEST()
 ```
 
 ## Arguments
-| # | Name | Type | Required? | Description |
-|---|---|---|---|---|
-| 1 | array1 | range/array | Yes | The first range or array of sample values. |
-| 2 | array2 | range/array | Yes | The second range or array of sample values. |
+This function takes no arguments.
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns f-test value for a dataset.
+F test
 
 High-level algorithm:
-1. Validate argument count and coerce each argument according to its documented type.
-2. Propagate any input errors (`#VALUE!`, `#NUM!`, etc.) before computation.
-3. Execute the core calculation described below.
-4. Apply final coercion to the documented return type and return the result.
+1. Execute the core calculation.
+2. Return the result.
 
 Core calculation:
-> Returns f-test value for a dataset.
+> F test
 
 
 ## Type Coercion & Edge Cases
@@ -55,7 +50,7 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=F.TEST(A1:A10, B1:B10)`
+TBD — add representative Excel examples during implementation.
 
 ## Test Cases
 | Input | Expected | Purpose |

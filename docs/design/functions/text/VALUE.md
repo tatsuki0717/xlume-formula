@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Parses a number, date, time, datetime, currency, or percentage from a text string.
+Converts a text string that represents a number to a number.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Parses a number, date, time, datetime, currency, or percentage from a text strin
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | text | string \| boolean \| number \| range/array | Yes | The text to parse as a number, date, time, datetime, currency, or percentage. |
+| 1 | text | string \| boolean \| number \| range/array | Yes | Is the text enclosed in quotation marks or a reference to a cell containing the text you want to convert. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Parses a number, date, time, datetime, currency, or percentage from a text string.
+Converts a text string that represents a number to a number.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Parses a number, date, time, datetime, currency, or percentage from a text string.
+> Converts a text string that represents a number to a number.
 
 
 ## Type Coercion & Edge Cases
@@ -54,9 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=VALUE("123")`
-- `=VALUE("50%")`
-- `=VALUE(A1)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=VALUE(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

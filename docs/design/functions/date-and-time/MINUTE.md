@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns minute component of given time.
+Returns the minute, a number from 0 to 59.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Returns minute component of given time.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | serial_number | number \| range/array | Yes | A time value (fraction of a full day) whose minute component is returned. |
+| 1 | serial_number | number \| range/array | Yes | Is a number in the date-time code used by Microsoft Excel or text in time format, such as 16:48:00 or 4:48:00 PM. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns minute component of given time.
+Returns the minute, a number from 0 to 59.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns minute component of given time.
+> Returns the minute, a number from 0 to 59.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=MINUTE(TIME(14, 30, 0))`
-- `=MINUTE(A1)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=MINUTE(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

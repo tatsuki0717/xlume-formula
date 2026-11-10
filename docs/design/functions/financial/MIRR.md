@@ -7,25 +7,25 @@
 - **Volatile:** No
 
 ## Description
-Returns the modified internal rate of return for a series of cash flows.
+Returns the internal rate of return for a series of periodic cash flows, considering both cost of investment and interest on reinvestment of cash.
 
 ## Excel Syntax
 ```excel
-=MIRR(flows, finance_rate, reinvest_rate)
+=MIRR(values, finance_rate, reinvest_rate)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | flows | range/array | Yes | A range of cash flow values; must contain at least one negative and one positive value. |
-| 2 | finance_rate | number \| range/array | Yes | The finance rate paid on the money used in the negative cash flows. |
-| 3 | reinvest_rate | number \| range/array | Yes | The reinvestment rate received on the positive cash flows. |
+| 1 | values | range/array | Yes | Is an array or a reference to cells that contain numbers that represent a series of payments (negative) and income (positive) at regular periods. |
+| 2 | finance_rate | number \| range/array | Yes | Is the interest rate you pay on the money used in the cash flows. |
+| 3 | reinvest_rate | number \| range/array | Yes | Is the interest rate you receive on the cash flows as you reinvest them. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the modified internal rate of return for a series of cash flows.
+Returns the internal rate of return for a series of periodic cash flows, considering both cost of investment and interest on reinvestment of cash.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -34,7 +34,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the modified internal rate of return for a series of cash flows.
+> Returns the internal rate of return for a series of periodic cash flows, considering both cost of investment and interest on reinvestment of cash.
 
 
 ## Type Coercion & Edge Cases
@@ -56,8 +56,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=MIRR(A1:A5, 0.08, 0.1)`
-- `=MIRR(B2:B6, 0.06, 0.12)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=MIRR(..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Strips extra spaces from text.
+Removes all spaces from a text string except for single spaces between words.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Strips extra spaces from text.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | text | string \| range/array | Yes | The text to strip of leading, trailing, and repeated inner spaces. |
+| 1 | text | string \| range/array | Yes | Is the text from which you want spaces removed. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Strips extra spaces from text.
+Removes all spaces from a text string except for single spaces between words.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Strips extra spaces from text.
+> Removes all spaces from a text string except for single spaces between words.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=TRIM("  Hello   World  ")`
-- `=TRIM(A1)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=TRIM(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

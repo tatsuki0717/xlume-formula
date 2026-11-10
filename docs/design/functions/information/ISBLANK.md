@@ -7,32 +7,28 @@
 - **Volatile:** No
 
 ## Description
-Returns TRUE if the reference to a cell is blank.
+is empty
 
 ## Excel Syntax
 ```excel
-=ISBLANK(value)
+=ISBLANK()
 ```
 
 ## Arguments
-| # | Name | Type | Required? | Description |
-|---|---|---|---|---|
-| 1 | value | boolean \| string \| range/array | Yes | The value or cell reference to test; returns TRUE only for a genuinely empty cell, not for a cell holding an empty string or another value. |
+This function takes no arguments.
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns TRUE if the reference to a cell is blank.
+is empty
 
 High-level algorithm:
-1. Validate argument count and coerce each argument according to its documented type.
-2. Propagate any input errors (`#VALUE!`, `#NUM!`, etc.) before computation.
-3. Execute the core calculation described below.
-4. Apply final coercion to the documented return type and return the result.
+1. Execute the core calculation.
+2. Return the result.
 
 Core calculation:
-> Returns TRUE if the reference to a cell is blank.
+> is empty
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +50,7 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=ISBLANK(A1)`
-- `=ISBLANK("")`
+TBD — add representative Excel examples during implementation.
 
 ## Test Cases
 | Input | Expected | Purpose |

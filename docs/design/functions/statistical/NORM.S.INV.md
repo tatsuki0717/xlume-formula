@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns value of the inverse standard normal distribution (mean 0, standard deviation 1).
+Returns the inverse of the standard normal cumulative distribution (has a mean of zero and a standard deviation of one).
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Returns value of the inverse standard normal distribution (mean 0, standard devi
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | probability | number \| range/array | Yes | The probability associated with the standard normal distribution, between 0 and 1. |
+| 1 | probability | number \| range/array | Yes | Is a probability corresponding to the normal distribution, a number between 0 and 1 inclusive. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns value of the inverse standard normal distribution (mean 0, standard deviation 1).
+Returns the inverse of the standard normal cumulative distribution (has a mean of zero and a standard deviation of one).
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns value of the inverse standard normal distribution (mean 0, standard deviation 1).
+> Returns the inverse of the standard normal cumulative distribution (has a mean of zero and a standard deviation of one).
 
 
 ## Type Coercion & Edge Cases
@@ -54,7 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=NORM.S.INV(0.5)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=NORM.S.INV(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

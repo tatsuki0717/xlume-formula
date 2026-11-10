@@ -7,24 +7,24 @@
 - **Volatile:** No
 
 ## Description
-Returns values of the Gaussian error integral.
+Returns the error function.
 
 ## Excel Syntax
 ```excel
-=ERF(lower_limit, [upper_limit])
+=ERF(lower_limit, upper_limit)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | lower_limit | number \| string \| boolean \| range/array | Yes | The lower bound of the integral, or the single integration limit from 0 when upper_limit is omitted. |
-| 2 | upper_limit | number \| string \| boolean \| range/array | No | The upper bound of the integral; when omitted, the integral is calculated from 0 to lower_limit. |
+| 1 | lower_limit | number \| string \| boolean \| range/array | Yes | Is the lower bound for integrating ERF. |
+| 2 | upper_limit | number \| string \| boolean \| range/array | Yes | Is the upper bound for integrating ERF. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns values of the Gaussian error integral.
+Returns the error function.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -33,7 +33,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns values of the Gaussian error integral.
+> Returns the error function.
 
 
 ## Type Coercion & Edge Cases
@@ -55,8 +55,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=ERF(1)`
-- `=ERF(0, 1)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=ERF(..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

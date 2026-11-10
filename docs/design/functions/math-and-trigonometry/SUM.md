@@ -7,23 +7,23 @@
 - **Volatile:** No
 
 ## Description
-Sums up the values of the specified cells.
+Adds all the numbers in a range of cells.
 
 ## Excel Syntax
 ```excel
-=SUM(number1, [number2], ...)
+=SUM(value1, [value2], ...)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number1 | number \| range/array (repeatable) | Yes | A number, cell reference, or range whose values are added together. Further numbers or ranges can be passed as additional arguments. |
+| 1 | values | number \| range/array (repeatable) | Yes | List of parameters, whose elements are 1 to 255 numbers to sum. Logical values and text are ignored in cells, included if typed as arguments. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Sums up the values of the specified cells.
+Adds all the numbers in a range of cells.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Sums up the values of the specified cells.
+> Adds all the numbers in a range of cells.
 
 
 ## Type Coercion & Edge Cases
@@ -54,9 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=SUM(1, 2, 3)`
-- `=SUM(A1:A10)`
-- `=SUM(B1:B5, 100)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=SUM(1, 2, 3)`
 
 ## Test Cases
 | Input | Expected | Purpose |

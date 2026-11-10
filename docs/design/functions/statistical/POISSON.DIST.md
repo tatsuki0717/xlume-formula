@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns density of Poisson distribution.
+Returns the Poisson distribution.
 
 ## Excel Syntax
 ```excel
@@ -17,15 +17,15 @@ Returns density of Poisson distribution.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | x | number \| range/array | Yes | The number of events; must be non-negative. |
-| 2 | mean | number \| range/array | Yes | The expected number of events; must be non-negative. |
-| 3 | cumulative | boolean \| range/array | Yes | TRUE returns the cumulative distribution function; FALSE returns the probability mass function. |
+| 1 | x | number \| range/array | Yes | Is the number of events. |
+| 2 | mean | number \| range/array | Yes | Is the expected numeric value, a positive number. |
+| 3 | cumulative | boolean \| range/array | Yes | Is a logical value: for the cumulative Poisson probability, use TRUE; for the Poisson probability mass function, use FALSE. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns density of Poisson distribution.
+Returns the Poisson distribution.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -34,7 +34,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns density of Poisson distribution.
+> Returns the Poisson distribution.
 
 
 ## Type Coercion & Edge Cases
@@ -56,8 +56,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=POISSON.DIST(3, 5, FALSE())`
-- `=POISSON.DIST(3, 5, TRUE())`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=POISSON.DIST(..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

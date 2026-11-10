@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns text if given value is text, empty string otherwise.
+Checks whether a value is text, and returns the text if it is, or returns double quotes (empty text) if it is not.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Returns text if given value is text, empty string otherwise.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | value | number \| string \| boolean \| range/array | Yes | The value to check; returned unchanged if it is text, otherwise an empty string is returned. |
+| 1 | value | number \| string \| boolean \| range/array | Yes | Is the value to test. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns text if given value is text, empty string otherwise.
+Checks whether a value is text, and returns the text if it is, or returns double quotes (empty text) if it is not.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns text if given value is text, empty string otherwise.
+> Checks whether a value is text, and returns the text if it is, or returns double quotes (empty text) if it is not.
 
 
 ## Type Coercion & Edge Cases
@@ -54,9 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=T("Hello")`
-- `=T(A1)`
-- `=T(123)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=T(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

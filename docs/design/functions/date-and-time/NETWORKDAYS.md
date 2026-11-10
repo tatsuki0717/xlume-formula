@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns the number of working days between two given dates.
+Returns the number of whole workdays between two dates.
 
 ## Excel Syntax
 ```excel
@@ -17,15 +17,15 @@ Returns the number of working days between two given dates.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | start_date | number \| string \| boolean \| range/array | Yes | The start date of the range. |
-| 2 | end_date | number \| string \| boolean \| range/array | Yes | The end date of the range. |
-| 3 | holidays | number \| string \| range/array \| boolean | No | An optional range of dates to exclude from the working-day count, in addition to weekends (Saturday and Sunday). |
+| 1 | start_date | number \| string \| boolean \| range/array | Yes | Is a serial date number that represents the start date. |
+| 2 | end_date | number \| string \| boolean \| range/array | Yes | Is a serial date number that represents the end date. |
+| 3 | holidays | number \| string \| range/array \| boolean | No | Is an optional set of one or more serial date numbers to exclude from the working calendar, such as state and federal holidays and floating holidays. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the number of working days between two given dates.
+Returns the number of whole workdays between two dates.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -34,7 +34,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the number of working days between two given dates.
+> Returns the number of whole workdays between two dates.
 
 
 ## Type Coercion & Edge Cases
@@ -56,8 +56,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=NETWORKDAYS(A1, A2)`
-- `=NETWORKDAYS(DATE(2020,1,1), DATE(2020,1,31), C1:C3)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=NETWORKDAYS(..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

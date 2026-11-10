@@ -8,19 +8,15 @@
 - **Dynamic array:** Yes
 
 ## Description
-Returns the specified rows from an array.
+pick rows
 
 ## Excel Syntax
 ```excel
-=CHOOSEROWS(array, row_num1, row_nums)
+=CHOOSEROWS()
 ```
 
 ## Arguments
-| # | Name | Type | Required? | Description |
-|---|---|---|---|---|
-| 1 | array | range/array | Yes | array range of values or an array constant. |
-| 2 | row_num1 | any | Yes | required row index |
-| 3 | row_nums | any | Yes | additionnal row indexes |
+This function takes no arguments.
 
 ## Returns
 Dynamic array
@@ -28,7 +24,7 @@ Dynamic array
 ## Behavior / Algorithm
 Implementation is deferred (Requires dynamic-array / spill support).
 
-High-level behavior: Returns the specified rows from an array.
+High-level behavior: pick rows
 
 Detailed step-by-step algorithm, type coercion and edge-case handling will be added when this function is prioritized.
 
@@ -52,8 +48,6 @@ Detailed step-by-step algorithm, type coercion and edge-case handling will be ad
 
 ## Examples
 TBD — add representative Excel examples during implementation.
-
-Skeleton: `=CHOOSEROWS(..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

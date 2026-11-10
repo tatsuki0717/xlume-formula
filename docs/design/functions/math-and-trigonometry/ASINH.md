@@ -17,7 +17,7 @@ Returns the inverse hyperbolic sine of a number.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number | number \| range/array | Yes | A number whose inverse hyperbolic sine is returned. |
+| 1 | number | number \| range/array | Yes | Is any real number equal to or greater than 1. |
 
 ## Returns
 Scalar or array depending on arguments
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=ASINH(1)`
-- `=ASINH(-2.5)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=ASINH(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

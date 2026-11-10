@@ -8,19 +8,15 @@
 - **Dynamic array:** Yes
 
 ## Description
-Excludes a specified number of rows or columns from the start or end of an array.
+drop rows/cols
 
 ## Excel Syntax
 ```excel
-=DROP(array, rows, columns)
+=DROP()
 ```
 
 ## Arguments
-| # | Name | Type | Required? | Description |
-|---|---|---|---|---|
-| 1 | array | range/array | Yes | The array from which to drop rows or columns. |
-| 2 | rows | number \| range/array | Yes | The number of rows to drop. A negative value drops from the end of the array. Optionnal when columns provided |
-| 3 | columns | number \| range/array | Yes | The number of columns to exclude. A negative value drops from the end of the array. Optionnal when rows provided |
+This function takes no arguments.
 
 ## Returns
 Dynamic array
@@ -28,7 +24,7 @@ Dynamic array
 ## Behavior / Algorithm
 Implementation is deferred (Requires dynamic-array / spill support).
 
-High-level behavior: Excludes a specified number of rows or columns from the start or end of an array.
+High-level behavior: drop rows/cols
 
 Detailed step-by-step algorithm, type coercion and edge-case handling will be added when this function is prioritized.
 
@@ -52,8 +48,6 @@ Detailed step-by-step algorithm, type coercion and edge-case handling will be ad
 
 ## Examples
 TBD — add representative Excel examples during implementation.
-
-Skeleton: `=DROP(..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

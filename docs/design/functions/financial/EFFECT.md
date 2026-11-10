@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Calculates the effective annual interest rate from a nominal interest rate and the number of compounding periods per year.
+Returns the effective annual interest rate.
 
 ## Excel Syntax
 ```excel
@@ -17,14 +17,14 @@ Calculates the effective annual interest rate from a nominal interest rate and t
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | nominal_rate | number \| string \| boolean \| range/array | Yes | The nominal (stated) annual interest rate. |
-| 2 | npery | number \| string \| boolean \| range/array | Yes | The number of compounding periods per year. |
+| 1 | nominal_rate | number \| string \| boolean \| range/array | Yes | Is the nominal interest rate. |
+| 2 | npery | number \| string \| boolean \| range/array | Yes | Is the number of compounding periods per year. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Calculates the effective annual interest rate from a nominal interest rate and the number of compounding periods per year.
+Returns the effective annual interest rate.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -33,7 +33,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Calculates the effective annual interest rate from a nominal interest rate and the number of compounding periods per year.
+> Returns the effective annual interest rate.
 
 
 ## Type Coercion & Edge Cases
@@ -55,8 +55,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=EFFECT(0.1, 4)`
-- `=EFFECT(0.08, 12)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=EFFECT(..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns a bitwise logical "or" of the parameters.
+Returns a bitwise 'Or' of two numbers.
 
 ## Excel Syntax
 ```excel
@@ -17,14 +17,14 @@ Returns a bitwise logical "or" of the parameters.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number1 | number \| range/array | Yes | The first non-negative integer to combine with a bitwise OR. |
-| 2 | number2 | number \| range/array | Yes | The second non-negative integer to combine with a bitwise OR. |
+| 1 | number1 | number \| range/array | Yes | Is the decimal representation of the binary number you want to evaluate. |
+| 2 | number2 | number \| range/array | Yes | Is the decimal representation of the binary number you want to evaluate. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns a bitwise logical "or" of the parameters.
+Returns a bitwise 'Or' of two numbers.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -33,7 +33,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns a bitwise logical "or" of the parameters.
+> Returns a bitwise 'Or' of two numbers.
 
 
 ## Type Coercion & Edge Cases
@@ -55,8 +55,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=BITOR(5, 3)`
-- `=BITOR(8, 4)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=BITOR(..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

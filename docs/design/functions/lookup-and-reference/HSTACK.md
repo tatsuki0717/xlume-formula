@@ -8,18 +8,15 @@
 - **Dynamic array:** Yes
 
 ## Description
-Stacks arrays horizontally into a single array.
+stack horizontally
 
 ## Excel Syntax
 ```excel
-=HSTACK(array1, [array2, ...], otherArrays)
+=HSTACK()
 ```
 
 ## Arguments
-| # | Name | Type | Required? | Description |
-|---|---|---|---|---|
-| 1 | array | range/array (repeatable) | Yes | A range or array to stack. Further ranges or arrays can be passed as additional arguments; they are stacked left to right into one array. |
-| 2 | otherArrays | any (repeatable) | Yes |  |
+This function takes no arguments.
 
 ## Returns
 Dynamic array
@@ -27,7 +24,7 @@ Dynamic array
 ## Behavior / Algorithm
 Implementation is deferred (Requires dynamic-array / spill support).
 
-High-level behavior: Stacks arrays horizontally into a single array.
+High-level behavior: stack horizontally
 
 Detailed step-by-step algorithm, type coercion and edge-case handling will be added when this function is prioritized.
 
@@ -50,8 +47,7 @@ Detailed step-by-step algorithm, type coercion and edge-case handling will be ad
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=HSTACK(A1:A3, B1:B3)`
-- `=HSTACK(A1:B2, C1:D2)`
+TBD — add representative Excel examples during implementation.
 
 ## Test Cases
 | Input | Expected | Purpose |

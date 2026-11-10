@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns a number raised to another number.
+Returns the result of a number raised to a power.
 
 ## Excel Syntax
 ```excel
@@ -17,14 +17,14 @@ Returns a number raised to another number.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number | number \| range/array | Yes | The number to raise to a power. |
-| 2 | power | number \| range/array | Yes | The exponent to raise base to. |
+| 1 | number | number \| range/array | Yes | Is the base number, any real number. |
+| 2 | power | number \| range/array | Yes | Is the exponent, to which the base number is raised. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns a number raised to another number.
+Returns the result of a number raised to a power.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -33,7 +33,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns a number raised to another number.
+> Returns the result of a number raised to a power.
 
 
 ## Type Coercion & Edge Cases
@@ -55,8 +55,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=POWER(2, 10)`
-- `=POWER(9, 0.5)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=POWER(..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

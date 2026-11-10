@@ -427,7 +427,7 @@ export function registerStatisticalFunctions(add: (f: ExcelFunction) => void): v
   }));
 
   add(fn("TRIMMEAN", "none", (args) => {
-    const { values, error } = flattenNumbersStrict(args);
+    const { values, error } = flattenNumbersStrict(args.slice(0, -1));
     if (error) return error;
     const p = toNumber(args[args.length - 1]);
     if (!p.ok) return p.error;
@@ -465,7 +465,7 @@ export function registerStatisticalFunctions(add: (f: ExcelFunction) => void): v
 
   // Position / rank
   add(fn("LARGE", "none", (args) => {
-    const { values, error } = flattenNumbersStrict(args);
+    const { values, error } = flattenNumbersStrict(args.length > 0 ? [args[0]] : []);
     if (error) return error;
     const k = toInteger(args[1]);
     if (!k.ok) return k.error;
@@ -475,7 +475,7 @@ export function registerStatisticalFunctions(add: (f: ExcelFunction) => void): v
   }));
 
   add(fn("SMALL", "none", (args) => {
-    const { values, error } = flattenNumbersStrict(args);
+    const { values, error } = flattenNumbersStrict(args.length > 0 ? [args[0]] : []);
     if (error) return error;
     const k = toInteger(args[1]);
     if (!k.ok) return k.error;
@@ -516,7 +516,7 @@ export function registerStatisticalFunctions(add: (f: ExcelFunction) => void): v
   }));
 
   add(fn("PERCENTILE.INC", "none", (args) => {
-    const { values, error } = flattenNumbersStrict(args);
+    const { values, error } = flattenNumbersStrict(args.length > 0 ? [args[0]] : []);
     if (error) return error;
     const k = toNumber(args[1]);
     if (!k.ok) return k.error;
@@ -525,7 +525,7 @@ export function registerStatisticalFunctions(add: (f: ExcelFunction) => void): v
   }));
 
   add(fn("PERCENTILE.EXC", "none", (args) => {
-    const { values, error } = flattenNumbersStrict(args);
+    const { values, error } = flattenNumbersStrict(args.length > 0 ? [args[0]] : []);
     if (error) return error;
     const k = toNumber(args[1]);
     if (!k.ok) return k.error;
@@ -534,7 +534,7 @@ export function registerStatisticalFunctions(add: (f: ExcelFunction) => void): v
   }));
 
   add(fn("PERCENTRANK.INC", "none", (args) => {
-    const { values, error } = flattenNumbersStrict(args);
+    const { values, error } = flattenNumbersStrict(args.length > 0 ? [args[0]] : []);
     if (error) return error;
     const x = toNumber(args[1]);
     if (!x.ok) return x.error;
@@ -545,7 +545,7 @@ export function registerStatisticalFunctions(add: (f: ExcelFunction) => void): v
   }));
 
   add(fn("PERCENTRANK.EXC", "none", (args) => {
-    const { values, error } = flattenNumbersStrict(args);
+    const { values, error } = flattenNumbersStrict(args.length > 0 ? [args[0]] : []);
     if (error) return error;
     const x = toNumber(args[1]);
     if (!x.ok) return x.error;
@@ -556,7 +556,7 @@ export function registerStatisticalFunctions(add: (f: ExcelFunction) => void): v
   }));
 
   add(fn("QUARTILE.INC", "none", (args) => {
-    const { values, error } = flattenNumbersStrict(args);
+    const { values, error } = flattenNumbersStrict(args.length > 0 ? [args[0]] : []);
     if (error) return error;
     const q = toInteger(args[1]);
     if (!q.ok) return q.error;
@@ -565,7 +565,7 @@ export function registerStatisticalFunctions(add: (f: ExcelFunction) => void): v
   }));
 
   add(fn("QUARTILE.EXC", "none", (args) => {
-    const { values, error } = flattenNumbersStrict(args);
+    const { values, error } = flattenNumbersStrict(args.length > 0 ? [args[0]] : []);
     if (error) return error;
     const q = toInteger(args[1]);
     if (!q.ok) return q.error;

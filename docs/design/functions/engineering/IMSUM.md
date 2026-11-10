@@ -7,23 +7,23 @@
 - **Volatile:** No
 
 ## Description
-Adds complex numbers.
+Returns the sum of complex numbers.
 
 ## Excel Syntax
 ```excel
-=IMSUM(complex1, [complex2], ...)
+=IMSUM(value1, [value2], ...)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | complex1 | range/array \| number \| string \| boolean (repeatable) | Yes | A complex number, cell, or range to add. Further complex numbers or ranges can be passed as additional arguments. |
+| 1 | values | range/array \| number \| string \| boolean (repeatable) | Yes | List of parameters, whose elements are from 1 to 255 complex numbers to add. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Adds complex numbers.
+Returns the sum of complex numbers.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Adds complex numbers.
+> Returns the sum of complex numbers.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=IMSUM("3+4i", "1-2i")`
-- `=IMSUM(A1:A5)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=IMSUM(1, 2, 3)`
 
 ## Test Cases
 | Input | Expected | Purpose |

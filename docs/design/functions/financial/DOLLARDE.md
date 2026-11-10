@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Converts a price entered with a special notation to a price displayed as a decimal number.
+Converts a dollar price, expressed as a fraction, into a dollar price, expressed as a decimal number.
 
 ## Excel Syntax
 ```excel
@@ -17,14 +17,14 @@ Converts a price entered with a special notation to a price displayed as a decim
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | fractional_dollar | number \| string \| boolean \| range/array | Yes | The price expressed as an integer part plus a fractional part, e.g. 1.02 for 1 and 2/16. |
-| 2 | fraction | number \| string \| boolean \| range/array | Yes | The denominator used in the fractional notation, e.g. 16 for sixteenths. |
+| 1 | fractional_dollar | number \| string \| boolean \| range/array | Yes | Is a number expressed as a fraction. |
+| 2 | fraction | number \| string \| boolean \| range/array | Yes | Is the integer to use in the denominator of the fraction. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Converts a price entered with a special notation to a price displayed as a decimal number.
+Converts a dollar price, expressed as a fraction, into a dollar price, expressed as a decimal number.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -33,7 +33,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Converts a price entered with a special notation to a price displayed as a decimal number.
+> Converts a dollar price, expressed as a fraction, into a dollar price, expressed as a decimal number.
 
 
 ## Type Coercion & Edge Cases
@@ -55,8 +55,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=DOLLARDE(1.02, 16)`
-- `=DOLLARDE(1.1, 32)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=DOLLARDE(..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

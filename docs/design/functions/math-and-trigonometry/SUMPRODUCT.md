@@ -7,32 +7,28 @@
 - **Volatile:** No
 
 ## Description
-Multiplies corresponding elements in the given arrays, and returns the sum of those products.
+sum of products
 
 ## Excel Syntax
 ```excel
-=SUMPRODUCT(array1, [array2], ...)
+=SUMPRODUCT()
 ```
 
 ## Arguments
-| # | Name | Type | Required? | Description |
-|---|---|---|---|---|
-| 1 | array1 | range/array (repeatable) | Yes | A range whose elements are multiplied element-wise with the corresponding elements of the other arrays before summing. Further same-sized ranges can be passed as additional arguments. |
+This function takes no arguments.
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Multiplies corresponding elements in the given arrays, and returns the sum of those products.
+sum of products
 
 High-level algorithm:
-1. Validate argument count and coerce each argument according to its documented type.
-2. Propagate any input errors (`#VALUE!`, `#NUM!`, etc.) before computation.
-3. Execute the core calculation described below.
-4. Apply final coercion to the documented return type and return the result.
+1. Execute the core calculation.
+2. Return the result.
 
 Core calculation:
-> Multiplies corresponding elements in the given arrays, and returns the sum of those products.
+> sum of products
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +50,7 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=SUMPRODUCT(A1:A5, B1:B5)`
-- `=SUMPRODUCT(A1:A3)`
+TBD — add representative Excel examples during implementation.
 
 ## Test Cases
 | Input | Expected | Purpose |

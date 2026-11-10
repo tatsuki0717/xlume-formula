@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns the character created by using provided code point.
+Returns the Unicode character referenced by the given numeric value.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Returns the character created by using provided code point.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number | number \| range/array | Yes | The Unicode code point that identifies the character to return. |
+| 1 | number | number \| range/array | Yes | Is the Unicode number representing a character. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the character created by using provided code point.
+Returns the Unicode character referenced by the given numeric value.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the character created by using provided code point.
+> Returns the Unicode character referenced by the given numeric value.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=UNICHAR(65)`
-- `=UNICHAR(8364)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=UNICHAR(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

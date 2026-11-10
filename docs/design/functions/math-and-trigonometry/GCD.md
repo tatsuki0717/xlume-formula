@@ -7,23 +7,23 @@
 - **Volatile:** No
 
 ## Description
-Computes greatest common divisor of numbers.
+Returns the greatest common divisor.
 
 ## Excel Syntax
 ```excel
-=GCD(number1, [number2], ...)
+=GCD(value1, [value2], ...)
 ```
 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number1 | number \| string \| range/array \| boolean (repeatable) | Yes | A non-negative number, cell reference, or range; each value is truncated to an integer. Further numbers or ranges can be passed as additional arguments. |
+| 1 | values | number \| string \| range/array \| boolean (repeatable) | Yes | List of parameters, whose elements are 1 to 255 values. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Computes greatest common divisor of numbers.
+Returns the greatest common divisor.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Computes greatest common divisor of numbers.
+> Returns the greatest common divisor.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=GCD(12, 18)`
-- `=GCD(24, 36, 60)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=GCD(1, 2, 3)`
 
 ## Test Cases
 | Input | Expected | Purpose |

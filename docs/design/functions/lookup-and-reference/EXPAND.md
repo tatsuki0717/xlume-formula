@@ -8,20 +8,15 @@
 - **Dynamic array:** Yes
 
 ## Description
-Expands or pads an array to specified row and column dimensions.
+pad array to size
 
 ## Excel Syntax
 ```excel
-=EXPAND(array, rows, columns, pad_with)
+=EXPAND()
 ```
 
 ## Arguments
-| # | Name | Type | Required? | Description |
-|---|---|---|---|---|
-| 1 | array | range/array | Yes | The array to expand. |
-| 2 | rows | number \| range/array | Yes | The number of rows in the expanded array. If missing, rows will not be expanded. |
-| 3 | columns | number \| range/array | Yes | The number of columns in the expanded array. If missing, columns will not be expanded. |
-| 4 | pad_with | any | Yes | The value with which to pad. If missing, #N/A will be used. |
+This function takes no arguments.
 
 ## Returns
 Dynamic array
@@ -29,7 +24,7 @@ Dynamic array
 ## Behavior / Algorithm
 Implementation is deferred (Requires dynamic-array / spill support).
 
-High-level behavior: Expands or pads an array to specified row and column dimensions.
+High-level behavior: pad array to size
 
 Detailed step-by-step algorithm, type coercion and edge-case handling will be added when this function is prioritized.
 
@@ -53,8 +48,6 @@ Detailed step-by-step algorithm, type coercion and edge-case handling will be ad
 
 ## Examples
 TBD — add representative Excel examples during implementation.
-
-Skeleton: `=EXPAND(..., ..., ..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns the remainder when one number is divided by another.
+Returns the remainder after a number is divided by a divisor.
 
 ## Excel Syntax
 ```excel
@@ -17,14 +17,14 @@ Returns the remainder when one number is divided by another.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number | number \| range/array | Yes | The number to be divided. |
-| 2 | divisor | number \| range/array | Yes | The non-zero number to divide by. The result has the same sign as the dividend. |
+| 1 | number | number \| range/array | Yes | Is the number for which you want to find the remainder after the division is performed. |
+| 2 | divisor | number \| range/array | Yes | Is the number by which you want to divide Number. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the remainder when one number is divided by another.
+Returns the remainder after a number is divided by a divisor.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -33,7 +33,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the remainder when one number is divided by another.
+> Returns the remainder after a number is divided by a divisor.
 
 
 ## Type Coercion & Edge Cases
@@ -55,8 +55,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=MOD(10, 3)`
-- `=MOD(-7, 2)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=MOD(..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

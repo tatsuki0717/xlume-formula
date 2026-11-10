@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns the number of cells that meet with certain criteria within a cell range.
+Counts the number of cells within a range that meet the given condition.
 
 ## Excel Syntax
 ```excel
@@ -17,14 +17,14 @@ Returns the number of cells that meet with certain criteria within a cell range.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | range | range/array | Yes | The range of cells tested against the criteria. |
-| 2 | criteria | number \| string \| boolean \| range/array | Yes | The condition that selects which cells are counted, e.g. ">5", "apples", or a cell reference. |
+| 1 | range | range/array | Yes | Is the range of cells from which you want to count nonblank cells. |
+| 2 | criteria | number \| string \| boolean \| range/array | Yes | Is the condition in the form of a number, expression, or text that defines which cells will be counted. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the number of cells that meet with certain criteria within a cell range.
+Counts the number of cells within a range that meet the given condition.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -33,7 +33,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the number of cells that meet with certain criteria within a cell range.
+> Counts the number of cells within a range that meet the given condition.
 
 
 ## Type Coercion & Edge Cases
@@ -55,8 +55,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=COUNTIF(A1:A10, ">5")`
-- `=COUNTIF(B1:B10, "apples")`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=COUNTIF(..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

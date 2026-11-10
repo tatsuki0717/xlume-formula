@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Returns the future value of an investment based on a rate schedule.
+Returns the future value of an initial principal after applying a series of compound interest rates.
 
 ## Excel Syntax
 ```excel
@@ -17,14 +17,14 @@ Returns the future value of an investment based on a rate schedule.
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | principal | number \| string \| boolean \| range/array | Yes | The initial present value of the investment. |
-| 2 | schedule | number \| string \| range/array \| boolean | Yes | A range of interest rates applied successively over each period. |
+| 1 | principal | number \| string \| boolean \| range/array | Yes | Is the present value. |
+| 2 | schedule | number \| string \| range/array \| boolean | Yes | Is an array of interest rates to apply. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Returns the future value of an investment based on a rate schedule.
+Returns the future value of an initial principal after applying a series of compound interest rates.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -33,7 +33,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Returns the future value of an investment based on a rate schedule.
+> Returns the future value of an initial principal after applying a series of compound interest rates.
 
 
 ## Type Coercion & Edge Cases
@@ -55,8 +55,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=FVSCHEDULE(1000, A1:A3)`
-- `=FVSCHEDULE(5000, B2:B5)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=FVSCHEDULE(..., ...)`
 
 ## Test Cases
 | Input | Expected | Purpose |

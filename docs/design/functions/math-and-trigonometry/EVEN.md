@@ -7,7 +7,7 @@
 - **Volatile:** No
 
 ## Description
-Rounds a positive number up to the next even integer and a negative number down to the next even integer.
+Rounds a positive number up and negative number down to the nearest even integer.
 
 ## Excel Syntax
 ```excel
@@ -17,13 +17,13 @@ Rounds a positive number up to the next even integer and a negative number down 
 ## Arguments
 | # | Name | Type | Required? | Description |
 |---|---|---|---|---|
-| 1 | number | number \| range/array | Yes | The number to round away from zero to the next even integer. |
+| 1 | number | number \| range/array | Yes | Is the value to round. |
 
 ## Returns
 Scalar or array depending on arguments
 
 ## Behavior / Algorithm
-Rounds a positive number up to the next even integer and a negative number down to the next even integer.
+Rounds a positive number up and negative number down to the nearest even integer.
 
 High-level algorithm:
 1. Validate argument count and coerce each argument according to its documented type.
@@ -32,7 +32,7 @@ High-level algorithm:
 4. Apply final coercion to the documented return type and return the result.
 
 Core calculation:
-> Rounds a positive number up to the next even integer and a negative number down to the next even integer.
+> Rounds a positive number up and negative number down to the nearest even integer.
 
 
 ## Type Coercion & Edge Cases
@@ -54,8 +54,9 @@ Core calculation:
 | `#SPILL!` | Dynamic-array result cannot fit in the target range. |
 
 ## Examples
-- `=EVEN(3)`
-- `=EVEN(-3)`
+TBD — add representative Excel examples during implementation.
+
+Skeleton: `=EVEN(...)`
 
 ## Test Cases
 | Input | Expected | Purpose |
