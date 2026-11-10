@@ -453,48 +453,6 @@ export function registerMissingFunctions(add: (f: ExcelFunction) => void, reg: F
   );
 
   add(
-    fn("TEXTAFTER", "none", (args) => {
-      const text = excelCoerceString(args[0] ?? BLANK);
-      const delimiter = excelCoerceString(args[1] ?? BLANK);
-      const instanceNum = requireNumber(args[2], 1);
-      const matchMode = requireNumber(args[3], 0);
-      const matchEnd = requireNumber(args[4], 0);
-      const ifNotFound = args[5];
-      if (text.kind !== "string" || delimiter.kind !== "string" || !instanceNum.ok || !matchMode.ok || !matchEnd.ok) {
-        return err(ExcelErrorCode.Value);
-      }
-      const parts = text.value.split(delimiter.value);
-      const idx = instanceNum.value > 0 ? instanceNum.value - 1 : parts.length + instanceNum.value;
-      if (idx < 0 || idx >= parts.length - (matchEnd.value ? 0 : 1)) {
-        if (ifNotFound) return ifNotFound;
-        return err(ExcelErrorCode.NA);
-      }
-      return str(parts.slice(idx + 1).join(delimiter.value));
-    }),
-  );
-
-  add(
-    fn("TEXTBEFORE", "none", (args) => {
-      const text = excelCoerceString(args[0] ?? BLANK);
-      const delimiter = excelCoerceString(args[1] ?? BLANK);
-      const instanceNum = requireNumber(args[2], 1);
-      const matchMode = requireNumber(args[3], 0);
-      const matchEnd = requireNumber(args[4], 0);
-      const ifNotFound = args[5];
-      if (text.kind !== "string" || delimiter.kind !== "string" || !instanceNum.ok || !matchMode.ok || !matchEnd.ok) {
-        return err(ExcelErrorCode.Value);
-      }
-      const parts = text.value.split(delimiter.value);
-      const idx = instanceNum.value > 0 ? instanceNum.value - 1 : parts.length + instanceNum.value;
-      if (idx < 0 || idx >= parts.length) {
-        if (ifNotFound) return ifNotFound;
-        return err(ExcelErrorCode.NA);
-      }
-      return str(parts.slice(0, idx + 1).join(delimiter.value));
-    }),
-  );
-
-  add(
     fn("ARRAYTOTEXT", "none", (args) => {
       const value = args[0] ?? BLANK;
       const format = requireNumber(args[1], 0);
@@ -853,6 +811,8 @@ export function registerMissingFunctions(add: (f: ExcelFunction) => void, reg: F
     if (s.kind !== "string") return s;
     return str(toZen(s.value));
   }));
+  // JIS is the Excel name for the same half-width -> full-width conversion.
+  if (reg.get("DBCS")) reg.alias("JIS", "DBCS");
 
   add(fn("BAHTTEXT", "none", (args) => {
     if (args.length === 0) return BLANK;

@@ -44,7 +44,7 @@ function requireNumber(
   arg: ExcelValue | undefined,
   defaultValue: number,
 ): { ok: true; value: number } | { ok: false; error: ExcelValue } {
-  if (arg === undefined) return { ok: true, value: defaultValue };
+  if (arg === undefined || arg.kind === "omitted") return { ok: true, value: defaultValue };
   const n = excelCoerceNumber(arg);
   if (n.kind === "number") return { ok: true, value: n.value };
   return { ok: false, error: n };
@@ -192,29 +192,6 @@ function aggregate(fn: number, values: ExcelValue[], k: number | undefined): Exc
   }
 }
 
-function findOccurrence(text: string, delim: string, instance: number, caseInsensitive: boolean): number {
-  const t = caseInsensitive ? text.toLowerCase() : text;
-  const d = caseInsensitive ? delim.toLowerCase() : delim;
-  if (instance > 0) {
-    let pos = -d.length;
-    for (let i = 0; i < instance; i++) {
-      pos = t.indexOf(d, pos + d.length);
-      if (pos < 0) return -1;
-    }
-    return pos;
-  }
-  if (instance < 0) {
-    const positions: number[] = [];
-    let pos = 0;
-    while ((pos = t.indexOf(d, pos)) >= 0) {
-      positions.push(pos);
-      pos += d.length;
-    }
-    const idx = positions.length + instance;
-    return idx >= 0 ? positions[idx]! : -1;
-  }
-  return -1;
-}
 
 function npv(rate: number, cashFlows: number[]): number {
   let sum = 0;
@@ -396,55 +373,68 @@ export function registerExtraFunctions(add: (f: ExcelFunction) => void): void {
     }),
   );
 
+  // Shared TEXTBEFORE / TEXTAFTER core: supports multiple delimiters,
+  // negative instance numbers (counted from the end) and match_end.
+  const textSplitPoint = (
+    args: ExcelValue[],
+    wantBefore: boolean,
+  ): { text: string; pos: number; len: number } | ExcelValue => {
+    const textArg = args[0];
+    const delimArg = args[1];
+    if (!textArg || textArg.kind !== "string" || !delimArg) return err(ExcelErrorCode.Value);
+    const delims: string[] = [];
+    if (delimArg.kind === "string") delims.push(delimArg.value);
+    else if (delimArg.kind === "array") {
+      for (const v of delimArg.values) if (v.kind === "string") delims.push(v.value);
+    }
+    if (delims.length === 0 || delims.some((d) => d.length === 0)) return err(ExcelErrorCode.Value);
+    const instance = requireNumber(args[2], 1);
+    if (!instance.ok) return instance.error;
+    const matchMode = requireNumber(args[3], 0);
+    if (!matchMode.ok) return matchMode.error;
+    const matchEnd = requireNumber(args[4], 0);
+    if (!matchEnd.ok) return matchEnd.error;
+    const instanceNum = Math.trunc(instance.value);
+    if (instanceNum === 0) return err(ExcelErrorCode.Value);
+    const text = textArg.value;
+    const hay = matchMode.value === 1 ? text.toLowerCase() : text;
+    const occurrences: Array<{ pos: number; len: number }> = [];
+    for (const d of delims) {
+      const needle = matchMode.value === 1 ? d.toLowerCase() : d;
+      let pos = 0;
+      while ((pos = hay.indexOf(needle, pos)) >= 0) {
+        occurrences.push({ pos, len: d.length });
+        pos += Math.max(1, d.length);
+      }
+    }
+    occurrences.sort((a, b) => a.pos - b.pos || b.len - a.len);
+    if (matchEnd.value === 1) {
+      if (wantBefore) occurrences.push({ pos: text.length, len: 0 });
+      else occurrences.unshift({ pos: 0, len: 0 });
+    }
+    const idx = instanceNum > 0 ? instanceNum - 1 : occurrences.length + instanceNum;
+    const notFound = (): ExcelValue => {
+      if (args[5] !== undefined && args[5].kind !== "omitted") return args[5];
+      return err(ExcelErrorCode.NA);
+    };
+    if (idx < 0 || idx >= occurrences.length) return notFound();
+    const occ = occurrences[idx]!;
+    return { text, pos: occ.pos, len: occ.len };
+  };
+
   add(
     fn("TEXTBEFORE", "none", (args) => {
-      const textArg = args[0];
-      const delimArg = args[1];
-      if (!textArg || textArg.kind !== "string" || !delimArg || delimArg.kind !== "string") {
-        return err(ExcelErrorCode.Value);
-      }
-      const instance = requireNumber(args[2], 1);
-      if (!instance.ok) return instance.error;
-      const matchMode = requireNumber(args[3], 0);
-      if (!matchMode.ok) return matchMode.error;
-      const instanceNum = Math.trunc(instance.value);
-      if (instanceNum === 0) return err(ExcelErrorCode.Value);
-      const pos = findOccurrence(textArg.value, delimArg.value, instanceNum, matchMode.value === 1);
-      if (pos < 0) {
-        if (args[5] !== undefined) {
-          const fallback = excelCoerceString(args[5]!);
-          if (fallback.kind === "string") return fallback;
-          return fallback;
-        }
-        return err(ExcelErrorCode.NA);
-      }
-      return str(textArg.value.slice(0, pos));
+      const r = textSplitPoint(args, true);
+      if (!("pos" in r)) return r;
+      return str(r.text.slice(0, r.pos));
     }),
   );
 
   add(
     fn("TEXTAFTER", "none", (args) => {
-      const textArg = args[0];
-      const delimArg = args[1];
-      if (!textArg || textArg.kind !== "string" || !delimArg || delimArg.kind !== "string") {
-        return err(ExcelErrorCode.Value);
-      }
-      const instance = requireNumber(args[2], 1);
-      if (!instance.ok) return instance.error;
-      const matchMode = requireNumber(args[3], 0);
-      if (!matchMode.ok) return matchMode.error;
-      const instanceNum = Math.trunc(instance.value);
-      if (instanceNum === 0) return err(ExcelErrorCode.Value);
-      const pos = findOccurrence(textArg.value, delimArg.value, instanceNum, matchMode.value === 1);
-      if (pos < 0) {
-        if (args[5] !== undefined) {
-          const fallback = excelCoerceString(args[5]!);
-          if (fallback.kind === "string") return fallback;
-          return fallback;
-        }
-        return err(ExcelErrorCode.NA);
-      }
-      return str(textArg.value.slice(pos + delimArg.value.length));
+      const r = textSplitPoint(args, false);
+      if (!("pos" in r)) return r;
+      return str(r.text.slice(r.pos + r.len));
     }),
   );
 

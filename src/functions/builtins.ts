@@ -9,7 +9,7 @@ import {
 } from "../model/value.js";
 import { FunctionRegistry, type ExcelFunction } from "../formula/functions-types.js";
 import { excelCoerceBoolean, excelCoerceNumber, flattenArgs } from "../formula/evaluator.js";
-import { excelCompare, excelConcat } from "../formula/coercion.js";
+import { excelCoerceString, excelCompare, excelConcat } from "../formula/coercion.js";
 import { registerExtraFunctions } from "./builtins-extra.js";
 import { registerMissingFunctions } from "./builtins-missing.js";
 import { registerFinancialFunctions } from "./builtins-financial.js";
@@ -24,6 +24,7 @@ import { registerEngineeringFunctions } from "./builtins-engineering.js";
 import { registerForecastFunctions } from "./builtins-forecast.js";
 import { registerFormulaReplacementFunctions } from "./builtins-formula-replacement.js";
 import { registerMath2Functions } from "./builtins-math2.js";
+import { formatTextWithExcelFormat, formatWithExcelFormat } from "./text-format.js";
 import { registerGoogleSheetsFunctions } from "./builtins-google-sheets.js";
 
 function fn(
@@ -338,10 +339,13 @@ export function createBuiltinFunctions(): FunctionRegistry {
   );
   add(
     fn("TEXT", "none", (args) => {
-      // Simplified — full number format via number-format package at call sites
       const v = args[0] ?? BLANK;
-      if (v.kind === "number") return str(String(v.value));
-      if (v.kind === "string") return v;
+      const fmt = args[1] === undefined ? undefined : excelCoerceString(args[1]);
+      if (!fmt || fmt.kind !== "string") return err(ExcelErrorCode.Value);
+      if (v.kind === "error") return v;
+      if (v.kind === "number") return str(formatWithExcelFormat(v.value, fmt.value));
+      if (v.kind === "string") return str(formatTextWithExcelFormat(v.value, fmt.value));
+      if (v.kind === "boolean") return str(v.value ? "TRUE" : "FALSE");
       return str("");
     }),
   );
@@ -587,7 +591,22 @@ export function createBuiltinFunctions(): FunctionRegistry {
   add(fn("ISERROR", "none", (args) => bool((args[0] ?? BLANK).kind === "error")));
   add(fn("ISNUMBER", "none", (args) => bool((args[0] ?? BLANK).kind === "number")));
   add(fn("ISTEXT", "none", (args) => bool((args[0] ?? BLANK).kind === "string")));
-  add(fn("N", "none", (args) => excelCoerceNumber(args[0] ?? BLANK)));
+  add(fn("N", "none", (args) => {
+    // Excel's N: numbers pass through, TRUE->1 / FALSE->0, errors propagate,
+    // and everything else (including numeric text) becomes 0.
+    const v = args[0] ?? BLANK;
+    if (v.kind === "error") return v;
+    if (v.kind === "number") return v;
+    if (v.kind === "boolean") return num(v.value ? 1 : 0);
+    if (v.kind === "array") {
+      const first = v.values[0] ?? BLANK;
+      if (first.kind === "number") return first;
+      if (first.kind === "boolean") return num(first.value ? 1 : 0);
+      if (first.kind === "error") return first;
+      return num(0);
+    }
+    return num(0);
+  }));
   add(fn("NA", "none", () => err(ExcelErrorCode.NA)));
 
   // Dynamic array
@@ -1022,7 +1041,35 @@ export function createBuiltinFunctions(): FunctionRegistry {
     const v = args[0] ?? BLANK;
     return v.kind === "string" ? v : str("");
   }));
-  add(fn("NUMBERVALUE", "none", (args) => excelCoerceNumber(args[0] ?? BLANK)));
+  add(fn("NUMBERVALUE", "none", (args) => {
+    const textArg = args[0] ?? BLANK;
+    if (textArg.kind === "number") return textArg;
+    if (textArg.kind !== "string") return err(ExcelErrorCode.Value);
+    const decRaw = args[1] === undefined || args[1].kind === "omitted" ? str(".") : excelCoerceString(args[1]);
+    const grpRaw = args[2] === undefined || args[2].kind === "omitted" ? str(",") : excelCoerceString(args[2]);
+    if (decRaw.kind !== "string" || grpRaw.kind !== "string" || decRaw.value.length !== 1) {
+      return err(ExcelErrorCode.Value);
+    }
+    const decArg = decRaw;
+    const grpArg = grpRaw;
+    let s = textArg.value.trim();
+    if (s === "") return num(0);
+    // Trailing percent signs: each one divides by 100.
+    let percentCount = 0;
+    while (s.endsWith("%")) {
+      percentCount++;
+      s = s.slice(0, -1).trimEnd();
+    }
+    if (s.includes("%")) return err(ExcelErrorCode.Value);
+    if (grpArg.value !== "" && grpArg.value !== decArg.value) {
+      s = s.split(grpArg.value).join("");
+    }
+    if (decArg.value !== ".") s = s.split(decArg.value).join(".");
+    if (!/^[+-]?(\d+\.?\d*|\.\d+)([eE][+-]?\d+)?$/.test(s)) return err(ExcelErrorCode.Value);
+    const parsed = Number(s);
+    if (!Number.isFinite(parsed)) return err(ExcelErrorCode.Value);
+    return num(parsed / 100 ** percentCount);
+  }));
 
   // Additional logical
   add(fn("IFS", "none", (args) => {

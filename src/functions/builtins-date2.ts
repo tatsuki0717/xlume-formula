@@ -308,13 +308,11 @@ export function registerDate2Functions(add: (f: ExcelFunction) => void): void {
     else if (code === 2) firstDay = 1;
     else if (code >= 11 && code <= 17) firstDay = ((code - 11 + 1) % 7);
     else firstDay = 0;
-    const offset = (firstDay - jan1Wd + 7) % 7; // days from Jan 1 to first day of week 1
-    const daysFromStart = doy - offset;
-    if (daysFromStart < 0) {
-      // belongs to last week of previous year
-      return num(52); // simplified; could be 53
-    }
-    return num(Math.floor(daysFromStart / 7) + 1);
+    // System 1: week 1 is the week containing Jan 1 (it starts on Jan 1 even
+    // mid-week); subsequent weeks start on firstDay. Jan 1's position inside
+    // its week is its weekday measured from firstDay.
+    const rel = (jan1Wd - firstDay + 7) % 7;
+    return num(Math.floor((doy + rel) / 7) + 1);
   }));
 
   add(fn("WORKDAY", "none", (args) => {

@@ -171,7 +171,10 @@ export class FormulaEvaluator {
         }
         const fn = this.functions.get(node.name);
         if (fn) {
-          const args = node.args.map((a) => this.evaluate(a, ctx));
+          // Omitted arguments reach the function as the omitted sentinel so
+          // it can apply its own defaults (evaluating them would give BLANK,
+          // which is indistinguishable from an explicit empty cell).
+          const args = node.args.map((a) => (a.kind === "missing" ? omitted() : this.evaluate(a, ctx)));
           return fn.evaluate(args, ctx);
         }
         return err(ExcelErrorCode.Name);

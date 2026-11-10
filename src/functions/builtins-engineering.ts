@@ -227,18 +227,71 @@ function toComplexResult(c: Complex | null): ExcelValue {
 // ERF approximation
 // ------------------------------------------------------------------
 
+// erf / erfc at double precision via the regularized incomplete gamma
+// function P(1/2, x^2) / Q(1/2, x^2) (series + Lentz continued fraction,
+// after Numerical Recipes). Replaces the Abramowitz & Stegun 7.1.26
+// approximation whose ~1.5e-7 error was visible at Excel precision.
+function gammln(xx: number): number {
+  const cof = [76.18009172947146, -86.50532032941677, 24.01409824083091, -1.231739572450155, 0.001208650973866179, -0.000005395239384953];
+  let y = xx;
+  let tmp = xx + 5.5;
+  tmp -= (xx + 0.5) * Math.log(tmp);
+  let ser = 1.000000000190015;
+  for (let j = 0; j < 6; j++) ser += cof[j]! / ++y;
+  return -tmp + Math.log((2.5066282746310005 * ser) / xx);
+}
+
+function gammaPSeries(a: number, x: number): number {
+  if (x <= 0) return 0;
+  let ap = a;
+  let sum = 1 / a;
+  let del = sum;
+  for (let n = 0; n < 1000; n++) {
+    ap += 1;
+    del *= x / ap;
+    sum += del;
+    if (Math.abs(del) < Math.abs(sum) * 1e-15) break;
+  }
+  return sum * Math.exp(-x + a * Math.log(x) - gammln(a));
+}
+
+function gammaQFraction(a: number, x: number): number {
+  const tiny = 1e-300;
+  let b = x + 1 - a;
+  let c = 1 / tiny;
+  let d = 1 / b;
+  let h = d;
+  for (let i = 1; i < 1000; i++) {
+    const an = -i * (i - a);
+    b += 2;
+    d = an * d + b;
+    if (Math.abs(d) < tiny) d = tiny;
+    c = b + an / c;
+    if (Math.abs(c) < tiny) c = tiny;
+    d = 1 / d;
+    const del = d * c;
+    h *= del;
+    if (Math.abs(del - 1) < 1e-15) break;
+  }
+  return Math.exp(-x + a * Math.log(x) - gammln(a)) * h;
+}
+
+function gammaP(a: number, x: number): number {
+  return x < a + 1 ? gammaPSeries(a, x) : 1 - gammaQFraction(a, x);
+}
+
+function gammaQ(a: number, x: number): number {
+  return x < a + 1 ? 1 - gammaPSeries(a, x) : gammaQFraction(a, x);
+}
+
 function erfApprox(x: number): number {
   if (x < 0) return -erfApprox(-x);
-  const a1 = 0.254829592;
-  const a2 = -0.284496736;
-  const a3 = 1.421413741;
-  const a4 = -1.453152027;
-  const a5 = 1.061405429;
-  const p = 0.3275911;
-  const sign = Math.sign(x);
-  const t = 1 / (1 + p * Math.abs(x));
-  const y = 1 - (((((a5 * t + a4) * t) + a3) * t + a2) * t + a1) * t * Math.exp(-(x * x));
-  return sign * y;
+  return gammaP(0.5, x * x);
+}
+
+function erfcPrecise(x: number): number {
+  if (x < 0) return 2 - erfcPrecise(-x);
+  return gammaQ(0.5, x * x);
 }
 
 // ------------------------------------------------------------------
@@ -471,11 +524,11 @@ export function registerEngineeringFunctions(add: (f: ExcelFunction) => void): v
   }));
   add(fn("ERFC", "none", (args) => {
     const x = excelCoerceNumber(args[0] ?? BLANK);
-    return x.kind === "number" ? num(1 - erfApprox(x.value)) : x;
+    return x.kind === "number" ? num(erfcPrecise(x.value)) : x;
   }));
   add(fn("ERFC.PRECISE", "none", (args) => {
     const x = excelCoerceNumber(args[0] ?? BLANK);
-    return x.kind === "number" ? num(1 - erfApprox(x.value)) : x;
+    return x.kind === "number" ? num(erfcPrecise(x.value)) : x;
   }));
 
   // Delta / step

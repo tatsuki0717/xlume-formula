@@ -260,7 +260,8 @@ describe("Logical and information parity", () => {
   });
 
   it("N, T, TYPE and ERROR.TYPE", () => {
-    expect(e.evaluateText("N(\"123\")", ctx())).toEqual(num(123));
+    // Excel's N returns 0 for any text, including numeric text.
+    expect(e.evaluateText("N(\"123\")", ctx())).toEqual(num(0));
     expect(e.evaluateText("T(123)", ctx())).toEqual(str(""));
     expect(e.evaluateText("T(\"x\")", ctx())).toEqual(str("x"));
     expect(e.evaluateText("TYPE(123)", ctx())).toEqual(num(1));
