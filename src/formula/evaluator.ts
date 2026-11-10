@@ -209,6 +209,28 @@ export class FormulaEvaluator {
       }
       case "spill":
       case "implicitIntersection": {
+        if (node.kind === "implicitIntersection" && node.expr.kind === "range") {
+          // @ on a range: pick the element on the formula cell's row (for a
+          // vertical range), column (horizontal), or both (2-D block).
+          // Outside the range's span Excel returns #VALUE!.
+          const { startRow, startColumn, endRow, endColumn } = node.expr.range;
+          const sheet = node.expr.sheet ?? ctx.sheetId;
+          if (startColumn === endColumn && startRow === endRow) {
+            return ctx.getCell(sheet, startRow, startColumn);
+          }
+          if (startColumn === endColumn) {
+            if (ctx.row < startRow || ctx.row > endRow) return err(ExcelErrorCode.Value);
+            return ctx.getCell(sheet, ctx.row, startColumn);
+          }
+          if (startRow === endRow) {
+            if (ctx.column < startColumn || ctx.column > endColumn) return err(ExcelErrorCode.Value);
+            return ctx.getCell(sheet, startRow, ctx.column);
+          }
+          if (ctx.row < startRow || ctx.row > endRow || ctx.column < startColumn || ctx.column > endColumn) {
+            return err(ExcelErrorCode.Value);
+          }
+          return ctx.getCell(sheet, ctx.row, ctx.column);
+        }
         const v = this.evaluate(node.expr, ctx);
         if (node.kind === "implicitIntersection" && v.kind === "array") {
           return v.values[0] ?? BLANK;
@@ -236,8 +258,13 @@ export class FormulaEvaluator {
     const refVal = args[0] ? this.evaluate(args[0], ctx) : BLANK;
     if (refVal.kind !== "string") return err(ExcelErrorCode.Ref);
     const text = refVal.value.trim();
-    // Reject external workbook references
-    if (text.includes("[") || text.includes("]")) return err(ExcelErrorCode.Ref);
+    // The second argument selects the notation: TRUE/omitted = A1,
+    // FALSE = R1C1 (relative offsets resolve against the formula cell).
+    let a1Style = true;
+    if (args[1] !== undefined) {
+      const flag = excelCoerceBoolean(this.evaluate(args[1], ctx));
+      if (flag.kind === "boolean") a1Style = flag.value;
+    }
     try {
       let sheet: string | number | undefined = ctx.sheetId;
       let ref = text;
@@ -246,6 +273,22 @@ export class FormulaEvaluator {
         sheet = text.slice(0, bang).replace(/^'|'$/g, "");
         ref = text.slice(bang + 1);
       }
+      if (!a1Style) {
+        const parsed = parseR1C1Range(ref, ctx.row, ctx.column);
+        if (!parsed) return err(ExcelErrorCode.Ref);
+        if (parsed.startRow === parsed.endRow && parsed.startColumn === parsed.endColumn) {
+          return ctx.getCell(sheet, parsed.startRow, parsed.startColumn);
+        }
+        const values = ctx.getRangeValues(sheet, parsed.startRow, parsed.startColumn, parsed.endRow, parsed.endColumn);
+        return {
+          kind: "array",
+          width: parsed.endColumn - parsed.startColumn + 1,
+          height: parsed.endRow - parsed.startRow + 1,
+          values,
+        };
+      }
+      // Reject external workbook references (A1 form uses [Book]Sheet!A1)
+      if (text.includes("[") || text.includes("]")) return err(ExcelErrorCode.Ref);
       ref = ref.replace(/\$/g, "");
       if (ref.includes(":")) {
         const range = parseA1Range(ref);
@@ -1125,6 +1168,49 @@ function valueToKey(v: ExcelValue): string {
   if (v.kind === "lambda") return "lambda";
   if (v.kind === "sparkline") return "sparkline";
   return "unknown";
+}
+
+/**
+ * Parse an R1C1 reference (optionally a range "R1C1:R2C2") into 0-based
+ * A1 coordinates. Absolute parts are 1-based ("R3C2"); bracketed parts
+ * are offsets from the formula cell ("R[-1]C[2]"); a bare "R" or "C"
+ * means the formula cell's own row/column. Returns undefined on garbage.
+ */
+export function parseR1C1Range(
+  ref: string,
+  baseRow: number,
+  baseColumn: number,
+): { startRow: number; startColumn: number; endRow: number; endColumn: number } | undefined {
+  const parseCell = (s: string): { row: number; column: number } | undefined => {
+    const m = /^R(\[\s*-?\d+\s*\]|\d+)?C(\[\s*-?\d+\s*\]|\d+)?$/i.exec(s.trim());
+    if (!m) return undefined;
+    const resolve = (part: string | undefined, base: number): number => {
+      if (part === undefined) return base;
+      if (part.startsWith("[")) return base + parseInt(part.slice(1, -1), 10);
+      return parseInt(part, 10) - 1; // absolute parts are 1-based
+    };
+    const row = resolve(m[1], baseRow);
+    const column = resolve(m[2], baseColumn);
+    if (row < 0 || column < 0) return undefined;
+    return { row, column };
+  };
+  const parts = ref.split(":");
+  if (parts.length === 1) {
+    const c = parseCell(parts[0]!);
+    return c ? { startRow: c.row, startColumn: c.column, endRow: c.row, endColumn: c.column } : undefined;
+  }
+  if (parts.length === 2) {
+    const a = parseCell(parts[0]!);
+    const b = parseCell(parts[1]!);
+    if (!a || !b) return undefined;
+    return {
+      startRow: Math.min(a.row, b.row),
+      startColumn: Math.min(a.column, b.column),
+      endRow: Math.max(a.row, b.row),
+      endColumn: Math.max(a.column, b.column),
+    };
+  }
+  return undefined;
 }
 
 export function flattenArgs(args: ExcelValue[]): ExcelValue[] {

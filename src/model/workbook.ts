@@ -10,7 +10,7 @@ import { parseFormula, type FormulaNode } from "../formula/ast.js";
 import { FormulaEvaluator } from "../formula/evaluator.js";
 import type { EvaluationContext } from "../formula/functions-types.js";
 import { createBuiltinFunctions } from "../functions/builtins.js";
-import { BLANK, err, ExcelErrorCode, type ArrayValue, type ExcelValue } from "./value.js";
+import { BLANK, err, ExcelErrorCode, num, type ArrayValue, type ExcelValue } from "./value.js";
 
 interface WorkbookCellAddress {
   sheetId: number;
@@ -86,6 +86,9 @@ export class Workbook {
   private dependents = new Map<string, Set<string>>();
   /** Formula cells that contain volatile functions. */
   private volatileCells = new Set<string>();
+  /** Formula cells whose formula references their own cell (self-loop,
+   * invisible in the dep graph because addDep drops self-edges). */
+  private selfRefs = new Set<string>();
   /** True if a spill changed shape during the current recalc pass. */
   private spillChanged = false;
   /** Cells that are currently blocking a dynamic-array spill: blocker key -> origins. */
@@ -97,6 +100,50 @@ export class Workbook {
   ]);
 
   private nextSheetId = 1;
+
+  /** Excel calculation options for circular references (calcPr iterate*). */
+  private calcOptions = { iterateEnabled: false, iterateCount: 100, iterateDelta: 0.001 };
+
+  setCalculationOptions(options: Partial<{ iterateEnabled: boolean; iterateCount: number; iterateDelta: number }>): void {
+    if (options.iterateEnabled !== undefined) this.calcOptions.iterateEnabled = options.iterateEnabled;
+    if (options.iterateCount !== undefined) this.calcOptions.iterateCount = Math.max(1, Math.floor(options.iterateCount));
+    if (options.iterateDelta !== undefined) this.calcOptions.iterateDelta = Math.max(0, options.iterateDelta);
+  }
+
+  getCalculationOptions(): { iterateEnabled: boolean; iterateCount: number; iterateDelta: number } {
+    return { ...this.calcOptions };
+  }
+
+  /** Formula cells that participate in a dependency cycle. */
+  circularReferences(): Array<{ sheetId: number; row: number; column: number }> {
+    return [...this.findCycleCells(this.formulaCells)].map((key) => this.parseGlobalKey(key));
+  }
+
+  /** Cells in `scope` that can reach themselves through the dependency graph. */
+  private findCycleCells(scope: Set<string>): Set<string> {
+    const cycles = new Set<string>();
+    for (const start of scope) {
+      if (!this.formulaCells.has(start)) continue;
+      if (this.selfRefs.has(start)) {
+        cycles.add(start);
+        continue;
+      }
+      // DFS from start's dependencies looking for a path back to start.
+      const seen = new Set<string>();
+      const stack = [...(this.deps.get(start) ?? [])];
+      while (stack.length > 0) {
+        const k = stack.pop()!;
+        if (k === start) {
+          cycles.add(start);
+          break;
+        }
+        if (seen.has(k)) continue;
+        seen.add(k);
+        for (const d of this.deps.get(k) ?? []) stack.push(d);
+      }
+    }
+    return cycles;
+  }
 
   addSheet(name?: string): number {
     const id = this.nextSheetId++;
@@ -169,11 +216,29 @@ export class Workbook {
     }
     for (const key of this.volatileCells) dirty.add(key);
 
-    const maxPasses = Math.max(1, this.formulaCells.size + 1);
+    // Circular references (C-007): with iteration off, Excel pins cycle
+    // cells to 0 and calculates everything else against that. With
+    // iteration on, cycle cells are re-evaluated until the largest change
+    // in a pass falls below iterateDelta, at most iterateCount passes.
+    const cycleCells = this.findCycleCells(dirty);
+    const iterate = this.calcOptions.iterateEnabled && cycleCells.size > 0;
+    if (cycleCells.size > 0 && !this.calcOptions.iterateEnabled) {
+      for (const key of cycleCells) {
+        const { sheetId, row, column } = this.parseGlobalKey(key);
+        const cell = this.cells.get(sheetId)?.get(cellKey(row, column));
+        if (cell) cell.value = num(0);
+        dirty.delete(key);
+      }
+    }
+
+    const maxPasses = iterate
+      ? Math.max(1, this.calcOptions.iterateCount)
+      : Math.max(1, this.formulaCells.size + 1);
     for (let pass = 0; pass < maxPasses; pass++) {
       this.spillChanged = false;
       const order = this.topologicalOrder(dirty);
       let changed = false;
+      let cycleMaxChange = 0;
       for (const key of order) {
         if (!this.formulaCells.has(key)) continue;
         const { sheetId, row, column } = this.parseGlobalKey(key);
@@ -184,9 +249,18 @@ export class Workbook {
         if (!valuesEqual(oldValue, newValue)) {
           cell.value = newValue;
           changed = true;
+          if (cycleCells.has(key)) {
+            cycleMaxChange = Math.max(
+              cycleMaxChange,
+              oldValue?.kind === "number" && newValue.kind === "number"
+                ? Math.abs(newValue.value - oldValue.value)
+                : Number.POSITIVE_INFINITY,
+            );
+          }
           for (const dep of this.dependents.get(key) ?? []) dirty.add(dep);
         }
       }
+      if (iterate && cycleMaxChange < this.calcOptions.iterateDelta && !this.spillChanged) break;
       if (!changed && !this.spillChanged) break;
       // A spill shape changed or a volatile/dynamic value changed:
       // recompute all formula cells that might be affected by spills.
@@ -238,6 +312,8 @@ export class Workbook {
       const node = parseFormula(cell.formula);
       const flags = { volatile: false };
       const deps = this.collectDeps(node, sheetId, row, column, new Set<string>(), flags);
+      if (deps.has(key)) this.selfRefs.add(key);
+      else this.selfRefs.delete(key);
       for (const dep of deps) this.addDep(key, dep);
       if (flags.volatile) this.volatileCells.add(key);
       else this.volatileCells.delete(key);
@@ -367,6 +443,7 @@ export class Workbook {
       this.deps.delete(key);
     }
     this.volatileCells.delete(key);
+    this.selfRefs.delete(key);
   }
 
   private ensureCell(sheetId: number, row: number, col: number): Cell {
