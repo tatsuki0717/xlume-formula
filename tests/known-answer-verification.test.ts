@@ -5,9 +5,10 @@ import { Workbook } from "../src/model/workbook.js";
  * Known-answer verification against Excel semantics.
  * Each case is a formula whose Excel result is documented behaviour,
  * verified independently of the implementation (not a snapshot).
- * Known limitation (excluded): SUM("3",1) — Excel coerces text literals
- * passed directly as arguments, but a value-level engine cannot tell a
- * string literal from a text cell, where Excel would ignore it.
+ * Direct literal arguments of aggregate functions are coerced the way
+ * Excel does (SUM("3",1) = 4): the evaluator propagates AST literal-ness
+ * so a string/logical literal is converted, while the same values in
+ * cells or expression results are ignored (see literal-coercion.test.ts).
  */
 const cases: Array<[string, number | string | boolean, number?]> = [
   // math
@@ -25,6 +26,12 @@ const cases: Array<[string, number | string | boolean, number?]> = [
   // precedence / operators / coercion
   ["=-2^2", 4], ["=2^3^2", 64], ["=50%", 0.5], ["=\"1\"+1", 2], ["=TRUE+1", 2], ["=--\"3\"", 3],
   ["=COUNT({1,\"a\",TRUE})", 1],
+  // direct literal coercion in aggregate functions (Excel converts values
+  // typed into the argument list; references/expressions are not converted)
+  ["=SUM(\"3\",1)", 4], ["=SUM(TRUE,1)", 2], ["=SUM(\"abc\")", "#VALUE!"], ["=SUM(\"50%\")", 0.5],
+  ["=AVERAGE(\"4\",2)", 3], ["=AVERAGE(TRUE,3)", 2],
+  ["=COUNT(\"3\",1)", 2], ["=COUNT(TRUE)", 1], ["=COUNT(\"abc\")", 0],
+  ["=MIN(\"5\",3)", 3], ["=MAX(\"5\",3)", 5], ["=COUNTA(\"abc\")", 1],
   // statistics
   ["=AVERAGE({1,2,3,4})", 2.5], ["=MEDIAN({1,2,3,4})", 2.5], ["=MODE.SNGL({1,1,2,3})", 1],
   ["=ROUND(STDEV.S({2,4,4,4,5,5,7,9}),4)", 2.1381, 1e-4], ["=ROUND(STDEV.P({2,4,4,4,5,5,7,9}),4)", 2],
