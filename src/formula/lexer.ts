@@ -188,11 +188,23 @@ export function lexFormula(input: string): FormulaToken[] {
         tokens.push({ kind: "function", value: name.toUpperCase() });
       } else if (after.startsWith("[")) {
         // structured reference start — consume Table[... ]
+        // Inside the brackets, `'` escapes the next character: column
+        // names may contain `[`, `]`, `#`, `@` or `'` itself when escaped
+        // (e.g. Table[A']B] is the column named `A]B`, Table[It''s] the
+        // column named `It's`). An escaped bracket must not change the
+        // nesting depth. The token keeps the raw (still-escaped) text —
+        // unescaping happens in the host's resolveTableColumn, matching
+        // the contract hosts such as xlume implement.
         let j = i + name.length;
         let depth = 0;
         while (j < s.length) {
-          if (s[j] === "[") depth++;
-          if (s[j] === "]") {
+          const ch = s[j]!;
+          if (ch === "'" && depth > 0 && j + 1 < s.length) {
+            j += 2;
+            continue;
+          }
+          if (ch === "[") depth++;
+          if (ch === "]") {
             depth--;
             j++;
             if (depth === 0) break;
