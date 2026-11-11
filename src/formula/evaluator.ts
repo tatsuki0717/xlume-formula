@@ -44,6 +44,46 @@ interface GroupByAggregator {
   aggregate: (groupValues: ExcelValue[], allValues: ExcelValue[]) => ExcelValue;
 }
 
+/**
+ * Direct-literal coercion for aggregate functions.
+ *
+ * Excel treats values typed directly into an argument list differently
+ * from values arriving through a reference or an expression: a string or
+ * logical literal is converted to a number (SUM("3",1) = 4, SUM(TRUE,1)
+ * = 2), while text and logicals inside ranges/references are ignored by
+ * SUM/AVERAGE/MIN/MAX and never counted by COUNT. Only an argument whose
+ * AST node is itself a literal is eligible — array constants, references,
+ * names and expression results keep the value-level behaviour.
+ *
+ * Strict functions (SUM, AVERAGE, MIN, MAX) raise #VALUE! for a string
+ * literal that is not a numeric representation, matching Excel. Lenient
+ * functions (COUNT, COUNTA) leave such a string untouched: COUNT then
+ * ignores it (COUNT("abc") = 0) and COUNTA counts it (COUNTA("abc") = 1).
+ */
+const STRICT_LITERAL_COERCION = new Set(["SUM", "AVERAGE", "MIN", "MAX"]);
+const LENIENT_LITERAL_COERCION = new Set(["COUNT", "COUNTA"]);
+
+const NUMERIC_LITERAL_RE = /^([+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?)(%)?$/;
+
+/** Parse a string the way Excel reads a directly typed numeric value. */
+function parseNumericLiteral(text: string): number | undefined {
+  const m = NUMERIC_LITERAL_RE.exec(text.trim());
+  if (!m) return undefined;
+  const n = Number(m[1]);
+  if (!Number.isFinite(n)) return undefined;
+  return m[2] ? n / 100 : n;
+}
+
+function coerceDirectLiteral(value: ExcelValue, strict: boolean): ExcelValue {
+  if (value.kind === "boolean") return num(value.value ? 1 : 0);
+  if (value.kind === "string") {
+    const n = parseNumericLiteral(value.value);
+    if (n !== undefined) return num(n);
+    return strict ? err(ExcelErrorCode.Value) : value;
+  }
+  return value;
+}
+
 export class FormulaEvaluator {
   constructor(private functions: FunctionRegistry) {}
 
@@ -177,7 +217,16 @@ export class FormulaEvaluator {
           // Omitted arguments reach the function as the omitted sentinel so
           // it can apply its own defaults (evaluating them would give BLANK,
           // which is indistinguishable from an explicit empty cell).
-          const args = node.args.map((a) => (a.kind === "missing" ? omitted() : this.evaluate(a, ctx)));
+          // Aggregate functions additionally get Excel's direct-literal
+          // coercion: only arguments written as literals in the formula are
+          // converted, references and expressions are passed untouched.
+          const strict = STRICT_LITERAL_COERCION.has(upper);
+          const lenient = !strict && LENIENT_LITERAL_COERCION.has(upper);
+          const args = node.args.map((a) => {
+            if (a.kind === "missing") return omitted();
+            const v = this.evaluate(a, ctx);
+            return strict || lenient ? (a.kind === "literal" ? coerceDirectLiteral(v, strict) : v) : v;
+          });
           return fn.evaluate(args, ctx);
         }
         return err(ExcelErrorCode.Name);
