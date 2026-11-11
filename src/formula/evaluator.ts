@@ -84,6 +84,57 @@ function coerceDirectLiteral(value: ExcelValue, strict: boolean): ExcelValue {
   return value;
 }
 
+/**
+ * Reference semantics for aggregate functions — the mirror image of the
+ * direct-literal rule above. Text and logical values that arrive through
+ * a reference (a cell, a range, a union or intersection of them, a
+ * structured reference, a spill / implicit-intersection operator over
+ * one, or a defined name bound to one) are ignored by SUM, AVERAGE, MIN
+ * and MAX and never counted by COUNT: SUM over a TRUE cell is 0, not 1.
+ * COUNTA is exempt — it counts every non-blank cell regardless of origin.
+ * Direct values (literals, array constants, expression results) keep
+ * their identity, so SUM({1,TRUE}) still counts the logical.
+ *
+ * Implementation: for these functions, an argument whose AST node is
+ * reference-derived has its string/boolean elements replaced with BLANK
+ * before the function sees them; every target function already skips
+ * blanks. Numbers, blanks and errors pass through untouched, so error
+ * propagation out of ranges is preserved.
+ */
+const REFERENCE_SEMANTICS = new Set(["SUM", "AVERAGE", "MIN", "MAX", "COUNT"]);
+
+/** Whether the values produced by this AST node come out of cells. */
+function isReferenceDerived(node: FormulaNode, ctx: EvaluationContext, depth = 0): boolean {
+  switch (node.kind) {
+    case "reference":
+    case "range":
+    case "structured":
+    case "union":
+    case "intersection":
+    case "external":
+      return true;
+    case "spill":
+    case "implicitIntersection":
+      return isReferenceDerived(node.expr, ctx, depth);
+    case "name": {
+      if (depth >= 8) return false;
+      const resolved = ctx.resolveName(node.name);
+      return resolved !== undefined && !isExcelValue(resolved)
+        ? isReferenceDerived(resolved as FormulaNode, ctx, depth + 1)
+        : false;
+    }
+    default:
+      return false;
+  }
+}
+
+function ignoreReferenceTextAndLogicals(value: ExcelValue): ExcelValue {
+  if (value.kind === "array") {
+    return { ...value, values: value.values.map(ignoreReferenceTextAndLogicals) };
+  }
+  return value.kind === "string" || value.kind === "boolean" ? BLANK : value;
+}
+
 export class FormulaEvaluator {
   constructor(private functions: FunctionRegistry) {}
 
@@ -220,12 +271,19 @@ export class FormulaEvaluator {
           // Aggregate functions additionally get Excel's direct-literal
           // coercion: only arguments written as literals in the formula are
           // converted, references and expressions are passed untouched.
+          // The same functions get reference semantics: text and logicals
+          // arriving through a reference-derived argument are blanked out
+          // (a literal node is never reference-derived, so the two
+          // transforms never both fire on one argument).
           const strict = STRICT_LITERAL_COERCION.has(upper);
           const lenient = !strict && LENIENT_LITERAL_COERCION.has(upper);
+          const referenceSemantics = REFERENCE_SEMANTICS.has(upper);
           const args = node.args.map((a) => {
             if (a.kind === "missing") return omitted();
-            const v = this.evaluate(a, ctx);
-            return strict || lenient ? (a.kind === "literal" ? coerceDirectLiteral(v, strict) : v) : v;
+            let v = this.evaluate(a, ctx);
+            if ((strict || lenient) && a.kind === "literal") v = coerceDirectLiteral(v, strict);
+            if (referenceSemantics && isReferenceDerived(a, ctx)) v = ignoreReferenceTextAndLogicals(v);
+            return v;
           });
           return fn.evaluate(args, ctx);
         }

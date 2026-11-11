@@ -173,7 +173,12 @@ export function createBuiltinFunctions(): FunctionRegistry {
   add(
     fn("COUNT", "none", (args) => {
       let c = 0;
-      for (const v of flattenArgs(args)) if (v.kind === "number") c++;
+      for (const v of flattenArgs(args)) {
+        // Excel propagates an error contained in an argument (cell,
+        // range or literal) instead of silently skipping it.
+        if (v.kind === "error") return v;
+        if (v.kind === "number") c++;
+      }
       return num(c);
     }),
   );
